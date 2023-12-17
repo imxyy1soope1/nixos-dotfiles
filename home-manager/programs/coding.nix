@@ -15,4 +15,8 @@
     viAlias = true;
     vimAlias = true;
   };
+  home.files.".config/nvim" = {
+    source = ./nvim;
+    recursive = true;
+  };
 }
