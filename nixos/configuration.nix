@@ -73,9 +73,14 @@
         "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
         "https://mirror.sjtu.edu.cn/nix-channels/store"
     ];
+    auto-optimise-store = true;
   };
 
-  # FIXME: Add the rest of your current configuration
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-order-than 1w";
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";

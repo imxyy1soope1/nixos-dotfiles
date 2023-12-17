@@ -27,6 +27,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
+      inputs.omz.overlays.default
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -56,6 +57,32 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; [ 
     neovim
+    lua
+    lsd
+    neofetch
+    fzf
+    bat
+    ripgrep
+
+    zip
+    unzip
+    xz
+
+    aria2
+    socat
+    
+    file
+    gnused
+    gnutar
+    gnupg
+
+    nix-output-monitor
+
+    btop
+    htop
+
+    pciutils
+    usbutils
   ];
 
   # Enable home-manager and git
@@ -72,12 +99,24 @@
       size = 20000;
       save = 20000;
     };
-    oh-my-zsh = {
-      enable = true;
-      theme = "gentoo";
-      plugins = [ "git" "sudo" "extract" ];
+    envExtra = "export EDITOR=nvim";
+    initExtraFirst = "source ${pkgs.omz}/share/omz/omz.zsh";
+    shellAliases = {
+      ls = "lsd";
+      cat = "bat";
+      svim = "sudoedit";
+      vi = "nvim";
+      vim = "nvim";
+      nf = "neofetch";
+    }; 
+  };
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      env.TERM = "xterm-256color";
+      font.size = 14;
     };
-    syntaxHighlighting.enable = true;
   };
 
   # Nicely reload system units when changing configs
