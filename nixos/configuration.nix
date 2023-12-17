@@ -69,17 +69,62 @@
     experimental-features = "nix-command flakes";
     # Deduplicate and optimize nix store
     auto-optimise-store = true;
+    substituters = [
+        "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+        "https://mirror.sjtu.edu.cn/nix-channels/store"
+    ];
   };
 
   # FIXME: Add the rest of your current configuration
 
+  # Set your time zone.
+  time.timeZone = "Asia/Shanghai";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "zh_CN.UTF-8";
+    LC_IDENTIFICATION = "zh_CN.UTF-8";
+    LC_MEASUREMENT = "zh_CN.UTF-8";
+    LC_MONETARY = "zh_CN.UTF-8";
+    LC_NAME = "zh_CN.UTF-8";
+    LC_NUMERIC = "zh_CN.UTF-8";
+    LC_PAPER = "zh_CN.UTF-8";
+    LC_TELEPHONE = "zh_CN.UTF-8";
+    LC_TIME = "zh_CN.UTF-8";
+  };
+  networking.networkmanager.enable = true;
   networking.hostName = "imxyy-nix";
 
   boot.loader.systemd-boot.enable = true;
 
+  security.sudo.extraRules = [
+    {
+      users = [ "imxyy" ];
+      commands = [
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
+
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    git
+    home-manager
+  ];
+
+  programs.zsh.enable = true;
+
   users.users = {
     imxyy = {
       isNormalUser = true;
+      description = "imxyy_soope_";
+      shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
@@ -95,11 +140,10 @@
     settings = {
       # Forbid root login through SSH.
       PermitRootLogin = "no";
-      # Use keys only. Remove if you want to SSH using password (not recommended)
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
     };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

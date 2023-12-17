@@ -54,11 +54,31 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  home.packages = with pkgs; [ 
+    neovim
+  ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    userName = "imxyy_soope_";
+    userEmail = "3516554684@qq.com";
+  };
+  
+  programs.zsh = {
+    enable = true;
+    history = {
+      size = 20000;
+      save = 20000;
+    };
+    oh-my-zsh = {
+      enable = true;
+      theme = "gentoo";
+      plugins = [ "git" "sudo" "extract" ];
+    };
+    syntaxHighlighting.enable = true;
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
