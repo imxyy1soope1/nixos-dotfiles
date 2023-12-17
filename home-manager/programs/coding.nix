@@ -2,10 +2,10 @@
 
 {
   home.packages = with pkgs; [
-    python
+    python3
     lua
     gcc
-    make
+    gnumake
     cmake
     go
   ];
