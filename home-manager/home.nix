@@ -95,6 +95,7 @@
   
   programs.zsh = {
     enable = true;
+    dotDir = ".config/zsh";
     history = {
       size = 20000;
       save = 20000;
