@@ -16,6 +16,10 @@
     # OMZ
     omz.url = "github:imxyy1soope1/omz/master";
 
+    # Hyprland
+    hyprland.url = "github:hyprwm/Hyprland/master";
+    hyprland.nixpkgs.follow = "nixpkgs-unstable";
+
     # hardware.url = "github:nixos/nixos-hardware";
 
     # Shameless plug: looking for a way to nixify your themes and make

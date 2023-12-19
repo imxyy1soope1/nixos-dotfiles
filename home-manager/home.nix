@@ -26,6 +26,7 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
       inputs.omz.overlays.default
+      inputs.hyprland.overlays.default
     ];
     # Configure your nixpkgs instance
     config = {
@@ -68,6 +69,8 @@
 
     pciutils
     usbutils
+
+    omz
   ];
 
   # Enable home-manager and git
@@ -77,7 +80,7 @@
     userName = "imxyy_soope_";
     userEmail = "3516554684@qq.com";
   };
-  
+
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -91,14 +94,6 @@
       cat = "bat";
       svim = "sudoedit";
       nf = "neofetch";
-    }; 
-  };
-
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      env.TERM = "xterm-256color";
-      font.size = 14;
     };
   };
 
