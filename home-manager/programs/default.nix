@@ -1,8 +1,7 @@
-{...}:
-
-{
+{...}: {
   imports = [
     ./term.nix
-    ./coding.nix    
+    ./coding.nix
+    ./hyprland.nix
   ];
 }

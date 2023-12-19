@@ -1,5 +1,5 @@
 {
-  description = "Your new nix config";
+  description = "imxyy_soope_'s NixOS (flake) config";
 
   inputs = {
     # Nixpkgs
@@ -17,8 +17,8 @@
     omz.url = "github:imxyy1soope1/omz/master";
 
     # Hyprland
-    hyprland.url = "github:hyprwm/Hyprland/master";
-    hyprland.nixpkgs.follow = "nixpkgs-unstable";
+    hyprland.url = "github:hyprwm/Hyprland/main";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # hardware.url = "github:nixos/nixos-hardware";
 
