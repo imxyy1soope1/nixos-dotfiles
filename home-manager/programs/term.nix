@@ -3,7 +3,7 @@
 {
   # Alacritty
   programs.alacritty.enable = true;
-  home.file.".config/alacritty" = {
+  xdg.configFile."alacritty" = {
     source = ./alacritty;
     recursive = true;
   };

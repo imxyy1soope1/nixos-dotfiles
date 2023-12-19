@@ -8,14 +8,26 @@
     gnumake
     cmake
     go
+    nodejs
   ];
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    extraPackages = with pkgs; [
+      nodejs
+      nodePackages.npm
+
+      cargo
+      rustc
+
+      lua
+
+      nil
+    ];
   };
-  home.files.".config/nvim" = {
+  xdg.configFile."nvim" = {
     source = ./nvim;
     recursive = true;
   };

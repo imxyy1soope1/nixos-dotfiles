@@ -85,14 +85,11 @@
       size = 20000;
       save = 20000;
     };
-    envExtra = "export EDITOR=nvim";
     initExtraFirst = "source ${pkgs.omz}/share/omz/omz.zsh";
     shellAliases = {
       ls = "lsd";
       cat = "bat";
       svim = "sudoedit";
-      vi = "nvim";
-      vim = "nvim";
       nf = "neofetch";
     }; 
   };
