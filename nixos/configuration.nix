@@ -30,17 +30,8 @@
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
+      outputs.overlays.stable-packages
       outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
     ];
     # Configure your nixpkgs instance
     config = {
@@ -72,8 +63,9 @@
     substituters = [
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
       "https://mirror.sjtu.edu.cn/nix-channels/store"
+      "https://hyprland.cachix.org"
     ];
-    auto-optimise-store = true;
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
   nix.gc = {
@@ -81,6 +73,9 @@
     dates = "weekly";
     options = "--delete-order-than 1w";
   };
+
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  boot.loader.systemd-boot.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
@@ -102,8 +97,6 @@
   networking.networkmanager.enable = true;
   networking.hostName = "imxyy-nix";
 
-  boot.loader.systemd-boot.enable = true;
-
   security.sudo.extraRules = [
     {
       users = ["imxyy"];
@@ -124,6 +117,7 @@
   ];
 
   programs.zsh.enable = true;
+  programs.dconf.enable = true;
 
   users.users = {
     imxyy = {
@@ -134,7 +128,7 @@
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["wheel"];
+      extraGroups = ["wheel" "imxyy"];
     };
   };
 
