@@ -12,6 +12,12 @@
 
     # OMZ
     omz.url = "github:imxyy1soope1/omz/master";
+    # omz.url = "/home/imxyy/omz";
+
+    # dwm
+    dwm.url = "github:imxyy1soope1/dwm/master";
+    # dwm.url = "/home/imxyy/dwm";
+    dwm.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland/main";

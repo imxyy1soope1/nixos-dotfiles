@@ -26,6 +26,7 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
       inputs.omz.overlays.default
+      inputs.dwm.overlays.default
       inputs.hyprland.overlays.default
     ];
     # Configure your nixpkgs instance
