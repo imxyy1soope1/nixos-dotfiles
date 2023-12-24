@@ -11,25 +11,43 @@
     go
     nodejs
   ];
+  nixpkgs.config = {
+    programs.npm.npmrc = ''
+      prefix = ''${HOME}/.npm-global
+    '';
+  };
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
     extraPackages = with pkgs; [
-      nodejs
-      nodePackages.npm
+      nodePackages.pyright
 
+      llvmPackages.clang-unwrapped
+
+      rust-analyzer
       cargo
       rustc
 
-      lua
-
       nil
+      rnix-lsp
+      nixd
+
+      gotools
+      gopls
+
+      stylua
+      lua-language-server
+
+      nodePackages.vscode-langservers-extracted
+
+      ripgrep
     ];
   };
-  xdg.configFile."nvim" = {
-    source = ./nvim;
+  xdg.configFile."nvim/init.lua".source = ./nvim/init.lua;
+  xdg.configFile."nvim/lua" = {
+    source = ./nvim/lua;
     recursive = true;
   };
 }

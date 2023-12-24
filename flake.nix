@@ -1,10 +1,11 @@
 {
   description = "imxyy_soope_'s NixOS (flake) config";
 
-  inputs = {
+  inputs = rec {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs = nixpkgs-unstable;
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/master";
@@ -35,7 +36,6 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
-    hyprland,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -87,7 +87,6 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
-          hyprland.homeManagerModules.default
           ./home-manager/home.nix
         ];
       };

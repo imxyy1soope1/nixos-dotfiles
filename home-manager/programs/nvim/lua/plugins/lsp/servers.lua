@@ -7,6 +7,9 @@ M = {
     "tsserver",
     "jsonls",
     "cssls",
+    -- "nil_ls",
+    -- "rnix",
+    "nixd",
     -- "sonarlint-language-server"
 }
 

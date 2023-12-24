@@ -21,7 +21,7 @@
     # ./users.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
-    ./hardware-configuration.nix
+    ./hardware-configuration/kvm.nix
   ];
 
   nixpkgs = {
@@ -76,6 +76,7 @@
 
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   boot.loader.systemd-boot.enable = true;
+  boot.loader.timeout = 1;
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
