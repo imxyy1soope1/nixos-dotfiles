@@ -1,11 +1,11 @@
 {pkgs, ...}: {
   programs.btop.enable = true;
-  xdg.configFiles."btop" = {
+  xdg.configFile."btop" = {
     source = ./btop;
     recursive = true;
   };
   home.packages = with pkgs; [
     tmux
   ];
-  xdg.configFiles."tmux/tmux.conf".source = ./tmux.conf;
+  xdg.configFile."tmux/tmux.conf".source = ./tmux.conf;
 }
