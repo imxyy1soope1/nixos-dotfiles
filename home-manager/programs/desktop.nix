@@ -2,6 +2,7 @@
   programs.firefox.enable = true;
   home.packages = with pkgs; [
     dunst
+    cinnamon.nemo
   ];
   xdg.configFile."dunst" = {
     source = ./dunst;
