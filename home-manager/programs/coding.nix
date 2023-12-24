@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     python3
     lua
@@ -32,7 +29,7 @@
 
       nil
       rnix-lsp
-      nixd
+      # nixd
 
       gotools
       gopls
@@ -45,9 +42,8 @@
       ripgrep
     ];
   };
-  xdg.configFile."nvim/init.lua".source = ./nvim/init.lua;
-  xdg.configFile."nvim/lua" = {
-    source = ./nvim/lua;
+  xdg.configFile."nvim" = {
+    source = ./nvim;
     recursive = true;
   };
 }

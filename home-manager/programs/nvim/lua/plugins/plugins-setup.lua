@@ -61,7 +61,7 @@ local plugins = {
             require("ibl").setup(require("plugins.indent-blankline"))
         end
     },
-    {
+    --[[ {
         "williamboman/mason.nvim",
         lazy = false,
         config = function()
@@ -75,7 +75,7 @@ local plugins = {
         config = function()
             require("mason-lspconfig").setup(require("plugins.lsp.mason-lspconfig"))
         end
-    },
+    }, ]]
     {
         "neovim/nvim-lspconfig",
         dependencies = { "hrsh7th/cmp-nvim-lsp" },

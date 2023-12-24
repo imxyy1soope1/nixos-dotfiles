@@ -10,23 +10,7 @@ else
     capabilities = {}
 end
 
--- local on_attach = require("plugins.lsp.signature").on_attach
-local on_attach = function(bufnr)
-    vim.api.nvim_create_autocmd("CursorHold", {
-        buffer = bufnr,
-        callback = function()
-            local opts = {
-                focusable = false,
-                close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-                border = "rounded",
-                source = "always",
-                prefix = " ",
-                scope = "line",
-            }
-            vim.diagnostic.open_float(nil, opts)
-        end,
-    })
-end
+local on_attach = require("plugins.lsp.signature").on_attach
 
 local lspconfig = require("lspconfig")
 for _, server in ipairs(require("plugins.lsp.servers")) do
@@ -48,13 +32,8 @@ lspconfig["lua_ls"].setup({
             workspace = {
                 library = {
                     vim.api.nvim_get_runtime_file("", true),
-                    "${3rd}/luassert/library",
-                    "${3rd}/luv/library",
                     "${3rd}/luv/library",
                     "${3rd}/luassert/library",
-                    "${3rd}/luv/library",
-                    "${3rd}/luv/library",
-                    "${3rd}/luassert/library"
                 }
             },
             diagnostics = {
