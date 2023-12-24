@@ -6,6 +6,9 @@
   lib,
   config,
   pkgs,
+  username,
+  userdesc,
+  hostname,
   ...
 }: {
   # You can import other NixOS modules here
@@ -96,11 +99,11 @@
     LC_TIME = "zh_CN.UTF-8";
   };
   networking.networkmanager.enable = true;
-  networking.hostName = "imxyy-nix";
+  networking.hostName = "${hostname}";
 
   security.sudo.extraRules = [
     {
-      users = ["imxyy"];
+      users = ["${username}"];
       commands = [
         {
           command = "ALL";
@@ -121,15 +124,15 @@
   programs.dconf.enable = true;
 
   users.users = {
-    imxyy = {
+    "${username}" = {
       isNormalUser = true;
-      description = "imxyy_soope_";
+      description = "${userdesc}";
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["wheel" "imxyy"];
+      extraGroups = ["wheel" "${username}"];
     };
   };
 

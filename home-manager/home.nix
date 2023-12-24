@@ -6,6 +6,7 @@
   lib,
   config,
   pkgs,
+  username,
   ...
 }: {
   # You can import other home-manager modules here
@@ -39,11 +40,10 @@
   };
 
   home = {
-    username = "imxyy";
-    homeDirectory = "/home/imxyy";
+    username = "${username}";
+    homeDirectory = "/home/${username}";
   };
 
-  # Add stuff for your user as you see fit:
   home.packages = with pkgs; [
     lsd
     neofetch

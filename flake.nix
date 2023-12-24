@@ -1,5 +1,5 @@
 {
-  description = "imxyy_soope_'s NixOS (flake) config";
+  description = "${(import ./constants.nix).userfullname}'s NixOS (flake) config";
 
   inputs = rec {
     # Nixpkgs
@@ -39,6 +39,7 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+    inherit (import ./constants.nix) username userfullname userdesc hostname;
     # Supported systems for your flake packages, shell, etc.
     systems = [
       "aarch64-linux"
@@ -70,8 +71,8 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      imxyy-nix = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+      "${hostname}" = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs username userdesc hostname;};
         modules = [
           # > Our main nixos configuration file <
           ./nixos/configuration.nix
@@ -82,9 +83,9 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      "imxyy@imxyy-nix" = home-manager.lib.homeManagerConfiguration {
+      "${username}@${hostname}" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {inherit inputs outputs username;};
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix
