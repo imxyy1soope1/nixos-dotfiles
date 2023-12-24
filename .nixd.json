@@ -3,7 +3,7 @@
         "target": {
             "args": [
                 "-f",
-                "flake.nix"
+                "default.nix"
             ],
             "installable": ""
         }
