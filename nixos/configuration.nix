@@ -117,6 +117,19 @@
     vim
     wget
     git
+
+    file
+    gnused
+    gnutar
+    gnupg
+
+    zip
+    unzip
+    xz
+
+    pciutils
+    usbutils
+
     home-manager
   ];
 

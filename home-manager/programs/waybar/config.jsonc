@@ -1,0 +1,190 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passtrough": false,
+    "gtk-layer-shell": true,
+    "height": 0,
+    "modules-left": [
+        "clock",
+        "cpu",
+        "memory",
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        // "hyprland/window"
+        "mpris"
+    ],
+    "modules-right": [
+        //"mpd",
+        // "mpris",
+        "custom/notification",
+        "tray",
+        "custom/updates",
+        "pulseaudio",
+        "pulseaudio#microphone"
+    ],
+    "hyprland/window": {
+        "format": "{}",
+        "rewrite": {
+            "(.*) - Microsoft Edge": "🌎 $1",
+            "(.*) - Mozilla Firefox": "🌎 $1",
+            "(.*) - Visual Studio Code": "󰨞 $1"
+        },
+        "max-length": 70,
+        "separate-outputs": true
+    },
+    "hyprland/workspaces": {
+        "persistent-workspaces": {
+            "DP-3": [1, 2, 3, 4, 5],
+            "HDMI-A-1": [11, 12, 13, 14 ,15]
+        },
+        "on-click": "activate",
+        "sort-by-number": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10",
+            "11": "1",
+            "12": "2",
+            "13": "3",
+            "14": "4",
+            "15": "5",
+            "16": "6",
+            "17": "7",
+            "18": "8",
+            "19": "9",
+            "110": "10"
+        }
+    },
+    "cpu": {
+        "interval": 10,
+        "format": "󰞱 {}%",
+        "max-length": 10,
+        "on-click": ""
+    },
+    "memory": {
+        "interval": 10,
+        "format": " {used:0.1f}G",
+        "max-length": 10
+    },
+    "custom/updates": {
+        "exec": "~/bin/checkupdate",
+        "interval": 600,
+        "format": " {}",
+        "tooltip": false,
+        "on-click": "alacritty --class=updater -e ~/bin/update; pkill -SIGRTMIN+8 waybar",
+        "signal": 8,
+        "escape": true
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-double-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    "tray": {
+        "icon-size": 13,
+        "tooltip": false,
+        "spacing": 10
+    },
+    "mpd": {
+        "server": "127.0.0.1",
+        "port": 6600,
+        "interval": 5,
+        "unknown-tag": "Unknown",
+        "format": "{stateIcon} {artist} - {title}",
+        "format-disconnected": " Disconnected",
+        "format-paused": "{stateIcon} {artist} - {title}",
+        "format-stopped": "Stopped ",
+        "tooltip": true,
+        "tooltip-format": "Volume: {volume}",
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "on-click": "mpc toggle",
+        "on-click-middle": "mpc prev",
+        "on-click-right": "mpc next",
+        "on-update": "",
+        "on-scroll-up": "mpc volume +5",
+        "on-scroll-down": "mpc volume -5",
+        "smooth-scrolling-threshold": 1
+    },
+    "mpris": {
+        "player": "musicfox",
+        "interval": 1,
+        "format": "{status_icon} {artist} - {title}",
+        "max-length": 60,
+        "status-icons": {
+            "paused": "",
+            "playing": "",
+            "stopped": ""
+        },
+        "tooltip": false,
+        "toottip-format": "{status_icon} Musicfox {artist} - {album} - {title}",
+        "on-scroll-up": "playerctl -p musicfox volume 0.05+",
+        "on-scroll-down": "playerctl -p musicfox volume 0.05-"
+    },
+    "clock": {
+        // "format": " {:%I:%M} {:%m.%d}",
+        "format": " {:%H:%M   %m.%d}",
+        "tooltip": false
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "tooltip": false,
+        "format-muted": "󰟎 Muted",
+        "on-click": "pamixer -t",
+        "on-click-middle": "pavucontrol & disown",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋋",
+            "headset": "󰋋",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        }
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "tooltip": false,
+        "format-source": "󰍬 {volume}%",
+        "format-source-muted": "󰍭 Muted",
+        "on-click": "pamixer --default-source -t",
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
+        "scroll-step": 5
+    }
+}

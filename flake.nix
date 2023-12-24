@@ -44,7 +44,7 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-    inherit (import ./constants.nix) username userfullname userdesc hostname;
+    inherit (import ./constants.nix) username userfullname userdesc useremail hostname;
     # Supported systems for your flake packages, shell, etc.
     systems = [
       "aarch64-linux"
@@ -90,7 +90,7 @@
     homeConfigurations = {
       "${username}@${hostname}" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs username;};
+        extraSpecialArgs = {inherit inputs outputs username userfullname useremail;};
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix

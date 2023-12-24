@@ -1,7 +1,15 @@
 {pkgs, ...}: {
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemd.enable = false; # To prevent from generating config
+  programs.firefox.enable = true;
+  home.packages = with pkgs; [
+    dunst
+  ];
+  xdg.configFile."dunst" = {
+    source = ./dunst;
+    recursive = true;
+  };
+  xdg.configFile."wal" = {
+    source = ./wal;
+    recursive = true;
   };
   home.pointerCursor = {
     gtk.enable = true;
@@ -16,9 +24,5 @@
       package = pkgs.tokyo-night-gtk;
       name = "Tokyonight-Storm-BL";
     };
-  };
-  xdg.configFile."hypr" = {
-    source = ./hypr;
-    recursive = true;
   };
 }

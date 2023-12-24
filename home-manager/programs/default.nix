@@ -1,8 +1,10 @@
 {...}: {
   imports = [
+    ./misc.nix
     ./term.nix
     ./coding.nix
-    ./dwm.nix
-    ./hyprland.nix
+    ./desktop.nix
+    ./x11-desktop.nix.nix
+    ./wayland-desktop.nix.nix
   ];
 }

@@ -7,6 +7,8 @@
   config,
   pkgs,
   username,
+  userfullname,
+  useremail,
   ...
 }: {
   # You can import other home-manager modules here
@@ -51,25 +53,10 @@
     bat
     ripgrep
 
-    zip
-    unzip
-    xz
-
     aria2
     socat
 
-    file
-    gnused
-    gnutar
-    gnupg
-
     nix-output-monitor
-
-    btop
-    htop
-
-    pciutils
-    usbutils
 
     omz
   ];
@@ -78,8 +65,8 @@
   programs.home-manager.enable = true;
   programs.git = {
     enable = true;
-    userName = "imxyy_soope_";
-    userEmail = "3516554684@qq.com";
+    userName = "${userfullname}";
+    userEmail = "${useremail}";
   };
 
   programs.zsh = {
