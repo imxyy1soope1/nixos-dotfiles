@@ -31,6 +31,7 @@
       inputs.omz.overlays.default
       inputs.dwm.overlays.default
       inputs.hyprland.overlays.default
+      inputs.go-musicfox.overlays.default
     ];
     # Configure your nixpkgs instance
     config = {

@@ -24,6 +24,10 @@
     hyprland.url = "github:hyprwm/Hyprland/main";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
+    # go-musicfox
+    go-musicfox.url = "github:imxyy1soope1/go-musicfox/master";
+    go-musicfox.inputs.nixpkgs.follows = "nixpkgs";
+
     # hardware.url = "github:nixos/nixos-hardware";
 
     # Shameless plug: looking for a way to nixify your themes and make
