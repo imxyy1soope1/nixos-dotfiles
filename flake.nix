@@ -28,6 +28,9 @@
     go-musicfox.url = "github:imxyy1soope1/go-musicfox/master";
     go-musicfox.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+
     # hardware.url = "github:nixos/nixos-hardware";
 
     # Shameless plug: looking for a way to nixify your themes and make
@@ -40,11 +43,11 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
+    nixos-wsl,
     ...
   } @ inputs: let
     inherit (self) outputs;
-    inherit (import ./constants.nix) username userfullname userdesc useremail hostname;
-    # Supported systems for your flake packages, shell, etc.
+    inherit (import ./constants.nix) username userfullname userdesc useremail hostprefix;
     systems = [
       "aarch64-linux"
       "i686-linux"
@@ -52,9 +55,19 @@
       "aarch64-darwin"
       "x86_64-darwin"
     ];
-    # This is a function that generates an attribute by calling a function you
-    # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
+    hosts = [
+      "${hostprefix}"
+      "${hostprefix}-kvm"
+      "${hostprefix}-wsl"
+    ];
+    forAllHosts = nixpkgs.lib.genAttrs hosts;
+    homes = [
+      "${username}@${hostprefix}"
+      "${username}@${hostprefix}-kvm"
+      "${username}@${hostprefix}-wsl"
+    ];
+    forAllHomes = nixpkgs.lib.genAttrs homes;
   in {
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
@@ -74,27 +87,24 @@
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      "${hostname}" = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs username userdesc hostname;};
-        modules = [
-          # > Our main nixos configuration file <
-          ./nixos/configuration.nix
-        ];
-      };
-    };
-
+    nixosConfigurations = forAllHosts (
+      hostname:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs outputs username userdesc hostname;};
+          modules = [
+            # > Our main nixos configuration file <
+            ./nixos/base.nix
+          ];
+        }
+    );
     # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      "${username}@${hostname}" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs username userfullname useremail;};
-        modules = [
-          # > Our main home-manager configuration file <
-          ./home-manager/home.nix
-        ];
-      };
+    homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+      extraSpecialArgs = {inherit inputs outputs username userfullname useremail;};
+      modules = [
+        # > Our main home-manager configuration file <
+        ./home-manager/home.nix
+      ];
     };
   };
 }
