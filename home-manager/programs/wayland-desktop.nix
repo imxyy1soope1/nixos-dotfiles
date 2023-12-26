@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false; # To prevent from generating config

@@ -1,7 +1,6 @@
-{
-  inputs,
-  username,
-  ...
+{ inputs
+, username
+, ...
 }: {
   imports = [
     inputs.nixos-wsl.nixosModules.wsl

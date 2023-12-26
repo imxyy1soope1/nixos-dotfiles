@@ -1,11 +1,11 @@
 {
   description = "imxyy_soope_'s NixOS (flake) config";
 
-  inputs = rec {
+  inputs = {
     # Nixpkgs
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs = nixpkgs-unstable;
+    nixpkgs.follows = "nixpkgs-unstable";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/master";
@@ -38,67 +38,80 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    nixos-wsl,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    inherit (import ./constants.nix) username userfullname userdesc useremail hostprefix;
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-    hosts = [
-      "${hostprefix}"
-      "${hostprefix}-kvm"
-      "${hostprefix}-wsl"
-    ];
-    forAllHosts = nixpkgs.lib.genAttrs hosts;
-  in {
-    # Your custom packages
-    # Accessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-    # Formatter for your nix files, available through 'nix fmt'
-    # Other options beside 'alejandra' include 'nixpkgs-fmt'
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+  outputs =
+    { self
+    , nixpkgs
+    , nixpkgs-stable
+    , home-manager
+    , nixos-wsl
+    , ...
+    } @ inputs:
+    let
+      inherit (self) outputs;
+      inherit (import ./constants.nix) username userfullname userdesc useremail hostprefix;
+      systems = [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+      hosts = [
+        "${hostprefix}"
+        "${hostprefix}-kvm"
+        "${hostprefix}-wsl"
+      ];
+      forAllHosts = nixpkgs.lib.genAttrs hosts;
+      forAllHomes = gen:
+        nixpkgs.lib.attrsets.mergeAttrsList (
+          builtins.map
+            (
+              hostname: { "${username}@${hostname}" = gen hostname; }
+            )
+            hosts
+        );
+    in
+    {
+      # Your custom packages
+      # Accessible through 'nix build', 'nix shell', etc
+      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+      # Formatter for your nix files, available through 'nix fmt'
+      # Other options beside 'alejandra' include 'nixpkgs-fmt'
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
 
-    # Your custom packages and modifications, exported as overlays
-    overlays = import ./overlays {inherit inputs;};
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
-    nixosModules = import ./modules/nixos;
-    # Reusable home-manager modules you might want to export
-    # These are usually stuff you would upstream into home-manager
-    homeManagerModules = import ./modules/home-manager;
+      # Your custom packages and modifications, exported as overlays
+      overlays = import ./overlays { inherit inputs; };
+      # Reusable nixos modules you might want to export
+      # These are usually stuff you would upstream into nixpkgs
+      nixosModules = import ./modules/nixos;
+      # Reusable home-manager modules you might want to export
+      # These are usually stuff you would upstream into home-manager
+      homeManagerModules = import ./modules/home-manager;
 
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = forAllHosts (
-      hostname:
+      # NixOS configuration entrypoint
+      # Available through 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations = forAllHosts (
+        hostname:
         nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs username userdesc hostname;};
+          specialArgs = { inherit inputs outputs username userdesc hostname; };
           modules = [
             # > Our main nixos configuration file <
             ./nixos/base.nix
           ];
         }
-    );
-    # Standalone home-manager configuration entrypoint
-    homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-      extraSpecialArgs = {inherit inputs outputs username userfullname useremail;};
-      modules = [
-        # > Our main home-manager configuration file <
-        ./home-manager/home.nix
-      ];
+      );
+      # Standalone home-manager configuration entrypoint
+      homeConfigurations = forAllHomes (
+        hostname:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs outputs username userfullname useremail hostname; };
+          modules = [
+            # > Our main home-manager configuration file <
+            ./home-manager/home.nix
+          ];
+        }
+      );
     };
-  };
 }

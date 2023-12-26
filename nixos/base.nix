@@ -1,13 +1,12 @@
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  username,
-  userdesc,
-  hostname,
-  ...
+{ inputs
+, outputs
+, lib
+, config
+, pkgs
+, username
+, userdesc
+, hostname
+, ...
 }: {
   imports = [
     ./hosts/${hostname}.nix
@@ -30,18 +29,18 @@
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
-  nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
+  nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
 
   # This will additionally add your inputs to the system's legacy channels
   # Making legacy nix commands consistent as well, awesome!
-  nix.nixPath = ["/etc/nix/path"];
+  nix.nixPath = [ "/etc/nix/path" ];
   environment.etc =
     lib.mapAttrs'
-    (name: value: {
-      name = "nix/path/${name}";
-      value.source = value.flake;
-    })
-    config.nix.registry;
+      (name: value: {
+        name = "nix/path/${name}";
+        value.source = value.flake;
+      })
+      config.nix.registry;
 
   nix.settings = {
     # Enable flakes and new 'nix' command
@@ -53,7 +52,7 @@
       "https://mirror.sjtu.edu.cn/nix-channels/store"
       "https://hyprland.cachix.org"
     ];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
   nix.gc = {
@@ -82,11 +81,11 @@
 
   security.sudo.extraRules = [
     {
-      users = ["${username}"];
+      users = [ "${username}" ];
       commands = [
         {
           command = "ALL";
-          options = ["NOPASSWD"];
+          options = [ "NOPASSWD" ];
         }
       ];
     }
@@ -124,7 +123,7 @@
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["wheel" "${username}"];
+      extraGroups = [ "wheel" "${username}" ];
     };
   };
 
