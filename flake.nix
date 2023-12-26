@@ -62,12 +62,6 @@
       "${hostprefix}-wsl"
     ];
     forAllHosts = nixpkgs.lib.genAttrs hosts;
-    homes = [
-      "${username}@${hostprefix}"
-      "${username}@${hostprefix}-kvm"
-      "${username}@${hostprefix}-wsl"
-    ];
-    forAllHomes = nixpkgs.lib.genAttrs homes;
   in {
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
