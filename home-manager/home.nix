@@ -2,23 +2,16 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 { inputs
 , outputs
-, lib
-, config
 , pkgs
 , username
 , userfullname
 , useremail
+, hostname
 , ...
 }: {
   # You can import other home-manager modules here
   imports = [
-    # If you want to use modules your own flake exports (from modules/home-manager):
-    # outputs.homeManagerModules.example
-
-    # Or modules exported from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModules.default
-
-    ./programs
+    ./hosts/${hostname}.nix
   ];
 
   nixpkgs = {
@@ -46,21 +39,6 @@
     homeDirectory = "/home/${username}";
   };
 
-  home.packages = with pkgs; [
-    lsd
-    neofetch
-    fzf
-    bat
-    ripgrep
-
-    aria2
-    socat
-
-    nix-output-monitor
-
-    omz
-  ];
-
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git = {
@@ -69,6 +47,7 @@
     userEmail = "${useremail}";
   };
 
+  home.packages = [ pkgs.omz ];
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";

@@ -6,6 +6,6 @@
     ./coding.nix
     ./desktop.nix
     ./x11-desktop.nix
-    # ./wayland-desktop.nix
+    ./wayland-desktop.nix
   ];
 }

@@ -53,6 +53,7 @@
       "https://hyprland.cachix.org"
     ];
     trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    trusted-users = [ "root" "${username}" ];
   };
 
   nix.gc = {
@@ -60,6 +61,7 @@
     dates = "weekly";
     options = "--delete-order-than 1w";
   };
+
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
 
@@ -123,18 +125,7 @@
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "wheel" "${username}" ];
-    };
-  };
-
-  # This setups a SSH server. Very important if you're setting up a headless system.
-  # Feel free to remove if you don't need it.
-  services.openssh = {
-    enable = true;
-    settings = {
-      # Forbid root login through SSH.
-      PermitRootLogin = "no";
-      PasswordAuthentication = true;
+      extraGroups = [ "wheel" ];
     };
   };
 

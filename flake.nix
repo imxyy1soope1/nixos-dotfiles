@@ -28,14 +28,9 @@
     go-musicfox.url = "github:imxyy1soope1/go-musicfox/master";
     go-musicfox.inputs.nixpkgs.follows = "nixpkgs";
 
+    # NixOS-WSL
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
-
-    # hardware.url = "github:nixos/nixos-hardware";
-
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs =
@@ -73,42 +68,32 @@
         );
     in
     {
-      # Your custom packages
-      # Accessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
       # Formatter for your nix files, available through 'nix fmt'
       # Other options beside 'alejandra' include 'nixpkgs-fmt'
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
 
-      # Your custom packages and modifications, exported as overlays
       overlays = import ./overlays { inherit inputs; };
-      # Reusable nixos modules you might want to export
-      # These are usually stuff you would upstream into nixpkgs
       nixosModules = import ./modules/nixos;
-      # Reusable home-manager modules you might want to export
-      # These are usually stuff you would upstream into home-manager
       homeManagerModules = import ./modules/home-manager;
 
-      # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = forAllHosts (
         hostname:
         nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs username userdesc hostname; };
           modules = [
-            # > Our main nixos configuration file <
             ./nixos/base.nix
           ];
         }
       );
-      # Standalone home-manager configuration entrypoint
+      # Avaiable through 'home-manager switch --flake .#{username}.{hostname}'
       homeConfigurations = forAllHomes (
         hostname:
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs username userfullname useremail hostname; };
           modules = [
-            # > Our main home-manager configuration file <
             ./home-manager/home.nix
           ];
         }
