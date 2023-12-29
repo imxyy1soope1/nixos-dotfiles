@@ -40,7 +40,14 @@
         name = "nix/path/${name}";
         value.source = value.flake;
       })
-      config.nix.registry;
+      config.nix.registry // {
+      issue = {
+        text = ''
+          \e{cyan}\S\e{reset} Login (\l)
+
+        '';
+      };
+    };
 
   nix.settings = {
     # Enable flakes and new 'nix' command

@@ -18,7 +18,8 @@
     # dwm
     dwm.url = "github:imxyy1soope1/dwm/master";
     dwm.inputs.nixpkgs.follows = "nixpkgs";
-    dwm-local.url = "/home/imxyy/dwm";
+    #dwm-local.url = "/home/imxyy/dwm";
+    dwm-local.url = "github:imxyy1soope1/dwm/master";
     dwm-local.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hyprland

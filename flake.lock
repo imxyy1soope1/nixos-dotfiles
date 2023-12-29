@@ -53,15 +53,16 @@
       "locked": {
         "lastModified": 1703321746,
         "narHash": "sha256-W6wBfx8LmyAFY7jEAlol6A9kvDpC9QqxNAJfvAxIm8A=",
-        "ref": "refs/heads/master",
+        "owner": "imxyy1soope1",
+        "repo": "dwm",
         "rev": "d38da01cf2957ddac8cd827c84aab076f1555daf",
-        "revCount": 17,
-        "type": "git",
-        "url": "file:///home/imxyy/dwm"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/imxyy/dwm"
+        "owner": "imxyy1soope1",
+        "ref": "master",
+        "repo": "dwm",
+        "type": "github"
       }
     },
     "flake-compat": {
