@@ -117,6 +117,8 @@
     pciutils
     usbutils
 
+    killall
+
     home-manager
   ];
 

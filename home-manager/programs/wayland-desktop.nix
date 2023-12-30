@@ -19,9 +19,14 @@
   };
   home.packages = with pkgs; [
     swaynotificationcenter
+    cage
   ];
   xdg.configFile."swaync" = {
     source = ./swaync;
     recursive = true;
+  };
+  programs.zsh.shellAliases = {
+    # cageterm = "cage -m last -s -- alacritty --config-file ~/.config/alacritty/alacritty-tty.toml";
+    cageterm = "cage -m last -s -- alacritty --config-file ~/.config/alacritty/alacritty-tty.yml";
   };
 }

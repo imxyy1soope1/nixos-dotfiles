@@ -7,7 +7,11 @@
     cmake
     go
     nodejs
+    github-cli # gh
   ];
+  programs.zsh.initExtraFirst = ''
+    source ${./github-cli-comp}
+  '';
   nixpkgs.config = {
     programs.npm.npmrc = ''
       prefix = ''${HOME}/.npm-global

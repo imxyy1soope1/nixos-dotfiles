@@ -55,7 +55,9 @@
       size = 20000;
       save = 20000;
     };
-    initExtraFirst = "source ${pkgs.omz}/share/omz/omz.zsh";
+    initExtraFirst = ''
+      source ${pkgs.omz}/share/omz/omz.zsh
+    '';
     shellAliases = {
       ls = "lsd";
       cat = "bat";

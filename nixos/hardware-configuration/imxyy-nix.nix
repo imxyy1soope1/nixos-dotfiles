@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
@@ -12,39 +13,46 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
+    {
+      device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
       fsType = "btrfs";
       options = [ "compress=zstd" "subvol=root" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
+    {
+      device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
       fsType = "btrfs";
       options = [ "compress=zstd" "subvol=home" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/AA66-1C0C";
+    {
+      device = "/dev/disk/by-uuid/AA66-1C0C";
       fsType = "vfat";
     };
 
   fileSystems."/home/imxyy/Documents" =
-    { device = "/dev/disk/by-uuid/a4e37dcd-764a-418c-aa1c-484f1fbd4bbe";
+    {
+      device = "/dev/disk/by-uuid/a4e37dcd-764a-418c-aa1c-484f1fbd4bbe";
       fsType = "ext4";
     };
 
   fileSystems."/home/imxyy/Downloads" =
-    { device = "/dev/disk/by-uuid/18717cb4-49ac-40fa-95d4-29523a458dd0";
+    {
+      device = "/dev/disk/by-uuid/18717cb4-49ac-40fa-95d4-29523a458dd0";
       fsType = "ext4";
     };
 
   fileSystems."/home/imxyy/Videos" =
-    { device = "/dev/disk/by-uuid/b67bbeab-58bc-4814-b5e3-08404e78b25e";
+    {
+      device = "/dev/disk/by-uuid/b67bbeab-58bc-4814-b5e3-08404e78b25e";
       fsType = "ext4";
     };
 
   fileSystems."/home/imxyy/Pictures" =
-    { device = "/dev/disk/by-uuid/a31bfe7e-cc17-4bd2-af74-ae5de9be35d3";
+    {
+      device = "/dev/disk/by-uuid/a31bfe7e-cc17-4bd2-af74-ae5de9be35d3";
       fsType = "ext4";
     };
 
