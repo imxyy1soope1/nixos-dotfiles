@@ -43,7 +43,7 @@
       config.nix.registry // {
       issue = {
         text = ''
-          \e{cyan}\S\e{reset} Login (\l)
+          \e{lightcyan}\S\e{reset} Login (\l)
 
         '';
       };
@@ -125,16 +125,15 @@
   programs.zsh.enable = true;
   programs.dconf.enable = true;
 
-  users.users = {
-    "${username}" = {
+  users = {
+    users.${username} = {
       isNormalUser = true;
       description = "${userdesc}";
       shell = pkgs.zsh;
-      openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-      ];
-      # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "imxyy" ];
+    };
+    groups.${username} = {
+      gid = 1000;
     };
   };
 

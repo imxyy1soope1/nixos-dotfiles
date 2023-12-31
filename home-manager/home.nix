@@ -3,6 +3,7 @@
 { inputs
 , outputs
 , pkgs
+, lib
 , username
 , userfullname
 , useremail
@@ -65,7 +66,7 @@
       nf = "neofetch";
       tmux = "tmux -T RGB,focus,overline,mouse,clipboard,usstyle";
       pastart = "pasuspender true";
-      proxy_on = "export http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 all_proxy=socks://127.0.0.1:7890";
+      proxy_on = lib.mkDefault "export http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 all_proxy=socks://127.0.0.1:7890";
       proxy_off = "export http_proxy= https_proxy= all_proxy=";
     };
   };

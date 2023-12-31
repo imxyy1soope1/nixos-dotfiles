@@ -1,8 +1,9 @@
 { ... }: {
   imports = [
+    ./xdg.nix
     ./misc.nix
     ./media.nix
-    ./term.nix
+    ./work.nix
     ./coding.nix
     ./desktop.nix
     ./x11-desktop.nix

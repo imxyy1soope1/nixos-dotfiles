@@ -1,4 +1,13 @@
 { pkgs, ... }: {
+  home.packages = with pkgs; [
+    xdg-desktop-portal-hyprland
+    swaybg
+    wl-clipboard
+    cliphist
+    swaynotificationcenter
+    pavucontrol
+    cage
+  ];
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false; # To prevent from generating config
@@ -17,10 +26,6 @@
     source = ./waybar;
     recursive = true;
   };
-  home.packages = with pkgs; [
-    swaynotificationcenter
-    cage
-  ];
   xdg.configFile."swaync" = {
     source = ./swaync;
     recursive = true;

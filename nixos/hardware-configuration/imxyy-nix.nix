@@ -32,6 +32,11 @@
       fsType = "vfat";
     };
 
+  fileSystems."/tmp" =
+    {
+      fsType = "tmpfs";
+    };
+
   fileSystems."/home/imxyy/Documents" =
     {
       device = "/dev/disk/by-uuid/a4e37dcd-764a-418c-aa1c-484f1fbd4bbe";
