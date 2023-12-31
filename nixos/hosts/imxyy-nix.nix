@@ -1,28 +1,5 @@
-{ lib, pkgs, username, ... }: {
-  imports = [
-    # ({config, ...}: {
-    #   config.systemd.services."getty@tty6" =
-    #     {
-    #       overrideStrategy = "asDropin"; # needed for templates to work
-    #       serviceConfig.ExecStart = with lib; let
-    #         cfg = config.services.getty;
-    #         baseArgs = [
-    #           "--login-program"
-    #           "${cfg.loginProgram}"
-    #         ] ++ optionals (cfg.loginOptions != null) [
-    #           "--login-options"
-    #           cfg.loginOptions
-    #         ] ++ cfg.extraArgs;
-    #         gettyCmd = args:
-    #           "@${pkgs.util-linux}/sbin/agetty agetty ${escapeShellArgs baseArgs} ${args}";
-    #       in
-    #       [
-    #         ""
-    #         (gettyCmd "--noclear --keep-baud %I 115200,38400,9600 -a ${username} $TERM")
-    #       ];
-    #     };
-    # })
-  ];
+{ pkgs, username, ... }: {
+  boot.kernelParams = [ "usbcore.autosuspend=-1" ]; # Avoid usb autosuspend (for usb bluetooth adapter)
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 1;
@@ -30,6 +7,7 @@
   hardware.opengl = {
     enable = true;
     driSupport = true;
+    driSupport32Bit = true;
   };
 
   networking = {
@@ -62,17 +40,19 @@
       noto-fonts-cjk
       noto-fonts-emoji
 
+      jetbrains-mono
+
       (nerdfonts.override {
         fonts = [
-          "JetBrainsMono"
+          "NerdFontsSymbolsOnly"
         ];
       })
     ];
 
     fontconfig.defaultFonts = {
-      serif = [ "Noto Serif CJK SC" "Noto Serif" "Noto Color Emoji" ];
-      sansSerif = [ "Noto Sans CJK SC" "Noto Sans" "Noto Color Emoji" ];
-      monospace = [ "JetBrainsMono Nerd Font" "Noto Sans Mono CJK SC" "Noto Color Emoji" ];
+      serif = [ "Noto Serif CJK SC" "Noto Serif" "Symbols Nerd Font" "Noto Color Emoji" ];
+      sansSerif = [ "Noto Sans CJK SC" "Noto Sans" "Symbols Nerd Font" "Noto Color Emoji" ];
+      monospace = [ "JetBrains Mono" "Noto Sans Mono CJK SC" "Symbols Nerd Font" "Noto Color Emoji" ];
       emoji = [ "Noto Color Emoji" ];
     };
   };
@@ -154,4 +134,8 @@
     user = "${username}";
     ttys = [ "6" ];
   };
+
+
+  # Steam
+  programs.steam.enable = true;
 }

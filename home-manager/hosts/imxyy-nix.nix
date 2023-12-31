@@ -25,4 +25,6 @@
       fi
     '';
   };
+
+  services.mpris-proxy.enable = true;
 }

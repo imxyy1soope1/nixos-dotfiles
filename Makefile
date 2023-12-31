@@ -19,6 +19,7 @@ repl:
 clean:
 	# remove all generations older than 7 days
 	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
+	home-manager expire-generations -7days
 
 gc:
 	nix store gc --debug

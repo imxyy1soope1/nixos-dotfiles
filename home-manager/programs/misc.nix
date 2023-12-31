@@ -17,6 +17,12 @@
     nix-output-monitor
 
     tmux
+
+    trash-cli
   ];
   xdg.configFile."tmux/tmux.conf".source = ./tmux.conf;
+  programs.zsh.shellAliases = {
+    rrm = "coreutils --coreutils-prog=rm";
+    rm = "trash-put";
+  };
 }

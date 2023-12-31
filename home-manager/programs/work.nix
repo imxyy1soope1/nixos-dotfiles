@@ -3,5 +3,7 @@
     musescore
     wpsoffice-cn
     libreoffice-fresh
+
+    dooit
   ];
 }

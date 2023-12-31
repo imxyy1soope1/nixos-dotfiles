@@ -592,11 +592,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1702809707,
-        "narHash": "sha256-wlj5RXpSjwn8xciD4WOx8m2b0IRYK4/lupR3DB80SFE=",
+        "lastModified": 1704014016,
+        "narHash": "sha256-3NCkk8TnOuzVBiVABslhvaVhVQ5ZcB+wtkKCzAHvqNg=",
         "owner": "imxyy1soope1",
         "repo": "omz",
-        "rev": "634520d7085e72c5555294abd0809bd8d717c789",
+        "rev": "77e181e83343c9e20026899fb5840d73aa33c125",
         "type": "github"
       },
       "original": {
