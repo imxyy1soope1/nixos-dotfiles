@@ -5,5 +5,10 @@
     libreoffice-fresh
 
     dooit
+
+    nur.repos.Freed-Wu.translate-shell
+    wakatime # translate-shell dep
+
+    qq
   ];
 }

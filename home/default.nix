@@ -20,7 +20,9 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
+      outputs.overlays.stable-packages
       outputs.overlays.unstable-packages
+      outputs.overlays.nur-packages
       inputs.omz.overlays.default
       inputs.dwm.overlays.default
       inputs.hyprland.overlays.default

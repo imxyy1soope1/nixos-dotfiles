@@ -11,6 +11,9 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    # NUR
+    nur.url = "github:nix-community/NUR";
+
     # OMZ
     omz.url = "github:imxyy1soope1/omz/master";
     # omz.url = "/home/imxyy/omz";

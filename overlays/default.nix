@@ -27,4 +27,6 @@
       config.allowUnfree = true;
     };
   };
+
+  nur-packages = inputs.nur.overlay;
 }
