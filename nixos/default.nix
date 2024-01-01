@@ -10,7 +10,7 @@
 }: {
   imports = [
     ./hosts/${hostname}.nix
-    ./hardware-configuration/${hostname}.nix
+    ./hardware/${hostname}.nix
   ];
 
   nixpkgs = {

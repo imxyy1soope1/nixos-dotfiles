@@ -26,6 +26,37 @@
       options = [ "compress=zstd" "subvol=home" ];
     };
 
+  fileSystems."/persistent" =
+    { device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
+      fsType = "btrfs";
+      options = [ "compress=zstd" "subvol=persistent" ];
+    };
+
+  # boot.initrd.postDeviceCommands = lib.mkAfter ''
+  #   mkdir /btrfs_tmp
+  #   mount /dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c /btrfs_tmp
+  #   mkdir -p /btrfs_tmp/old_homes
+  #   if [[ -e /btrfs_tmp/home ]]; then
+  #       timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/home)" "+%Y-%m-%-d_%H:%M:%S")
+  #       mv /btrfs_tmp/home "/btrfs_tmp/old_homes/$timestamp"
+  #   fi
+  #
+  #   delete_subvolume_recursively() {
+  #       IFS=$'\n'
+  #       for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+  #           delete_subvolume_recursively "/btrfs_tmp/$i"
+  #       done
+  #       btrfs subvolume delete "$1"
+  #   }
+  #
+  #   for i in $(find /btrfs_tmp/old_homess/ -maxdepth 1 -mtime +30); do
+  #       delete_subvolume_recursively "$i"
+  #   done
+  #
+  #   btrfs subvolume create /btrfs_tmp/home
+  #   umount /btrfs_tmp
+  # '';
+
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/AA66-1C0C";
