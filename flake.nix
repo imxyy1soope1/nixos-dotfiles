@@ -43,9 +43,9 @@
     , nixos-wsl
     , ...
     } @ inputs:
+    with import ./constants.nix;
     let
       inherit (self) outputs;
-      inherit (import ./constants.nix) username userfullname userdesc useremail hostprefix;
       systems = [
         "aarch64-linux"
         "i686-linux"
@@ -83,9 +83,8 @@
         hostname:
         nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs username userdesc hostname; };
-          modules = [
-            ./modules/nixos/getty-autologin.nix
-            ./nixos/base.nix
+          modules = (nixpkgs.lib.attrValues (import ./modules/nixos)) ++ [
+            ./nixos
           ];
         }
       );
@@ -95,8 +94,8 @@
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs username userfullname useremail hostname; };
-          modules = [
-            ./home-manager/home.nix
+          modules = (nixpkgs.lib.attrValues (import ./modules/home-manager)) ++ [
+            ./home
           ];
         }
       );
