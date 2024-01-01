@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     mpd
     mpc-cli
+    playerctl
     go-musicfox
   ];
   xdg.configFile."go-musicfox/go-musicfox.ini".source = ./go-musicfox.ini;
