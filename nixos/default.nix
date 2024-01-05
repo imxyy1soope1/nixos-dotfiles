@@ -130,8 +130,6 @@
     usbutils
 
     killall
-
-    home-manager
   ];
 
   programs.zsh.enable = true;
