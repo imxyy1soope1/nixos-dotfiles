@@ -11,6 +11,7 @@
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.tmp.useTmpfs = true;
 
   fileSystems."/" =
     {
@@ -19,53 +20,49 @@
       options = [ "compress=zstd" "subvol=root" ];
     };
 
-  fileSystems."/home" =
+  fileSystems."/nix" = 
     {
-      device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
-      fsType = "btrfs";
-      options = [ "compress=zstd" "subvol=home" ];
+      device = "/dev/disk/by-uuid/d80ff9a8-6b6b-4388-9a93-3ba3ad240686";
+      fsType = "xfs";
     };
 
   fileSystems."/persistent" =
-    { device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
+    {
+      device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
       fsType = "btrfs";
       options = [ "compress=zstd" "subvol=persistent" ];
+      neededForBoot = true;
     };
 
-  # boot.initrd.postDeviceCommands = lib.mkAfter ''
-  #   mkdir /btrfs_tmp
-  #   mount /dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c /btrfs_tmp
-  #   mkdir -p /btrfs_tmp/old_homes
-  #   if [[ -e /btrfs_tmp/home ]]; then
-  #       timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/home)" "+%Y-%m-%-d_%H:%M:%S")
-  #       mv /btrfs_tmp/home "/btrfs_tmp/old_homes/$timestamp"
-  #   fi
-  #
-  #   delete_subvolume_recursively() {
-  #       IFS=$'\n'
-  #       for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-  #           delete_subvolume_recursively "/btrfs_tmp/$i"
-  #       done
-  #       btrfs subvolume delete "$1"
-  #   }
-  #
-  #   for i in $(find /btrfs_tmp/old_homess/ -maxdepth 1 -mtime +30); do
-  #       delete_subvolume_recursively "$i"
-  #   done
-  #
-  #   btrfs subvolume create /btrfs_tmp/home
-  #   umount /btrfs_tmp
-  # '';
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    mkdir /btrfs_tmp
+    mount /dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c /btrfs_tmp
+    mkdir -p /btrfs_tmp/old_roots
+    if [[ -e /btrfs_tmp/root ]]; then
+        timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+        mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+    fi
+
+    delete_subvolume_recursively() {
+        IFS=$'\n'
+        for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+            delete_subvolume_recursively "/btrfs_tmp/$i"
+        done
+        btrfs subvolume delete "$1"
+    }
+
+    for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
+        delete_subvolume_recursively "$i"
+    done
+
+    btrfs subvolume create /btrfs_tmp/root
+    umount /btrfs_tmp
+  '';
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/AA66-1C0C";
+      device = "/dev/disk/by-uuid/3B3D-1AD5";
       fsType = "vfat";
-    };
-
-  fileSystems."/tmp" =
-    {
-      fsType = "tmpfs";
     };
 
   fileSystems."/home/imxyy/Documents" =

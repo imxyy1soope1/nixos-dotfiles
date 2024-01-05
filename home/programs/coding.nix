@@ -1,4 +1,9 @@
 { pkgs, ... }: {
+  nixpkgs.config = {
+    programs.npm.npmrc = ''
+      prefix = ''${HOME}/.npm-global
+    '';
+  };
   home.packages = with pkgs; [
     python3
     lua
@@ -7,16 +12,12 @@
     cmake
     go
     nodejs
+    nodePackages.npm
     github-cli # gh
   ];
   programs.zsh.initExtraFirst = ''
     source ${./github-cli-comp}
   '';
-  nixpkgs.config = {
-    programs.npm.npmrc = ''
-      prefix = ''${HOME}/.npm-global
-    '';
-  };
   programs.neovim = {
     enable = true;
     defaultEditor = true;

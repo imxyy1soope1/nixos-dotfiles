@@ -21,9 +21,22 @@
     nameservers = [ "192.168.3.1" ];
   };
 
+  systemd.services.nix-daemon = {
+    environment.TMPDIR = "/var/cache/nix";
+    serviceConfig.CacheDirectory = "nix";
+  };
+  environment.variables.NIX_REMOTE = "daemon";
+
+  users.users.${username}.hashedPassword = "$y$j9T$PnRLh2qEHscwT9zVxSvJF1$SV/38KixGslAAz50w3FTMWnMyvjBVTIXtyUMVYWi4D3";
+  users.users.root.hashedPassword = "$y$j9T$kQetzbkIxGM89AgL4uljd/$8TJloT5NGyJHoRgAVjK4r094QcaT8Mf2Q9bVm4LLRQ9";
+
   hardware.pulseaudio = {
     enable = true;
     support32Bit = true;
+    package = pkgs.pulseaudioFull;
+    extraConfig = ''
+      load-module module-switch-on-connect
+    '';
   };
   hardware.bluetooth.enable = true;
   users.extraUsers.${username}.extraGroups = [ "audio" ];
@@ -138,4 +151,6 @@
 
   # Steam
   programs.steam.enable = true;
+
+  programs.fuse.userAllowOther = true;
 }

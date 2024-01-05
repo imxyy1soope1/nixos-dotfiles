@@ -2,6 +2,7 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 { inputs
 , outputs
+, config
 , pkgs
 , lib
 , username
@@ -55,12 +56,17 @@
     enable = true;
     dotDir = ".config/zsh";
     history = {
+      path = "${config.xdg.stateHome}/zsh_history";
       size = 20000;
       save = 20000;
     };
     initExtra = ''
       source ${pkgs.omz}/share/omz/omz.zsh
     '';
+    sessionVariables = {
+      _ZL_DATA = "${config.xdg.stateHome}/zlua";
+      _FZF_HISTORY = "${config.xdg.stateHome}/fzf_history";
+    };
     shellAliases = {
       ls = "lsd";
       cat = "bat";

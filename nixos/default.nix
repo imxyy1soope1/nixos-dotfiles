@@ -11,6 +11,7 @@
   imports = [
     ./hosts/${hostname}.nix
     ./hardware/${hostname}.nix
+    ./impermanence/${hostname}.nix
   ];
 
   nixpkgs = {
@@ -75,6 +76,12 @@
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
+  networking.timeServers = [
+    "0.cn.pool.ntp.org"
+    "1.cn.pool.ntp.org"
+    "2.cn.pool.ntp.org"
+    "3.cn.pool.ntp.org"
+  ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";

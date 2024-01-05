@@ -1,9 +1,9 @@
-{ inputs
-, username
+{ username
+, nixos-wsl
 , ...
 }: {
   imports = [
-    inputs.nixos-wsl.nixosModules.wsl
+    nixos-wsl.nixosModules.wsl
   ];
   wsl.enable = true;
   wsl.defaultUser = "${username}";
