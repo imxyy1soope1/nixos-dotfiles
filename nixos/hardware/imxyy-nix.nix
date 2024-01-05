@@ -20,7 +20,7 @@
       options = [ "compress=zstd" "subvol=root" ];
     };
 
-  fileSystems."/nix" = 
+  fileSystems."/nix" =
     {
       device = "/dev/disk/by-uuid/d80ff9a8-6b6b-4388-9a93-3ba3ad240686";
       fsType = "xfs";

@@ -56,14 +56,6 @@
         inherit (self) outputs;
         forAllSystems = nixpkgs.lib.genAttrs systems;
         forAllHosts = nixpkgs.lib.genAttrs hosts;
-        # forAllHomes = gen:
-        #   nixpkgs.lib.attrsets.mergeAttrsList (
-        #     builtins.map
-        #       (
-        #         hostname: { "${username}@${hostname}" = gen hostname; }
-        #       )
-        #       hosts
-        #   );
       in
       {
         packages = forAllSystems (system: nixpkgs.legacyPackages.${system});
@@ -82,23 +74,13 @@
             specialArgs = { inherit inputs outputs nixos-wsl impermanence username userdesc hostname; };
             modules = (nixpkgs.lib.attrValues (import ./modules/nixos)) ++ [
               ./nixos
-              home-manager.nixosModules.home-manager {
+              home-manager.nixosModules.home-manager
+              {
                 home-manager.users.${username} = import ./home;
                 home-manager.extraSpecialArgs = { inherit inputs outputs username userfullname useremail hostname; };
               }
             ];
           }
         );
-        # Avaiable through 'home-manager switch --flake .#{username}@{hostname}'
-        # homeConfigurations = forAllHomes (
-        #   hostname:
-        #   home-manager.lib.homeManagerConfiguration {
-        #     pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        #     extraSpecialArgs = { inherit inputs outputs username userfullname useremail hostname; };
-        #     modules = (nixpkgs.lib.attrValues (import ./modules/home-manager)) ++ [
-        #       ./home
-        #     ];
-        #   }
-        # );
       };
 }

@@ -1,11 +1,7 @@
+all: os
+
 os:
 	nixos-rebuild switch --flake . --use-remote-sudo
-
-home:
-	home-manager switch --flake .
-
-news:
-	home-manager news --flake .
 
 update:
 	nix flake update
