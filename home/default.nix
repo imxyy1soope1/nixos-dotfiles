@@ -57,8 +57,9 @@
     dotDir = ".config/zsh";
     history = {
       path = "${config.xdg.stateHome}/zsh_history";
-      size = 20000;
-      save = 20000;
+      ignorePatterns = [
+        "la"
+      ];
     };
     initExtra = ''
       source ${pkgs.omz}/share/omz/omz.zsh

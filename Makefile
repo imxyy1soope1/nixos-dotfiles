@@ -1,4 +1,4 @@
-all: os
+all: fmt os
 
 os:
 	nixos-rebuild switch --flake . --use-remote-sudo
