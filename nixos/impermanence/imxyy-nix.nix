@@ -6,6 +6,7 @@
     hideMounts = true;
     directories = [
       "/etc/NetworkManager/system-connections"
+      "/etc/v2raya"
       "/root"
       "/var"
     ];
@@ -22,7 +23,7 @@
         "go"
         "workspace"
 
-        # ".cache"
+        ".cache"
         ".local/state"
         ".local/share/dooit"
         ".local/share/hmcl"
