@@ -2,7 +2,7 @@ all: fmt os
 
 os:
 	@echo "Rebuilding NixOS..."
-	@nixos-rebuild switch --flake . --use-remote-sudo
+	@nixos-rebuild switch --flake . --use-remote-sudo --cores `nproc` --max-jobs 1
 
 update:
 	@echo "Updating flakes..."
@@ -11,8 +11,11 @@ update:
 history:
 	@nix profile history --profile /nix/var/nix/profiles/system
 
-repl:
+replpkgs:
 	@nix repl -f flake:nixpkgs
+
+repl:
+	@nix repl .
 
 clean:
 	@echo "Removing all generations older than 7 days..."

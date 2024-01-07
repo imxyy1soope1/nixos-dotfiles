@@ -16,6 +16,8 @@ stdenvNoCC.mkDerivation {
     jdupes
   ];
 
+  phases = [ "unpackPhase" "installPhase" ];
+
   installPhase = ''
     runHook preInstall
 
@@ -29,11 +31,6 @@ stdenvNoCC.mkDerivation {
 
     runHook postInstall
   '';
-
-  dontPatch = true;
-  dontConfigure = true;
-  dontBuild = true;
-  dontFixup = true;
 
   meta = {
     description = "A colorful design icon theme for linux desktops";

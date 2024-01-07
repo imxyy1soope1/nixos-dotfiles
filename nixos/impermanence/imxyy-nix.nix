@@ -29,7 +29,6 @@
         ".local/share/hmcl"
         ".local/share/nvim"
         ".local/share/Trash"
-        ".local/share/treesitter"
         ".config/gh"
         ".config/pulse"
         ".config/go-musicfox/db"

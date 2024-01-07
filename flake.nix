@@ -3,9 +3,10 @@
 
   inputs = {
     # Nixpkgs
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs.follows = "nixpkgs-master";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/master";
@@ -16,6 +17,9 @@
 
     # NUR
     nur.url = "github:nix-community/NUR";
+
+    # NeoVim nightly
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     # OMZ
     omz.url = "github:imxyy1soope1/omz/master";
@@ -58,7 +62,7 @@
         forAllHosts = nixpkgs.lib.genAttrs hosts;
       in
       {
-        packages = forAllSystems (system: nixpkgs.legacyPackages.${system});
+        packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
         # Formatter for your nix files, available through 'nix fmt'
         # Other options beside 'alejandra' include 'nixpkgs-fmt'
         formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
@@ -76,8 +80,11 @@
               ./nixos
               home-manager.nixosModules.home-manager
               {
+                home-manager.useUserPackages = true;
                 home-manager.users.${username} = import ./home;
-                home-manager.extraSpecialArgs = { inherit inputs outputs username userfullname useremail hostname; };
+                home-manager.extraSpecialArgs = {
+                  inherit inputs outputs username userfullname useremail hostname;
+                };
               }
             ];
           }

@@ -28,7 +28,10 @@
   };
 
   # Alacritty
-  programs.alacritty.enable = true;
+  programs.alacritty = {
+    enable = true;
+    package = pkgs.alacritty;
+  };
   xdg.configFile."alacritty" = {
     source = ./alacritty;
     recursive = true;

@@ -24,6 +24,7 @@
       outputs.overlays.stable-packages
       outputs.overlays.unstable-packages
       outputs.overlays.nur-packages
+      inputs.neovim-nightly-overlay.overlay
       inputs.omz.overlays.default
       inputs.dwm.overlays.default
       inputs.hyprland.overlays.default

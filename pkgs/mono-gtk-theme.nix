@@ -11,6 +11,8 @@ stdenvNoCC.mkDerivation {
     sha256 = "sha256-NaZgOOo5VVTlEand3qWryZ5ceNmyHaEt0aeT7j/KwvE=";
   };
 
+  phases = [ "unpackPhase" "installPhase" ];
+
   installPhase = ''
     runHook preInstall
 
@@ -21,11 +23,6 @@ stdenvNoCC.mkDerivation {
 
     runHook postInstall
   '';
-
-  dontPatch = true;
-  dontConfigure = true;
-  dontBuild = true;
-  dontFixup = true;
 
   meta = {
     description = "...";
