@@ -2,7 +2,7 @@ all: fmt os
 
 os:
 	@echo "Rebuilding NixOS..."
-	@nixos-rebuild switch --flake . --use-remote-sudo --cores `nproc` --max-jobs 1
+	@nixos-rebuild switch --flake . --use-remote-sudo
 
 update:
 	@echo "Updating flakes..."
