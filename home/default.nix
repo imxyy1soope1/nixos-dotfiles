@@ -1,8 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{ inputs
-, outputs
-, config
+{ config
 , pkgs
 , lib
 , username
@@ -17,19 +15,6 @@
   ];
 
   nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.stable-packages
-      outputs.overlays.unstable-packages
-      outputs.overlays.nur-packages
-      inputs.neovim-nightly-overlay.overlay
-      inputs.omz.overlays.default
-      inputs.dwm.overlays.default
-      inputs.hyprland.overlays.default
-      inputs.go-musicfox.overlays.default
-    ];
     # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages

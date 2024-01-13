@@ -73,7 +73,8 @@
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5 = {
-      addons = with pkgs; [ fcitx5-chinese-addons ];
+      addons = with pkgs; [ fcitx5-chinese-addons fcitx5-lightly ];
+      waylandFrontend = true;
       settings = {
         globalOptions = {
           "Hotkey"."EnumrateWithTriggerKeys" = true;
@@ -104,6 +105,7 @@
             MenuFont = "Noto Sans CJK SC 10";
             TrayFont = "Noto Sans CJK SC Bold 10";
             Theme = "lightly";
+            # Theme = "macOS-dark";
             PerScreenDPI = true;
             EnableFractionalScale = true;
           };
@@ -111,6 +113,29 @@
             HalfWidthPuncAfterLetterOrNumber = true;
             TypePairedPunctuationsTogether = false;
             Enabled = true;
+          };
+          pinyin = {
+            globalSection = {
+              PageSize = 9;
+              EmojiEnabled = false;
+              ChaiziEnabled = true;
+              ExtBEnabled = true;
+              CloudPinyinEnabled = true;
+              CloudPinyinIndex = 2;
+              PreeditInApplication = true;
+            };
+            sections = {
+              Fuzzy = {
+                VE_UE = true;
+                NG_GN = true;
+                Inner = true;
+                InnerShort = true;
+                PartialFianl = false;
+                V_U = true;
+                IN_ING = true;
+                U_OU = true;
+              };
+            };
           };
           cloudpinyin.globalSection = {
             Backend = "Baidu";
@@ -121,6 +146,7 @@
           };
         };
       };
+      ignoreUserConfig = true;
     };
   };
 
@@ -148,9 +174,8 @@
     ttys = [ "6" ];
   };
 
-
   # Steam
-  programs.steam.enable = true;
+  # programs.steam.enable = true;
 
   programs.fuse.userAllowOther = true;
 }

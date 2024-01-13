@@ -6,7 +6,7 @@
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs.follows = "nixpkgs-master";
+    nixpkgs.follows = "nixpkgs-unstable";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/master";
@@ -41,6 +41,10 @@
     go-musicfox.url = "github:imxyy1soope1/go-musicfox/master";
     go-musicfox.inputs.nixpkgs.follows = "nixpkgs";
 
+    # hyprsome
+    hyprsome.url = "github:sopa0/hyprsome/master";
+    hyprsome.inputs.nixpkgs.follows = "nixpkgs";
+
     # NixOS-WSL
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
@@ -59,7 +63,29 @@
       let
         inherit (self) outputs;
         forAllSystems = nixpkgs.lib.genAttrs systems;
-        forAllHosts = nixpkgs.lib.genAttrs hosts;
+        # forAllHosts = nixpkgs.lib.genAttrs hosts;
+        forAllHosts = gen:
+          nixpkgs.lib.attrsets.mergeAttrsList (
+            builtins.map
+              (
+                { hostname, system }@host: { ${hostname} = gen host; }
+              )
+              hosts
+          );
+        overlay = ({ inputs, outputs, ... }: {
+          nixpkgs.overlays = [
+            outputs.overlays.additions
+            outputs.overlays.modifications
+            outputs.overlays.stable-packages
+            outputs.overlays.unstable-packages
+            outputs.overlays.nur-packages
+            inputs.neovim-nightly-overlay.overlay
+            inputs.omz.overlays.default
+            inputs.dwm.overlays.default
+            inputs.hyprland.overlays.default
+            inputs.go-musicfox.overlays.default
+          ];
+        });
       in
       {
         packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
@@ -73,17 +99,21 @@
 
         # Available through 'nixos-rebuild --flake .#{hostname}'
         nixosConfigurations = forAllHosts (
-          hostname:
+          { hostname, system }:
           nixpkgs.lib.nixosSystem {
             specialArgs = { inherit inputs outputs nixos-wsl impermanence username userdesc hostname; };
             modules = (nixpkgs.lib.attrValues (import ./modules/nixos)) ++ [
+              overlay
               ./nixos
               home-manager.nixosModules.home-manager
               {
-                home-manager.useUserPackages = true;
-                home-manager.users.${username} = import ./home;
-                home-manager.extraSpecialArgs = {
-                  inherit inputs outputs username userfullname useremail hostname;
+                home-manager = {
+                  sharedModules = nixpkgs.lib.attrValues (import ./modules/home-manager) ++ [ overlay ];
+                  useUserPackages = true;
+                  users.${username} = import ./home;
+                  extraSpecialArgs = {
+                    inherit inputs outputs username userfullname useremail hostname system;
+                  };
                 };
               }
             ];

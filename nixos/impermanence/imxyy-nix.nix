@@ -17,6 +17,7 @@
       directories = [
         ".minecraft"
         ".mozilla"
+        ".thunderbird"
         ".hyprland"
         ".ssh"
         "bin"
@@ -28,16 +29,19 @@
         ".local/share/dooit"
         ".local/share/hmcl"
         ".local/share/nvim"
+        ".local/share/shotwell"
+        ".local/share/Steam"
         ".local/share/Trash"
+        ".local/share/cheat.sh"
+        ".config/dconf"
         ".config/gh"
         ".config/pulse"
         ".config/go-musicfox/db"
         ".config/tmux/plugins"
+        ".config/pip"
+        ".config/QQ"
       ];
       files = [
-        # ".local/state/fzf_history"
-        # ".local/state/zsh_history"
-        # ".local/state/zlua"
         ".config/go-musicfox/musicfox.log"
         ".config/go-musicfox/cookie"
       ];

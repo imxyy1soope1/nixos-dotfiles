@@ -4,9 +4,18 @@ with import ./constants.nix;
     x86_64.linux
     i686.linux
   ];
-  hosts = [
-    "${hostprefix}"
-    "${hostprefix}-kvm"
-    "${hostprefix}-wsl"
+  hosts = with arch; [
+    {
+      hostname = "${hostprefix}";
+      system = x86_64.linux;
+    }
+    {
+      hostname = "${hostprefix}-kvm";
+      system = x86_64.linux;
+    }
+    {
+      hostname = "${hostprefix}-wsl";
+      system = x86_64.linux;
+    }
   ];
 }

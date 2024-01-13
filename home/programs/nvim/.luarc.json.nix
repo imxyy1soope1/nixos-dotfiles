@@ -1,6 +1,6 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 let
-  neovim-pkg = pkgs.neovim-nightly;
+  neovim-pkg = config.programs.neovim.package;
   nvimdata = "${config.xdg.dataHome}/nvim";
   nvimconf = "${config.xdg.configHome}/nvim";
   luarc = {

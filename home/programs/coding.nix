@@ -1,7 +1,4 @@
-{ lib, pkgs, config, ... }:
-let
-  neovim-pkg = pkgs.neovim-nightly;
-in
+{ lib, pkgs, ... }:
 {
   nixpkgs = {
     config = {
@@ -19,14 +16,23 @@ in
     ];
   };
   home.packages = with pkgs; [
-    python3
     lua
-    gcc
+
+    python3
+
     gnumake
+
+    gcc
     cmake
+
     go
+
+    cargo
+    rustc
+
     nodejs
     nodePackages.npm
+
     github-cli # gh
   ];
   programs.zsh.initExtraFirst = ''
@@ -41,7 +47,7 @@ in
     recursive = true;
   };
   programs.neovim = {
-    package = neovim-pkg;
+    package = pkgs.neovim-nightly;
     enable = true;
     defaultEditor = true;
     viAlias = true;

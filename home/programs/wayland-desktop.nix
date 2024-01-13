@@ -1,12 +1,13 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, system, ... }: {
   home.packages = with pkgs; [
     xdg-desktop-portal-hyprland
     swaybg
     wl-clipboard
     cliphist
     swaynotificationcenter
-    pavucontrol
+    hyprshot
     cage
+    inputs.hyprsome.packages.${system}.default
   ];
   wayland.windowManager.hyprland = {
     enable = true;

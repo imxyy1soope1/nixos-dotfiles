@@ -1,12 +1,18 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   # Firefox
   programs.firefox.enable = true;
 
   # Packages
   home.packages = with pkgs; [
+    microsoft-edge
+
     dunst # notification daemon
     cinnamon.nemo # file explorer
     rofi
+
+    pavucontrol
+
+    xorg.xrdb
   ];
 
   #Dunst
@@ -59,14 +65,29 @@
     theme = {
       package = pkgs.mono-gtk-theme;
       name = "MonoThemeDark";
-      # package = pkgs.tokyo-night-gtk;
-      # name = "Tokyonight-Storm-BL";
     };
     iconTheme = {
       package = pkgs.win11-icon-theme;
       name = "Win11";
-      # package = pkgs.papirus-icon-theme;
-      # name = "Papirus";
+    };
+    gtk2 = {
+      extraConfig = ''
+        gtk-decoration-layout = :none
+      '';
+      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    };
+    gtk3 = {
+      bookmarks = [
+        "file:///home/imxyy/Documents/%E7%8F%AD%E7%BA%A7%E4%BA%8B%E5%8A%A1 班级事务"
+      ];
+      extraConfig = {
+        gtk-decoration-layout = ":none";
+      };
+    };
+    gtk4 = {
+      extraConfig = {
+        gtk-decoration-layout = ":none";
+      };
     };
   };
 }
