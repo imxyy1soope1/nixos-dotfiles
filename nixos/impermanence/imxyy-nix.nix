@@ -36,6 +36,7 @@
         ".config/dconf"
         ".config/gh"
         ".config/pulse"
+        ".config/microsoft-edge"
         ".config/go-musicfox/db"
         ".config/tmux/plugins"
         ".config/pip"

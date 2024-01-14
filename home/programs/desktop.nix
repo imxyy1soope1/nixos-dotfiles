@@ -27,12 +27,6 @@
     recursive = true;
   };
 
-  # Fcitx5
-  xdg.dataFile."fcitx5" = {
-    source = ./fcitx5;
-    recursive = true;
-  };
-
   # Alacritty
   programs.alacritty = {
     enable = true;
