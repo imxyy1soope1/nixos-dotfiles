@@ -42,8 +42,7 @@
 
 .notification-row {
     all: unset;
-    /*font-family: JetBrainsMono Nerd Font Mono, Microsoft YaHei, monospace;*/
-    font-size: 11;
+    font-size: 11px;
     transition: all 200ms ease;
     outline: none;
     margin-bottom: 4px;

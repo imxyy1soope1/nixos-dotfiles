@@ -5,7 +5,10 @@
     playerctl
     go-musicfox
 
+    spotify
+
     vlc
+    mpv
 
     shotwell
 

@@ -10,6 +10,5 @@
     ./coding.nix
     ./working.nix
     ./gaming.nix
-    ./persistence.nix
   ];
 }

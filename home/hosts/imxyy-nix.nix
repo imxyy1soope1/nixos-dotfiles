@@ -1,6 +1,7 @@
 { inputs, lib, username, ... }: {
   imports = [
     ../programs
+    ../impermanence/imxyy-nix.nix
   ];
 
   nixpkgs.overlays = [

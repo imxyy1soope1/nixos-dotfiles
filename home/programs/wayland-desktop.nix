@@ -4,6 +4,7 @@
     swaybg
     wl-clipboard
     cliphist
+    gnome.zenity
     swaynotificationcenter
     hyprshot
     cage

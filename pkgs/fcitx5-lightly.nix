@@ -1,9 +1,9 @@
 { lib
-, stdenv
+, stdenvNoCC
 , ...
 }:
 
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   pname = "fcitx5-lightly";
   version = "unstable";
 

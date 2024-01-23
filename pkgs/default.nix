@@ -7,6 +7,8 @@ let
     "mono-gtk-theme"
     "fcitx5-themes"
     "fcitx5-lightly"
+    "xmind"
+    "wps-office-fonts"
   ];
 in
 pkgs.lib.genAttrs packages (package: pkgs.callPackage ./${package}.nix pkgs)

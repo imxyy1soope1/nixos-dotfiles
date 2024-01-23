@@ -25,6 +25,7 @@
     environment.TMPDIR = "/var/cache/nix";
     serviceConfig.CacheDirectory = "nix";
   };
+  environment.sessionVariables.LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
   environment.variables.NIX_REMOTE = "daemon";
 
   users.users.${username}.hashedPassword = "$y$j9T$PnRLh2qEHscwT9zVxSvJF1$SV/38KixGslAAz50w3FTMWnMyvjBVTIXtyUMVYWi4D3";
@@ -36,6 +37,7 @@
     package = pkgs.pulseaudioFull;
     extraConfig = ''
       load-module module-switch-on-connect
+      unload-module module-suspend-on-idle
     '';
   };
   hardware.bluetooth.enable = true;
@@ -175,7 +177,8 @@
   };
 
   # Steam
-  # programs.steam.enable = true;
-
-  programs.fuse.userAllowOther = true;
+  programs.steam = {
+    enable = true;
+    package = pkgs.stable.steam;
+  };
 }

@@ -6,16 +6,21 @@
         prefix = ''${HOME}/.npm-global
       '';
     };
-    overlays = [
+    /* overlays = [
       # no default treesitter parser
       (final: prev: {
         neovim-nightly = prev.neovim-nightly.override {
+          treesitter-parsers = { };
+        };
+        neovim-unwrapped = prev.neovim.override {
           treesitter-parsers = lib.mkForce { };
         };
       })
-    ];
+    ]; */
   };
   home.packages = with pkgs; [
+    # jupyter
+
     lua
 
     python3
@@ -29,12 +34,17 @@
 
     cargo
     rustc
+    rustfmt
+    evcxr # rust repl
 
     nodejs
     nodePackages.npm
 
+    neovide
+
     github-cli # gh
   ];
+  programs.git.lfs.enable = true;
   programs.zsh.initExtraFirst = ''
     source ${./github-cli-comp}
   '';
@@ -47,7 +57,10 @@
     recursive = true;
   };
   programs.neovim = {
-    package = pkgs.neovim-nightly;
+    # package = pkgs.neovim-nightly;
+    package = pkgs.neovim-unwrapped.override {
+      treesitter-parsers = { };
+    };
     enable = true;
     defaultEditor = true;
     viAlias = true;
