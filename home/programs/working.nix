@@ -20,8 +20,10 @@
 
     stable.dooit
 
-    nur.repos.Freed-Wu.translate-shell
-    wakatime # translate-shell dep
+    # nur.repos.Freed-Wu.translate-shell
+    # wakatime # translate-shell dep
+
+    translate-shell
 
     qq
 

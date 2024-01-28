@@ -9,6 +9,7 @@ let
     "fcitx5-lightly"
     "xmind"
     "wps-office-fonts"
+    "translate-shell"
   ];
 in
 pkgs.lib.genAttrs packages (package: pkgs.callPackage ./${package}.nix pkgs)

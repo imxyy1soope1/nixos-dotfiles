@@ -56,6 +56,7 @@
     };
     shellAliases = {
       ls = "lsd";
+      find = "fd";
       cat = "bat";
       svim = "sudoedit";
       nf = "neofetch";

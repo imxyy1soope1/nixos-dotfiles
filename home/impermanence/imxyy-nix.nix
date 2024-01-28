@@ -38,9 +38,9 @@
     files = [
       ".hmcl.json"
 
+      # ".config/mpd/mpd.db" # requires bindfs, defined in nixos/impermanence/imxyy-nix.nix
       ".config/go-musicfox/musicfox.log"
       ".config/go-musicfox/cookie"
-      ".config/mpd/mpd.db"
     ];
   };
 }

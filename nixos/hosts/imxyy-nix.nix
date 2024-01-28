@@ -1,5 +1,15 @@
 { pkgs, username, ... }: {
-  boot.kernelParams = [ "usbcore.autosuspend=-1" ]; # Avoid usb autosuspend (for usb bluetooth adapter)
+  imports = [
+    ../impermanence/imxyy-nix.nix
+  ];
+
+  boot.kernelParams = [ "drm.edid_firmware=edid/edid.bin" "usbcore.autosuspend=-1" ]; # Avoid usb autosuspend (for usb bluetooth adapter)
+  hardware.firmware = [
+    (pkgs.runCommand "edid.bin" { } ''
+      mkdir -p $out/lib/firmware/edid
+      cp ${./edid.bin} $out/lib/firmware/edid
+    '')
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 1;

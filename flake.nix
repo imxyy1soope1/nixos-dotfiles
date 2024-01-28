@@ -21,6 +21,14 @@
     # NeoVim nightly
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
+    # Rust overlay
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+
+    # fenix (another rust overlay)
+    fenix.url = "github:nix-community/fenix";
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
+
     # OMZ
     omz.url = "github:imxyy1soope1/omz/master";
     omz.inputs.nixpkgs.follows = "nixpkgs";
@@ -55,6 +63,7 @@
     , nixpkgs
     , nixpkgs-stable
     , home-manager
+      # , rust-overlay
     , impermanence
     , nixos-wsl
     , ...
@@ -80,6 +89,8 @@
             outputs.overlays.unstable-packages
             outputs.overlays.nur-packages
             # inputs.neovim-nightly-overlay.overlay
+            # (import rust-overlay)
+            inputs.fenix.overlays.default
             inputs.omz.overlays.default
             inputs.dwm.overlays.default
             inputs.hyprland.overlays.default

@@ -27,5 +27,12 @@
     '';
   };
 
+  programs.git = {
+    extraConfig = {
+      core.untrackedCache = true;
+      core.fsmonitor = true;
+    };
+  };
+
   services.mpris-proxy.enable = true;
 }

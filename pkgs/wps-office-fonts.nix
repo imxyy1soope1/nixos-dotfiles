@@ -12,6 +12,8 @@ stdenvNoCC.mkDerivation rec {
     sha256 = "db01fc07324115b181cb06f50dfe09fd17feee132c46423ee70b260830211224";
   };
 
+  phases = [ "unpackPhase" "installPhase" ];
+
   installPhase = ''
     runHook preInstall
 
