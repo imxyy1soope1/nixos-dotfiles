@@ -70,7 +70,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-order-than 1w";
+    options = "--delete-older-than 7d";
   };
 
   # Set your time zone.
