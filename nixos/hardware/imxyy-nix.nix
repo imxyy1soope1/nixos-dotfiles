@@ -22,8 +22,9 @@
 
   fileSystems."/nix" =
     {
-      device = "/dev/disk/by-uuid/d80ff9a8-6b6b-4388-9a93-3ba3ad240686";
-      fsType = "xfs";
+      device = "/dev/disk/by-uuid/843c36ae-f6d0-46a1-b5c7-8ab569e1e63f";
+      fsType = "btrfs";
+      options = [ "compress=zstd" ];
     };
 
   fileSystems."/persistent" =
@@ -61,7 +62,7 @@
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/3B3D-1AD5";
+      device = "/dev/disk/by-uuid/B7DC-E9AC";
       fsType = "vfat";
     };
 

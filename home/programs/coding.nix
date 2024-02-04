@@ -32,18 +32,19 @@
 
     go
 
-    # cargo
-    # rustc
-    # rustfmt
+    cargo
+    rustc
+    rustfmt
+    clippy
     /* (rust-bin.selectLatestNightlyWith
       (toolchain: toolchain.default)) # or `toolchain.minimal` */
-    (fenix.complete.withComponents [
+    /*(fenix.complete.withComponents [
       "cargo"
       "clippy"
       "rust-src"
       "rustc"
       "rustfmt"
-    ])
+    ])*/
     evcxr # rust repl
 
     nodejs
@@ -82,13 +83,13 @@
 
       rust-analyzer
       # rust-analyzer-nightly
-      (fenix.complete.withComponents [
+      /*(fenix.complete.withComponents [
         "cargo"
         "clippy"
         "rust-src"
         "rustc"
         "rustfmt"
-      ])
+      ])*/
 
       nil
       rnix-lsp
