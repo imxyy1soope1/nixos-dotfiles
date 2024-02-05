@@ -29,8 +29,7 @@
 
   programs.git = {
     extraConfig = {
-      core.untrackedCache = true;
-      core.fsmonitor = true;
+      status.showUntrackedfiles = "no";
     };
   };
 
