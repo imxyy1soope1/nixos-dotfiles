@@ -1,8 +1,8 @@
 -- Keymaps
 local opt = require("core.globals").keymap_opt
 
-vim.keymap.set("n", "K", vim.lsp.buf.hover, opt)
-vim.keymap.set("n", "<leader>lR", vim.lsp.buf.rename, opt)
+-- vim.keymap.set("n", "K", vim.lsp.buf.hover, opt)
+-- vim.keymap.set("n", "<leader>lR", vim.lsp.buf.rename, opt)
 
 vim.diagnostic.config({
     virtual_text = { spacing = 4, prefix = "●" },

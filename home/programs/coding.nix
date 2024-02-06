@@ -36,8 +36,6 @@
     rustc
     rustfmt
     clippy
-    /* (rust-bin.selectLatestNightlyWith
-      (toolchain: toolchain.default)) # or `toolchain.minimal` */
     /*(fenix.complete.withComponents [
       "cargo"
       "clippy"
@@ -82,8 +80,8 @@
       llvmPackages.clang-unwrapped
 
       rust-analyzer
-      # rust-analyzer-nightly
-      /*(fenix.complete.withComponents [
+      /*rust-analyzer-nightly
+      (fenix.complete.withComponents [
         "cargo"
         "clippy"
         "rust-src"

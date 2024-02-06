@@ -28,7 +28,7 @@
       macAddress = "3C:7C:3F:7C:D3:9D";
       useDHCP = true;
     };
-    nameservers = [ "192.168.3.1" ];
+    nameservers = [ "192.168.3.1" "114.114.114.114" ];
   };
 
   systemd.services.nix-daemon = {

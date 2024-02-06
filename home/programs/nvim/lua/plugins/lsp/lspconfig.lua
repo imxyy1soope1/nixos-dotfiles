@@ -10,8 +10,6 @@ else
     capabilities = {}
 end
 
-local on_attach = require("plugins.lsp.signature").on_attach
-
 local lspconfig = require("lspconfig")
 for _, server in ipairs(require("plugins.lsp.servers")) do
     if autoconfig_excluded[server] ~= nil then
@@ -20,7 +18,6 @@ for _, server in ipairs(require("plugins.lsp.servers")) do
 
     lspconfig[server].setup({
         capabilities = capabilities,
-        on_attach = on_attach
     })
     ::continue::
 end
@@ -47,6 +44,5 @@ lspconfig["lua_ls"].setup({
         }
     },
     capabilities = capabilities,
-    on_attach = on_attach
 })
 

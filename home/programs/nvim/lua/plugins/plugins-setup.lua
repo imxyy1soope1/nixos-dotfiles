@@ -61,21 +61,6 @@ local plugins = {
             require("ibl").setup(require("plugins.indent-blankline"))
         end
     },
-    --[[ {
-        "williamboman/mason.nvim",
-        lazy = false,
-        config = function()
-            require("mason").setup(require("plugins.lsp.mason"))
-        end
-    },
-    {
-        "williamboman/mason-lspconfig",
-        lazy = false,
-        dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
-        config = function()
-            require("mason-lspconfig").setup(require("plugins.lsp.mason-lspconfig"))
-        end
-    }, ]]
     {
         "neovim/nvim-lspconfig",
         dependencies = { "hrsh7th/cmp-nvim-lsp" },
@@ -86,8 +71,23 @@ local plugins = {
         end
     },
     {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("lsp_signature").setup(require("plugins.lsp.signature"))
+        end
+    },
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {},
+        config = function ()
+            require("plugins.lsp.trouble")
+        end
+    },
+    {
         "folke/neodev.nvim",
-        lazy = false,
+        lazy = true,
         event = "BufEnter *.lua",
         config = function()
             require("neodev").setup(require("plugins.neodev"))
