@@ -86,6 +86,13 @@ local plugins = {
         end
     },
     {
+        "hedyhli/outline.nvim",
+        event = "LspAttach",
+        config = function()
+            require("outline").setup(require("plugins.lsp.outline"))
+        end,
+    },
+    {
         "folke/neodev.nvim",
         lazy = true,
         event = "BufEnter *.lua",

@@ -14,6 +14,13 @@
     pavucontrol
 
     xorg.xrdb
+
+    vlc
+    mpv
+
+    shotwell
+
+    thunderbird
   ];
 
   #Dunst

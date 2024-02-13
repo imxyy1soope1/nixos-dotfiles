@@ -1,22 +1,22 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   nixpkgs = {
     config = {
       programs.npm.npmrc = ''
         prefix = ''${HOME}/.npm-global
+        home=https://npm.taobao.org
+        registry=https://registry.npm.taobao.org/
+        sass_binary_site="https://npm.taobao.org/mirrors/node-sass/"
+        phantomjs_cdnurl="http://cnpmjs.org/downloads"
+        ELECTRON_MIRROR="https://mirrors.huaweicloud.com/electron/"
+        sqlite3_binary_host_mirror="https://foxgis.oss-cn-shanghai.aliyuncs.com/"
+        profiler_binary_host_mirror="https://npm.taobao.org/mirrors/node-inspector/"
+        chromedriver_cdnurl="https://npm.taobao.org/mirrors/chromedriver"
+        puppeteer_download_host = https://npm.taobao.org/mirrors
+        selenium_cdnurl=http://npm.taobao.org/mirrors/selenium
+        node_inspector_cdnurl=https://npm.taobao.org/mirrors/node-inspector
       '';
     };
-    /* overlays = [
-      # no default treesitter parser
-      (final: prev: {
-        neovim-nightly = prev.neovim-nightly.override {
-          treesitter-parsers = { };
-        };
-        neovim-unwrapped = prev.neovim.override {
-          treesitter-parsers = lib.mkForce { };
-        };
-      })
-    ]; */
   };
   home.packages = with pkgs; [
     # jupyter
@@ -100,6 +100,9 @@
       lua-language-server
 
       nodePackages.vscode-langservers-extracted
+      nodePackages.typescript-language-server
+
+      marksman
 
       ripgrep
     ];

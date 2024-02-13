@@ -8,6 +8,8 @@ M = {
     "jsonls",
     "cssls",
     "nil_ls",
+    "html",
+    "marksman",
 }
 
 return M
