@@ -16,7 +16,7 @@ local plugins = {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
-        config = function ()
+        config = function()
             vim.cmd.colorscheme("tokyonight-storm")
         end
     },
@@ -81,7 +81,7 @@ local plugins = {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {},
-        config = function ()
+        config = function()
             require("plugins.lsp.trouble")
         end
     },
@@ -104,7 +104,7 @@ local plugins = {
         "L3MON4D3/LuaSnip",
         lazy = false,
         dependencies = { { "rafamadriz/friendly-snippets", lazy = true } },
-        config = function ()
+        config = function()
             require("luasnip").setup(require("plugins.cmp.luasnip"))
         end
     },
@@ -119,7 +119,7 @@ local plugins = {
             "onsails/lspkind.nvim"
         },
         lazy = false,
-        config = function ()
+        config = function()
             require("cmp").setup(require("plugins.cmp.cmp"))
         end
     },
@@ -128,7 +128,7 @@ local plugins = {
         lazy = true,
         tag = "legacy",
         event = "LspAttach",
-        config = function ()
+        config = function()
             require("fidget").setup(require("plugins.lsp.fidget"))
         end
     },
@@ -136,7 +136,7 @@ local plugins = {
         "numToStr/Comment.nvim",
         lazy = false,
         event = "VeryLazy",
-        config = function ()
+        config = function()
             require("Comment").setup(require("plugins.comment"))
         end
     },
@@ -145,7 +145,7 @@ local plugins = {
         lazy = false,
         event = "VeryLazy",
         dependencies = { "hrsh7th/nvim-cmp" },
-        config = function ()
+        config = function()
             require("nvim-autopairs").setup(require("plugins.autopairs"))
         end
     },
@@ -159,7 +159,7 @@ local plugins = {
     {
         "akinsho/bufferline.nvim",
         lazy = false,
-        config = function ()
+        config = function()
             require("bufferline").setup(require("plugins.bufferline"))
         end
     },
@@ -167,14 +167,15 @@ local plugins = {
         "lewis6991/gitsigns.nvim",
         lazy = false,
         event = "VeryLazy",
-        config = function ()
+        config = function()
             require("gitsigns").setup(require("plugins.gitsigns"))
         end
     },
     {
-        "nvim-telescope/telescope.nvim", tag = "0.1.2",
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.2",
         dependencies = { "nvim-lua/plenary.nvim", "BurntSushi/ripgrep" },
-        config = function ()
+        config = function()
             require("telescope").setup(require("plugins.telescope"))
         end
     },
@@ -182,7 +183,7 @@ local plugins = {
         "alexghergh/nvim-tmux-navigation",
         lazy = false,
         event = "VeryLazy",
-        config = function ()
+        config = function()
             require("nvim-tmux-navigation").setup(require("plugins.tmuxnav"))
         end
     },
@@ -190,7 +191,7 @@ local plugins = {
         "natecraddock/sessions.nvim",
         lazy = false,
         event = "VeryLazy",
-        config = function ()
+        config = function()
             require("sessions").setup(require("plugins.sessions"))
         end
     },
@@ -199,19 +200,19 @@ local plugins = {
         lazy = false,
         event = "VeryLazy",
         depedencies = { "nvim-telescope/telescope.nvim", "natecraddock/sessions.nvim" },
-        config = function ()
+        config = function()
             require("workspaces").setup(require("plugins.workspaces"))
             require("telescope").load_extension("workspaces")
         end
     },
     {
         "iamcco/markdown-preview.nvim",
-        lazy = true,
-        event = "BufEnter *.md",
-        build = function ()
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewAutoEnable", "MarkdownPreviewAutoDisable" },
+        ft = { "markdown" },
+        build = function()
             vim.fn["mkdp#util#install"]()
         end,
-        config = function ()
+        config = function()
             require("plugins.markdown-preview")
         end
     },
@@ -219,7 +220,7 @@ local plugins = {
         "dhruvasagar/vim-table-mode",
         lazy = true,
         event = "BufEnter *.md",
-        config = function ()
+        config = function()
             require("plugins.table-mode")
         end
     },
@@ -227,7 +228,7 @@ local plugins = {
         "rcarriga/nvim-notify",
         lazy = false,
         event = "VeryLazy",
-        config = function ()
+        config = function()
             require("plugins.notify")
         end
     },
@@ -236,7 +237,7 @@ local plugins = {
         depedencies = { "nvim-treesitter/nvim-treesitter" },
         lazy = false,
         event = "VeryLazy",
-        config = function ()
+        config = function()
             require("plugins.treesitter-hypr")
         end
     },
@@ -244,7 +245,7 @@ local plugins = {
         "voldikss/vim-floaterm",
         lazy = false,
         event = "VeryLazy",
-        config = function ()
+        config = function()
             require("plugins.floaterm")
         end
     }
@@ -253,4 +254,3 @@ local plugins = {
 local opts = {}
 
 require("lazy").setup(plugins, opts)
-
