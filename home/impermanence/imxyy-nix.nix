@@ -10,6 +10,8 @@
       ".thunderbird"
       ".hyprland"
       ".ssh"
+      ".npm-global"
+      ".npm"
       "bin"
       "go"
       "workspace"
@@ -34,6 +36,8 @@
       ".config/pip"
       ".config/QQ"
       ".config/Element"
+      ".config/obs-studio"
+      ".config/libreoffice"
     ];
     files = [
       ".hmcl.json"

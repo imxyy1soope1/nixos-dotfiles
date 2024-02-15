@@ -9,7 +9,6 @@ M = {
     "cssls",
     "nil_ls",
     "html",
-    "marksman",
 }
 
 return M

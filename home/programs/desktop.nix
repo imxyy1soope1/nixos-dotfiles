@@ -2,6 +2,8 @@
   # Firefox
   programs.firefox.enable = true;
 
+  programs.obs-studio.enable = true;
+
   # Packages
   home.packages = with pkgs; [
     microsoft-edge

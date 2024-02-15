@@ -88,8 +88,6 @@
       nodePackages.vscode-langservers-extracted
       nodePackages.typescript-language-server
 
-      marksman
-
       ripgrep
     ];
   };

@@ -82,6 +82,9 @@
     };
   };
 
+  environment.sessionVariables = {
+    GTK_IM_MODULE = "fcitx";
+  };
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5 = {

@@ -124,6 +124,8 @@
     unzip
     xz
     p7zip
+    rar
+    unrar
 
     pciutils
     usbutils

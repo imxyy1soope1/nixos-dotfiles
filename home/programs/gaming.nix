@@ -3,5 +3,7 @@
     # steam # defined in nixos/hosts/imxyy-nix.nix
     hmcl
     jre8
+
+    lunar-client
   ];
 }
