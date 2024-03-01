@@ -3,7 +3,17 @@
   home.file.".npmrc".text = ''
     prefix = ''${HOME}/.npm-global
   '';
-  programs.zsh.sessionVariables.PATH = "$HOME/.npm-global/bin:$PATH";
+  home.file.".cargo/config.toml".text = ''
+    [source.crates-io]
+    replace-with = 'rsproxy-sparse'
+
+    [source.rsproxy-sparse]
+    registry = "sparse+https://rsproxy.cn/index/"
+
+    [net]
+    git-fetch-with-cli = true
+  '';
+
   home.packages = with pkgs; [
     # jupyter
 

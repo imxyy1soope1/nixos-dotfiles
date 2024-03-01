@@ -14,10 +14,19 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 1;
 
+  environment.systemPackages = with pkgs; [
+    libva
+    libva-utils
+  ];
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
   };
 
   networking = {
@@ -46,15 +55,14 @@
     support32Bit = true;
     package = pkgs.pulseaudioFull;
     extraConfig = ''
+      load-module module-bluez5-discover
       load-module module-switch-on-connect
       unload-module module-suspend-on-idle
     '';
   };
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
   users.extraUsers.${username}.extraGroups = [ "audio" ];
-  environment.systemPackages = with pkgs; [
-    pamixer
-  ];
 
   fonts = {
     enableDefaultPackages = false;
@@ -83,7 +91,7 @@
   };
 
   environment.sessionVariables = {
-    GTK_IM_MODULE = "fcitx";
+    GTK_IM_MODULE = "fcitx5";
   };
   i18n.inputMethod = {
     enabled = "fcitx5";

@@ -87,6 +87,7 @@
             outputs.overlays.modifications
             outputs.overlays.stable-packages
             outputs.overlays.unstable-packages
+            outputs.overlays.master-packages
             outputs.overlays.nur-packages
             # inputs.neovim-nightly-overlay.overlay
             # (import rust-overlay)

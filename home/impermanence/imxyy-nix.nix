@@ -8,7 +8,7 @@
       ".minecraft"
       ".mozilla"
       ".thunderbird"
-      ".hyprland"
+      ".cargo"
       ".ssh"
       ".npm-global"
       ".npm"
