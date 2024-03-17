@@ -21,10 +21,15 @@ replpkgs:
 repl:
 	@nix repl .
 
+cleandry:
+	@echo "Listing all generations older than 15 days..."
+	@sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --dry-run --older-than 15d
+	@nix run home-manager#default -- expire-generations -15days --dry-run
+
 clean:
-	@echo "Removing all generations older than 7 days..."
-	@sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
-	@nix run home-manager#default -- expire-generations -7days
+	@echo "Removing all generations older than 15 days..."
+	@sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 15d
+	@nix run home-manager#default -- expire-generations -15days
 
 gc:
 	@nix store gc --debug

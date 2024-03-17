@@ -26,5 +26,7 @@
     qq
 
     element-desktop
+
+    gnome.gnome-clocks
   ];
 }

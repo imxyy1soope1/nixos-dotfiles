@@ -34,5 +34,6 @@
   };
   programs.zsh.shellAliases = {
     cageterm = "cage -m last -s -- alacritty --config-file ~/.config/alacritty/alacritty-tty.toml";
+    cagefoot = "cage -m last -s -- foot --font=monospace:size=20";
   };
 }

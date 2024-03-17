@@ -22,11 +22,8 @@
     trash-cli
 
     cht-sh
-    # cht.sh standalone deps
-    python3
-    git
-    virtualenv
-    icu
+
+    pamixer
   ];
   xdg.configFile."tmux/tmux.conf".source = ./tmux.conf;
   programs.zsh.shellAliases = {

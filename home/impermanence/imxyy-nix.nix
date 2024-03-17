@@ -40,7 +40,7 @@
       ".config/libreoffice"
     ];
     files = [
-      ".hmcl.json"
+      # ".hmcl.json"
 
       # ".config/mpd/mpd.db" # requires bindfs, defined in nixos/impermanence/imxyy-nix.nix
       ".config/go-musicfox/musicfox.log"

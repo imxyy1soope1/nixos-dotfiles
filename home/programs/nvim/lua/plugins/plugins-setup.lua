@@ -40,10 +40,14 @@ local plugins = {
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
         event = "VeryLazy",
-        dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            "nushell/tree-sitter-nu"
+        },
         config = function()
             require("nvim-treesitter.configs").setup(require("plugins.treesitter"))
-        end
+        end,
+        build = ":TSUpdate"
     },
     {
         url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
@@ -230,15 +234,6 @@ local plugins = {
         event = "VeryLazy",
         config = function()
             require("plugins.notify")
-        end
-    },
-    {
-        "luckasRanarison/tree-sitter-hypr",
-        depedencies = { "nvim-treesitter/nvim-treesitter" },
-        lazy = false,
-        event = "VeryLazy",
-        config = function()
-            require("plugins.treesitter-hypr")
         end
     },
     {

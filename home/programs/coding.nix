@@ -86,7 +86,6 @@
       ])*/
 
       nil
-      rnix-lsp
       # nixd
 
       gotools

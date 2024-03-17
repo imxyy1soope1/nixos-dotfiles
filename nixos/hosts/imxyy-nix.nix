@@ -48,6 +48,7 @@
   environment.variables.NIX_REMOTE = "daemon";
 
   users.users.${username}.hashedPassword = "$y$j9T$PnRLh2qEHscwT9zVxSvJF1$SV/38KixGslAAz50w3FTMWnMyvjBVTIXtyUMVYWi4D3";
+  # users.users.${username}.hashedPassword = "$y$j9T$kQetzbkIxGM89AgL4uljd/$8TJloT5NGyJHoRgAVjK4r094QcaT8Mf2Q9bVm4LLRQ9";
   users.users.root.hashedPassword = "$y$j9T$kQetzbkIxGM89AgL4uljd/$8TJloT5NGyJHoRgAVjK4r094QcaT8Mf2Q9bVm4LLRQ9";
 
   hardware.pulseaudio = {
@@ -91,12 +92,12 @@
   };
 
   environment.sessionVariables = {
-    GTK_IM_MODULE = "fcitx5";
+    GTK_IM_MODULE = "";
   };
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5 = {
-      addons = with pkgs; [ fcitx5-chinese-addons fcitx5-lightly ];
+      addons = with pkgs; [ fcitx5-chinese-addons fluent-fcitx5 ];
       waylandFrontend = true;
       settings = {
         globalOptions = {
@@ -127,7 +128,8 @@
             Font = "sans-serif 10";
             MenuFont = "Noto Sans CJK SC 10";
             TrayFont = "Noto Sans CJK SC Bold 10";
-            Theme = "lightly";
+            Theme = "FluentLight";
+            # Theme = "lightly";
             # Theme = "macOS-dark";
             PerScreenDPI = true;
             EnableFractionalScale = true;
@@ -200,6 +202,6 @@
   # Steam
   programs.steam = {
     enable = true;
-    package = pkgs.stable.steam;
+    package = pkgs.steam;
   };
 }

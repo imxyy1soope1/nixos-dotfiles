@@ -7,6 +7,7 @@ let
     "mono-gtk-theme"
     "fcitx5-themes"
     "fcitx5-lightly"
+    "fluent-fcitx5"
     "xmind"
     "wps-office-fonts"
     "translate-shell"

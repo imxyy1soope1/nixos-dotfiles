@@ -17,6 +17,7 @@
     users.${username} = {
       files = [
         ".config/mpd/mpd.db" # requires bindfs
+        ".hmcl.json"
       ];
     };
   };
