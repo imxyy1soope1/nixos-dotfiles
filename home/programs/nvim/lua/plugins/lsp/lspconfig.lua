@@ -1,5 +1,6 @@
 local autoconfig_excluded = {
-    lua_ls = true
+    lua_ls = true,
+    rust_analyzer = true,
 }
 
 local ok, cmp = pcall(require, "cmp_nvim_lsp")
@@ -17,7 +18,7 @@ for _, server in ipairs(require("plugins.lsp.servers")) do
     end
 
     lspconfig[server].setup({
-        capabilities = capabilities,
+        -- capabilities = capabilities,
     })
     ::continue::
 end
@@ -43,6 +44,15 @@ lspconfig["lua_ls"].setup({
             }
         }
     },
-    capabilities = capabilities,
+    -- capabilities = capabilities,
 })
 
+lspconfig["rust_analyzer"].setup({
+    settings = {
+        rust_analyzer = {
+            check = {
+                command = "clippy"
+            }
+        }
+    }
+})

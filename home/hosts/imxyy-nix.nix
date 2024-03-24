@@ -1,11 +1,7 @@
-{ inputs, lib, username, ... }: {
+{ lib, username, ... }: {
   imports = [
     ../programs
     ../impermanence/imxyy-nix.nix
-  ];
-
-  nixpkgs.overlays = [
-    inputs.dwm-local.overlays.default
   ];
 
   programs.zsh = {

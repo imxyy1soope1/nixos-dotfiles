@@ -18,28 +18,17 @@
     # NUR
     nur.url = "github:nix-community/NUR";
 
-    # NeoVim nightly
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
-    # Rust overlay
-    rust-overlay.url = "github:oxalica/rust-overlay";
-    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
-
-    # fenix (another rust overlay)
+    # fenix (rust overlay)
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
     # OMZ
     omz.url = "github:imxyy1soope1/omz/master";
     omz.inputs.nixpkgs.follows = "nixpkgs";
-    # omz.url = "/home/imxyy/omz";
 
     # dwm
     dwm.url = "github:imxyy1soope1/dwm/master";
     dwm.inputs.nixpkgs.follows = "nixpkgs";
-    #dwm-local.url = "/home/imxyy/dwm";
-    dwm-local.url = "github:imxyy1soope1/dwm/master";
-    dwm-local.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland/main";
@@ -63,7 +52,6 @@
     , nixpkgs
     , nixpkgs-stable
     , home-manager
-      # , rust-overlay
     , impermanence
     , nixos-wsl
     , ...
@@ -89,8 +77,6 @@
             outputs.overlays.unstable-packages
             outputs.overlays.master-packages
             outputs.overlays.nur-packages
-            # inputs.neovim-nightly-overlay.overlay
-            # (import rust-overlay)
             inputs.fenix.overlays.default
             inputs.omz.overlays.default
             inputs.dwm.overlays.default
@@ -112,8 +98,22 @@
         # Available through 'nixos-rebuild --flake .#{hostname}'
         nixosConfigurations = forAllHosts (
           { hostname, system }:
+          let
+            specialArgs = {
+              inherit inputs
+                outputs
+                nixos-wsl
+                impermanence
+                username
+                userdesc
+                hostname
+                userfullname
+                useremail
+                system;
+            };
+          in
           nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs outputs nixos-wsl impermanence username userdesc hostname; };
+            inherit specialArgs;
             modules = (nixpkgs.lib.attrValues (import ./modules/nixos)) ++ [
               overlay
               ./nixos
@@ -123,9 +123,7 @@
                   sharedModules = nixpkgs.lib.attrValues (import ./modules/home-manager) ++ [ overlay ];
                   useUserPackages = true;
                   users.${username} = import ./home;
-                  extraSpecialArgs = {
-                    inherit inputs outputs username userfullname useremail hostname system;
-                  };
+                  extraSpecialArgs = specialArgs;
                 };
               }
             ];

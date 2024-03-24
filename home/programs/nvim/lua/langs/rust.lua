@@ -4,7 +4,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     desc = "auto format Rust files",
     callback = function()
         vim.fn.system("rustfmt " .. vim.fn.expand("%:p"))
-        -- vim.fn.system("goimports -w " .. vim.fn.expand("%:p"))
         vim.cmd("edit")
     end,
     group = "Rust",

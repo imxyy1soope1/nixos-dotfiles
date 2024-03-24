@@ -18,6 +18,8 @@
       files = [
         ".config/mpd/mpd.db" # requires bindfs
         ".hmcl.json"
+        ".config/go-musicfox/musicfox.log"
+        ".config/go-musicfox/cookie"
       ];
     };
   };

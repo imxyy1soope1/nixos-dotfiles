@@ -61,7 +61,6 @@
     recursive = true;
   };
   programs.neovim = {
-    # package = pkgs.neovim-nightly;
     package = pkgs.neovim-unwrapped.override {
       treesitter-parsers = { };
     };
@@ -73,18 +72,9 @@
     extraPackages = with pkgs; [
       nodePackages.pyright
 
-      llvmPackages.clang-unwrapped
+      clang-tools
 
       rust-analyzer
-      /*rust-analyzer-nightly
-      (fenix.complete.withComponents [
-        "cargo"
-        "clippy"
-        "rust-src"
-        "rustc"
-        "rustfmt"
-      ])*/
-
       nil
       # nixd
 
