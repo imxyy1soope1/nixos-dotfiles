@@ -203,7 +203,7 @@ local plugins = {
         "natecraddock/workspaces.nvim",
         lazy = false,
         event = "VeryLazy",
-        depedencies = { "nvim-telescope/telescope.nvim", "natecraddock/sessions.nvim" },
+        dependencies = { "nvim-telescope/telescope.nvim", "natecraddock/sessions.nvim" },
         config = function()
             require("workspaces").setup(require("plugins.workspaces"))
             require("telescope").load_extension("workspaces")
