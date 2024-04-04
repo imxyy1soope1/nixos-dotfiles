@@ -33,6 +33,8 @@
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland/main";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland-contrib.url = "github:hyprwm/contrib/main";
+    hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
 
     # go-musicfox
     go-musicfox.url = "github:imxyy1soope1/go-musicfox/master";
@@ -81,6 +83,7 @@
             inputs.omz.overlays.default
             inputs.dwm.overlays.default
             inputs.hyprland.overlays.default
+            inputs.hyprland-contrib.overlays.default
             inputs.go-musicfox.overlays.default
           ];
         });

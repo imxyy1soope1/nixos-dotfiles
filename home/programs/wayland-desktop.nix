@@ -8,6 +8,8 @@
     swaynotificationcenter
     hyprshot
     cage
+    rofi-wayland
+    hyprprop
     inputs.hyprsome.packages.${system}.default
   ];
   wayland.windowManager.hyprland = {

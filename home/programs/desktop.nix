@@ -11,7 +11,6 @@
     dunst # notification daemon
     cinnamon.nemo # file explorer
     cinnamon.nemo-fileroller
-    rofi
 
     pavucontrol
 

@@ -96,7 +96,7 @@
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5 = {
-      addons = with pkgs; [ fcitx5-chinese-addons fluent-fcitx5 ];
+      addons = with pkgs; [ fcitx5-chinese-addons fluent-fcitx5 fcitx5-lightly ];
       waylandFrontend = true;
       settings = {
         globalOptions = {
@@ -127,9 +127,8 @@
             Font = "sans-serif 10";
             MenuFont = "Noto Sans CJK SC 10";
             TrayFont = "Noto Sans CJK SC Bold 10";
-            Theme = "FluentLight";
-            # Theme = "lightly";
-            # Theme = "macOS-dark";
+            Theme = "lightly";
+            # Theme = "FluentLight";
             PerScreenDPI = true;
             EnableFractionalScale = true;
           };
