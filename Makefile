@@ -12,6 +12,10 @@ update:
 	@echo "Updating flakes..."
 	@nix flake update
 
+update-hyprland:
+	@echo "Updating Hyprland flake..."
+	@nix flake lock --update-input hyprland
+
 history:
 	@nix profile history --profile /nix/var/nix/profiles/system
 
@@ -24,12 +28,12 @@ repl:
 cleandry:
 	@echo "Listing all generations older than 15 days..."
 	@sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --dry-run --older-than 15d
-	@nix run home-manager#default -- expire-generations -15days --dry-run
+	@nix run home-manager#home-manager -- expire-generations -15days --dry-run
 
 clean:
 	@echo "Removing all generations older than 15 days..."
 	@sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 15d
-	@nix run home-manager#default -- expire-generations -15days
+	@nix run home-manager#home-manager -- expire-generations -15days
 
 gc:
 	@nix store gc --debug
