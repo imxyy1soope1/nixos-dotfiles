@@ -35,6 +35,14 @@
       neededForBoot = true;
     };
 
+  fileSystems."/swap" =
+    {
+      device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
+      fsType = "btrfs";
+      options = [ "compress=zstd" "subvol=swap" ];
+      neededForBoot = true;
+    };
+
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     mkdir /btrfs_tmp
     mount /dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c /btrfs_tmp
@@ -96,7 +104,10 @@
       fsType = "ext4";
     };
 
-  swapDevices = [ ];
+  swapDevices = [{
+    device = "/swap/swapfile";
+    size = 32 * 1024;
+  }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

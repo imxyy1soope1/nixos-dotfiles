@@ -48,7 +48,7 @@
 
     github-cli # gh
   ];
-  programs.git.lfs.enable = true;
+  programs.direnv.enable = true;
   programs.zsh.initExtraFirst = ''
     source ${./github-cli-comp}
   '';

@@ -18,6 +18,7 @@
 
       ".cache"
       ".local/state"
+      ".local/share/direnv"
       ".local/share/dooit"
       ".local/share/hmcl"
       ".local/share/nvim"

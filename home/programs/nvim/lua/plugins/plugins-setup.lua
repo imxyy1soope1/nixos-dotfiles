@@ -154,6 +154,10 @@ local plugins = {
         end
     },
     --[[ {
+        "codota/tabnine-nvim",
+        build = "./dl-binaries.sh",
+    }, ]]
+    --[[ {
         "mfussenegger/nvim-dap",
         "rcarriga/nvim-dap-ui",
         "theHamsta/nvim-dap-virtual-text",

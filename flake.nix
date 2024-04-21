@@ -90,8 +90,6 @@
       in
       {
         packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-        # Formatter for your nix files, available through 'nix fmt'
-        # Other options beside 'alejandra' include 'nixpkgs-fmt'
         formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
 
         overlays = import ./overlays { inherit inputs; };
