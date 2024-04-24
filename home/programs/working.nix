@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    stable.musescore
+    musescore
 
     /* (wpsoffice-cn.overrideAttrs (oldattrs: {
       src = fetchurl {

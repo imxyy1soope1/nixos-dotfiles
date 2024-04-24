@@ -62,7 +62,6 @@
       let
         inherit (self) outputs;
         forAllSystems = nixpkgs.lib.genAttrs systems;
-        # forAllHosts = nixpkgs.lib.genAttrs hosts;
         forAllHosts = gen:
           nixpkgs.lib.attrsets.mergeAttrsList (
             builtins.map
@@ -71,14 +70,8 @@
               )
               hosts
           );
-        overlay = ({ inputs, outputs, ... }: {
-          nixpkgs.overlays = [
-            outputs.overlays.additions
-            outputs.overlays.modifications
-            outputs.overlays.stable-packages
-            outputs.overlays.unstable-packages
-            outputs.overlays.master-packages
-            outputs.overlays.nur-packages
+        overlay = ({ ... }: {
+          nixpkgs.overlays = builtins.attrValues self.overlays ++ [
             inputs.fenix.overlays.default
             inputs.omz.overlays.default
             inputs.dwm.overlays.default
