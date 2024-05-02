@@ -5,8 +5,9 @@
     # Nixpkgs
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-pinned.url = "github:nixos/nixpkgs/58a1abdbae3217ca6b702f03d3b35125d88a2994";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs.follows = "nixpkgs-pinned";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/master";

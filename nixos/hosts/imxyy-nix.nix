@@ -18,19 +18,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 1;
 
-  environment.systemPackages = with pkgs; [
-    libva
-    libva-utils
-  ];
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
   };
 
   networking = {

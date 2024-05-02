@@ -10,7 +10,7 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
-    # nix = prev.nixVersions.unstable;
+    nix = prev.nixVersions.unstable;
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

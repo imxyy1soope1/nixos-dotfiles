@@ -1,5 +1,4 @@
 { inputs
-, outputs
 , lib
 , config
 , pkgs
@@ -13,19 +12,7 @@
     ./hardware/${hostname}.nix
   ];
 
-  nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.stable-packages
-      outputs.overlays.unstable-packages
-    ];
-    config = {
-      allowUnfree = true;
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
@@ -51,7 +38,7 @@
 
   nix.settings = {
     # Enable flakes and new 'nix' command
-    experimental-features = "nix-command flakes repl-flake";
+    experimental-features = "nix-command flakes";
     # Deduplicate and optimize nix store
     auto-optimise-store = true;
     substituters = [

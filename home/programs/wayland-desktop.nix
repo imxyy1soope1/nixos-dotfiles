@@ -26,7 +26,7 @@
     recursive = true;
   };
   programs.waybar.enable = true;
-  programs.waybar.package = pkgs.master.waybar;
+  programs.waybar.package = pkgs.waybar;
   xdg.configFile."waybar" = {
     source = ./waybar;
     recursive = true;
