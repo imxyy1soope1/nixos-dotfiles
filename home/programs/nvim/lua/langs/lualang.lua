@@ -1,9 +1,9 @@
-vim.api.nvim_create_augroup("Markdown", {})
+vim.api.nvim_create_augroup("Lua", {})
 
 local old = {}
 vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = { "*.md" },
-  desc = "auto md file indent",
+  pattern = { "*.lua" },
+  desc = "auto lua file indent",
   callback = function()
     local opt = vim.opt
     -- Tab width setting
@@ -17,11 +17,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
     opt.expandtab = true
     opt.autoindent = true
   end,
-  group = "Markdown",
+  group = "Lua",
 })
 vim.api.nvim_create_autocmd("BufLeave", {
-  pattern = { "*.md" },
-  desc = "auto markdown file indent",
+  pattern = { "*.lua" },
+  desc = "auto lua file indent",
   callback = function()
     local opt = vim.opt
     -- Tab width setting
@@ -30,6 +30,6 @@ vim.api.nvim_create_autocmd("BufLeave", {
     opt.softtabstop = old.softtabstop
     opt.expandtab = old.expandtab
   end,
-  group = "Markdown",
+  group = "Lua",
 })
 

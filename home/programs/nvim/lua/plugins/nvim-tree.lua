@@ -1,13 +1,13 @@
 M = {
-    sync_root_with_cwd = true,
-    diagnostics = {
-        enable = false,
-        debounce_delay = 50,
-        show_on_dirs = true
-    },
-    filters = {
-        git_ignored = false
-    }
+  sync_root_with_cwd = true,
+  diagnostics = {
+    enable = false,
+    debounce_delay = 50,
+    show_on_dirs = true
+  },
+  filters = {
+    git_ignored = false
+  }
 }
 
 vim.g.loaded_netrw = 1

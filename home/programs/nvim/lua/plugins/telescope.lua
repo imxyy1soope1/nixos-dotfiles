@@ -1,29 +1,29 @@
 M = {
-    defaults = {
-        winblend = 50,
-        path_display = {
-            "smart",
-            shorten = 3
-        }
+  defaults = {
+    winblend = 50,
+    path_display = {
+      "smart",
+      shorten = 3
+    }
+  },
+  pickers = {
+    lsp_definitions = {
+      theme = "cursor",
+      layout_config = { width = 0.6, height = 0.3},
     },
-    pickers = {
-        lsp_definitions = {
-            theme = "cursor",
-            layout_config = { width = 0.6, height = 0.3},
-        },
-        lsp_references = {
-            theme = "cursor",
-            layout_config = { width = 0.6, height = 0.3 },
-        },
-        current_buffer_fuzzy_find = {
-            theme = "dropdown",
-            layout_config = { height = 0.7, width = 0.55, preview_cutoff = 0 ,prompt_position = "top" }
-        },
-        lsp_document_symbols = {
-            theme = "ivy",
-            layout_config = { height = 0.25 }
-        }
+    lsp_references = {
+      theme = "cursor",
+      layout_config = { width = 0.6, height = 0.3 },
     },
+    current_buffer_fuzzy_find = {
+      theme = "dropdown",
+      layout_config = { height = 0.7, width = 0.55, preview_cutoff = 0 ,prompt_position = "top" }
+    },
+    lsp_document_symbols = {
+      theme = "ivy",
+      layout_config = { height = 0.25 }
+    }
+  },
 }
 
 local opt = require("core.globals").keymap_opt

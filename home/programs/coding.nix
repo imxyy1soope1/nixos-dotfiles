@@ -76,7 +76,7 @@
 
       rust-analyzer
       nil
-      # nixd
+      nixd
 
       gotools
       gopls

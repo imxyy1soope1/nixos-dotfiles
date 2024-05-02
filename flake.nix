@@ -53,76 +53,80 @@
   outputs =
     { self
     , nixpkgs
-    , nixpkgs-stable
     , home-manager
     , impermanence
     , nixos-wsl
     , ...
     } @ inputs:
-      with import ./constants.nix // import ./variables.nix;
-      let
-        inherit (self) outputs;
-        forAllSystems = nixpkgs.lib.genAttrs systems;
-        forAllHosts = gen:
-          nixpkgs.lib.attrsets.mergeAttrsList (
-            builtins.map
-              (
-                { hostname, system }@host: { ${hostname} = gen host; }
-              )
-              hosts
-          );
-        overlay = ({ ... }: {
-          nixpkgs.overlays = builtins.attrValues self.overlays ++ [
-            inputs.fenix.overlays.default
-            inputs.omz.overlays.default
-            inputs.dwm.overlays.default
-            inputs.hyprland.overlays.default
-            inputs.hyprland-contrib.overlays.default
-            inputs.go-musicfox.overlays.default
-          ];
-        });
-      in
-      {
-        packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-        formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
-
-        overlays = import ./overlays { inherit inputs; };
-        nixosModules = import ./modules/nixos;
-        homeManagerModules = import ./modules/home-manager;
-
-        # Available through 'nixos-rebuild --flake .#{hostname}'
-        nixosConfigurations = forAllHosts (
-          { hostname, system }:
-          let
-            specialArgs = {
-              inherit inputs
-                outputs
-                nixos-wsl
-                impermanence
-                username
-                userdesc
-                hostname
-                userfullname
-                useremail
-                system;
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit specialArgs;
-            modules = (nixpkgs.lib.attrValues (import ./modules/nixos)) ++ [
-              overlay
-              ./nixos
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  sharedModules = nixpkgs.lib.attrValues (import ./modules/home-manager) ++ [ overlay ];
-                  useUserPackages = true;
-                  users.${username} = import ./home;
-                  extraSpecialArgs = specialArgs;
-                };
-              }
-            ];
-          }
+    let
+      inherit (self) outputs;
+      variables = import ./variables.nix;
+      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.system.flakeExposed;
+      forAllHosts = gen:
+        nixpkgs.lib.attrsets.mergeAttrsList (
+          builtins.map
+            (
+              { hostname, ... }@host: { ${hostname} = gen host; }
+            )
+            variables.hosts
         );
+      overlay = {
+        nixpkgs.overlays = builtins.attrValues self.overlays ++ [
+          inputs.fenix.overlays.default
+          inputs.omz.overlays.default
+          inputs.dwm.overlays.default
+          inputs.hyprland.overlays.default
+          inputs.hyprland-contrib.overlays.default
+          inputs.go-musicfox.overlays.default
+        ];
       };
+    in
+    {
+      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
+
+      overlays = import ./overlays { inherit inputs; };
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
+
+      # Available through 'nixos-rebuild --flake .#{hostname}'
+      nixosConfigurations = forAllHosts (
+        { hostname, system }:
+        let
+          specialArgs = {
+            inherit (variables)
+              username
+              userdesc
+              userfullname
+              useremail
+              ;
+
+            inherit
+              inputs
+              outputs
+              nixos-wsl
+              impermanence
+              system
+              hostname
+              ;
+          };
+        in
+        nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          modules = (nixpkgs.lib.attrValues (import ./modules/nixos)) ++ [
+            overlay
+            ./nixos
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                sharedModules = nixpkgs.lib.attrValues (import ./modules/home-manager) ++ [ overlay ];
+                useUserPackages = true;
+                users.${variables.username} = import ./home;
+                extraSpecialArgs = specialArgs;
+              };
+            }
+          ];
+        }
+      );
+    };
 }

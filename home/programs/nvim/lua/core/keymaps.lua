@@ -63,9 +63,9 @@ keymap.set("n", "<leader>wr", ":WorkspacesRemove<CR>", opt)
 
 -- Neovide config
 if vim.g.neovide then
-    keymap.set("v", "<C-C>", "\"+y", opt)
-    keymap.set("n", "<C-V>", "\"+P", opt)
-    keymap.set("i", "<C-V>", "<ESC>l\"+Pli", opt)
-    keymap.set("c", "<C-V>", "<C-R>+", opt)
+  keymap.set("v", "<C-C>", "\"+y", opt)
+  keymap.set("n", "<C-V>", "\"+P", opt)
+  keymap.set("i", "<C-V>", "<ESC>l\"+Pli", opt)
+  keymap.set("c", "<C-V>", "<C-R>+", opt)
 end
 

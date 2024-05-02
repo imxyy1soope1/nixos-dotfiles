@@ -1,10 +1,10 @@
 { config
 , pkgs
 , lib
+, hostname
 , username
 , userfullname
 , useremail
-, hostname
 , ...
 }: {
   imports = [

@@ -1,9 +1,9 @@
 M = {
-    sources = {
-        friendly_snippets = true
-    },
-    history = true,
-    updateevents = { "TextChanged", "TextChangedI"  }
+  sources = {
+    friendly_snippets = true
+  },
+  history = true,
+  updateevents = { "TextChanged", "TextChangedI"  }
 }
 
 -- vscode format
@@ -20,14 +20,14 @@ require("luasnip.loaders.from_lua").lazy_load { paths = vim.g.lua_snippets_path 
 
 local luasnip = require("luasnip")
 vim.api.nvim_create_autocmd("InsertLeave", {
-    callback = function()
-        if
-            luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
-            and not luasnip.session.jump_active
-        then
-            luasnip.unlink_current()
-        end
-    end,
+  callback = function()
+    if
+      luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
+      and not luasnip.session.jump_active
+    then
+      luasnip.unlink_current()
+    end
+  end,
 })
 
 return M

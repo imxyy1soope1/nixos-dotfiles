@@ -3,37 +3,37 @@ G = {}
 G.keymap_opt = { noremap = true, silent = true }
 
 function G.close_empty_buffer()
-    local flag = false
-    local cleaned = true
-    local empties = {}
-    for _, b in ipairs(vim.api.nvim_list_bufs()) do
-        local info = vim.fn.getbufinfo(b)[1]
-        if info.loaded == 1 and info.listed == 1 and info.name ~= "" then
-            flag = true
-        elseif info.loaded == 1 and info.name == "" and info.changed == 0 then
-            if flag and not cleaned then
-                for e in table do
-                    G.buf_kill("bd", e, false)
-                end
-                cleaned = true
-            elseif cleaned then
-                G.buf_kill("bd", b, false)
-            else
-                table.insert(empties, b)
-            end
+  local flag = false
+  local cleaned = true
+  local empties = {}
+  for _, b in ipairs(vim.api.nvim_list_bufs()) do
+    local info = vim.fn.getbufinfo(b)[1]
+    if info.loaded == 1 and info.listed == 1 and info.name ~= "" then
+      flag = true
+    elseif info.loaded == 1 and info.name == "" and info.changed == 0 then
+      if flag and not cleaned then
+        for e in table do
+          G.buf_kill("bd", e, false)
         end
+        cleaned = true
+      elseif cleaned then
+        G.buf_kill("bd", b, false)
+      else
+        table.insert(empties, b)
+      end
     end
-    if not flag and #empties == 0 then
-        vim.cmd("enew")
-    end
+  end
+  if not flag and #empties == 0 then
+    vim.cmd("enew")
+  end
 end
 
 function G.switch_input_method(req)
-    local input_status = tonumber(vim.fn.system("fcitx5-remote"))
-    if input_status ~= req then
-        vim.fn.system("fcitx5-remote -t")
-    end
-    return input_status
+  local input_status = tonumber(vim.fn.system("fcitx5-remote"))
+  if input_status ~= req then
+    vim.fn.system("fcitx5-remote -t")
+  end
+  return input_status
 end
 
 
@@ -107,7 +107,7 @@ function G.buf_kill(kill_command, bufnr, force)
 	if api.nvim_buf_is_valid(bufnr) and bo[bufnr].buflisted then
 		vim.cmd(string.format("%s %d", kill_command, bufnr))
 	end
-    return true
+  return true
 end
 
 return G

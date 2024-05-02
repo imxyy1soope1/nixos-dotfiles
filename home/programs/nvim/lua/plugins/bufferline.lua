@@ -9,13 +9,13 @@ M = {
 	options = {
 		diagnostics = "nvim_lsp",
 		offsets = {
-            {
-                filetype = "NvimTree",
-                text = "File Explorer",
-                highlight = "Directory",
-                text_align = "center"
-            },
-        },
+      {
+        filetype = "NvimTree",
+        text = "File Explorer",
+        highlight = "Directory",
+        text_align = "center"
+      },
+    },
 		close_command = function (bufnr)
 			buf_kill("bd", bufnr, false)
 		end,

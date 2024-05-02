@@ -46,6 +46,7 @@
       "https://mirror.sjtu.edu.cn/nix-channels/store"
       "https://nix-community.cachix.org"
       "https://hyprland.cachix.org"
+      "https://cache.nixos.org"
     ];
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
@@ -57,7 +58,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 7d";
+    options = "--delete-older-than 30d";
   };
 
   # Set your time zone.
@@ -83,7 +84,7 @@
     LC_TELEPHONE = "zh_CN.UTF-8";
     LC_TIME = "zh_CN.UTF-8";
   };
-  networking.hostName = "${hostname}";
+  networking.hostName = hostname;
 
   security.sudo.extraRules = [
     {
