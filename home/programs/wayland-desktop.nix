@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     xdg-desktop-portal-hyprland
     swaybg
+    wlr-randr
     wl-clipboard
     cliphist
     gnome.zenity
@@ -36,7 +37,7 @@
     recursive = true;
   };
   programs.zsh.shellAliases = {
-    cageterm = "cage -m last -s -- alacritty --config-file ~/.config/alacritty/alacritty-tty.toml";
-    cagefoot = "cage -m last -s -- foot --font=monospace:size=20";
+    cageterm = "cage -m DP-3 -s -- alacritty --config-file ~/.config/alacritty/alacritty-tty.toml";
+    cagefoot = "cage -m DP-3 -s -- foot --font=monospace:size=20";
   };
 }

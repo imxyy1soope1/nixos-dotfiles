@@ -61,7 +61,7 @@
     let
       inherit (self) outputs;
       variables = import ./variables.nix;
-      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.system.flakeExposed;
+      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
       forAllHosts = gen:
         nixpkgs.lib.attrsets.mergeAttrsList (
           builtins.map

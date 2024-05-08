@@ -11,6 +11,9 @@
     # ...
     # });
     nix = prev.nixVersions.unstable;
+    cage = prev.cage.overrideAttrs {
+      patches = [ ./cage-specify-output-name.patch ];
+    };
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

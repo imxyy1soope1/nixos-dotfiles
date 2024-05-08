@@ -31,22 +31,6 @@
     interfaces.br0 = {
       macAddress = "3C:7C:3F:7C:D3:9D";
       useDHCP = true;
-      /* ipv4.addresses = [
-        {
-          address = "192.168.3.220";
-          prefixLength = 24;
-        }
-      ];
-      ipv6.addresses = [
-        {
-          address = "2409:8a55:a70:d5a1:3e7c:3fff:fe7c:d39d";
-          prefixLength = 64;
-        }
-        {
-          address = "2409:8a55:a70:d5a1:2e02:d928:f209:705e";
-          prefixLength = 64;
-        }
-      ]; */
     };
     nameservers = [ "192.168.3.1" "114.114.114.114" ];
   };
