@@ -7,8 +7,8 @@ M = {
   "tsserver",
   "jsonls",
   "cssls",
-  -- "nil_ls",
-  "nixd",
+  "nil_ls",
+  -- "nixd",
   "html",
 }
 

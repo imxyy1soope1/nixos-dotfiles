@@ -3,11 +3,9 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-pinned.url = "github:nixos/nixpkgs/58a1abdbae3217ca6b702f03d3b35125d88a2994";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs.follows = "nixpkgs-pinned";
+    nixpkgs.follows = "nixpkgs-unstable";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/master";
@@ -32,7 +30,7 @@
     dwm.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hyprland
-    hyprland.url = "github:hyprwm/Hyprland/main";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
     hyprland-contrib.url = "github:hyprwm/contrib/main";
     hyprland-contrib.inputs.nixpkgs.follows = "nixpkgs";
@@ -75,7 +73,6 @@
           inputs.fenix.overlays.default
           inputs.omz.overlays.default
           inputs.dwm.overlays.default
-          inputs.hyprland.overlays.default
           inputs.hyprland-contrib.overlays.default
           inputs.go-musicfox.overlays.default
         ];
@@ -115,6 +112,14 @@
           inherit specialArgs;
           modules = (nixpkgs.lib.attrValues (import ./modules/nixos)) ++ [
             overlay
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  hyprland = inputs.hyprland.packages.${system}.hyprland;
+                  xdg-desktop-portal-hyprland = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+                })
+              ];
+            }
             ./nixos
             home-manager.nixosModules.home-manager
             {

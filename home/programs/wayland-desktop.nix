@@ -1,5 +1,6 @@
 { inputs, pkgs, system, ... }: {
   home.packages = with pkgs; [
+    hyprland
     xdg-desktop-portal-hyprland
     swaybg
     wlr-randr
@@ -13,10 +14,6 @@
     hyprprop
     inputs.hyprsome.packages.${system}.default
   ];
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemd.enable = false; # To prevent from generating config
-  };
   xdg.configFile."hypr" = {
     source = ./hypr;
     recursive = true;
@@ -37,7 +34,8 @@
     recursive = true;
   };
   programs.zsh.shellAliases = {
-    cageterm = "cage -m DP-3 -s -- alacritty --config-file ~/.config/alacritty/alacritty-tty.toml";
+    cageterm = "cage -m DP-3 -s -- alacritty -o font.size=20";
     cagefoot = "cage -m DP-3 -s -- foot --font=monospace:size=20";
+    cagekitty = "cage -m DP-3 -s -- kitty -o font_size=20";
   };
 }

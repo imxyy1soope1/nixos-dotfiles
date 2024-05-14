@@ -1,3 +1,17 @@
+local servers = {
+  "lua_ls",
+  "pyright",
+  "gopls",
+  "clangd",
+  "rust_analyzer",
+  "tsserver",
+  "jsonls",
+  "cssls",
+  "nil_ls",
+  -- "nixd",
+  "html",
+}
+
 local extra_config = {
   lua_ls = {
     settings = {
@@ -32,7 +46,7 @@ local extra_config = {
       }
     },
   },
-  nixd = {
+  --[[ nixd = {
     settings = {
       nixd = {
         nixpkgs = {
@@ -45,13 +59,10 @@ local extra_config = {
           nixos = {
             expr = '(builtins.getFlake ".").nixosConfigurations."imxyy-nix".options',
           },
-          --[[ home_manager = {
-            expr = '(builtins.getFlake ".").nixosConfigurations."imxyy-nix".options.home-manager.users.options',
-          }, ]]
         },
       },
     },
-  }
+  } ]]
 }
 
 local on_attach = function(bufnr)
@@ -77,7 +88,7 @@ capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 local lspconfig = require("lspconfig")
-for _, server in ipairs(require("plugins.lsp.servers")) do
+for _, server in ipairs(servers) do
   local extra = extra_config[server] or {}
   local config = {
     on_attach = on_attach,

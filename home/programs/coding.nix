@@ -15,8 +15,6 @@
   '';
 
   home.packages = with pkgs; [
-    # jupyter
-
     lua
 
     python3
@@ -32,13 +30,6 @@
     rustc
     rustfmt
     clippy
-    /*(fenix.complete.withComponents [
-      "cargo"
-      "clippy"
-      "rust-src"
-      "rustc"
-      "rustfmt"
-    ])*/
     evcxr # rust repl
 
     nodejs
@@ -76,7 +67,7 @@
 
       rust-analyzer
       nil
-      nixd
+      # nixd
 
       gotools
       gopls

@@ -3,14 +3,12 @@
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: prev: import ../pkgs prev;
 
-  # This one contains whatever you want to overlay
-  # You can change versions, add patches, set compilation flags, anything really.
-  # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
-    nix = prev.nixVersions.unstable;
+    # nix = prev.nixVersions.unstable;
+    nix = prev.nixVersions.latest;
     cage = prev.cage.overrideAttrs {
       patches = [ ./cage-specify-output-name.patch ];
     };
@@ -27,13 +25,6 @@
 
   stable-packages = final: _prev: {
     stable = import inputs.nixpkgs-stable {
-      system = final.system;
-      config.allowUnfree = true;
-    };
-  };
-
-  master-packages = final: _prev: {
-    master = import inputs.nixpkgs-master {
       system = final.system;
       config.allowUnfree = true;
     };

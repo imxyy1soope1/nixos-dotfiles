@@ -14,7 +14,7 @@ update:
 
 update-hyprland:
 	@echo "Updating Hyprland flake..."
-	@nix flake lock --update-input hyprland
+	@nix flake update hyprland
 
 history:
 	@nix profile history --profile /nix/var/nix/profiles/system
