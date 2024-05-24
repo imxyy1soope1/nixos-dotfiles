@@ -21,6 +21,10 @@
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
+    # NeoVim nightly
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
+
     # OMZ
     omz.url = "github:imxyy1soope1/omz/master";
     omz.inputs.nixpkgs.follows = "nixpkgs";
@@ -75,6 +79,7 @@
           inputs.dwm.overlays.default
           inputs.hyprland-contrib.overlays.default
           inputs.go-musicfox.overlays.default
+          inputs.neovim-nightly.overlays.default
         ];
       };
     in
@@ -112,14 +117,6 @@
           inherit specialArgs;
           modules = (nixpkgs.lib.attrValues (import ./modules/nixos)) ++ [
             overlay
-            {
-              nixpkgs.overlays = [
-                (final: prev: {
-                  hyprland = inputs.hyprland.packages.${system}.hyprland;
-                  xdg-desktop-portal-hyprland = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-                })
-              ];
-            }
             ./nixos
             home-manager.nixosModules.home-manager
             {

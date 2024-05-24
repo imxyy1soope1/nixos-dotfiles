@@ -35,7 +35,7 @@
     nodejs
     nodePackages.npm
 
-    neovide
+    # neovide
 
     github-cli # gh
   ];
@@ -52,9 +52,20 @@
     recursive = true;
   };
   programs.neovim = {
-    package = pkgs.neovim-unwrapped.override {
+    package = pkgs.neovim-unwrapped.overrideAttrs (_final: prev: {
       treesitter-parsers = { };
-    };
+      desktopItems = [
+        (pkgs.makeDesktopItem
+          {
+            name = "neovim";
+            exec = "neovim";
+            desktopName = "Neovim";
+            terminal = true;
+            startupNotify = false;
+          })
+      ];
+      nativeBuildInputs = prev.nativeBuildInputs ++ [ pkgs.copyDesktopItems ];
+    });
     enable = true;
     defaultEditor = true;
     viAlias = true;

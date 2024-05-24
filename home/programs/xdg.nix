@@ -7,7 +7,7 @@
     let
       homedir = config.home.homeDirectory;
       browser = [ "firefox.desktop" ];
-      editor = [ "neovide.desktop" ];
+      editor = [ "neovim.desktop" ];
       imageviewer = [ "org.gnome.Shotwell-Viewer.desktop" ];
     in
     {

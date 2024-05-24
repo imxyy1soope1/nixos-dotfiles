@@ -16,7 +16,7 @@
   ]; */
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.timeout = 1;
+  boot.loader.timeout = 0;
 
   hardware.opengl = {
     enable = true;
@@ -25,10 +25,7 @@
   };
 
   networking = {
-    networkmanager.enable = true;
-    bridges.br0.interfaces = [ "enp6s0" ];
-    interfaces.enp6s0.useDHCP = false;
-    interfaces.br0 = {
+    interfaces.enp6s0 = {
       macAddress = "3C:7C:3F:7C:D3:9D";
       useDHCP = true;
     };
