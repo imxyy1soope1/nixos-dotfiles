@@ -65,7 +65,7 @@ local extra_config = {
   } ]]
 }
 
-local on_attach = function(bufnr)
+local on_attach = function(client, bufnr)
   vim.api.nvim_create_autocmd("CursorHold", {
     buffer = bufnr,
     callback = function()

@@ -13,31 +13,18 @@
         "hyprland/workspaces"
     ],
     "modules-center": [
-        // "hyprland/window"
         "mpris"
     ],
     "modules-right": [
-        //"mpd",
-        // "mpris",
         "custom/notification",
         "tray",
         "pulseaudio",
         "pulseaudio#microphone"
     ],
-    "hyprland/window": {
-        "format": "{}",
-        "rewrite": {
-            "(.*) - Microsoft Edge": "🌎 $1",
-            "(.*) - Mozilla Firefox": "🌎 $1",
-            "(.*) - Visual Studio Code": "󰨞 $1"
-        },
-        "max-length": 70,
-        "separate-outputs": true
-    },
     "hyprland/workspaces": {
         "persistent-workspaces": {
             "DP-3": [1, 2, 3, 4, 5],
-            "HDMI-A-1": [11, 12, 13, 14 ,15]
+            "DP-2": [11, 12, 13, 14 ,15]
         },
         "on-click": "activate",
         "sort-by-number": true,
@@ -66,7 +53,7 @@
         }
     },
     "cpu": {
-        "interval": 10,
+        "interval": 1,
         "format": "󰞱 {}%",
         "max-length": 10,
         "on-click": ""
@@ -100,29 +87,6 @@
         "icon-size": 13,
         "tooltip": false,
         "spacing": 10
-    },
-    "mpd": {
-        "server": "127.0.0.1",
-        "port": 6600,
-        "interval": 5,
-        "unknown-tag": "Unknown",
-        "format": "{stateIcon} {artist} - {title}",
-        "format-disconnected": " Disconnected",
-        "format-paused": "{stateIcon} {artist} - {title}",
-        "format-stopped": "Stopped ",
-        "tooltip": true,
-        "tooltip-format": "Volume: {volume}",
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "on-click": "mpc toggle",
-        "on-click-middle": "mpc prev",
-        "on-click-right": "mpc next",
-        "on-update": "",
-        "on-scroll-up": "mpc volume +5",
-        "on-scroll-down": "mpc volume -5",
-        "smooth-scrolling-threshold": 1
     },
     "mpris": {
         "player": "musicfox",

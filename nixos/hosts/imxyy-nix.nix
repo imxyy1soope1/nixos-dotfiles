@@ -27,8 +27,32 @@
   networking = {
     interfaces.enp6s0 = {
       macAddress = "3C:7C:3F:7C:D3:9D";
-      useDHCP = true;
+      ipv4.addresses = [
+        {
+          address = "192.168.3.253";
+          prefixLength = 24;
+        }
+      ];
+      ipv6.addresses = [
+        {
+          address = "2409:8a55:a74:bd41:3e7c:3fff:fe7c:d39d";
+          prefixLength = 64;
+        }
+        {
+          address = "2409:8a55:a74:bd41:f487:c51d:2b10:ae";
+          prefixLength = 128;
+        }
+        {
+          address = "2409:8a55:a74:bd41:6a5f:6a2f:4527:2efa";
+          prefixLength = 64;
+        }
+        {
+          address = "fe80::3e7c:3fff:fe7c:d39d";
+          prefixLength = 64;
+        }
+      ];
     };
+    defaultGateway = "192.168.3.1";
     nameservers = [ "192.168.3.1" "114.114.114.114" ];
   };
 

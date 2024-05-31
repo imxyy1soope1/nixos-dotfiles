@@ -22,15 +22,16 @@ tooltip {
     border-color: #2a2c36;
 }
 
-tooltip label{
-	color: #cdd6f4;
+tooltip label {
+    color: #cdd6f4;
 }
 
 tooltip.background {
     background-clip: padding-box;
 }
 
-tooltip * { padding: 4px;
+tooltip * {
+    padding: 4px;
     background-color: transparent;
     color: white;
 }
@@ -164,14 +165,14 @@ tooltip * { padding: 4px;
 }
 
 #mpd {
-    color:rgba(97, 134, 214, 0.973);
+    color: rgba(97, 134, 214, 0.973);
     background: #1e1e2e;
     border-radius: 10px;
     border: 1px solid #181825;
 }
 
 #mpris {
-    color:rgba(97, 134, 214, 0.973);
+    color: rgba(97, 134, 214, 0.973);
     background: #1e1e2e;
     border-radius: 10px;
     border: 1px solid #181825;
