@@ -27,6 +27,9 @@
     enable = true;
     userName = "${userfullname}";
     userEmail = "${useremail}";
+    extraConfig = {
+      pull.rebase = true;
+    };
   };
 
   home.packages = [ pkgs.omz ];

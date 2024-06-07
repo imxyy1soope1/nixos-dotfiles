@@ -63,8 +63,11 @@
   environment.sessionVariables.LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
   environment.variables.NIX_REMOTE = "daemon";
 
-  users.users.${username}.hashedPassword = "$y$j9T$PnRLh2qEHscwT9zVxSvJF1$SV/38KixGslAAz50w3FTMWnMyvjBVTIXtyUMVYWi4D3";
-  # users.users.${username}.hashedPassword = "$y$j9T$kQetzbkIxGM89AgL4uljd/$8TJloT5NGyJHoRgAVjK4r094QcaT8Mf2Q9bVm4LLRQ9";
+  # mum's password
+  # users.users.${username}.hashedPassword = "$y$j9T$PnRLh2qEHscwT9zVxSvJF1$SV/38KixGslAAz50w3FTMWnMyvjBVTIXtyUMVYWi4D3";
+
+  # my password
+  users.users.${username}.hashedPassword = "$y$j9T$kQetzbkIxGM89AgL4uljd/$8TJloT5NGyJHoRgAVjK4r094QcaT8Mf2Q9bVm4LLRQ9";
   users.users.root.hashedPassword = "$y$j9T$kQetzbkIxGM89AgL4uljd/$8TJloT5NGyJHoRgAVjK4r094QcaT8Mf2Q9bVm4LLRQ9";
 
   hardware.pulseaudio = {
