@@ -28,5 +28,5 @@
   };
   users.users.${username}.hashedPasswordFile =
     lib.mkForce config.sops.secrets.imxyy-nix-server-hashed-password.path;
-  users.users.root.hashedPasswordPath = lib.mkForce config.sops.secrets.imxyy-nix-server-hashed-password.path;
+  users.users.root.hashedPasswordFile = lib.mkForce config.sops.secrets.imxyy-nix-server-hashed-password.path;
 }
