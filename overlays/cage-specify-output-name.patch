@@ -1,0 +1,57 @@
+diff --git a/cage.c b/cage.c
+index 75f0696..b733010 100644
+--- a/cage.c
++++ b/cage.c
+@@ -228,6 +228,9 @@ parse_args(struct cg_server *server, int argc, char *argv[])
+ 				server->output_mode = CAGE_MULTI_OUTPUT_MODE_LAST;
+ 			} else if (strcmp(optarg, "extend") == 0) {
+ 				server->output_mode = CAGE_MULTI_OUTPUT_MODE_EXTEND;
++			} else {
++				server->output_mode = CAGE_MULTI_OUTPUT_MODE_SPECIFIED;
++				server->output_name = optarg;
+ 			}
+ 			break;
+ 		case 's':
+diff --git a/output.c b/output.c
+index 465c0ed..992d6e1 100644
+--- a/output.c
++++ b/output.c
+@@ -13,6 +13,7 @@
+ 
+ #include <assert.h>
+ #include <stdlib.h>
++#include <string.h>
+ #include <unistd.h>
+ #include <wayland-server-core.h>
+ #include <wlr/backend.h>
+@@ -294,6 +295,10 @@ handle_new_output(struct wl_listener *listener, void *data)
+ 	if (server->output_mode == CAGE_MULTI_OUTPUT_MODE_LAST && wl_list_length(&server->outputs) > 1) {
+ 		struct cg_output *next = wl_container_of(output->link.next, next, link);
+ 		output_disable(next);
++	} else if (server->output_mode == CAGE_MULTI_OUTPUT_MODE_SPECIFIED &&
++		   strcmp(wlr_output->name, server->output_name) != 0) {
++		output_disable(output);
++		return;
+ 	}
+ 
+ 	if (!wlr_xcursor_manager_load(server->seat->xcursor_manager, wlr_output->scale)) {
+diff --git a/server.h b/server.h
+index 6e2fddf..bdb289f 100644
+--- a/server.h
++++ b/server.h
+@@ -15,6 +15,7 @@
+ enum cg_multi_output_mode {
+ 	CAGE_MULTI_OUTPUT_MODE_EXTEND,
+ 	CAGE_MULTI_OUTPUT_MODE_LAST,
++	CAGE_MULTI_OUTPUT_MODE_SPECIFIED,
+ };
+ 
+ struct cg_server {
+@@ -31,6 +32,7 @@ struct cg_server {
+ 	struct wl_list inhibitors;
+ 
+ 	enum cg_multi_output_mode output_mode;
++	char *output_name;
+ 	struct wlr_output_layout *output_layout;
+ 	struct wlr_scene *scene;
+ 	/* Includes disabled outputs; depending on the output_mode

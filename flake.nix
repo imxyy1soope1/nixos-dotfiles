@@ -1,84 +1,205 @@
 {
-  description = "Your new nix config";
+  description = "imxyy_soope_'s NixOS (flake) config";
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's an working example:
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-24.11";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    # nixpkgs.follows = "nixpkgs-stable";
+    nixpkgs.follows = "nixpkgs-unstable";
+
+    # SOPS
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
+    # Impermanence
+    impermanence.url = "github:nix-community/impermanence";
 
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
+    # NUR
+    nur.url = "github:nix-community/NUR";
+
+    # NeoVim nightly
+    # neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    # neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    # OMZ
+    omz.url = "github:imxyy1soope1/omz/master";
+    omz.inputs.nixpkgs.follows = "nixpkgs";
+
+    # dwm
+    dwm.url = "github:imxyy1soope1/dwm/master";
+    dwm.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Niri
+    niri.url = "github:sodiboo/niri-flake";
+    niri.inputs.nixpkgs.follows = "nixpkgs";
+    niri.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+
+    quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    quickshell.inputs.nixpkgs.follows = "nixpkgs";
+
+    darkly.url = "github:Bali10050/Darkly";
+    darkly.inputs.nixpkgs.follows = "nixpkgs";
+
+    stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # go-musicfox
+    go-musicfox.url = "github:imxyy1soope1/go-musicfox/master";
+    go-musicfox.inputs.nixpkgs.follows = "nixpkgs";
+
+    # NixOS-WSL
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+
+    fenix.url = "github:nix-community/fenix";
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    # Supported systems for your flake packages, shell, etc.
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-    # This is a function that generates an attribute by calling a function you
-    # pass to it, with each system as an argument
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-  in {
-    # Your custom packages
-    # Accessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-    # Formatter for your nix files, available through 'nix fmt'
-    # Other options beside 'alejandra' include 'nixpkgs-fmt'
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixos-wsl,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      variables = import ./variables.nix;
+      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
+      forAllHosts =
+        gen:
+        nixpkgs.lib.attrsets.mergeAttrsList (
+          builtins.map (
+            { hostname, ... }@host:
+            {
+              ${hostname} = gen host;
+            }
+          ) variables.hosts
+        );
+    in
+    {
+      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+      formatter = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        pkgs.writeShellApplication {
+          name = "nixfmt-wrapper";
 
-    # Your custom packages and modifications, exported as overlays
-    overlays = import ./overlays {inherit inputs;};
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
-    nixosModules = import ./modules/nixos;
-    # Reusable home-manager modules you might want to export
-    # These are usually stuff you would upstream into home-manager
-    homeManagerModules = import ./modules/home-manager;
+          runtimeInputs = [
+            pkgs.fd
+            pkgs.nixfmt-rfc-style
+          ];
 
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      imxyy-nix = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main nixos configuration file <
-          ./nixos/configuration.nix
-        ];
-      };
+          text = ''
+            fd "$@" -t f -e nix -x nixfmt '{}'
+          '';
+        }
+      );
+
+      overlays = import ./overlays { inherit inputs; };
+
+      # Available through 'nixos-rebuild --flake .#{hostname}'
+      nixosConfigurations = forAllHosts (
+        { hostname, system }:
+        let
+          lib = import ./lib/stdlib-extended.nix (
+            nixpkgs.lib.extend (
+              final: prev: {
+                inherit (inputs.home-manager.lib) hm;
+              }
+            )
+          );
+          overlays = builtins.attrValues self.overlays ++ [
+            inputs.go-musicfox.overlays.default
+            inputs.omz.overlays.default
+            inputs.dwm.overlays.default
+            inputs.niri.overlays.niri
+            # inputs.neovim-nightly.overlays.default
+            inputs.fenix.overlays.default
+            inputs.nix-vscode-extensions.overlays.default
+            (final: prev: {
+              darkly-qt5 = inputs.darkly.packages.${final.system}.darkly-qt5;
+              darkly-qt6 = inputs.darkly.packages.${final.system}.darkly-qt6;
+            })
+            (final: prev: {
+              quickshell = inputs.quickshell.packages.${final.system}.default.override {
+                withJemalloc = true;
+                withQtSvg = true;
+                withWayland = true;
+                withPipewire = false;
+                withPam = false;
+                withX11 = false;
+                withHyprland = false;
+              };
+            })
+          ];
+          pkgs = import nixpkgs {
+            inherit system overlays;
+            config.allowUnfree = true;
+          };
+          specialArgs = {
+            inherit (variables)
+              username
+              userdesc
+              userfullname
+              useremail
+              ;
+
+            inherit
+              inputs
+              outputs
+              nixos-wsl
+              system
+              hostname
+              ;
+
+            sopsRoot = ./secrets;
+          };
+        in
+        lib.nixosSystem {
+          inherit specialArgs;
+          modules = [
+            ./modules
+            ./config/base.nix
+            ./config/hosts/${hostname}
+            {
+              nixpkgs = {
+                inherit pkgs;
+              };
+            }
+
+            inputs.sops-nix.nixosModules.sops
+            inputs.impermanence.nixosModules.impermanence
+            inputs.home-manager.nixosModules.default
+            {
+              home-manager = {
+                sharedModules = [
+                  inputs.sops-nix.homeManagerModules.sops
+                  inputs.impermanence.nixosModules.home-manager.impermanence
+                  inputs.stylix.homeManagerModules.stylix
+                  inputs.niri.homeModules.niri
+                  (
+                    { lib, ... }:
+                    {
+                      nixpkgs.overlays = lib.mkForce null;
+                    }
+                  )
+                ];
+                useGlobalPkgs = true;
+              };
+            }
+          ];
+        }
+      );
     };
-
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      "imxyy@imxyy-nix" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main home-manager configuration file <
-          ./home-manager/home.nix
-        ];
-      };
-    };
-  };
 }

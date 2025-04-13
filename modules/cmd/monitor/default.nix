@@ -1,0 +1,7 @@
+{ ... }:
+{
+  imports = [
+    ./all.nix
+    ./btop
+  ];
+}

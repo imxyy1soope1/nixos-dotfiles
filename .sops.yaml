@@ -1,0 +1,9 @@
+keys:
+  - &imxyy-nix age1jf5pg2x6ta8amj40xdy0stvcvrdlkwc2nrwtmkpymu0qclk0eg5qmm9kns
+  - &imxyy-nix-server age1hpgg6psejh4y6jcdd34wxuml75fnweqpe0kh8376yqsctsfn9qxs037kk6
+creation_rules:
+  - path_regex: secrets/.*\.(yaml|toml|json|env|dae|txt)$
+    key_groups:
+      - age:
+        - *imxyy-nix
+        - *imxyy-nix-server

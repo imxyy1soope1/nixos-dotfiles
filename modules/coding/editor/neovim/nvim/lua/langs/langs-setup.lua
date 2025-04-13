@@ -1,0 +1,5 @@
+require("langs.go")
+-- require("langs.rust")
+require("langs.lualang")
+require("langs.nix")
+require("langs.markdown")
