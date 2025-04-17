@@ -28,8 +28,7 @@ lib.my.makeSwitch {
       unzip
       xz
       p7zip
-      rar
-      unrar
+      unrar-free
 
       pciutils
       usbutils
