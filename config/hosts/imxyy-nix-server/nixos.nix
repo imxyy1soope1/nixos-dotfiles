@@ -25,6 +25,7 @@
   sops.secrets.imxyy-nix-server-hashed-password = {
     sopsFile = sopsRoot + /imxyy-nix-server-hashed-password.txt;
     format = "binary";
+    neededForUsers = true;
   };
   users.users.${username}.hashedPasswordFile =
     lib.mkForce config.sops.secrets.imxyy-nix-server-hashed-password.path;

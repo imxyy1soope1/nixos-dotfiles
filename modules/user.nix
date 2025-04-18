@@ -18,6 +18,7 @@ lib.my.makeSwitch {
     sops.secrets.imxyy-nix-hashed-password = {
       sopsFile = sopsRoot + /imxyy-nix-hashed-password.txt;
       format = "binary";
+      neededForUsers = true;
     };
     users = {
       mutableUsers = false;
