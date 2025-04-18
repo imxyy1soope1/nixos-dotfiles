@@ -14,4 +14,7 @@
       PasswordAuthentication = true;
     };
   };
+
+  # fix vscode remote
+  programs.nix-ld.enable = true;
 }
