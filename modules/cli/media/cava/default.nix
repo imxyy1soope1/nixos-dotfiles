@@ -9,7 +9,7 @@ lib.my.makeHomePackageConfig {
   packageName = "cava";
   packagePath = [ "cava" ];
   optionPath = [
-    "cmd"
+    "cli"
     "media"
     "cava"
   ];

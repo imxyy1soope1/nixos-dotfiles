@@ -6,11 +6,11 @@
 }:
 lib.my.makeHomePackageConfig {
   inherit config pkgs;
-  packageName = "dwm";
-  packagePath = [ "dwm" ];
+  packageName = "ffmpeg";
+  packagePath = [ "ffmpeg" ];
   optionPath = [
-    "desktop"
-    "wm"
-    "dwm"
+    "cli"
+    "media"
+    "ffmpeg"
   ];
 }

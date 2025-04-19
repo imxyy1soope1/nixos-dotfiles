@@ -20,6 +20,11 @@ lib.my.makeSwitch {
     # Making legacy nix commands consistent as well, awesome!
     nix.nixPath = [ "/etc/nix/path" ];
 
+    environment.etc = lib.mapAttrs' (name: value: {
+      name = "nix/path/${name}";
+      value.source = value.flake;
+    }) config.nix.registry;
+
     nix.settings = {
       # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
@@ -38,6 +43,7 @@ lib.my.makeSwitch {
       ];
     };
 
+    # uncomment to enable auto gc
     /*
       nix.gc = {
         automatic = true;
@@ -45,10 +51,5 @@ lib.my.makeSwitch {
         options = "--delete-older-than 30d";
       };
     */
-
-    environment.etc = lib.mapAttrs' (name: value: {
-      name = "nix/path/${name}";
-      value.source = value.flake;
-    }) config.nix.registry;
   };
 }

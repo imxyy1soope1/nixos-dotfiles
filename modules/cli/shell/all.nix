@@ -3,12 +3,12 @@ lib.my.makeSwitch {
   inherit config;
   optionName = "all shells";
   optionPath = [
-    "cmd"
+    "cli"
     "shell"
     "all"
   ];
   config' = {
-    my.cmd.shell = {
+    my.cli.shell = {
       zsh.enable = true;
     };
   };

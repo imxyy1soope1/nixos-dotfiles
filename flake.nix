@@ -33,10 +33,6 @@
     omz.url = "github:imxyy1soope1/omz/master";
     omz.inputs.nixpkgs.follows = "nixpkgs";
 
-    # dwm
-    dwm.url = "github:imxyy1soope1/dwm/master";
-    dwm.inputs.nixpkgs.follows = "nixpkgs";
-
     # Niri
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
@@ -75,18 +71,17 @@
       variables = import ./variables.nix;
       forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
       forAllHosts =
-        gen:
+        mkSystem:
         nixpkgs.lib.attrsets.mergeAttrsList (
-          builtins.map (
-            { hostname, ... }@host:
-            {
-              ${hostname} = gen host;
-            }
-          ) variables.hosts
+          builtins.map (hostname: {
+            ${hostname} = mkSystem hostname;
+          }) (builtins.attrNames (builtins.readDir ./config/hosts))
         );
     in
     {
       packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+
+      # workaround for "treefmt warning"
       formatter = forAllSystems (
         system:
         let
@@ -95,9 +90,9 @@
         pkgs.writeShellApplication {
           name = "nixfmt-wrapper";
 
-          runtimeInputs = [
-            pkgs.fd
-            pkgs.nixfmt-rfc-style
+          runtimeInputs = with pkgs; [
+            fd
+            nixfmt-rfc-style
           ];
 
           text = ''
@@ -108,9 +103,8 @@
 
       overlays = import ./overlays { inherit inputs; };
 
-      # Available through 'nixos-rebuild --flake .#{hostname}'
       nixosConfigurations = forAllHosts (
-        { hostname, system }:
+        hostname:
         let
           lib = import ./lib/stdlib-extended.nix (
             nixpkgs.lib.extend (
@@ -122,9 +116,7 @@
           overlays = builtins.attrValues self.overlays ++ [
             inputs.go-musicfox.overlays.default
             inputs.omz.overlays.default
-            inputs.dwm.overlays.default
             inputs.niri.overlays.niri
-            # inputs.neovim-nightly.overlays.default
             inputs.fenix.overlays.default
             inputs.nix-vscode-extensions.overlays.default
             (final: prev: {
@@ -143,10 +135,27 @@
               };
             })
           ];
-          pkgs = import nixpkgs {
-            inherit system overlays;
+          home = {
+            home-manager = {
+              sharedModules = [
+                inputs.sops-nix.homeManagerModules.sops
+                inputs.impermanence.nixosModules.home-manager.impermanence
+                inputs.stylix.homeManagerModules.stylix
+                inputs.niri.homeModules.niri
+                # workaround for annoying stylix
+                {
+                  nixpkgs.overlays = lib.mkForce null;
+                }
+              ];
+              useGlobalPkgs = true;
+            };
+          };
+          pkgsConf.nixpkgs = {
+            overlays = lib.mkForce overlays;
             config.allowUnfree = true;
           };
+        in
+        lib.nixosSystem {
           specialArgs = {
             inherit (variables)
               username
@@ -159,45 +168,20 @@
               inputs
               outputs
               nixos-wsl
-              system
               hostname
               ;
 
             sopsRoot = ./secrets;
           };
-        in
-        lib.nixosSystem {
-          inherit specialArgs;
           modules = [
             ./modules
             ./config/base.nix
             ./config/hosts/${hostname}
-            {
-              nixpkgs = {
-                inherit pkgs;
-              };
-            }
-
             inputs.sops-nix.nixosModules.sops
             inputs.impermanence.nixosModules.impermanence
             inputs.home-manager.nixosModules.default
-            {
-              home-manager = {
-                sharedModules = [
-                  inputs.sops-nix.homeManagerModules.sops
-                  inputs.impermanence.nixosModules.home-manager.impermanence
-                  inputs.stylix.homeManagerModules.stylix
-                  inputs.niri.homeModules.niri
-                  (
-                    { lib, ... }:
-                    {
-                      nixpkgs.overlays = lib.mkForce null;
-                    }
-                  )
-                ];
-                useGlobalPkgs = true;
-              };
-            }
+            home
+            pkgsConf
           ];
         }
       );

@@ -3,12 +3,12 @@ lib.my.makeSwitch {
   inherit config;
   optionName = "all command line media tools";
   optionPath = [
-    "cmd"
+    "cli"
     "media"
     "all"
   ];
   config' = {
-    my.cmd.media = {
+    my.cli.media = {
       cava.enable = true;
       go-musicfox.enable = true;
       mpd.enable = true;

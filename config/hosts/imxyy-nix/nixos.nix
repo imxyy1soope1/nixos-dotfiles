@@ -1,7 +1,9 @@
 {
   lib,
   pkgs,
+  config,
   username,
+  sopsRoot,
   ...
 }:
 let
@@ -266,54 +268,41 @@ in
     btreset
   ];
 
-  fileSystems =
-    let
-      config = pkgs.writeText "rclone.conf" ''
-        [Nextcloud]
-        type = webdav
-        url = https://192.168.3.2/remote.php/dav/files/imxyy_soope_
-        vendor = nextcloud
-        user = imxyy_soope_
-        pass = C2UUiMyPoynWWKS9kf_Fr8rcoXxgUswPYi4s
-
-        [NAS]
-        type = smb
-        host = 192.168.3.2
-        user = nas
-        pass = O74S6-7jDFykwCvZ8vuIxohh00Ty7XJF
-      '';
-    in
-    {
-      "/home/${username}/Nextcloud" = {
-        device = "Nextcloud:";
-        fsType = "rclone";
-        options = [
-          "nodev"
-          "nofail"
-          "allow_other"
-          "args2env"
-          "config=${toString config}"
-          "uid=1000"
-          "gid=100"
-          "rw"
-          "no-check-certificate"
-          "vfs-cache-mode=full"
-        ];
-      };
-      "/home/${username}/NAS" = {
-        device = "//192.168.3.2/share";
-        fsType = "cifs";
-        options = [
-          "username=nas"
-          "password=nasshare"
-          "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s"
-          "nodev"
-          "nofail"
-          "uid=1000"
-          "gid=100"
-          "vers=3"
-          "rw"
-        ];
-      };
+  sops.secrets.imxyy-nix-rclone = {
+    sopsFile = sopsRoot + /imxyy-nix-rclone.conf;
+    format = "binary";
+  };
+  fileSystems = {
+    "/home/${username}/Nextcloud" = {
+      device = "Nextcloud:";
+      fsType = "rclone";
+      options = [
+        "nodev"
+        "nofail"
+        "allow_other"
+        "args2env"
+        "config=${config.sops.secrets.imxyy-nix-rclone.path}"
+        "uid=1000"
+        "gid=100"
+        "rw"
+        "no-check-certificate"
+        "vfs-cache-mode=full"
+      ];
     };
+    "/home/${username}/NAS" = {
+      device = "//192.168.3.2/share";
+      fsType = "cifs";
+      options = [
+        "username=nas"
+        "password=nasshare"
+        "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s"
+        "nodev"
+        "nofail"
+        "uid=1000"
+        "gid=100"
+        "vers=3"
+        "rw"
+      ];
+    };
+  };
 }

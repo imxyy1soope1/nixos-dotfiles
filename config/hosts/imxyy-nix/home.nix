@@ -15,7 +15,6 @@
       wpsoffice-cn
       wps-office-fonts
       evince
-      # siyuan-unlock
 
       anki
 
@@ -53,36 +52,47 @@
       '';
     };
 
-    programs.niri.settings.outputs = {
-      DP-2 = {
-        enable = true;
-        mode = {
-          width = 2560;
-          height = 1440;
-          refresh = 75.033;
+    programs.niri.settings = {
+      outputs = {
+        DP-2 = {
+          enable = true;
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 75.033;
+          };
+          scale = 1.25;
+          position = {
+            x = 0;
+            y = 0;
+          };
         };
-        scale = 1.25;
-        position = {
-          x = 0;
-          y = 0;
+        DP-3 = {
+          enable = true;
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 75.033;
+          };
+          scale = 1.25;
         };
       };
-      DP-3 = {
-        enable = true;
-        mode = {
-          width = 2560;
-          height = 1440;
-          refresh = 75.033;
-        };
-        scale = 1.25;
-      };
+      spawn-at-startup = [
+        {
+          command = [
+            "sh"
+            "-c"
+            "sleep 3; echo 'Xft.dpi: 120' | ${lib.getExe pkgs.xorg.xrdb} -merge"
+          ];
+        }
+      ];
     };
-
   };
+
   my = {
     autologin = {
       enable = true;
-      user = "${username}";
+      user = username;
       ttys = [
         1
         6
@@ -90,11 +100,9 @@
     };
 
     gpg.enable = true;
-    cmd.all.enable = true;
+    cli.all.enable = true;
     coding.all.enable = true;
     desktop.all.enable = true;
-
-    desktop.wm.dwm.enable = lib.mkForce false;
 
     desktop.browser.librewolf.enable = lib.mkForce false;
 
@@ -206,9 +214,6 @@
         ".config/mpd/mpd.db" # requires bindfs
         ".config/go-musicfox/cookie"
         ".hmcl.json"
-      ];
-      nixosFiles = [
-        "/etc/davfs2/secrets"
       ];
     };
   };

@@ -9,7 +9,7 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchFromGitHub {
     owner = "soimort";
-    repo = "${pname}";
+    repo = pname;
     rev = "gh-pages";
     hash = "sha256-YQevXwslWzHen9n+Fn0a+oNx/EKg0Kd/Ge8ksYP0ekY=";
   };

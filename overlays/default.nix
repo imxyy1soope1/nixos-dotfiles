@@ -1,7 +1,5 @@
-# This file defines overlays
 { inputs, ... }:
 {
-  # This one brings our custom packages from the 'pkgs' directory
   additions = final: prev: import ../pkgs prev;
 
   modifications = final: prev: {
@@ -15,11 +13,10 @@
         )
       '';
     };
-    easytier = final.master.easytier;
   };
 
-  # When applied, the unstable nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs.unstable'
+  # this allows us to access specific version of nixpkgs
+  # by `pkgs.unstable`, `pkgs.stable` and `pkgs.master`
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
       system = final.system;

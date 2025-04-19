@@ -8,7 +8,7 @@ lib.my.makeSwitch {
   inherit config;
   optionName = "go-musicfox";
   optionPath = [
-    "cmd"
+    "cli"
     "media"
     "go-musicfox"
   ];
@@ -22,7 +22,7 @@ lib.my.makeSwitch {
         xdg.configFile."go-musicfox/go-musicfox.ini".source = ./go-musicfox.ini;
       };
 
-      cmd.media.mpd.enable = true;
+      cli.media.mpd.enable = true;
     };
   };
 }

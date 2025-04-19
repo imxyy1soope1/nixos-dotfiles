@@ -7,8 +7,8 @@
     sops.sshKeyPath = "/home/${username}/.ssh/id_ed25519";
     coding.all.enable = true;
     coding.editor.vscode.enable = lib.mkForce false;
-    cmd.misc.enable = true;
+    cli.misc.enable = true;
     xdg.enable = true;
-    cmd.media.all.enable = true;
+    cli.media.all.enable = true;
   };
 }

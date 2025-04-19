@@ -11,7 +11,7 @@ lib.my.makeSwitch {
   default = true;
   optionName = "misc command line tools";
   optionPath = [
-    "cmd"
+    "cli"
     "misc"
   ];
   config' = {

@@ -4,7 +4,9 @@
   pkgs,
   ...
 }:
-
+let
+  btrfs = "/dev/disk/by-uuid/c7889c5c-c5b6-4e3c-9645-dfd49c2e84d0";
+in
 {
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -29,7 +31,7 @@
   networking.hostId = "10ca95b4";
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/c7889c5c-c5b6-4e3c-9645-dfd49c2e84d0";
+    device = btrfs;
     fsType = "btrfs";
     options = [
       "compress=zstd"
@@ -38,7 +40,7 @@
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/c7889c5c-c5b6-4e3c-9645-dfd49c2e84d0";
+    device = btrfs;
     fsType = "btrfs";
     options = [
       "compress=zstd"
@@ -47,7 +49,7 @@
   };
 
   fileSystems."/persistent" = {
-    device = "/dev/disk/by-uuid/c7889c5c-c5b6-4e3c-9645-dfd49c2e84d0";
+    device = btrfs;
     fsType = "btrfs";
     options = [
       "compress=zstd"
@@ -58,7 +60,7 @@
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     mkdir /btrfs_tmp
-    mount /dev/disk/by-uuid/c7889c5c-c5b6-4e3c-9645-dfd49c2e84d0 /btrfs_tmp
+    mount ${btrfs} /btrfs_tmp
     mkdir -p /btrfs_tmp/old_roots
     if [[ -e /btrfs_tmp/root ]]; then
         timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
@@ -84,6 +86,12 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/32AA-2998";
     fsType = "vfat";
+    options = [
+      "uid=0"
+      "gid=0"
+      "fmask=0077"
+      "dmask=0077"
+    ];
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

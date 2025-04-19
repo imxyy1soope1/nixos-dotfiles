@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    ./cmd
+    ./cli
     ./coding
     ./virt
     ./desktop

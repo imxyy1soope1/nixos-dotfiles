@@ -24,7 +24,7 @@ lib.my.makeSwitch {
       mutableUsers = false;
       users.${username} = {
         isNormalUser = true;
-        description = "${userdesc}";
+        description = userdesc;
         shell = pkgs.zsh;
         extraGroups = [
           "wheel"
@@ -38,7 +38,7 @@ lib.my.makeSwitch {
 
     security.sudo.extraRules = [
       {
-        users = [ "${username}" ];
+        users = [ username ];
         commands = [
           {
             command = "ALL";
@@ -50,7 +50,7 @@ lib.my.makeSwitch {
 
     nix.settings.trusted-users = [
       "root"
-      "${username}"
+      username
     ];
 
     my.home = {

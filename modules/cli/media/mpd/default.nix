@@ -8,7 +8,7 @@ lib.my.makeSwitch {
   inherit config;
   optionName = "mpd";
   optionPath = [
-    "cmd"
+    "cli"
     "media"
     "mpd"
   ];

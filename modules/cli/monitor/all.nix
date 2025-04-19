@@ -3,12 +3,12 @@ lib.my.makeSwitch {
   inherit config;
   optionName = "all command line monitor tools";
   optionPath = [
-    "cmd"
+    "cli"
     "monitor"
     "all"
   ];
   config' = {
-    my.cmd.monitor = {
+    my.cli.monitor = {
       btop.enable = true;
     };
   };

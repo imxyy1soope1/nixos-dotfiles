@@ -4,7 +4,7 @@
     nixos-wsl.nixosModules.wsl
   ];
   wsl.enable = true;
-  wsl.defaultUser = "${username}";
+  wsl.defaultUser = username;
 
   services.openssh = {
     enable = true;

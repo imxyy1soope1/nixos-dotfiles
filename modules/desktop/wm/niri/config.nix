@@ -5,7 +5,10 @@
   ...
 }:
 {
-  my.home.systemd.user.services.swaync.Unit.After = [ "graphical-session.target" ];
+  my.home.systemd.user.services.swaync = {
+    Unit.After = [ "graphical-session.target" ];
+    Service.ExecStart = [ "swaync" ];
+  };
 
   my.home.programs.niri.settings = {
     input = {

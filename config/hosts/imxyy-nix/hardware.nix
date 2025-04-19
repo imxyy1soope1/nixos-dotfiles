@@ -5,7 +5,9 @@
   username,
   ...
 }:
-
+let
+  btrfs = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
+in
 {
   boot = {
     initrd = {
@@ -29,27 +31,14 @@
       "fs.file-max" = 9223372036854775807;
     };
 
-    resumeDevice = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
+    resumeDevice = btrfs;
     kernelParams = [
       "resume_offset=6444127"
-
-      # "quiet"
-      # "splash"
-      # "log_level=3"
     ];
-    consoleLogLevel = 3;
-
-    /*
-      plymouth = {
-        enable = true;
-        theme = "bgrt";
-        themePackages = [ pkgs.nixos-bgrt-plymouth ];
-      };
-    */
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
+    device = btrfs;
     fsType = "btrfs";
     options = [
       "compress=zstd"
@@ -64,7 +53,7 @@
   };
 
   fileSystems."/persistent" = {
-    device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
+    device = btrfs;
     fsType = "btrfs";
     options = [
       "compress=zstd"
@@ -74,7 +63,7 @@
   };
 
   fileSystems."/swap" = {
-    device = "/dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c";
+    device = btrfs;
     fsType = "btrfs";
     options = [
       "compress=zstd"
@@ -85,7 +74,7 @@
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     mkdir /btrfs_tmp
-    mount /dev/disk/by-uuid/0404de0a-9c4d-4c98-b3e5-b8ff8115f36c /btrfs_tmp
+    mount ${btrfs} /btrfs_tmp
     mkdir -p /btrfs_tmp/old_roots
     if [[ -e /btrfs_tmp/root ]]; then
         timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
@@ -111,6 +100,12 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/B7DC-E9AC";
     fsType = "vfat";
+    options = [
+      "uid=0"
+      "gid=0"
+      "fmask=0077"
+      "dmask=0077"
+    ];
   };
 
   fileSystems."/home/${username}/Documents" = {

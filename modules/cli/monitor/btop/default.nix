@@ -9,7 +9,7 @@ lib.my.makeHomePackageConfig {
   packageName = "btop";
   packagePath = [ "btop" ];
   optionPath = [
-    "cmd"
+    "cli"
     "monitor"
     "btop"
   ];

@@ -9,7 +9,7 @@ lib.my.makeSwitch {
   default = true;
   optionName = "default zsh settings";
   optionPath = [
-    "cmd"
+    "cli"
     "shell"
     "zsh"
   ];

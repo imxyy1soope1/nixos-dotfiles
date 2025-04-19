@@ -3,7 +3,7 @@ keys:
   - &imxyy-nix-server age1hpgg6psejh4y6jcdd34wxuml75fnweqpe0kh8376yqsctsfn9qxs037kk6
   - &imxyy-cloudwin age1tp7th3rrv3x0l6jl76n0hjqjp223w2y586pkgr0hcjwdm254jd5shkj6a8
 creation_rules:
-  - path_regex: secrets/.*\.(yaml|toml|json|env|dae|txt)$
+  - path_regex: secrets/.*\.(yaml|toml|json|env|dae|txt|conf)$
     key_groups:
       - age:
         - *imxyy-nix

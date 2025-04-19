@@ -23,7 +23,7 @@ rec {
     in
     [
       {
-        hostname = "${hostprefix}";
+        hostname = hostprefix;
         system = x86_64.linux;
       }
       {

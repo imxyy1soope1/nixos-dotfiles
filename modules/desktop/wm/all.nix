@@ -14,7 +14,6 @@ lib.my.makeSwitch {
   config' = {
     my.desktop.wm = {
       cage.enable = true;
-      dwm.enable = true;
       niri.enable = true;
     };
   };

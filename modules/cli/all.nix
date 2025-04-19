@@ -3,11 +3,11 @@ lib.my.makeSwitch {
   inherit config;
   optionName = "all command line tools";
   optionPath = [
-    "cmd"
+    "cli"
     "all"
   ];
   config' = {
-    my.cmd = {
+    my.cli = {
       media.all.enable = true;
       misc.enable = true;
       monitor.all.enable = true;

@@ -11,7 +11,7 @@
     };
   };
   my = {
-    cmd.all.enable = true;
+    cli.all.enable = true;
     coding.editor.neovim.enable = true;
     coding.misc.enable = true;
     coding.langs.lua.enable = true;
