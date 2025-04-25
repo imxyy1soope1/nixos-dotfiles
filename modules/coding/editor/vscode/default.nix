@@ -17,14 +17,10 @@ lib.my.makeHomeProgramConfig {
       programs.vscode = {
         enable = true;
         package = pkgs.vscodium;
-        profiles.default = {
-          extensions = with pkgs.open-vsx; [
-            eamodio.gitlens
-            rust-lang.rust-analyzer
-            dbaeumer.vscode-eslint
-          ];
-        };
       };
     };
+    my.persist.homeDirs = [
+      ".config/VSCodium"
+    ];
   };
 }

@@ -17,7 +17,7 @@ lib.my.makeSwitch {
         gnumake
         github-cli # gh
       ];
-      programs.zsh.initExtraFirst = ''
+      programs.zsh.initContent = ''
         source ${./github-cli-comp}
       '';
       programs.direnv.enable = true;

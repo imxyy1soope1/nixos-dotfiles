@@ -48,7 +48,8 @@ in
     ];
   };
 
-  fileSystems."/persistent" = {
+  my.persist.location = "/nix/persist";
+  fileSystems."/nix/persist" = {
     device = btrfs;
     fsType = "btrfs";
     options = [

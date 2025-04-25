@@ -10,6 +10,15 @@ in
 {
   options.my.persist = {
     enable = lib.mkEnableOption "persist";
+    location = lib.mkOption {
+      type = lib.types.str;
+      example = lib.literalExpression ''
+        "/persistent"
+      '';
+      description = lib.mdDoc ''
+        Persistent location
+      '';
+    };
     homeDirs = lib.mkOption {
       type = with lib.types; listOf str;
       default = [ ];
@@ -64,7 +73,7 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.fuse.userAllowOther = true;
-    environment.persistence."/persistent" = {
+    environment.persistence.${cfg.location} = {
       hideMounts = true;
       directories = cfg.nixosDirs;
       files = cfg.nixosFiles;

@@ -27,8 +27,6 @@
     # neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     # neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-
     # OMZ
     omz.url = "github:imxyy1soope1/omz/master";
     omz.inputs.nixpkgs.follows = "nixpkgs";
@@ -68,7 +66,7 @@
     }@inputs:
     let
       inherit (self) outputs;
-      variables = import ./variables.nix;
+      vars = import ./vars.nix;
       forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
       forAllHosts =
         mkSystem:
@@ -118,7 +116,6 @@
             inputs.omz.overlays.default
             inputs.niri.overlays.niri
             inputs.fenix.overlays.default
-            inputs.nix-vscode-extensions.overlays.default
             (final: prev: {
               darkly-qt5 = inputs.darkly.packages.${final.system}.darkly-qt5;
               darkly-qt6 = inputs.darkly.packages.${final.system}.darkly-qt6;
@@ -157,13 +154,6 @@
         in
         lib.nixosSystem {
           specialArgs = {
-            inherit (variables)
-              username
-              userdesc
-              userfullname
-              useremail
-              ;
-
             inherit
               inputs
               outputs
@@ -172,7 +162,7 @@
               ;
 
             sopsRoot = ./secrets;
-          };
+          } // vars;
           modules = [
             ./modules
             ./config/base.nix

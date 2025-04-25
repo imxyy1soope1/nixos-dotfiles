@@ -16,7 +16,7 @@ in
     };
     sshKeyPath = lib.mkOption {
       type = lib.types.str;
-      default = "/persistent/home/${username}/.ssh/id_ed25519";
+      default = "${config.my.persist.location}/home/${username}/.ssh/id_ed25519";
     };
   };
 

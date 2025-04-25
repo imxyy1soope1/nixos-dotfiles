@@ -29,7 +29,7 @@ lib.my.makeSwitch {
               "la"
             ];
           };
-          initExtra = ''
+          initContent = ''
             source ${pkgs.omz}/share/omz/omz.zsh
           '';
           sessionVariables = {
