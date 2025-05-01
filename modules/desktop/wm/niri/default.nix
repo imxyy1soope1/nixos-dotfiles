@@ -52,11 +52,11 @@ in
         };
       };
     };
-    programs.niri = {
-      enable = true;
-      package = pkg;
-    };
     my.home = {
+      programs.niri = {
+        enable = true;
+        package = pkg;
+      };
       home.packages = with pkgs; [
         wlr-randr
         wl-clipboard

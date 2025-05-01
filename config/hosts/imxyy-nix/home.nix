@@ -53,6 +53,7 @@
     };
 
     programs.niri.settings = {
+      environment.STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
       outputs = {
         DP-2 = {
           enable = true;

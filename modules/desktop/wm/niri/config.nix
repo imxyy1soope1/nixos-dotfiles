@@ -5,11 +5,6 @@
   ...
 }:
 {
-  my.home.systemd.user.services.swaync = {
-    Unit.After = [ "graphical-session.target" ];
-    Service.ExecStart = [ "swaync" ];
-  };
-
   my.home.programs.niri.settings = {
     input = {
       focus-follows-mouse = {
@@ -86,7 +81,6 @@
       XDG_CURRENT_DESKTOP = "niri";
       XDG_SESSION_DESKTOP = "niri";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-      STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
       DISPLAY = ":0";
     };
 
@@ -96,6 +90,7 @@
         "--daemon"
       ]
       [ "${lib.getExe pkgs.xwayland-satellite-unstable}" ]
+      [ "${lib.getExe' pkgs.swaynotificationcenter "swaync"}" ]
       [
         "${lib.getExe pkgs.swaybg}"
         "-i"
@@ -247,10 +242,13 @@
         "Mod+Shift+Equal".action.set-window-height = "+10%";
 
         "Ctrl+Alt+A".action = screenshot;
-        # "Print".action = screenshot-screen;
+        "Print".action.screenshot-screen = [ ];
         "Alt+Print".action = screenshot-window;
 
         "Mod+Shift+E".action = quit;
+
+        "Mod+O".action = toggle-overview;
+        "Super+Tab".action = toggle-overview;
       }
       // lib.attrsets.mergeAttrsList (
         map (n: {

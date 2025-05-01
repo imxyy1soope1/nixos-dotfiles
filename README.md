@@ -53,6 +53,7 @@ And more...
 - `secrets/` - secrets managed by sops-nix. see [./secrets](./secrets) for details
 - `flake.nix` - flake entry
 
+<!--
 ## Deployment Guide
 
 Since this repository is **heavily** based on my **own** daily use,
@@ -75,3 +76,4 @@ Then, you can follow the guide to deploy:
 3. clone the repository (if you don't have `git` installed, `nix-shell -p git` will do the trick)
 4. rename one of the folders in the `config/hosts` folder
 5. 
+-->
