@@ -16,6 +16,8 @@ lib.my.makeHomeProgramConfig {
         initial_window_height = 600;
         enable_audio_bell = "no";
         term = "xterm-256color";
+
+        close_on_child_death = "yes";
       };
       font = {
         name = "monospace";
