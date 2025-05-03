@@ -55,13 +55,15 @@
 
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    infuse.url = "git+https://codeberg.org/amjoseph/infuse.nix";
+    infuse.flake = false;
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      nixos-wsl,
       ...
     }@inputs:
     let
@@ -75,6 +77,15 @@
             ${hostname} = mkSystem hostname;
           }) (builtins.attrNames (builtins.readDir ./config/hosts))
         );
+
+      lib = nixpkgs.lib.extend (
+        final: prev: {
+          inherit (inputs.home-manager.lib) hm;
+          inherit infuse;
+          my = import ./lib { lib = final; };
+        }
+      );
+      infuse = (import inputs.infuse { inherit (nixpkgs) lib; }).v1.infuse;
     in
     {
       packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
@@ -99,18 +110,11 @@
         }
       );
 
-      overlays = import ./overlays { inherit inputs; };
+      overlays = import ./overlays { inherit inputs infuse; };
 
       nixosConfigurations = forAllHosts (
         hostname:
         let
-          lib = import ./lib/stdlib-extended.nix (
-            nixpkgs.lib.extend (
-              final: prev: {
-                inherit (inputs.home-manager.lib) hm;
-              }
-            )
-          );
           overlays = builtins.attrValues self.overlays ++ [
             inputs.go-musicfox.overlays.default
             inputs.omz.overlays.default
@@ -131,6 +135,9 @@
                 withHyprland = false;
               };
             })
+            (final: prev: {
+              inherit lib;
+            })
           ];
           home = {
             home-manager = {
@@ -140,9 +147,12 @@
                 inputs.stylix.homeManagerModules.stylix
                 inputs.niri.homeModules.niri
                 # workaround for annoying stylix
-                {
-                  nixpkgs.overlays = lib.mkForce null;
-                }
+                (
+                  { lib, ... }:
+                  {
+                    nixpkgs.overlays = lib.mkForce null;
+                  }
+                )
               ];
               useGlobalPkgs = true;
             };
@@ -157,7 +167,6 @@
             inherit
               inputs
               outputs
-              nixos-wsl
               hostname
               ;
 

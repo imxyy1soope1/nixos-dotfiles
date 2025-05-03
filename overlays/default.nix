@@ -1,19 +1,17 @@
-{ inputs, ... }:
+{ inputs, infuse, ... }:
 {
   additions = final: prev: import ../pkgs prev;
 
-  modifications = final: prev: {
-    cage = prev.cage.overrideAttrs {
-      patches = [ ./cage-specify-output-name.patch ];
-    };
-    qq = prev.qq.overrideAttrs {
-      preInstall = ''
+  modifications =
+    final: prev:
+    infuse prev {
+      cage.__output.patches.__append = [ ./cage-specify-output-name.patch ];
+      qq.__output.preInstall.__append = ''
         gappsWrapperArgs+=(
           --prefix GTK_IM_MODULE : fcitx
         )
       '';
     };
-  };
 
   # this allows us to access specific version of nixpkgs
   # by `pkgs.unstable`, `pkgs.stable` and `pkgs.master`
