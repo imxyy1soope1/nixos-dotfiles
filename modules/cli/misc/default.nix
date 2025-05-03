@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  username,
   userfullname,
   useremail,
   ...
@@ -52,6 +53,11 @@ lib.my.makeSwitch {
         enable = true;
         userName = "${userfullname}";
         userEmail = "${useremail}";
+        signing = {
+          format = "ssh";
+          signByDefault = true;
+          key = "/home/${username}/.ssh/id_ed25519";
+        };
         extraConfig = {
           pull.rebase = true;
           push.autoSetupRemote = true;
