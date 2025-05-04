@@ -63,6 +63,9 @@ lib.my.makeSwitch {
           push.autoSetupRemote = true;
         };
       };
+      programs.lazygit = {
+        enable = true;
+      };
 
       home.packages = with pkgs; [
         lsd
