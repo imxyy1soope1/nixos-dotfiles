@@ -145,7 +145,6 @@
                 inputs.sops-nix.homeManagerModules.sops
                 inputs.impermanence.nixosModules.home-manager.impermanence
                 inputs.stylix.homeManagerModules.stylix
-                inputs.niri.homeModules.niri
                 # workaround for annoying stylix
                 (
                   { lib, ... }:
@@ -179,6 +178,7 @@
             inputs.sops-nix.nixosModules.sops
             inputs.impermanence.nixosModules.impermanence
             inputs.home-manager.nixosModules.default
+            inputs.niri.nixosModules.niri
             home
             pkgsConf
           ];
