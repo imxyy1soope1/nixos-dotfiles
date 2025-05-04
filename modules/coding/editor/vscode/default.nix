@@ -6,7 +6,7 @@
 }:
 lib.my.makeHomeProgramConfig {
   inherit config;
-  programName = "neovim";
+  programName = "vscode";
   optionPath = [
     "coding"
     "editor"
@@ -15,12 +15,12 @@ lib.my.makeHomeProgramConfig {
   extraConfig = {
     my.home = {
       programs.vscode = {
-        enable = true;
         package = pkgs.vscodium;
       };
     };
     my.persist.homeDirs = [
       ".config/VSCodium"
+      ".vscode-oss"
     ];
   };
 }
