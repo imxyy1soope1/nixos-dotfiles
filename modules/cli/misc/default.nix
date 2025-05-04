@@ -61,6 +61,11 @@ lib.my.makeSwitch {
         extraConfig = {
           pull.rebase = true;
           push.autoSetupRemote = true;
+          gpg.ssh.allowedSignersFile =
+            (pkgs.writeText "allowed_signers" ''
+              imxyy1soope1@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEFLUkyeaK8ZPPZdVNEmtx8zvoxi7xqS2Z6oxRBuUPO imxyy@imxyy-nix
+              imxyy@imxyy.top ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEFLUkyeaK8ZPPZdVNEmtx8zvoxi7xqS2Z6oxRBuUPO imxyy@imxyy-nix
+            '').outPath;
         };
       };
       programs.lazygit = {
