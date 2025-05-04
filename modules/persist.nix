@@ -20,7 +20,6 @@ in
       '';
     };
     homeDirs = lib.mkOption {
-      type = with lib.types; listOf str;
       default = [ ];
       example = lib.literalExpression ''
         [
@@ -33,7 +32,6 @@ in
       '';
     };
     nixosDirs = lib.mkOption {
-      type = with lib.types; listOf str;
       default = [ ];
       example = lib.literalExpression ''
         [
@@ -46,7 +44,6 @@ in
       '';
     };
     homeFiles = lib.mkOption {
-      type = with lib.types; listOf str;
       default = [ ];
       example = lib.literalExpression ''
         [
@@ -58,7 +55,6 @@ in
       '';
     };
     nixosFiles = lib.mkOption {
-      type = with lib.types; listOf str;
       default = [ ];
       example = lib.literalExpression ''
         [

@@ -14,6 +14,11 @@ lib.my.makeHomeProgramConfig {
       pinentryPackage = pkgs.pinentry-curses;
       enableSSHSupport = true;
     };
-    my.persist.homeDirs = [ ".gnupg" ];
+    my.persist.homeDirs = [
+      {
+        directory = ".gnupg";
+        mode = "0700";
+      }
+    ];
   };
 }

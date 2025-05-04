@@ -21,7 +21,10 @@
         "workspace"
         "Virt"
 
-        ".ssh"
+        {
+          directory = ".ssh";
+          mode = "0700";
+        }
         ".local/state"
         ".local/share"
         ".local/share/nvim"
