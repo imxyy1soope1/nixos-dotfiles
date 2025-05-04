@@ -110,8 +110,6 @@
     webui = pkgs.metacubexd;
   };
 
-  services.tailscale.enable = true;
-
   sops.secrets.et-imxyy-nix = {
     sopsFile = sopsRoot + /et-imxyy-nix.toml;
     format = "binary";
