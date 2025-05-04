@@ -40,27 +40,21 @@ in
         xdg-desktop-portal-gnome
       ];
     };
-    programs.uwsm = {
+    services.displayManager.ly = {
       enable = true;
-      waylandCompositors = {
-        niri = {
-          prettyName = "niri";
-          comment = "Niri compositor managed by UWSM";
-          binPath = pkgs.writeShellScript "niri-session" ''
-            ${lib.getExe pkg} --session
-          '';
-        };
+      settings = {
+        animation = "matrix";
+        tty = 12;
       };
     };
+    programs.niri = {
+      enable = true;
+      package = pkg;
+    };
     my.home = {
-      programs.niri = {
-        enable = true;
-        package = pkg;
-      };
       home.packages = with pkgs; [
         wlr-randr
         wl-clipboard
-        wl-clip-persist
         cliphist
         swaynotificationcenter
         nemo-with-extensions
@@ -76,7 +70,7 @@ in
       };
       programs.waybar = {
         enable = true;
-        systemd.enable = true;
+        systemd.enable = false;
       };
       xdg.configFile."waybar/config.jsonc".text = builtins.toJSON (import ./waybar/config.nix args);
       xdg.configFile."waybar/style.css" = {

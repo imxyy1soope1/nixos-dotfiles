@@ -85,17 +85,13 @@
     };
 
     spawn-at-startup = map (c: { command = c; }) [
+      [ "waybar" ]
       [ "${lib.getExe pkgs.xwayland-satellite-unstable}" ]
       [ "${lib.getExe' pkgs.swaynotificationcenter "swaync"}" ]
       [
         "${lib.getExe pkgs.swaybg}"
         "-i"
         (toString ./wallpaper.png)
-      ]
-      [
-        "${lib.getExe pkgs.wl-clip-persist}"
-        "--clipboard"
-        "regular"
       ]
       [
         "wl-paste"
