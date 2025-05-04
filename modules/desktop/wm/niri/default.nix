@@ -2,6 +2,7 @@ args@{
   lib,
   config,
   pkgs,
+  username,
   ...
 }:
 let
@@ -40,27 +41,25 @@ in
         xdg-desktop-portal-gnome
       ];
     };
-    programs.uwsm = {
+    programs.niri = {
       enable = true;
-      waylandCompositors = {
-        niri = {
-          prettyName = "niri";
-          comment = "Niri compositor managed by UWSM";
-          binPath = pkgs.writeShellScript "niri-session" ''
-            ${lib.getExe pkg} --session
-          '';
-        };
+      package = pkg;
+    };
+    services.displayManager = {
+      autoLogin = {
+        enable = true;
+        user = username;
+      };
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+        extraPackages = [ pkgs.where-is-my-sddm-theme ];
       };
     };
     my.home = {
-      programs.niri = {
-        enable = true;
-        package = pkg;
-      };
       home.packages = with pkgs; [
         wlr-randr
         wl-clipboard
-        wl-clip-persist
         cliphist
         swaynotificationcenter
         nemo-with-extensions

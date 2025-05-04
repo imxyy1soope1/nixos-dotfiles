@@ -93,11 +93,6 @@
         (toString ./wallpaper.png)
       ]
       [
-        "${lib.getExe pkgs.wl-clip-persist}"
-        "--clipboard"
-        "regular"
-      ]
-      [
         "wl-paste"
         "--type"
         "text"
