@@ -145,6 +145,7 @@
                 inputs.sops-nix.homeManagerModules.sops
                 inputs.impermanence.nixosModules.home-manager.impermanence
                 inputs.stylix.homeManagerModules.stylix
+                inputs.niri.homeModules.niri
                 # workaround for annoying stylix
                 (
                   { lib, ... }:
@@ -177,7 +178,6 @@
             ./config/hosts/${hostname}
             inputs.sops-nix.nixosModules.sops
             inputs.impermanence.nixosModules.impermanence
-            inputs.niri.nixosModules.niri
             inputs.home-manager.nixosModules.default
             home
             pkgsConf
