@@ -1,4 +1,9 @@
-{ username, inputs, ... }:
+{
+  lib,
+  username,
+  inputs,
+  ...
+}:
 {
   imports = [
     inputs.nixos-wsl.nixosModules.wsl
@@ -17,4 +22,6 @@
 
   # fix vscode remote
   programs.nix-ld.enable = true;
+
+  nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
 }
