@@ -159,6 +159,7 @@
           pkgsConf.nixpkgs = {
             overlays = lib.mkForce overlays;
             config.allowUnfree = true;
+            flake.setNixPath = false;
           };
         in
         lib.nixosSystem {
