@@ -19,6 +19,10 @@ lib.my.makeHomeProgramConfig {
 
         close_on_child_death = "yes";
       };
+      keybindings = {
+        "ctrl+shift+c" = "copy_to_clipboard";
+        "ctrl+shift+v" = "paste_from_clipboard";
+      };
       font = {
         name = "monospace";
         size = 14;
