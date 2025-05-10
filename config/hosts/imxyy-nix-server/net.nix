@@ -129,12 +129,12 @@
   };
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEFLUkyeaK8ZPPZdVNEmtx8zvoxi7xqS2Z6oxRBuUPO imxyy@imxyy-nix"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqza/3b6a9JxsNxytHF5GPe4gQhbLrKxAPyZ0GpfVQt imxyy-hisense-pad"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBWOy0QmAyxENg/O5m3cus8U3c9jCLioivwcWsh5/a82 imxyy-hisense-pad"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK8pivvE8PMtsOxmccfNhH/4KehDKhBfUfJbQZxo/SZT imxyy-ace5"
   ];
   users.users.${username}.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEFLUkyeaK8ZPPZdVNEmtx8zvoxi7xqS2Z6oxRBuUPO imxyy@imxyy-nix"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqza/3b6a9JxsNxytHF5GPe4gQhbLrKxAPyZ0GpfVQt imxyy-hisense-pad"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBWOy0QmAyxENg/O5m3cus8U3c9jCLioivwcWsh5/a82 imxyy-hisense-pad"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK8pivvE8PMtsOxmccfNhH/4KehDKhBfUfJbQZxo/SZT imxyy-ace5"
   ];
 
@@ -640,6 +640,7 @@
           "/imxyy-cloudwin/192.168.3.4"
           "/printer.home/192.168.3.53"
         ];
+        cache-size = 0;
       };
     };
 }
