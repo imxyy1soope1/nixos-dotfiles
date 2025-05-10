@@ -7,7 +7,7 @@ local servers = {
   "ts_ls",
   "jsonls",
   "cssls",
-  "nil_ls",
+  "nixd",
   "html",
 }
 
@@ -48,6 +48,20 @@ local extra_config = {
       }
     },
   },
+  nixd = {
+    settings = {
+      nixd = {
+        nixpkgs = {
+          expr = "import <nixpkgs> { }",
+        },
+        options = {
+          nixos = {
+             expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.imxyy-nix.options',
+          },
+        },
+      }
+    }
+  }
 }
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()

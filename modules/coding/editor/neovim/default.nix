@@ -39,7 +39,7 @@ lib.my.makeHomeProgramConfig {
           rust-analyzer
           pest-ide-tools
 
-          nil
+          nixd
 
           gotools
           gopls
