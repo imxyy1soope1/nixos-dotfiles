@@ -18,7 +18,7 @@ in
   ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.kernelPackages = lib.mkForce pkgs.stable.linuxKernel.packages.linux_zen;
+  boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_zen;
   boot.extraModulePackages = [ ];
   boot.tmp.useTmpfs = true;
   boot.supportedFilesystems = [ "zfs" ];
