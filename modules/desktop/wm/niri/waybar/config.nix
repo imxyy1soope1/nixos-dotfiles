@@ -1,4 +1,4 @@
-{ ... }:
+_:
 {
   layer = "top";
   position = "top";

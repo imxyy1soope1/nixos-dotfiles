@@ -31,7 +31,7 @@ let
     );
 
   autologinModule = types.submodule (
-    { ... }:
+    _:
     {
       options = {
         enable = mkEnableOption "autologin";
