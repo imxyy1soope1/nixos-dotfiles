@@ -37,7 +37,7 @@ local extra_config = {
     settings = {
       rust_analyzer = {
         check = {
-          command = "cargo clippy"
+          command = "clippy"
         },
         diagnostics = {
           experimental = true,

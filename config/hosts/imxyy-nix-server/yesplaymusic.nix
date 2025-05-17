@@ -1,4 +1,3 @@
-_:
 {
   virtualisation.oci-containers.containers."YesPlayMusic" = {
     image = "git.imxyy.top/imxyy1soope1/yesplaymusic:latest";

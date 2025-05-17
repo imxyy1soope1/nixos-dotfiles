@@ -1,4 +1,3 @@
-_:
 {
   services.caddy.virtualHosts."git.imxyy.top" = {
     extraConfig = ''

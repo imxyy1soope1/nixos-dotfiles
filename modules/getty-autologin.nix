@@ -30,29 +30,26 @@ let
       builtins.map (ttynum: { "getty@tty${toString ttynum}" = config; }) cfg.ttys
     );
 
-  autologinModule = types.submodule (
-    _:
-    {
-      options = {
-        enable = mkEnableOption "autologin";
-        user = mkOption {
-          type = types.str;
-          default = "";
-          example = "foo";
-          description = mdDoc ''
-            Username of the account that will be automatically logged in at the console.
-          '';
-        };
-        ttys = mkOption {
-          type = types.listOf types.int;
-          default = [ 6 ];
-          description = mdDoc ''
-            TTY numbers for autologin.user to login to.
-          '';
-        };
+  autologinModule = types.submodule ({
+    options = {
+      enable = mkEnableOption "autologin";
+      user = mkOption {
+        type = types.str;
+        default = "";
+        example = "foo";
+        description = mdDoc ''
+          Username of the account that will be automatically logged in at the console.
+        '';
       };
-    }
-  );
+      ttys = mkOption {
+        type = types.listOf types.int;
+        default = [ 6 ];
+        description = mdDoc ''
+          TTY numbers for autologin.user to login to.
+        '';
+      };
+    };
+  });
 
 in
 

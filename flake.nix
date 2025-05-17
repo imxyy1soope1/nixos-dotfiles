@@ -144,7 +144,7 @@
               sharedModules = [
                 inputs.sops-nix.homeManagerModules.sops
                 inputs.impermanence.nixosModules.home-manager.impermanence
-                inputs.stylix.homeManagerModules.stylix
+                inputs.stylix.homeModules.stylix
                 # workaround for annoying stylix
                 (
                   { lib, ... }:

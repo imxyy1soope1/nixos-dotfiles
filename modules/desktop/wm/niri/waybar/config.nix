@@ -1,5 +1,4 @@
-_:
-{
+_: {
   layer = "top";
   position = "top";
   mod = "dock";
