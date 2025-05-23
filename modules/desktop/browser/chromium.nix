@@ -38,7 +38,7 @@ lib.my.makeHomeProgramConfig {
           id = "pinabllndpmfdcknifcfcmdgdngjcfii"; # Firefox Dark Theme
         }
         {
-          id = "bpoadfkcbjbfhfodiogcnhhhpibjhbnh"; # Immersive Translate
+          id = "bdiifdefkgmcblbcghdlonllpjhhjgof"; # KISS Translator
         }
         {
           id = "fnaicdffflnofjppbagibeoednhnbjhg"; # Floccus Bookmarks Sync
