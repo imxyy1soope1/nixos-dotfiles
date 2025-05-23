@@ -612,6 +612,9 @@
         Restart = "always";
         RestartSec = 120;
       };
+      path = [
+        pkgs.bash
+      ];
     };
 
   services.dnsmasq =
