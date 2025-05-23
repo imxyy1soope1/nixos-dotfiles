@@ -44,6 +44,7 @@
     };
     nameservers = [
       "192.168.3.1"
+      "192.168.3.2"
     ];
 
     firewall.enable = false;
