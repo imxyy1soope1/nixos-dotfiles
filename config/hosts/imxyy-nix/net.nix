@@ -85,10 +85,6 @@
     };
   };
 
-  users.users.${username}.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKAEH0EVp/DisV68ZtpN8APDc31ZgphVXfUQaYhkJuLP root@efl-nix"
-  ];
-
   sops.secrets.dae-imxyy-nix = {
     sopsFile = sopsRoot + /dae-imxyy-nix.dae;
     format = "binary";
