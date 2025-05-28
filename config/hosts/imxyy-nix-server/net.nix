@@ -466,31 +466,33 @@
         ];
       };
       ip_prefixes = "100.64.0.0/10";
-      derp.paths = [
-        (toString (
-          pkgs.writeText "derp.yaml" ''
-            regions:
-              900:
-                regionid: 900
-                regioncode: custom-tok
-                regionname: imxyy_soope_ Tokyo
-                nodes:
-                  - name: 900a
-                    regionid: 900
-                    hostname: vkvm.imxyy.top
-              # 901:
-              #   regionid: 901
-              #   regioncode: custom-cn
-              #   regionname: imxyy_soope_ Hu Bei
-              #   nodes:
-              #     - name: 901a
-              #       regionid: 901
-              #       hostname: ry.imxyy.top
-              #       derpport: 1443
-          ''
-        ))
-      ];
-      derp.urls = lib.mkForce [ ];
+      /*
+        derp.paths = [
+          (toString (
+            pkgs.writeText "derp.yaml" ''
+              regions:
+                900:
+                  regionid: 900
+                  regioncode: custom-tok
+                  regionname: imxyy_soope_ Tokyo
+                  nodes:
+                    - name: 900a
+                      regionid: 900
+                      hostname: vkvm.imxyy.top
+                # 901:
+                #   regionid: 901
+                #   regioncode: custom-cn
+                #   regionname: imxyy_soope_ Hu Bei
+                #   nodes:
+                #     - name: 901a
+                #       regionid: 901
+                #       hostname: ry.imxyy.top
+                #       derpport: 1443
+            ''
+          ))
+        ];
+      */
+      # derp.urls = lib.mkForce [ ];
 
       oidc = {
         only_start_if_oidc_is_available = true;
