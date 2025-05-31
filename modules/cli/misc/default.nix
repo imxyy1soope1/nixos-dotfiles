@@ -59,7 +59,6 @@ lib.my.makeSwitch {
           key = "/home/${username}/.ssh/id_ed25519";
         };
         extraConfig = {
-          pull.rebase = true;
           push.autoSetupRemote = true;
           gpg.ssh.allowedSignersFile =
             (pkgs.writeText "allowed_signers" ''
