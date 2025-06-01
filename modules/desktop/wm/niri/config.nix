@@ -194,6 +194,9 @@
         "Mod+Ctrl+Up".action = move-window-up;
         "Mod+Ctrl+Down".action = move-window-down;
 
+        "Mod+Alt+Left".action = consume-or-expel-window-left;
+        "Mod+Alt+Right".action = consume-or-expel-window-right;
+
         "Mod+Shift+Left".action = focus-monitor-left;
         "Mod+Shift+Right".action = focus-monitor-right;
         "Mod+Shift+Up".action = focus-monitor-up;
@@ -212,9 +215,6 @@
 
         "Mod+Shift+Page_Up".action = move-workspace-up;
         "Mod+Shift+Page_Down".action = move-workspace-down;
-
-        "Mod+Comma".action = consume-window-into-column;
-        "Mod+Period".action = expel-window-from-column;
 
         "Mod+L".action = switch-preset-column-width;
         "Mod+Shift+L".action = reset-window-height;
