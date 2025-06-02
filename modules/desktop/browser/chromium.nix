@@ -50,5 +50,8 @@ lib.my.makeHomeProgramConfig {
         "--wayland-text-input-version=3"
       ];
     };
+    my.persist.homeDirs = [
+      ".config/chromium"
+    ];
   };
 }

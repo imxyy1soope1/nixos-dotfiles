@@ -107,7 +107,7 @@
       enable = true;
       defaultApplications =
         let
-          browser = [ "chromium-browser.desktop" ];
+          browser = [ "zen-beta.desktop" ];
           editor = [ "codium.desktop" ];
           imageviewer = [ "org.gnome.Shotwell-Viewer.desktop" ];
         in
@@ -193,7 +193,6 @@
         ".config/dconf"
         ".config/gh"
         ".config/pulse"
-        ".config/chromium"
         ".config/go-musicfox/db"
         ".config/tmux/plugins"
         ".config/pip"

@@ -66,7 +66,7 @@
         draw-border-with-background = false;
       }
       {
-        matches = [ { app-id = "kitty|foot|Alacritty|ghostty|chromium-browser|wofi"; } ];
+        matches = [ { app-id = "kitty|foot|Alacritty|ghostty|chromium-browser|zen-beta|wofi"; } ];
         opacity = 0.8;
       }
       {
@@ -125,7 +125,7 @@
           "kitty"
           "-1"
         ];
-        "Mod+G".action.spawn = [ "chromium" ];
+        "Mod+G".action.spawn = [ "zen-beta" ];
         "Mod+E".action.spawn = [ "nemo" ];
         "Mod+R".action.spawn = [
           "sh"
@@ -159,7 +159,7 @@
           action.spawn = [
             "playerctl"
             "-i"
-            "firefox,chromium"
+            "firefox,chromium,zen"
             "play-pause"
           ];
         };
@@ -168,7 +168,7 @@
           action.spawn = [
             "playerctl"
             "-i"
-            "firefox,chromium"
+            "firefox,chromium,zen"
             "next"
           ];
         };
@@ -177,7 +177,7 @@
           action.spawn = [
             "playerctl"
             "-i"
-            "firefox,chromium"
+            "firefox,chromium,zen"
             "previous"
           ];
         };

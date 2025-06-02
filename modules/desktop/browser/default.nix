@@ -4,5 +4,6 @@
     ./firefox.nix
     ./librewolf.nix
     ./chromium.nix
+    ./zen.nix
   ];
 }

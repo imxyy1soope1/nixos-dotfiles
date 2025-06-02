@@ -23,10 +23,6 @@
     # NUR
     nur.url = "github:nix-community/NUR";
 
-    # NeoVim nightly
-    # neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-    # neovim-nightly.inputs.nixpkgs.follows = "nixpkgs";
-
     # OMZ
     omz.url = "github:imxyy1soope1/omz/master";
     omz.inputs.nixpkgs.follows = "nixpkgs";
@@ -55,6 +51,9 @@
 
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    zen.url = "github:0xc000022070/zen-browser-flake";
+    zen.inputs.nixpkgs.follows = "nixpkgs";
 
     infuse.url = "git+https://codeberg.org/amjoseph/infuse.nix";
     infuse.flake = false;
@@ -145,6 +144,7 @@
                 inputs.sops-nix.homeManagerModules.sops
                 inputs.impermanence.nixosModules.home-manager.impermanence
                 inputs.stylix.homeModules.stylix
+                inputs.zen.homeModules.beta
                 # workaround for annoying stylix
                 (
                   { lib, ... }:

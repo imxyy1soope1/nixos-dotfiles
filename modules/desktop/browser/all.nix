@@ -12,6 +12,7 @@ lib.my.makeSwitch {
       firefox.enable = true;
       librewolf.enable = true;
       chromium.enable = true;
+      zen.enable = true;
     };
   };
 }
