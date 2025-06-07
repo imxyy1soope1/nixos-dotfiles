@@ -20,9 +20,6 @@ lib.my.makeHomeProgramConfig {
         recursive = true;
       };
       programs.neovim = {
-        package = pkgs.neovim-unwrapped.overrideAttrs {
-          treesitter-parsers = { };
-        };
         enable = true;
         defaultEditor = true;
         viAlias = true;
