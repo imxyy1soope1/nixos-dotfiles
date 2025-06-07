@@ -5,6 +5,20 @@
   ...
 }:
 {
+  my.home.systemd.user.services.xwayland-satellite = {
+    Unit = {
+      Description = "xwayland-satellite";
+      After = [ "niri.service" ];
+    };
+    Service = {
+      ExecStart = "${lib.getExe pkgs.xwayland-satellite-unstable}";
+      Restart = "on-failure";
+    };
+    Install.WantedBy = [
+      "niri.service"
+    ];
+  };
+
   my.home.programs.niri.settings = {
     input = {
       focus-follows-mouse = {
@@ -85,7 +99,6 @@
     };
 
     spawn-at-startup = map (c: { command = c; }) [
-      [ "${lib.getExe pkgs.xwayland-satellite-unstable}" ]
       [ "${lib.getExe' pkgs.swaynotificationcenter "swaync"}" ]
       [
         "${lib.getExe pkgs.swaybg}"
