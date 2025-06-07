@@ -132,7 +132,11 @@ in
     enable = true;
     powerOnBoot = true;
     settings = {
-      General.Enable = "Source,Sink,Media,Socket";
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Disable = "HeadSet";
+        MultiProfile = "multiple";
+      };
     };
   };
   users.extraUsers.${username}.extraGroups = [ "audio" ];
