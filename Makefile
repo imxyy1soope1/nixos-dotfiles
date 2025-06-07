@@ -2,15 +2,15 @@ all: fmt switch
 
 switch:
 	@echo "Rebuilding NixOS..."
-	@nixos-rebuild switch --flake . --use-remote-sudo
+	@nixos-rebuild switch --flake . --use-remote-sudo --json |& nom
 
 boot:
 	@echo "Rebuilding NixOS..."
-	@nixos-rebuild boot --flake . --use-remote-sudo
+	@nixos-rebuild boot --flake . --use-remote-sudo --json |& nom
 
 vm:
 	@echo "Building NixOS VM..."
-	@nixos-rebuild build-vm --flake .
+	@nixos-rebuild build-vm --flake . --json |& nom
 
 update:
 	@echo "Updating flakes..."
