@@ -19,6 +19,13 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
+    security.pam.services.login.enableGnomeKeyring = true;
+    my.persist.homeDirs = [
+      {
+        directory = ".local/share/keyrings";
+        mode = "0700";
+      }
+    ];
     xdg.portal = {
       enable = true;
       config = {
