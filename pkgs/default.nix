@@ -7,6 +7,7 @@ let
     "fcitx5-lightly"
     "fluent-fcitx5"
     "wps-office-fonts"
+    "ttf-wps-fonts"
     "translate-shell"
   ];
 in

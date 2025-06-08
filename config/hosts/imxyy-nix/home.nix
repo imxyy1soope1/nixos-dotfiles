@@ -14,6 +14,7 @@
 
       wpsoffice-cn
       wps-office-fonts
+      ttf-wps-fonts
       evince
 
       anki

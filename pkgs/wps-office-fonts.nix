@@ -1,5 +1,4 @@
 {
-  lib,
   stdenvNoCC,
   fetchurl,
 }:
@@ -29,6 +28,5 @@ stdenvNoCC.mkDerivation rec {
   meta = {
     description = "The wps-office-fonts package contains Founder Chinese fonts";
     homepage = "https://github.com/Universebenzene/wps-office-fonts";
-    license = lib.licenses.unlicense;
   };
 }
