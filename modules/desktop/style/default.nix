@@ -29,10 +29,6 @@ lib.my.makeSwitch {
           dark = "Win11";
           light = "Win11";
         };
-        targets = {
-          nixos-icons.enable = false;
-          gnome-text-editor.enable = false;
-        };
       };
 
       # GTK
