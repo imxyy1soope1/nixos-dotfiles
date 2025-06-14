@@ -415,84 +415,9 @@
     settings = {
       logtail.enabled = false;
       server_url = "https://headscale.imxyy.top";
-      dns = {
-        base_domain = "tailnet.imxyy.top";
-        extra_records = [
-          {
-            "name" = "home.imxyy.top";
-            "type" = "A";
-            "value" = "100.64.0.2";
-          }
-          {
-            "name" = "nextcloud.imxyy.top";
-            "type" = "A";
-            "value" = "100.64.0.2";
-          }
-          {
-            "name" = "mail.imxyy.top";
-            "type" = "A";
-            "value" = "100.64.0.2";
-          }
-          {
-            "name" = "git.imxyy.top";
-            "type" = "A";
-            "value" = "100.64.0.2";
-          }
-          {
-            "name" = "vault.imxyy.top";
-            "type" = "A";
-            "value" = "100.64.0.2";
-          }
-          {
-            "name" = "mc.imxyy.top";
-            "type" = "A";
-            "value" = "100.64.0.2";
-          }
-          {
-            "name" = "home.imxyy.top";
-            "type" = "A";
-            "value" = "100.64.0.2";
-          }
-          {
-            "name" = "coder.imxyy.top";
-            "type" = "A";
-            "value" = "100.64.0.2";
-          }
-          {
-            "name" = "music.imxyy.top";
-            "type" = "A";
-            "value" = "100.64.0.2";
-          }
-        ];
-      };
+      dns.magic_dns = false;
+      dns.override_local_dns = false;
       ip_prefixes = "100.64.0.0/10";
-      /*
-        derp.paths = [
-          (toString (
-            pkgs.writeText "derp.yaml" ''
-              regions:
-                900:
-                  regionid: 900
-                  regioncode: custom-tok
-                  regionname: imxyy_soope_ Tokyo
-                  nodes:
-                    - name: 900a
-                      regionid: 900
-                      hostname: vkvm.imxyy.top
-                # 901:
-                #   regionid: 901
-                #   regioncode: custom-cn
-                #   regionname: imxyy_soope_ Hu Bei
-                #   nodes:
-                #     - name: 901a
-                #       regionid: 901
-                #       hostname: ry.imxyy.top
-                #       derpport: 1443
-            ''
-          ))
-        ];
-      */
-      # derp.urls = lib.mkForce [ ];
 
       oidc = {
         only_start_if_oidc_is_available = true;
@@ -505,7 +430,6 @@
         client_secret = "";
         expiry = 0;
         extra_params.domain_hint = "imxyy.top";
-        strip_email_domain = true;
       };
     };
   };
