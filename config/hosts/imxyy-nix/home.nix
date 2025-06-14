@@ -86,11 +86,14 @@
         }
         {
           command = [
-            "sh"
-            "-c"
-            "sleep 3; ${lib.getExe pkgs.xsettingsd} -c ${pkgs.writeText "xsettingsd.conf" ''
-              Xft/DPI 122880
-            ''}"
+            (toString (
+              pkgs.writeShellScript "xsettingsd" ''
+                while :
+                do
+                  ${lib.getExe pkgs.xsettingsd} -c ${pkgs.writeText "xsettingsd.conf" "Xft/DPI 122880\n"}
+                done
+              ''
+            ))
           ];
         }
       ];

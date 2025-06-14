@@ -70,6 +70,7 @@ in
         cliphist
         swaynotificationcenter
         nemo-with-extensions
+        xwayland-satellite-unstable
       ];
       programs.wofi.enable = true;
       xdg.configFile."wofi" = {
