@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    lazypath
+    lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
@@ -18,7 +18,7 @@ local plugins = {
     priority = 1000,
     config = function()
       vim.cmd.colorscheme("tokyonight-storm")
-    end
+    end,
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -26,41 +26,41 @@ local plugins = {
     dependencies = { { "nvim-tree/nvim-web-devicons", lazy = true } },
     config = function()
       require("lualine").setup(require("plugins.lualine"))
-    end
+    end,
   },
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { { "nvim-tree/nvim-web-devicons", lazy = true } },
-    event = "VeryLazy",
+    lazy = false,
     config = function()
       require("nvim-tree").setup(require("plugins.nvim-tree"))
-    end
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
+    lazy = false,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "nushell/tree-sitter-nu"
+      "nushell/tree-sitter-nu",
     },
     config = function()
       require("nvim-treesitter.configs").setup(require("plugins.treesitter"))
     end,
-    build = ":TSUpdate"
+    build = ":TSUpdate",
   },
   {
     url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
     event = "BufEnter",
     config = function()
       require("plugins.rainbow-delimiters")
-    end
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufEnter",
     config = function()
       require("ibl").setup(require("plugins.indent-blankline"))
-    end
+    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -69,7 +69,7 @@ local plugins = {
     config = function()
       require("plugins.lsp.lspconfig")
       require("plugins.lsp.others")
-    end
+    end,
   },
   {
     "folke/trouble.nvim",
@@ -107,7 +107,7 @@ local plugins = {
         desc = "Quickfix List (Trouble)",
       },
     },
-    opts = {}
+    opts = {},
   },
   {
     "MysticalDevil/inlay-hints.nvim",
@@ -115,7 +115,7 @@ local plugins = {
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       require("inlay-hints").setup()
-    end
+    end,
   },
   {
     "hedyhli/outline.nvim",
@@ -131,7 +131,7 @@ local plugins = {
     build = "make install_jsregexp",
     config = function()
       require("luasnip").setup(require("plugins.cmp.luasnip"))
-    end
+    end,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -141,19 +141,19 @@ local plugins = {
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
       "hrsh7th/cmp-path",
-      "onsails/lspkind.nvim"
+      "onsails/lspkind.nvim",
     },
     event = "BufEnter",
     config = function()
       require("cmp").setup(require("plugins.cmp.cmp"))
-    end
+    end,
   },
   {
     "numToStr/Comment.nvim",
     event = "BufEnter",
     config = function()
       require("Comment").setup(require("plugins.comment"))
-    end
+    end,
   },
   {
     "windwp/nvim-autopairs",
@@ -161,20 +161,20 @@ local plugins = {
     dependencies = { "hrsh7th/nvim-cmp" },
     config = function()
       require("nvim-autopairs").setup(require("plugins.autopairs"))
-    end
+    end,
   },
   {
     "akinsho/bufferline.nvim",
     config = function()
       require("bufferline").setup(require("plugins.bufferline"))
-    end
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",
     event = "BufEnter",
     config = function()
       require("gitsigns").setup(require("plugins.gitsigns"))
-    end
+    end,
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -182,46 +182,18 @@ local plugins = {
     dependencies = { "nvim-lua/plenary.nvim", "BurntSushi/ripgrep" },
     config = function()
       require("telescope").setup(require("plugins.telescope"))
-    end
+    end,
   },
   {
     "alexghergh/nvim-tmux-navigation",
     event = "VeryLazy",
     config = function()
       require("nvim-tmux-navigation").setup(require("plugins.tmuxnav"))
-    end
-  },
-  {
-    "natecraddock/workspaces.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-telescope/telescope.nvim", "natecraddock/sessions.nvim" },
-    config = function()
-      require("workspaces").setup(require("plugins.workspaces"))
-      require("telescope").load_extension("workspaces")
-    end
-  },
-  --[[ {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewAutoEnable", "MarkdownPreviewAutoDisable" },
-    ft = { "markdown" },
-    build = function()
-      vim.fn["mkdp#util#install"]()
     end,
-    config = function()
-      require("plugins.markdown-preview")
-    end
-  }, ]]
-  --[[ {
-    "dhruvasagar/vim-table-mode",
-    lazy = true,
-    event = "BufEnter *.md",
-    config = function()
-      require("plugins.table-mode")
-    end
-  }, ]]
+  },
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
     opts = {},
   },
   {
@@ -236,15 +208,15 @@ local plugins = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true,
-      }
-    }
+      },
+    },
   },
   {
     "voldikss/vim-floaterm",
     event = "VeryLazy",
     config = function()
       require("plugins.floaterm")
-    end
+    end,
   },
   {
     "folke/todo-comments.nvim",
@@ -256,27 +228,21 @@ local plugins = {
     event = "BufEnter",
     config = function()
       require("osc52").setup({
-        tmux_passthrough = true
+        tmux_passthrough = true,
       })
       local function copy()
         if vim.v.event.operator == "y" and vim.v.event.regname == "+" then
           require("osc52").copy_register("+")
         end
       end
-      vim.api.nvim_create_autocmd("TextYankPost", {callback = copy})
-    end
+      vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
+    end,
   },
   {
     "pest-parser/pest.vim",
     ft = "pest",
-    opts = {}
-  }
+    opts = {},
+  },
 }
 
-local opts = {
-  rocks = {
-    enabled = false
-  }
-}
-
-require("lazy").setup(plugins, opts)
+require("lazy").setup(plugins, {})

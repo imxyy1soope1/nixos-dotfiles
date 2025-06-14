@@ -6,15 +6,14 @@ M = {
   ignore_install = {},
 
   highlight = { enable = true },
-  indent = { enable = true }
+  indent = { enable = true },
 }
 
 vim.filetype.add({
   pattern = {
     [".*/hypr/.*%.conf"] = "hyprlang",
-    [".*%.hl"] = "hyprlang"
+    [".*%.hl"] = "hyprlang",
   },
 })
 
 return M
-

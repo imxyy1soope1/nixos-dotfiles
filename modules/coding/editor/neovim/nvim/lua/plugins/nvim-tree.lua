@@ -3,11 +3,11 @@ M = {
   diagnostics = {
     enable = false,
     debounce_delay = 50,
-    show_on_dirs = true
+    show_on_dirs = true,
   },
   filters = {
-    git_ignored = false
-  }
+    git_ignored = false,
+  },
 }
 
 vim.g.loaded_netrw = 1
@@ -18,4 +18,3 @@ vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opt)
 vim.keymap.set("n", "<leader>te", ":NvimTreeFocus<CR>", opt)
 
 return M
-

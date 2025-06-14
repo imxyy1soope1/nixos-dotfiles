@@ -36,8 +36,8 @@ vim.g.autoread = true
 vim.g.loaded_ruby_provider = 0
 
 -- Hightlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank()
   end,
@@ -62,7 +62,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   callback = function()
     Last_input_method = require("core.globals").switch_input_method(1)
   end,
-  group = "AutoInputMethod"
+  group = "AutoInputMethod",
 })
 vim.api.nvim_create_autocmd("CmdlineLeave", {
   pattern = "*",
@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd("CmdlineLeave", {
   callback = function()
     require("core.globals").switch_input_method(1)
   end,
-  group = "AutoInputMethod"
+  group = "AutoInputMethod",
 })
 vim.api.nvim_create_autocmd("InsertEnter", {
   pattern = "*",
@@ -78,7 +78,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
   callback = function()
     require("core.globals").switch_input_method(Last_input_method)
   end,
-  group = "AutoInputMethod"
+  group = "AutoInputMethod",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -89,8 +89,8 @@ vim.api.nvim_create_autocmd("FileType", {
     -- credit: https://github.com/sam4llis/nvim-lua-gf
     vim.opt_local.include = [[\v<((do|load)file|require|reload)[^''"]*[''"]\zs[^''"]+]]
     vim.opt_local.includeexpr = "substitute(v:fname,'\\.','/','g')"
-    vim.opt_local.suffixesadd:prepend ".lua"
-    vim.opt_local.suffixesadd:prepend "init.lua"
+    vim.opt_local.suffixesadd:prepend(".lua")
+    vim.opt_local.suffixesadd:prepend("init.lua")
 
     for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
       vim.opt_local.path:append(path .. "/lua")

@@ -4,13 +4,13 @@ local opt = require("core.globals").keymap_opt
 vim.keymap.set("n", "K", vim.lsp.buf.hover, opt)
 vim.keymap.set("n", "<leader>lR", vim.lsp.buf.rename, opt)
 
-local icons = {  }
+local icons = {}
 local sev = vim.diagnostic.severity
 local signs = {
   [sev.ERROR] = " ",
   [sev.WARN] = " ",
   [sev.HINT] = " ",
-  [sev.INFO] = " "
+  [sev.INFO] = " ",
 }
 for type, icon in pairs(icons) do
   local hl = vim.diagnostic.severity[type]
@@ -18,7 +18,7 @@ for type, icon in pairs(icons) do
 end
 vim.diagnostic.config({
   signs = {
-    text = signs
+    text = signs,
   },
   underline = true,
   update_in_insert = true,
@@ -26,7 +26,7 @@ vim.diagnostic.config({
 })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "single",
+  border = "single",
 })
 
 local diag_config1 = {
@@ -35,7 +35,7 @@ local diag_config1 = {
       max = vim.diagnostic.severity.WARN,
     },
     spacing = 4,
-    prefix = "●"
+    prefix = "●",
   },
   virtual_lines = {
     severity = {

@@ -1,7 +1,6 @@
 M = {
   -- ensure_installed = require("plugins.lsp.servers")
-  ensure_installed = {}
+  ensure_installed = {},
 }
 
 return M
-

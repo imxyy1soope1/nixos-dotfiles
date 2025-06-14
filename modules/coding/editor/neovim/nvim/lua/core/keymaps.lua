@@ -39,7 +39,9 @@ keymap.set("n", "<leader>ww", ":w<CR>", opt)
 keymap.set("n", "<leader>so", ":so<CR>", opt)
 keymap.set("n", "<leader>qq", ":q<CR>", opt)
 keymap.set("n", "<leader>qa", ":qa<CR>", opt)
-keymap.set("n", "<leader>c", function () buf_kill("bd", nil, false) end, opt)
+keymap.set("n", "<leader>c", function()
+  buf_kill("bd", nil, false)
+end, opt)
 
 keymap.set("n", "<C-up>", ":resize +5<CR>", opt)
 keymap.set("n", "<C-down>", ":resize -5<CR>", opt)
@@ -63,9 +65,8 @@ keymap.set("n", "<leader>wr", ":WorkspacesRemove<CR>", opt)
 
 -- Neovide config
 if vim.g.neovide then
-  keymap.set("v", "<C-C>", "\"+y", opt)
-  keymap.set("n", "<C-V>", "\"+P", opt)
-  keymap.set("i", "<C-V>", "<ESC>l\"+Pli", opt)
+  keymap.set("v", "<C-C>", '"+y', opt)
+  keymap.set("n", "<C-V>", '"+P', opt)
+  keymap.set("i", "<C-V>", '<ESC>l"+Pli', opt)
   keymap.set("c", "<C-V>", "<C-R>+", opt)
 end
-

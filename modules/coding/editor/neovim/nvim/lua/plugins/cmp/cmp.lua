@@ -3,21 +3,21 @@ local cmp = require("cmp")
 M = {
   window = {
     completion = {
-      border = 'rounded',
-      scrollbar = '║',
+      border = "rounded",
+      scrollbar = "║",
     },
     documentation = {
-      border = 'rounded',
-      scrollbar = '║',
+      border = "rounded",
+      scrollbar = "║",
     },
   },
   formatting = {
-    format = require('lspkind').cmp_format({
+    format = require("lspkind").cmp_format({
       mode = "symbol",
       maxwidth = 50,
-      ellipsis_char = '...',
-      symbol_map = { Codeium = "", }
-    })
+      ellipsis_char = "...",
+      symbol_map = { Codeium = "" },
+    }),
   },
   snippet = {
     expand = function(args)
@@ -29,7 +29,7 @@ M = {
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<Escape>"] = cmp.mapping.abort(),
     ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-    ["<Up>"] = cmp.mapping(function (fallback)
+    ["<Up>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       else
@@ -37,9 +37,9 @@ M = {
       end
     end, {
       "i",
-      "s"
+      "s",
     }),
-    ["<Down>"] = cmp.mapping(function (fallback)
+    ["<Down>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       else
@@ -47,22 +47,20 @@ M = {
       end
     end, {
       "i",
-      "s"
+      "s",
     }),
   }),
   sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
     -- { name = "codeium" },
-		{ name = "path" },
-	}, {
-		{ name = "buffer" },
-	})
-
+    { name = "path" },
+  }, {
+    { name = "buffer" },
+  }),
 }
 
 vim.o.wildmenu = true
 vim.o.pumheight = 10
 
 return M
-

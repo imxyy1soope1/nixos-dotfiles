@@ -11,4 +11,3 @@ keymap.set("n", "<C-\\>", tmuxnav.NvimTmuxNavigateLastActive)
 keymap.set("n", "<C-Space>", tmuxnav.NvimTmuxNavigateNext)
 
 return M
-

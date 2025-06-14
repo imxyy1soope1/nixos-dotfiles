@@ -20,24 +20,24 @@ local extra_config = {
             vim.api.nvim_get_runtime_file("", true),
             "${3rd}/luv/library",
             "${3rd}/luassert/library",
-          }
+          },
         },
         diagnostics = {
           globals = {
-            "vim"
-          }
+            "vim",
+          },
         },
         completion = {
-          callSnippet = "Replace"
-        }
-      }
+          callSnippet = "Replace",
+        },
+      },
     },
   },
   rust_analyzer = {
     settings = {
       rust_analyzer = {
         check = {
-          command = "clippy"
+          command = "clippy",
         },
         diagnostics = {
           experimental = true,
@@ -45,7 +45,7 @@ local extra_config = {
         formatting = {
           command = { "rustfmt" },
         },
-      }
+      },
     },
   },
   nixd = {
@@ -56,12 +56,12 @@ local extra_config = {
         },
         options = {
           nixos = {
-             expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.imxyy-nix.options',
+            expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.imxyy-nix.options',
           },
         },
-      }
-    }
-  }
+      },
+    },
+  },
 }
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -74,7 +74,7 @@ local lspconfig = require("lspconfig")
 for _, server in ipairs(servers) do
   local extra = extra_config[server] or {}
   local config = {
-    capabilities = capabilities
+    capabilities = capabilities,
   }
   for k, v in pairs(extra) do
     config[k] = v

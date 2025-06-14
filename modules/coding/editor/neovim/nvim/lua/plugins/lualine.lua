@@ -1,10 +1,12 @@
 M = {
   options = {
-    theme = "tokyonight"
+    theme = "tokyonight",
   },
   sections = {
     lualine_y = {
-      'encoding', 'fileformat', 'filetype',
+      "encoding",
+      "fileformat",
+      "filetype",
     },
     lualine_x = {
       {

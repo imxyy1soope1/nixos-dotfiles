@@ -32,4 +32,3 @@ vim.api.nvim_create_autocmd("BufLeave", {
   end,
   group = "Lua",
 })
-
