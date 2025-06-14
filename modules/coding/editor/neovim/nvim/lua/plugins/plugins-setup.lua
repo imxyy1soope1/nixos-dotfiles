@@ -30,15 +30,14 @@ local plugins = {
   },
   {
     "nvim-tree/nvim-tree.lua",
-    lazy = false,
     dependencies = { { "nvim-tree/nvim-web-devicons", lazy = true } },
+    event = "VeryLazy",
     config = function()
       require("nvim-tree").setup(require("plugins.nvim-tree"))
     end
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,
     event = "VeryLazy",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -51,16 +50,14 @@ local plugins = {
   },
   {
     url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
-    lazy = false,
-    event = "VeryLazy",
+    event = "BufEnter",
     config = function()
       require("plugins.rainbow-delimiters")
     end
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    lazy = false,
-    event = "VeryLazy",
+    event = "BufEnter",
     config = function()
       require("ibl").setup(require("plugins.indent-blankline"))
     end
@@ -68,7 +65,7 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     dependencies = { "hrsh7th/cmp-nvim-lsp" },
-    lazy = false,
+    event = "BufEnter",
     config = function()
       require("plugins.lsp.lspconfig")
       require("plugins.lsp.others")
@@ -129,7 +126,7 @@ local plugins = {
   },
   {
     "L3MON4D3/LuaSnip",
-    lazy = false,
+    event = "BufEnter",
     dependencies = { { "rafamadriz/friendly-snippets", lazy = true } },
     build = "make install_jsregexp",
     config = function()
@@ -146,23 +143,21 @@ local plugins = {
       "hrsh7th/cmp-path",
       "onsails/lspkind.nvim"
     },
-    lazy = false,
+    event = "BufEnter",
     config = function()
       require("cmp").setup(require("plugins.cmp.cmp"))
     end
   },
   {
     "numToStr/Comment.nvim",
-    lazy = false,
-    event = "VeryLazy",
+    event = "BufEnter",
     config = function()
       require("Comment").setup(require("plugins.comment"))
     end
   },
   {
     "windwp/nvim-autopairs",
-    lazy = false,
-    event = "VeryLazy",
+    event = "BufEnter",
     dependencies = { "hrsh7th/nvim-cmp" },
     config = function()
       require("nvim-autopairs").setup(require("plugins.autopairs"))
@@ -170,15 +165,13 @@ local plugins = {
   },
   {
     "akinsho/bufferline.nvim",
-    lazy = false,
     config = function()
       require("bufferline").setup(require("plugins.bufferline"))
     end
   },
   {
     "lewis6991/gitsigns.nvim",
-    lazy = false,
-    event = "VeryLazy",
+    event = "BufEnter",
     config = function()
       require("gitsigns").setup(require("plugins.gitsigns"))
     end
@@ -193,23 +186,13 @@ local plugins = {
   },
   {
     "alexghergh/nvim-tmux-navigation",
-    lazy = false,
     event = "VeryLazy",
     config = function()
       require("nvim-tmux-navigation").setup(require("plugins.tmuxnav"))
     end
   },
   {
-    "natecraddock/sessions.nvim",
-    lazy = false,
-    event = "VeryLazy",
-    config = function()
-      require("sessions").setup(require("plugins.sessions"))
-    end
-  },
-  {
     "natecraddock/workspaces.nvim",
-    lazy = false,
     event = "VeryLazy",
     dependencies = { "nvim-telescope/telescope.nvim", "natecraddock/sessions.nvim" },
     config = function()
@@ -237,13 +220,12 @@ local plugins = {
     end
   }, ]]
   {
-    "lukas-reineke/headlines.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = true, -- or `opts = {}`
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    opts = {},
   },
   {
     "folke/noice.nvim",
-    lazy = false,
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -259,7 +241,6 @@ local plugins = {
   },
   {
     "voldikss/vim-floaterm",
-    lazy = false,
     event = "VeryLazy",
     config = function()
       require("plugins.floaterm")
@@ -267,8 +248,7 @@ local plugins = {
   },
   {
     "folke/todo-comments.nvim",
-    lazy = false,
-    event = "VeryLazy",
+    event = "BufEnter",
     opts = {},
   },
   {
@@ -288,7 +268,7 @@ local plugins = {
   },
   {
     "pest-parser/pest.vim",
-    event = "VeryLazy",
+    ft = "pest",
     opts = {}
   }
 }

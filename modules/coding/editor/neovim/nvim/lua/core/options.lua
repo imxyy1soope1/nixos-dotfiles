@@ -98,13 +98,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- fix https://github.com/neovim/neovim/issues/21856
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-  callback = function()
-    vim.fn.jobstart("", { detach = true })
-  end,
-})
-
 -- MkDir
 vim.api.nvim_create_user_command("MakeDirectory", function()
   ---@diagnostic disable-next-line: missing-parameter
@@ -116,25 +109,3 @@ vim.api.nvim_create_user_command("MakeDirectory", function()
     vim.notify("Directory already exists", vim.log.levels.WARN, { title = "Nvim" })
   end
 end, { desc = "Create directory if it doesn't exist" })
-
--- Neovide config
-if vim.g.neovide then
-  local global = vim.g
-  vim.o.guifont = "monospace:h14"
-  global.neovide_padding_top = 0
-  global.neovide_padding_bottom = 0
-  global.neovide_padding_right = 0
-  global.neovide_padding_left = 0
-  global.neovide_hide_mouse_when_typing = true
-  global.neovide_cursor_animation_length = 0.05
-  global.neovide_cursor_trail_size = 0.15
-  global.neovide_confirm_quit = true
-end
-
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-  callback = function()
-    -- A dumb way to clear annoying NeoVim startup screen
-    vim.cmd("normal ia")
-    vim.cmd("normal u")
-  end,
-})
