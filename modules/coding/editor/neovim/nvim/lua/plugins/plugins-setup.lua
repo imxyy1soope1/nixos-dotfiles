@@ -57,7 +57,7 @@ local plugins = {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "InsertEnter",
+    event = "VeryLazy",
     config = function()
       require("ibl").setup(require("plugins.indent-blankline"))
     end,
