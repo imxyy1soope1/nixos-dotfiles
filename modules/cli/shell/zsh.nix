@@ -14,6 +14,7 @@ lib.my.makeSwitch {
     "zsh"
   ];
   config' = {
+    my.persist.homeDirs = [ ".local/share/zoxide" ];
     my.home =
       let
         stateHome = config.my.home.xdg.stateHome;
