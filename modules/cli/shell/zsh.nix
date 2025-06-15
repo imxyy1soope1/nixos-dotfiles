@@ -17,9 +17,24 @@ lib.my.makeSwitch {
     my.home =
       let
         stateHome = config.my.home.xdg.stateHome;
+        zsh-syntax-highlighting = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-syntax-highlighting";
+          rev = "0.8.0";
+          hash = "sha256-iJdWopZwHpSyYl5/FQXEW7gl/SrKaYDEtTH9cGP7iPo=";
+        };
+        fzf-tab = pkgs.fetchFromGitHub {
+          owner = "Aloxaf";
+          repo = "fzf-tab";
+          rev = "v1.2.0";
+          hash = "sha256-q26XVS/LcyZPRqDNwKKA9exgBByE0muyuNb0Bbar2lY=";
+        };
       in
       {
-        home.packages = [ pkgs.omz ];
+        home.packages = with pkgs; [
+          fzf
+          zoxide
+        ];
         programs.zsh = {
           enable = true;
           dotDir = ".config/zsh";
@@ -29,14 +44,26 @@ lib.my.makeSwitch {
               "la"
             ];
           };
-          initContent = ''
-            source ${pkgs.omz}/share/omz/omz.zsh
+          initContent = lib.mkAfter ''
+            source ${fzf-tab}/fzf-tab.plugin.zsh
+
+            eval "$(zoxide init zsh)"
+            source ${zsh-syntax-highlighting}/zsh-syntax-highlighting.plugin.zsh
+            source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
           '';
-          sessionVariables = {
-            _ZL_DATA = "${stateHome}/zlua";
-            _FZF_HISTORY = "${stateHome}/fzf_history";
+          oh-my-zsh = {
+            enable = true;
+            theme = "gentoo";
+            plugins = [
+              "git"
+              "git-extras"
+              "extract"
+              "sudo"
+              "dotenv"
+            ];
           };
           shellAliases = {
+            x = "extract";
             ls = "lsd";
             svim = "sudoedit";
             nf = "neofetch";

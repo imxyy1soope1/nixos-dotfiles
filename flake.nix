@@ -23,10 +23,6 @@
     # NUR
     nur.url = "github:nix-community/NUR";
 
-    # OMZ
-    omz.url = "github:imxyy1soope1/omz/master";
-    omz.inputs.nixpkgs.follows = "nixpkgs";
-
     # Niri
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
@@ -116,7 +112,6 @@
         let
           overlays = builtins.attrValues self.overlays ++ [
             inputs.go-musicfox.overlays.default
-            inputs.omz.overlays.default
             inputs.niri.overlays.niri
             inputs.fenix.overlays.default
             (final: prev: {

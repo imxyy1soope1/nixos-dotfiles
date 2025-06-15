@@ -44,7 +44,6 @@ lib.my.makeSwitch {
       killall
     ];
 
-    programs.zsh.enable = true;
     programs.dconf.enable = true;
 
     my.home = {
