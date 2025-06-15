@@ -16,7 +16,6 @@ M = {
       mode = "symbol",
       maxwidth = 50,
       ellipsis_char = "...",
-      symbol_map = { Codeium = "" },
     }),
   },
   snippet = {
@@ -53,7 +52,6 @@ M = {
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "luasnip" },
-    -- { name = "codeium" },
     { name = "path" },
   }, {
     { name = "buffer" },

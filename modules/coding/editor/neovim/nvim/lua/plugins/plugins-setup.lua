@@ -50,14 +50,14 @@ local plugins = {
   },
   {
     url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
-    event = "BufEnter",
+    event = "VeryLazy",
     config = function()
       require("plugins.rainbow-delimiters")
     end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufEnter",
+    event = "InsertEnter",
     config = function()
       require("ibl").setup(require("plugins.indent-blankline"))
     end,
@@ -65,7 +65,7 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     dependencies = { "hrsh7th/cmp-nvim-lsp" },
-    event = "BufEnter",
+    event = "VeryLazy",
     config = function()
       require("plugins.lsp.lspconfig")
       require("plugins.lsp.others")
@@ -113,9 +113,7 @@ local plugins = {
     "MysticalDevil/inlay-hints.nvim",
     event = "LspAttach",
     dependencies = { "neovim/nvim-lspconfig" },
-    config = function()
-      require("inlay-hints").setup()
-    end,
+    opts = {}
   },
   {
     "hedyhli/outline.nvim",
@@ -126,7 +124,7 @@ local plugins = {
   },
   {
     "L3MON4D3/LuaSnip",
-    event = "BufEnter",
+    event = "InsertEnter",
     dependencies = { { "rafamadriz/friendly-snippets", lazy = true } },
     build = "make install_jsregexp",
     config = function()
@@ -143,21 +141,19 @@ local plugins = {
       "hrsh7th/cmp-path",
       "onsails/lspkind.nvim",
     },
-    event = "BufEnter",
+    event = "InsertEnter",
     config = function()
       require("cmp").setup(require("plugins.cmp.cmp"))
     end,
   },
   {
     "numToStr/Comment.nvim",
-    event = "BufEnter",
-    config = function()
-      require("Comment").setup(require("plugins.comment"))
-    end,
+    event = "VeryLazy",
+    opts = {}
   },
   {
     "windwp/nvim-autopairs",
-    event = "BufEnter",
+    event = "InsertEnter",
     dependencies = { "hrsh7th/nvim-cmp" },
     config = function()
       require("nvim-autopairs").setup(require("plugins.autopairs"))
@@ -171,14 +167,13 @@ local plugins = {
   },
   {
     "lewis6991/gitsigns.nvim",
-    event = "BufEnter",
+    event = "VeryLazy",
     config = function()
       require("gitsigns").setup(require("plugins.gitsigns"))
     end,
   },
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.2",
     dependencies = { "nvim-lua/plenary.nvim", "BurntSushi/ripgrep" },
     config = function()
       require("telescope").setup(require("plugins.telescope"))
@@ -220,12 +215,12 @@ local plugins = {
   },
   {
     "folke/todo-comments.nvim",
-    event = "BufEnter",
+    event = "VeryLazy",
     opts = {},
   },
   {
     "ojroques/nvim-osc52",
-    event = "BufEnter",
+    event = "VeryLazy",
     config = function()
       require("osc52").setup({
         tmux_passthrough = true,
