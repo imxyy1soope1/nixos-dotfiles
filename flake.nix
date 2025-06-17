@@ -4,10 +4,13 @@
   inputs = {
     # Nixpkgs
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/release-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.05";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     # nixpkgs.follows = "nixpkgs-stable";
     nixpkgs.follows = "nixpkgs-unstable";
+
+    # Nyxpkgs
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     # SOPS
     sops-nix.url = "github:Mic92/sops-nix";
@@ -152,7 +155,7 @@
             };
           };
           pkgsConf.nixpkgs = {
-            overlays = lib.mkForce overlays;
+            inherit overlays;
             config.allowUnfree = true;
             flake.setNixPath = false;
           };
@@ -171,6 +174,7 @@
             ./modules
             ./config/base.nix
             ./config/hosts/${hostname}
+            inputs.chaotic.nixosModules.default
             inputs.sops-nix.nixosModules.sops
             inputs.impermanence.nixosModules.impermanence
             inputs.home-manager.nixosModules.default

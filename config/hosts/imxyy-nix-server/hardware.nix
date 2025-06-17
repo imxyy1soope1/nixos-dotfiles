@@ -18,13 +18,15 @@ in
   ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_zen;
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
+  services.scx.enable = true;
   boot.extraModulePackages = [ ];
   boot.tmp.useTmpfs = true;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs = {
     extraPools = [ "data" ];
     forceImportRoot = false;
+    package = pkgs.zfs_cachyos;
   };
   services.zfs.autoScrub.enable = true;
   services.btrfs.autoScrub.enable = true;
