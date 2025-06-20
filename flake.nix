@@ -8,6 +8,7 @@
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     # nixpkgs.follows = "nixpkgs-stable";
     nixpkgs.follows = "nixpkgs-unstable";
+    # nixpkgs.follows = "nixpkgs-master";
 
     # Nyxpkgs
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
