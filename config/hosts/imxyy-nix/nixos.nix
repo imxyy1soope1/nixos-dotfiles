@@ -198,8 +198,6 @@ in
 
   services.gvfs.enable = true;
 
-  virtualisation.waydroid.enable = true;
-
   programs.wireshark.enable = true;
   programs.wireshark.package = pkgs.wireshark;
   users.users.${username}.extraGroups = [ "wireshark" ];
