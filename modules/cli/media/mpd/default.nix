@@ -14,7 +14,7 @@ lib.my.makeSwitch {
   ];
   config' = {
     my.home = {
-      home.packages = with pkgs; [
+      home.packages = with pkgs.stable; [
         mpd
         mpc-cli
       ];
