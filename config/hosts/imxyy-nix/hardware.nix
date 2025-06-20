@@ -23,7 +23,7 @@ in
       verbose = false;
     };
 
-    kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
     kernelModules = [ "kvm-amd" ];
 
     tmp.useTmpfs = true;
@@ -36,6 +36,7 @@ in
       "resume_offset=6444127"
     ];
   };
+  services.scx.enable = true;
 
   fileSystems."/" = {
     device = btrfs;
