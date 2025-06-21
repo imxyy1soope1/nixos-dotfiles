@@ -11,6 +11,7 @@ lib.my.makeSwitch {
     my.coding.editor = {
       neovim.enable = true;
       vscode.enable = true;
+      zed.enable = true;
     };
   };
 }
