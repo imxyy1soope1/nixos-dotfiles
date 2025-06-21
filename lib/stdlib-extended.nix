@@ -9,5 +9,6 @@ in
 stdlib.extend (
   self: super: {
     my = mkMyLib { lib = self; };
+    umport = import ./umport.nix { lib = self; };
   }
 )

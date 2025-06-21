@@ -77,11 +77,10 @@
           }) (builtins.attrNames (builtins.readDir ./config/hosts))
         );
 
-      lib = nixpkgs.lib.extend (
+      lib = (import ./lib/stdlib-extended.nix nixpkgs.lib).extend (
         final: prev: {
           inherit (inputs.home-manager.lib) hm;
           inherit infuse;
-          my = import ./lib { lib = final; };
         }
       );
       infuse = (import inputs.infuse { inherit (nixpkgs) lib; }).v1.infuse;
@@ -168,21 +167,29 @@
               outputs
               hostname
               ;
-
             sopsRoot = ./secrets;
           } // vars;
-          modules = [
-            ./modules
-            ./config/base.nix
-            ./config/hosts/${hostname}
-            inputs.chaotic.nixosModules.default
-            inputs.sops-nix.nixosModules.sops
-            inputs.impermanence.nixosModules.impermanence
-            inputs.home-manager.nixosModules.default
-            inputs.niri.nixosModules.niri
-            home
-            pkgsConf
-          ];
+          modules =
+            (lib.umport {
+              paths = [ ./modules ];
+              exclude = [
+                ./modules/virt/types
+                ./modules/desktop/wm/niri/waybar
+              ];
+              recursive = true;
+            })
+            ++ [
+              (lib.mkAliasOptionModule [ "my" "home" ] [ "home-manager" "users" vars.username ])
+              ./config/base.nix
+              ./config/hosts/${hostname}
+              inputs.chaotic.nixosModules.default
+              inputs.sops-nix.nixosModules.sops
+              inputs.impermanence.nixosModules.impermanence
+              inputs.home-manager.nixosModules.default
+              inputs.niri.nixosModules.niri
+              home
+              pkgsConf
+            ];
         }
       );
     };
