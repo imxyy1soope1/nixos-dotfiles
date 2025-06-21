@@ -27,7 +27,7 @@
         ports = [ "8093:8080" ];
       };
       siyuan = {
-        image = "apkdv/siyuan-unlock:v3.1.24";
+        image = "apkdv/siyuan-unlock:v3.1.30";
         volumes = [
           "/mnt/nas/siyuan/workspace:/workspace"
           "/mnt/nas/siyuan:/home/siyuan"
