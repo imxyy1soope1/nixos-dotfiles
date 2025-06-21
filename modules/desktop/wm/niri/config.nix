@@ -55,6 +55,8 @@
     prefer-no-csd = true;
     hotkey-overlay.skip-at-startup = true;
 
+    clipboard.disable-primary = true;
+
     layer-rules = [
       {
         matches = [ { namespace = "^wallpaper$"; } ];
