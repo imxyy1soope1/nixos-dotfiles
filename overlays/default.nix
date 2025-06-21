@@ -11,6 +11,7 @@
           --prefix GTK_IM_MODULE : fcitx
         )
       '';
+      matrix-synapse.__assign = final.stable.matrix-synapse;
     };
 
   # this allows us to access specific version of nixpkgs
