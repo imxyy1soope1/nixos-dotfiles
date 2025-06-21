@@ -153,6 +153,7 @@ in
       jetbrains-mono
 
       nerd-fonts.symbols-only
+      nerd-fonts.jetbrains-mono
     ];
 
     fontconfig.defaultFonts = {
@@ -160,19 +161,16 @@ in
         "Noto Serif CJK SC"
         "Noto Serif"
         "Symbols Nerd Font"
-        "Noto Color Emoji"
       ];
       sansSerif = [
         "Noto Sans CJK SC"
         "Noto Sans"
         "Symbols Nerd Font"
-        "Noto Color Emoji"
       ];
       monospace = [
         "JetBrains Mono"
         "Noto Sans Mono CJK SC"
         "Symbols Nerd Font Mono"
-        "Noto Color Emoji"
       ];
       emoji = [ "Noto Color Emoji" ];
     };
