@@ -153,7 +153,6 @@ in
       jetbrains-mono
 
       nerd-fonts.symbols-only
-      nerd-fonts.jetbrains-mono
     ];
 
     fontconfig.defaultFonts = {
