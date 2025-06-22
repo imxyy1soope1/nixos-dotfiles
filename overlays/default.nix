@@ -6,11 +6,6 @@
     final: prev:
     infuse prev {
       cage.__output.patches.__append = [ ./cage-specify-output-name.patch ];
-      qq.__output.preInstall.__append = ''
-        gappsWrapperArgs+=(
-          --prefix GTK_IM_MODULE : fcitx
-        )
-      '';
       matrix-synapse.__assign = final.stable.matrix-synapse;
     };
 

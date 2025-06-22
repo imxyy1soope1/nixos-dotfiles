@@ -92,7 +92,8 @@
         XDG_SESSION_TYPE = "wayland";
         XDG_CURRENT_DESKTOP = "niri";
         XDG_SESSION_DESKTOP = "niri";
-        QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+
+        NIXOS_OZONE_WL = "1";
       };
 
       spawn-at-startup = map (c: { command = c; }) [
