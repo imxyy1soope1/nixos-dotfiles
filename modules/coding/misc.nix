@@ -17,9 +17,6 @@ lib.my.makeSwitch {
         gnumake
         github-cli # gh
       ];
-      programs.zsh.initContent = ''
-        source ${./github-cli-comp}
-      '';
       programs.direnv.enable = true;
     };
     my.persist.homeDirs = [
