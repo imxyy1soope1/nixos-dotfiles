@@ -4,15 +4,13 @@ lib.my.makeSwitch {
   optionName = "all command line tools";
   optionPath = [
     "cli"
+    "vcs"
     "all"
   ];
   config' = {
-    my.cli = {
-      media.all.enable = true;
-      misc.enable = true;
-      monitor.all.enable = true;
-      shell.all.enable = true;
-      vcs.all.enable = true;
+    my.cli.vcs = {
+      git.enable = true;
+      jj.enable = true;
     };
   };
 }

@@ -47,29 +47,6 @@ lib.my.makeSwitch {
     programs.dconf.enable = true;
 
     my.home = {
-      programs.home-manager.enable = true;
-      programs.git = {
-        enable = true;
-        userName = "${userfullname}";
-        userEmail = "${useremail}";
-        signing = {
-          format = "ssh";
-          signByDefault = true;
-          key = "/home/${username}/.ssh/id_ed25519";
-        };
-        extraConfig = {
-          push.autoSetupRemote = true;
-          gpg.ssh.allowedSignersFile =
-            (pkgs.writeText "allowed_signers" ''
-              imxyy1soope1@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEFLUkyeaK8ZPPZdVNEmtx8zvoxi7xqS2Z6oxRBuUPO imxyy@imxyy-nix
-              imxyy@imxyy.top ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEFLUkyeaK8ZPPZdVNEmtx8zvoxi7xqS2Z6oxRBuUPO imxyy@imxyy-nix
-            '').outPath;
-        };
-      };
-      programs.lazygit = {
-        enable = true;
-      };
-
       home.packages = with pkgs; [
         lsd
         fd
@@ -81,8 +58,6 @@ lib.my.makeSwitch {
         aria2
         socat
 
-        nix-output-monitor
-
         tmux
 
         trash-cli
@@ -90,8 +65,6 @@ lib.my.makeSwitch {
         cht-sh
 
         dooit
-
-        # translate-shell
       ];
       xdg.configFile."tmux/tmux.conf".source = ./tmux.conf;
     };
