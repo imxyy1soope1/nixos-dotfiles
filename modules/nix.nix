@@ -30,8 +30,7 @@ lib.my.makeSwitch {
       experimental-features = "nix-command flakes";
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
-      substituters = lib.mkForce [
-        # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      substituters = [
         # "https://mirror.sjtu.edu.cn/nix-channels/store"
         "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
         "https://mirrors.ustc.edu.cn/nix-channels/store"
