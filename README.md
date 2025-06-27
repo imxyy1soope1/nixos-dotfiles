@@ -32,7 +32,7 @@ As for Flakes, refer to
 | **Application Launcher**      | wofi                                                    |
 | **Notification Daemon**       | SwayNotificationCenter                                  |
 | **Input method framework**    | Fcitx5                                                  |
-| **Shell**                     | zsh & custom oh-my-zsh                                  |
+| **Shell**                     | Zsh                                                     |
 | **Netease Cloudmusic Player** | go-musicfox                                             |
 | **Media Player**              | mpv                                                     |
 | **Text Editor**               | Neovim                                                  |
@@ -52,28 +52,3 @@ And more...
 - `vars.nix` - my variables
 - `secrets/` - secrets managed by sops-nix. see [./secrets](./secrets) for details
 - `flake.nix` - flake entry
-
-<!--
-## Deployment Guide
-
-Since this repository is **heavily** based on my **own** daily use,
-it includes, but not limit to, the tweaks listed below:
-
-- auto login some specific TTYs (see [./modules/getty-autologin.nix](./modules/getty-autologin.nix) for details)
-- `config.my` alias for custom modules and `config.my.home` alias for single user home-manger configuartion
-- `lib.my` utilities to define custom modules conveniently
-
-Therefore, if you want to deploy this setup locally, make sure that
-you have **carefully** read **every single line** of code in this repository.
-
-Then, you can follow the guide to deploy:
-
-0. make sure that you have a very **reliable** networking environment (you know what I'm talking about)
-1. boot into LiveCD
-2. repartition your disk, it should be like this:
-  - `/dev/sda`
-    - `/dev/sda1`: boot partition (remember to set its type to `EFI System` in `cfdisk`, don't ask me why)
-3. clone the repository (if you don't have `git` installed, `nix-shell -p git` will do the trick)
-4. rename one of the folders in the `config/hosts` folder
-5. 
--->
