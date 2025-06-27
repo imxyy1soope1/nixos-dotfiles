@@ -23,6 +23,10 @@ in
       "amd_iommu=on"
       "vfio-pci.ids=${lib.concatStringsSep "," gpuIDs}"
     ];
+    extraModprobeConfig = ''
+      options kvm ignore_msrs=Y
+      options kvm report_ignored_msrs=N
+    '';
   };
   virtualisation.spiceUSBRedirection.enable = true;
   my.virt.enable = true;
