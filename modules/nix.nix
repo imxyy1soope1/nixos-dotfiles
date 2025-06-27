@@ -2,6 +2,7 @@
   inputs,
   config,
   lib,
+  pkgs,
   ...
 }:
 lib.my.makeSwitch {
@@ -19,6 +20,11 @@ lib.my.makeSwitch {
     # This will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
     nix.nixPath = [ "/etc/nix/path" ];
+
+    environment.systemPackages = with pkgs; [
+      nix-output-monitor
+      nh
+    ];
 
     environment.etc = lib.mapAttrs' (name: value: {
       name = "nix/path/${name}";

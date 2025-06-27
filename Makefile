@@ -2,15 +2,19 @@ all: fmt switch
 
 switch:
 	@echo "Rebuilding NixOS..."
-	@nixos-rebuild switch --flake . --sudo --json |& nom
+	@nh os switch .
 
 boot:
 	@echo "Rebuilding NixOS..."
-	@nixos-rebuild boot --flake . --sudo --json |& nom
+	@nh os boot .
+
+test:
+	@echo "Rebuilding NixOS..."
+	@nh os test .
 
 vm:
 	@echo "Building NixOS VM..."
-	@nixos-rebuild build-vm --flake . --json |& nom
+	@nh os build-vm .
 
 update:
 	@echo "Updating flakes..."
@@ -23,17 +27,17 @@ replpkgs:
 	@nix repl -f flake:nixpkgs
 
 repl:
-	@nixos-rebuild repl --flake .
+	@nh os repl .
 
 cleandry:
 	@echo "Listing all generations older than 15 days..."
 	@sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --dry-run --older-than 15d
-	@nix run home-manager#home-manager -- expire-generations -15days --dry-run
+	@nix profile wipe-history --profile ~/.local/state/nix/profiles/home-manager --dry-run --older-than 15d
 
 clean:
 	@echo "Removing all generations older than 15 days..."
 	@sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 15d
-	@nix run home-manager#home-manager -- expire-generations -15days
+	@nix profile wipe-history --profile ~/.local/state/nix/profiles/home-manager --older-than 15d
 
 gc:
 	@nix store gc --debug
