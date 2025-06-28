@@ -113,7 +113,7 @@
   environment.systemPackages = [ pkgs.easytier ];
   systemd.services."easytier" = {
     enable = true;
-    script = "easytier-core -c ${config.sops.secrets.et-imxyy-nix.path}";
+    script = "${pkgs.easytier}/bin/easytier-core -c ${config.sops.secrets.et-imxyy-nix.path}";
     serviceConfig = {
       Restart = lib.mkOverride 500 "always";
       RestartMaxDelaySec = lib.mkOverride 500 "1m";
@@ -125,11 +125,6 @@
     after = [
       "network.target"
       "sops-nix.service"
-    ];
-    path = with pkgs; [
-      easytier
-      iproute2
-      bash
     ];
   };
 }

@@ -21,5 +21,6 @@
     ./note.nix
     ./matrix.nix
     ./minio.nix
+    ./build.nix
   ];
 }

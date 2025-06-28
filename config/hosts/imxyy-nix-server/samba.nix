@@ -26,9 +26,8 @@
   ];
   users = {
     users.nas = {
-      isNormalUser = true;
-      home = "/var/empty";
-      description = "nas user";
+      isSystemUser = true;
+      description = "NAS user";
       group = "nextcloud";
     };
   };
