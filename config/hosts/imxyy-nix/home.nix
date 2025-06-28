@@ -196,7 +196,6 @@
         ".config/gh"
         ".config/pulse"
         ".config/go-musicfox/db"
-        ".config/tmux/plugins"
         ".config/pip"
         ".config/obs-studio"
         ".config/libreoffice"
