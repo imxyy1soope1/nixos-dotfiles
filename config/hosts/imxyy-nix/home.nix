@@ -158,7 +158,6 @@
 
         "bin"
         "workspace"
-        "WineApps"
         "Virt"
 
         ".cache"
