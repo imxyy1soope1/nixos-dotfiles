@@ -54,5 +54,8 @@ lib.my.makeHomeProgramConfig {
         ];
       };
     };
+    my.persist.homeDirs = [
+      ".local/share/nvim"
+    ];
   };
 }

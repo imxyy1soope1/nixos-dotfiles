@@ -23,5 +23,8 @@ lib.my.makeSwitch {
       ".minecraft"
       ".local/share/hmcl"
     ];
+    my.persist.homeFiles = [
+      ".hmcl.json"
+    ];
   };
 }

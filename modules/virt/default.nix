@@ -32,6 +32,11 @@ in
         "virt"
         "moonlight"
       ];
+      extraConfig = {
+        my.persist.homeDirs = [
+          ".config/Moonlight Game Streaming Project"
+        ];
+      };
     })
   ];
 

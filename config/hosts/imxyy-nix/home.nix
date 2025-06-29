@@ -154,8 +154,6 @@
         ".android"
         "Android"
 
-        ".ssh"
-
         "bin"
         "workspace"
         "Virt"
@@ -163,13 +161,9 @@
         ".cache"
         ".local/state"
         ".local/share/Anki2"
-        ".local/share/nvim"
         ".local/share/shotwell"
-        ".local/share/Steam"
-        ".local/share/SteamOS"
         ".local/share/cheat.sh"
         ".local/share/Kingsoft"
-        ".local/share/oss.krtirtho.spotube"
 
         ".local/share/AyuGramDesktop"
         ".local/share/TelegramDesktop"
@@ -182,20 +176,9 @@
         ".config/dconf"
         ".config/gh"
         ".config/pulse"
-        ".config/go-musicfox/db"
         ".config/pip"
-        ".config/obs-studio"
         ".config/libreoffice"
-        ".config/Moonlight Game Streaming Project"
         ".config/sunshine"
-      ];
-      nixosDirs = [
-        "/etc/ssh"
-      ];
-      homeFiles = [
-        ".config/mpd/mpd.db" # requires bindfs
-        ".config/go-musicfox/cookie"
-        ".hmcl.json"
       ];
     };
   };

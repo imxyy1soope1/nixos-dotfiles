@@ -12,19 +12,10 @@
         "workspace"
         "Virt"
 
-        {
-          directory = ".ssh";
-          mode = "0700";
-        }
         ".local/state"
-        ".local/share"
-        ".local/share/nvim"
         ".cache"
 
         ".ollama"
-      ];
-      nixosDirs = [
-        "/etc/ssh"
       ];
     };
   };

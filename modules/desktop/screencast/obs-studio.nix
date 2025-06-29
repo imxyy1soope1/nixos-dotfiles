@@ -21,5 +21,8 @@ lib.my.makeSwitch {
         ];
       })
     ];
+    my.persist.homeDirs = [
+      ".config/obs-studio"
+    ];
   };
 }

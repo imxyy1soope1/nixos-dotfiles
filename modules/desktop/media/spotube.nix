@@ -13,4 +13,9 @@ lib.my.makeHomePackageConfig {
     "media"
     "spotube"
   ];
+  extraConfig = {
+    my.persist.homeDirs = [
+      ".local/share/oss.krtirtho.spotube"
+    ];
+  };
 }

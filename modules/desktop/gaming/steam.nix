@@ -20,5 +20,8 @@ lib.my.makeSwitch {
         gamescope
       ];
     };
+    my.persist.homeDirs = [
+      ".local/share/Steam"
+    ];
   };
 }

@@ -23,6 +23,13 @@ lib.my.makeSwitch {
       };
 
       cli.media.mpd.enable = true;
+
+      persist.homeDirs = [
+        ".config/go-musicfox/db"
+      ];
+      persist.homeFiles = [
+        ".config/go-musicfox/cookie"
+      ];
     };
   };
 }

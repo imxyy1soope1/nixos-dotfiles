@@ -21,5 +21,8 @@ lib.my.makeSwitch {
       services.mpris-proxy.enable = true;
       xdg.configFile."mpd/mpd.conf".source = ./mpd.conf;
     };
+    my.persist.homeFiles = [
+      ".config/mpd/mpd.db"
+    ];
   };
 }

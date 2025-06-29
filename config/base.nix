@@ -22,9 +22,16 @@
       nixosDirs = [
         "/root"
         "/var"
+        "/etc/ssh"
       ];
       nixosFiles = [
         "/etc/machine-id"
+      ];
+      homeDirs = [
+        {
+          directory = ".ssh";
+          mode = "0700";
+        }
       ];
     };
   };
