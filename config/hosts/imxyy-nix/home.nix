@@ -22,7 +22,6 @@
       ayugram-desktop
       telegram-desktop
       signal-desktop
-      cinny-desktop
       discord
       qq
       wechat
@@ -176,7 +175,6 @@
 
         ".local/share/AyuGramDesktop"
         ".local/share/TelegramDesktop"
-        ".local/share/cinny"
         ".config/Signal"
         ".config/discord"
         ".config/QQ"
