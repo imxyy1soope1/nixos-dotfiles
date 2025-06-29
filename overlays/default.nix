@@ -13,6 +13,16 @@
           --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--wayland-text-input-version=3}}"
         )
       '';
+
+      sing-box.__output.version.__assign = "unstable-2024-08-16";
+      sing-box.__output.src.__assign = final.fetchFromGitHub {
+        owner = "PuerNya";
+        repo = "sing-box";
+        rev = "067c81a73e1fb7b6edbc58e6b06b8b943fa6c40a";
+        hash = "sha256-03mkClYVAfAatfYJ1OuM1OvABj/fgbseqK8jPbBtI8g=";
+      };
+      sing-box.__output.vendorHash.__assign = "sha256-ZWFZkVRtybQAK9oZRIMBGeDfxXTV7kzXwNSbkvslMFk=";
+      sing-box.__output.postInstall.__assign = "";
     };
 
   # this allows us to access specific version of nixpkgs
