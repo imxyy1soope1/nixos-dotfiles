@@ -58,11 +58,7 @@ lib.my.makeSwitch {
         aria2
         socat
 
-        trash-cli
-
         cht-sh
-
-        dooit
       ];
       programs.tmux = {
         enable = true;
