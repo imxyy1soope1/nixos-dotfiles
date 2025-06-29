@@ -128,15 +128,12 @@
         {
           "Ctrl+Alt+T".action.spawn = [
             "kitty"
-            "-1"
           ];
           "Mod+T".action.spawn = [
             "kitty"
-            "-1"
           ];
           "Mod+Return".action.spawn = [
             "kitty"
-            "-1"
           ];
           "Mod+G".action.spawn = [ "zen-beta" ];
           "Mod+E".action.spawn = [ "nemo" ];
