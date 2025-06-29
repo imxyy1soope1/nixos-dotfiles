@@ -25,6 +25,7 @@
       cinny-desktop
       discord
       qq
+      wechat
 
       gnome-clocks
 
@@ -179,6 +180,7 @@
         ".config/Signal"
         ".config/discord"
         ".config/QQ"
+        ".xwechat"
 
         ".config/Kingsoft"
         ".config/dconf"
