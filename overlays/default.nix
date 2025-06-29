@@ -7,6 +7,11 @@
     infuse prev {
       cage.__output.patches.__append = [ ./cage-specify-output-name.patch ];
       matrix-synapse.__assign = final.stable.matrix-synapse;
+      qq.__output.preInstall.__append = ''
+        gappsWrapperArgs+=(
+          --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--wayland-text-input-version=3}}"
+        )
+      '';
     };
 
   # this allows us to access specific version of nixpkgs
