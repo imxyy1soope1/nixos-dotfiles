@@ -14,17 +14,18 @@
         )
       '';
 
-      sing-box.__assign = prev.sing-box.overrideAttrs {
-        version = "unstable-2024-08-16";
+      sing-box.__assign = prev.sing-box.overrideAttrs (finalAttrs: {
+        version = "1.11.14";
         src = final.fetchFromGitHub {
-          owner = "PuerNya";
+          owner = "qjebbs";
           repo = "sing-box";
-          rev = "067c81a73e1fb7b6edbc58e6b06b8b943fa6c40a";
-          hash = "sha256-03mkClYVAfAatfYJ1OuM1OvABj/fgbseqK8jPbBtI8g=";
+          # due to faulty tag generation
+          tag = "v${finalAttrs.version}+rev";
+          hash = "sha256-/p2PBTeeRJW3iq/BXJlw/Qn92Nrnw9fmUn5yNGl/o34=";
         };
-        vendorHash = "sha256-ZWFZkVRtybQAK9oZRIMBGeDfxXTV7kzXwNSbkvslMFk=";
+        vendorHash = "sha256-C2HCNOzP1Jg3vz2i9uPmM1wC7Sw2YNt7MdYn939cu1Y=";
         postInstall = "";
-      };
+      });
     };
 
   # this allows us to access specific version of nixpkgs
