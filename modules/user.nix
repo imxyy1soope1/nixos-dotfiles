@@ -35,20 +35,22 @@ lib.my.makeSwitch {
     };
     users.users.root.hashedPasswordFile = lib.mkDefault config.sops.secrets.imxyy-nix-hashed-password.path;
 
+    security.sudo.enable = false;
     security.doas = {
       enable = true;
       extraRules = [
         {
           users = [ username ];
           noPass = true;
+          keepEnv = true;
         }
       ];
     };
     environment.shellAliases = {
-      sudo = "doas";
       sudoedit = "doasedit";
     };
     environment.systemPackages = [
+      (pkgs.writeShellScriptBin "sudo" ''exec doas "$@"'')
       (pkgs.writeShellScriptBin "doasedit" ''
         if [ -n "''${2}" ]; then
           printf 'Expected only one argument\n'

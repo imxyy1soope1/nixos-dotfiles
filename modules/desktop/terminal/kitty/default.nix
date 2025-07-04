@@ -27,6 +27,7 @@ lib.my.makeHomeProgramConfig {
         name = "monospace";
         size = 14;
       };
+      shellIntegration.mode = "no-cursor no-sudo";
       extraConfig = ''
         include ${./tokyonight-storm.conf}
       '';
