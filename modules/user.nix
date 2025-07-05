@@ -28,6 +28,7 @@ lib.my.makeSwitch {
         shell = pkgs.zsh;
         extraGroups = [
           username
+          "wheel"
         ];
         hashedPasswordFile = lib.mkDefault config.sops.secrets.imxyy-nix-hashed-password.path;
       };
