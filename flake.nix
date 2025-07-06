@@ -57,6 +57,9 @@
 
     infuse.url = "git+https://codeberg.org/amjoseph/infuse.nix";
     infuse.flake = false;
+
+    haumea.url = "github:nix-community/haumea/v0.2.2";
+    haumea.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -81,12 +84,25 @@
         final: prev: {
           inherit (inputs.home-manager.lib) hm;
           inherit infuse;
+          haumea = inputs.haumea.lib;
         }
       );
       infuse = (import inputs.infuse { inherit (nixpkgs) lib; }).v1.infuse;
     in
     {
-      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+      packages = forAllSystems (
+        system:
+        lib.haumea.load {
+          src = ./pkgs;
+          loader = [
+            {
+              matches = str: builtins.match ".*\\.nix" str != null;
+              loader = _: path: nixpkgs.legacyPackages.${system}.callPackage path { };
+            }
+          ];
+          transformer = lib.haumea.transformers.liftDefault;
+        }
+      );
 
       # workaround for "treefmt warning"
       formatter = forAllSystems (
@@ -108,7 +124,9 @@
         }
       );
 
-      overlays = import ./overlays { inherit inputs infuse; };
+      overlays = import ./overlays {
+        inherit inputs lib;
+      };
 
       nixosConfigurations = forAllHosts (
         hostname:

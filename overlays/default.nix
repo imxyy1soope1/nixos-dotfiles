@@ -1,10 +1,24 @@
-{ inputs, infuse, ... }:
 {
-  additions = final: prev: import ../pkgs prev;
+  inputs,
+  lib,
+}:
+{
+  additions =
+    final: prev:
+    lib.haumea.load {
+      src = ../pkgs;
+      loader = [
+        {
+          matches = str: builtins.match ".*\\.nix" str != null;
+          loader = _: path: final.callPackage path { };
+        }
+      ];
+      transformer = lib.haumea.transformers.liftDefault;
+    };
 
   modifications =
     final: prev:
-    infuse prev {
+    lib.infuse prev {
       cage.__output.patches.__append = [ ./cage-specify-output-name.patch ];
       matrix-synapse.__assign = final.stable.matrix-synapse;
       bottles.__input.removeWarningPopup.__assign = true;
