@@ -25,9 +25,9 @@ lib.my.makeSwitch {
         };
         iconTheme = {
           enable = true;
-          package = pkgs.win11-icon-theme;
-          dark = "Win11";
-          light = "Win11";
+          package = pkgs.papirus-icon-theme;
+          dark = "Papirus-Dark";
+          light = "Papirus-Light";
         };
       };
 
