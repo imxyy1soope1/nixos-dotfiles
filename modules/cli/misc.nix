@@ -75,6 +75,10 @@ lib.my.makeSwitch {
           })
         ];
       };
+      programs.tealdeer = {
+        enable = true;
+        enableAutoUpdates = true;
+      };
     };
   };
 }
