@@ -393,6 +393,21 @@
         }
 
         {
+          name = "immich-http";
+          type = "http";
+          localIP = "127.0.0.1";
+          localPort = 80;
+          customDomains = [ "immich.imxyy.top" ];
+        }
+        {
+          name = "immich-https";
+          type = "https";
+          localIP = "127.0.0.1";
+          localPort = 443;
+          customDomains = [ "immich.imxyy.top" ];
+        }
+
+        {
           name = "minecraft";
           type = "tcp";
           localIP = "127.0.0.1";
