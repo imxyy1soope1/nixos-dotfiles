@@ -72,11 +72,17 @@ lib.my.makeSwitch {
                 command = "jj root >/dev/null 2>&1 || starship module git_branch";
                 description = "Only show git_branch if we're not in a jj repo";
               };
+              git_status = {
+                when = true;
+                command = "jj root >/dev/null 2>&1 || starship module git_status";
+                description = "Only show git_status if we're not in a jj repo";
+              };
             };
             git_state.disabled = true;
             git_commit.disabled = true;
             git_metrics.disabled = true;
             git_branch.disabled = true;
+            git_status.disabled = true;
             nix_shell.disabled = true;
           };
         };
