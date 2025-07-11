@@ -1,8 +1,10 @@
+{ pkgs, ... }:
 {
   services.open-webui = {
     enable = true;
     host = "127.0.0.1";
     port = 8089;
+    package = pkgs.stable.open-webui;
   };
   services.caddy.virtualHosts."ai.imxyy.top" = {
     extraConfig = ''
