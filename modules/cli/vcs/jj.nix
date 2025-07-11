@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  username,
   userfullname,
   useremail,
   ...
@@ -26,21 +27,18 @@ lib.my.makeHomeProgramConfig {
             graph.style = "square";
             default-command = "status";
           };
+          signing = {
+            backend = "ssh";
+            behavior = "own";
+            key = "/home/${username}/.ssh/id_ed25519";
+            backends.backends.ssh.allowed-signers =
+              (pkgs.writeText "allowed_signers" ''
+                imxyy1soope1@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEFLUkyeaK8ZPPZdVNEmtx8zvoxi7xqS2Z6oxRBuUPO imxyy@imxyy-nix
+                imxyy@imxyy.top ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEFLUkyeaK8ZPPZdVNEmtx8zvoxi7xqS2Z6oxRBuUPO imxyy@imxyy-nix
+              '').outPath;
+          };
         };
       };
-      /*
-        programs.zsh.initContent = lib.mkAfter ''
-          fpath+=${
-            pkgs.fetchFromGitHub {
-              owner = "rkh";
-              repo = "zsh-jj";
-              rev = "b6453d6ff5d233d472e5088d066c6469eb05c71b";
-              hash = "sha256-GDHTp53uHAcyVG+YI3Q7PI8K8M3d3i2+C52zxnKbSmw=";
-            }
-          }/functions
-          zstyle ':vcs_info:*' enable jj
-        '';
-      */
       home.packages = [ pkgs.lazyjj ];
     };
   };
