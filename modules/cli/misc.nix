@@ -57,8 +57,6 @@ lib.my.makeSwitch {
 
         aria2
         socat
-
-        cht-sh
       ];
       programs.tmux = {
         enable = true;
