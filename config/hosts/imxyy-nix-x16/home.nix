@@ -34,58 +34,13 @@
       pamixer
     ];
     programs.zsh = {
-      shellAliases = {
-        cageterm = "cage -m DP-2 -s -- alacritty -o font.size=20";
-        cagefoot = "cage -m DP-2 -s -- foot --font=monospace:size=20";
-        cagekitty = "cage -m DP-2 -s -- kitty -o font_size=20";
-      };
       sessionVariables = {
-        no_proxy = "192.168.3.0/24";
         PATH = "/home/${username}/bin:$PATH";
-      };
-      profileExtra = ''
-        if [ `tty` = "/dev/tty6" ]; then
-          clear
-        fi
-      '';
-    };
-
-    programs.niri.settings = {
-      environment.STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
-      outputs = {
-        DP-2 = {
-          enable = true;
-          mode = {
-            width = 2560;
-            height = 1440;
-            refresh = 75.033;
-          };
-          scale = 1.25;
-          position = {
-            x = 0;
-            y = 0;
-          };
-        };
-        DP-3 = {
-          enable = true;
-          mode = {
-            width = 2560;
-            height = 1440;
-            refresh = 75.033;
-          };
-          scale = 1.25;
-        };
       };
     };
   };
 
   my = {
-    autologin = {
-      enable = true;
-      user = username;
-      ttys = [ 6 ];
-    };
-
     gpg.enable = true;
     cli.all.enable = true;
     coding.all.enable = true;
@@ -142,7 +97,6 @@
           homedir = config.my.home.home.homeDirectory;
         in
         [
-          "file://${homedir}/Documents/%E7%8F%AD%E7%BA%A7%E4%BA%8B%E5%8A%A1 班级事务"
           "file://${homedir}/NAS NAS"
           "file://${homedir}/NAS/imxyy_soope_ NAS imxyy_soope_"
           "file://${homedir}/NAS/imxyy_soope_/OS NAS OS"
@@ -151,12 +105,14 @@
     persist = {
       enable = true;
       homeDirs = [
-        ".android"
-        "Android"
+	"Documents"
+	"Downloads"
+	"Videos"
+	"Music"
+	"Pictures"
 
         "bin"
         "workspace"
-        "Virt"
 
         ".cache"
         ".local/state"

@@ -169,4 +169,6 @@
       ];
     };
   };
+
+  my.persist.nixosDirs = [ "/etc/NetworkManager/system-connections" ];
 }

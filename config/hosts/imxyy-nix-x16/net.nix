@@ -10,8 +10,7 @@
     "biosdevname=0"
     "net.ifnames=0"
   ];
-  networking.wireless.enable = true;
-  networking.wireless.userControlled = true;
+  networking.networkmanager.enable = true;
 
   sops.secrets.dae-imxyy-nix-x16 = {
     sopsFile = sopsRoot + /dae-imxyy-nix-x16.dae;
@@ -40,8 +39,6 @@
   };
   environment.systemPackages = with pkgs; [
     easytier
-    wpa_supplicant
-    wpa_supplicant_gui
   ];
   systemd.services."easytier" = {
     enable = true;
