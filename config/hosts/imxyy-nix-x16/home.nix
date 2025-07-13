@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   username,
@@ -107,15 +106,6 @@
           "image/png" = imageviewer;
           "image/webp" = imageviewer;
         };
-      extraBookmarks =
-        let
-          homedir = config.my.home.home.homeDirectory;
-        in
-        [
-          "file://${homedir}/NAS NAS"
-          "file://${homedir}/NAS/imxyy_soope_ NAS imxyy_soope_"
-          "file://${homedir}/NAS/imxyy_soope_/OS NAS OS"
-        ];
     };
     persist = {
       enable = true;
