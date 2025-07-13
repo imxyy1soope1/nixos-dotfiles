@@ -5,7 +5,8 @@
   username,
   sopsRoot,
   ...
-}: {
+}:
+{
   security.pam.loginLimits = [
     {
       domain = "*";

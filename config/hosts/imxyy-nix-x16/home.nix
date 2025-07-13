@@ -105,11 +105,11 @@
     persist = {
       enable = true;
       homeDirs = [
-	"Documents"
-	"Downloads"
-	"Videos"
-	"Music"
-	"Pictures"
+        "Documents"
+        "Downloads"
+        "Videos"
+        "Music"
+        "Pictures"
 
         "bin"
         "workspace"

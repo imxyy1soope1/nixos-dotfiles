@@ -13,7 +13,11 @@ in
     initrd = {
       kernelModules = [ "amdgpu" ];
       availableKernelModules = [
-	"nvme" "xhci_pci" "thunderbolt" "uas" "sd_mod"
+        "nvme"
+        "xhci_pci"
+        "thunderbolt"
+        "uas"
+        "sd_mod"
       ];
       verbose = false;
     };
@@ -40,7 +44,10 @@ in
   fileSystems."/nix" = {
     device = btrfs;
     fsType = "btrfs";
-    options = [ "compress=zstd" "subvol=nix" ];
+    options = [
+      "compress=zstd"
+      "subvol=nix"
+    ];
   };
 
   my.persist.location = "/nix/persist";
