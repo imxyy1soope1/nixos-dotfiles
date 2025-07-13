@@ -38,6 +38,21 @@
         PATH = "/home/${username}/bin:$PATH";
       };
     };
+
+    programs.niri.settings = {
+      environment.STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
+      outputs = {
+        DP-2 = {
+          enable = true;
+          mode = {
+            width = 1920;
+            height = 1200;
+            refresh = 60.002;
+          };
+          scale = 1.25;
+        };
+      };
+    };
   };
 
   my = {
