@@ -144,7 +144,7 @@
                 withJemalloc = true;
                 withQtSvg = true;
                 withWayland = true;
-                withPipewire = false;
+                withPipewire = true;
                 withPam = false;
                 withX11 = false;
                 withHyprland = false;
@@ -186,6 +186,7 @@
               hostname
               ;
             sopsRoot = ./secrets;
+            flake = ./.;
           } // vars;
           modules =
             (lib.umport {

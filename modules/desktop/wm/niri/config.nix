@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  flake,
   ...
 }:
 {
@@ -103,7 +104,7 @@
           "-m"
           "fill"
           "-i"
-          (toString ./wallpaper.png)
+          (toString (flake + /assets/wallpapers/wallpaper.png))
         ]
         [
           "wl-paste"
