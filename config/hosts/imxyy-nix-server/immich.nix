@@ -1,5 +1,9 @@
 { ... }:
 {
+  users.users.immich = {
+    home = "/mnt/nas/immich";
+    createHome = true;
+  };
   services.immich = {
     enable = true;
     host = "127.0.0.1";

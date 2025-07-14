@@ -567,6 +567,7 @@
         "ai"
         "sy"
         "minio"
+        "immich"
       ];
     in
     {
