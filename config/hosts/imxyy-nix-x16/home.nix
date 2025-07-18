@@ -41,7 +41,7 @@
     programs.niri.settings = {
       environment.STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
       outputs = {
-        DP-2 = {
+        eDP-1 = {
           enable = true;
           mode = {
             width = 1920;
@@ -59,6 +59,7 @@
     cli.all.enable = true;
     coding.all.enable = true;
     desktop.all.enable = true;
+    virt.moonlight.enable = true;
 
     desktop.browser.librewolf.enable = lib.mkForce false;
 

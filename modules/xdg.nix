@@ -53,10 +53,6 @@ in
           "file://${homedir}/Videos 视频"
           "file://${homedir}/Music 音乐"
           "file://${homedir}/workspace 工作空间"
-          "file://${homedir}/Documents/%E7%8F%AD%E7%BA%A7%E4%BA%8B%E5%8A%A1 班级事务"
-          "file://${homedir}/NAS NAS"
-          "file://${homedir}/NAS/imxyy_soope_ NAS imxyy_soope_"
-          "file://${homedir}/NAS/imxyy_soope_/OS NAS OS"
         ];
       };
   };
