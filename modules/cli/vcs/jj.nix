@@ -26,6 +26,7 @@ lib.my.makeHomeProgramConfig {
           ui = {
             graph.style = "square";
             default-command = "status";
+            conflict-marker-style = "snapshot";
           };
           signing = {
             backend = "ssh";
