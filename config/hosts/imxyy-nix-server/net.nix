@@ -451,10 +451,6 @@
     };
   };
   systemd.services."headscale" = {
-    serviceConfig = {
-      Restart = "always";
-      RestartSec = 120;
-    };
     after = [
       "podman-obligator.service"
     ];
