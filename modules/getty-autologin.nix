@@ -11,16 +11,15 @@ let
   cfg = config.my.autologin;
   gettycfg = config.services.getty;
 
-  baseArgs =
-    [
-      "--login-program"
-      "${gettycfg.loginProgram}"
-    ]
-    ++ optionals (gettycfg.loginOptions != null) [
-      "--login-options"
-      gettycfg.loginOptions
-    ]
-    ++ gettycfg.extraArgs;
+  baseArgs = [
+    "--login-program"
+    "${gettycfg.loginProgram}"
+  ]
+  ++ optionals (gettycfg.loginOptions != null) [
+    "--login-options"
+    gettycfg.loginOptions
+  ]
+  ++ gettycfg.extraArgs;
 
   gettyCmd = args: "@${pkgs.util-linux}/sbin/agetty agetty ${escapeShellArgs baseArgs} ${args}";
 

@@ -16,7 +16,6 @@ lib.my.makeSwitch {
     my.home = {
       home.packages = with pkgs; [
         nodejs
-        nodePackages.npm
 
         typescript
       ];

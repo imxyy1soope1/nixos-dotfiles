@@ -186,7 +186,8 @@
               hostname
               ;
             sopsRoot = ./secrets;
-          } // vars;
+          }
+          // vars;
           modules =
             (lib.umport {
               paths = [ ./modules ];
