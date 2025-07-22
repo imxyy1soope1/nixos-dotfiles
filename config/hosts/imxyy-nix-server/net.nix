@@ -410,6 +410,21 @@
         }
 
         {
+          name = "memo-http";
+          type = "http";
+          localIP = "127.0.0.1";
+          localPort = 80;
+          customDomains = [ "memo.imxyy.top" ];
+        }
+        {
+          name = "memo-https";
+          type = "https";
+          localIP = "127.0.0.1";
+          localPort = 443;
+          customDomains = [ "memo.imxyy.top" ];
+        }
+
+        {
           name = "minecraft";
           type = "tcp";
           localIP = "127.0.0.1";
@@ -479,27 +494,23 @@
     ];
   };
 
-  virtualisation.oci-containers = {
-    containers = {
-      obligator = {
-        image = "anderspitman/obligator:latest";
-        volumes = [
-          "/var/lib/obligator:/data"
-          "/var/lib/obligator:/api"
-        ];
-        ports = [ "8081:1616" ];
-        cmd = [
-          "-storage-dir"
-          "/data"
-          "-api-socket-dir"
-          "/api"
-          "-root-uri"
-          "https://oidc.imxyy.top"
-          "-port"
-          "1616"
-        ];
-      };
-    };
+  virtualisation.oci-containers.containers.obligator = {
+    image = "anderspitman/obligator:latest";
+    volumes = [
+      "/var/lib/obligator:/data"
+      "/var/lib/obligator:/api"
+    ];
+    ports = [ "8081:1616" ];
+    cmd = [
+      "-storage-dir"
+      "/data"
+      "-api-socket-dir"
+      "/api"
+      "-root-uri"
+      "https://oidc.imxyy.top"
+      "-port"
+      "1616"
+    ];
   };
   services.caddy.virtualHosts."headscale.imxyy.top" = {
     extraConfig = ''
