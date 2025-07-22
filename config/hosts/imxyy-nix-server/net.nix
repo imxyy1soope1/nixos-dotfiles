@@ -3,7 +3,7 @@
   lib,
   pkgs,
   username,
-  sopsRoot,
+  secrets,
   ...
 }:
 {
@@ -143,7 +143,7 @@
   ];
 
   sops.secrets.dae-imxyy-nix-server = {
-    sopsFile = sopsRoot + /dae-imxyy-nix-server.dae;
+    sopsFile = secrets.dae-imxyy-nix-server;
     format = "binary";
   };
   services.dae = {
@@ -152,7 +152,7 @@
   };
   systemd.services.dae.after = [ "sops-nix.service" ];
   sops.secrets.mihomo = {
-    sopsFile = sopsRoot + /mihomo.yaml;
+    sopsFile = secrets.mihomo;
     format = "yaml";
     key = "";
   };
@@ -164,7 +164,7 @@
   };
 
   sops.secrets.frp-env = {
-    sopsFile = sopsRoot + /frp.env;
+    sopsFile = secrets.frp;
     format = "dotenv";
   };
   systemd.services.frp.serviceConfig.EnvironmentFile = [
@@ -475,7 +475,7 @@
   };
 
   sops.secrets.et-imxyy-nix-server = {
-    sopsFile = sopsRoot + /et-imxyy-nix-server.toml;
+    sopsFile = secrets.et-imxyy-nix-server;
     format = "binary";
   };
   environment.systemPackages = [ pkgs.easytier ];

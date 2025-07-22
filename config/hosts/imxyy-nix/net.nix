@@ -2,8 +2,7 @@
   config,
   lib,
   pkgs,
-  sopsRoot,
-  username,
+  secrets,
   ...
 }:
 {
@@ -86,7 +85,7 @@
   };
 
   sops.secrets.dae-imxyy-nix = {
-    sopsFile = sopsRoot + /dae-imxyy-nix.dae;
+    sopsFile = secrets.dae-imxyy-nix;
     format = "binary";
   };
   services.dae = {
@@ -95,7 +94,7 @@
   };
   systemd.services.dae.after = [ "sops-nix.service" ];
   sops.secrets.mihomo = {
-    sopsFile = sopsRoot + /mihomo.yaml;
+    sopsFile = secrets.mihomo;
     format = "yaml";
     key = "";
   };
@@ -107,7 +106,7 @@
   };
 
   sops.secrets.et-imxyy-nix = {
-    sopsFile = sopsRoot + /et-imxyy-nix.toml;
+    sopsFile = secrets.et-imxyy-nix;
     format = "binary";
   };
   environment.systemPackages = [ pkgs.easytier ];

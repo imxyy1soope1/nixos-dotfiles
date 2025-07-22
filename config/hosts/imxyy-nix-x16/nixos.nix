@@ -1,9 +1,8 @@
 {
-  lib,
   pkgs,
   config,
   username,
-  sopsRoot,
+  secrets,
   ...
 }:
 {
@@ -134,7 +133,7 @@
   ];
 
   sops.secrets.imxyy-nix-rclone = {
-    sopsFile = sopsRoot + /imxyy-nix-rclone.conf;
+    sopsFile = secrets.imxyy-nix-rclone;
     format = "binary";
   };
   fileSystems = {

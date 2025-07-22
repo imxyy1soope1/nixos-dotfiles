@@ -1,7 +1,7 @@
-{ config, sopsRoot, ... }:
+{ config, secrets, ... }:
 {
   sops.secrets.minio-env = {
-    sopsFile = sopsRoot + /minio.env;
+    sopsFile = secrets.minio;
     format = "dotenv";
   };
   services.minio = {

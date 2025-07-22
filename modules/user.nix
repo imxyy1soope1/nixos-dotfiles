@@ -4,7 +4,7 @@
   pkgs,
   username,
   userdesc,
-  sopsRoot,
+  secrets,
   ...
 }:
 lib.my.makeSwitch {
@@ -16,7 +16,7 @@ lib.my.makeSwitch {
     programs.zsh.enable = true;
 
     sops.secrets.imxyy-nix-hashed-password = {
-      sopsFile = sopsRoot + /imxyy-nix-hashed-password.txt;
+      sopsFile = secrets.imxyy-nix-hashed-password;
       format = "binary";
       neededForUsers = true;
     };

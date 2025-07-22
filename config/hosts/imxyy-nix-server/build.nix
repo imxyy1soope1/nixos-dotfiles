@@ -1,12 +1,12 @@
 {
   config,
   pkgs,
-  sopsRoot,
+  secrets,
   ...
 }:
 {
   sops.secrets.et-imxyy-nix-server-nixremote = {
-    sopsFile = sopsRoot + /et-imxyy-nix-server-nixremote.toml;
+    sopsFile = secrets.et-imxyy-nix-server-nixremote;
     format = "binary";
   };
   environment.systemPackages = [ pkgs.easytier ];

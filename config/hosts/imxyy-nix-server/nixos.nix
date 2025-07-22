@@ -2,7 +2,7 @@
   lib,
   config,
   username,
-  sopsRoot,
+  secrets,
   ...
 }:
 {
@@ -23,7 +23,7 @@
   environment.variables.NIX_REMOTE = "daemon";
 
   sops.secrets.imxyy-nix-server-hashed-password = {
-    sopsFile = sopsRoot + /imxyy-nix-server-hashed-password.txt;
+    sopsFile = secrets.imxyy-nix-server-hashed-password;
     format = "binary";
     neededForUsers = true;
   };

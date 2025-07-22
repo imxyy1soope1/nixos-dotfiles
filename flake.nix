@@ -185,7 +185,14 @@
               outputs
               hostname
               ;
-            sopsRoot = ./secrets;
+            secrets =
+              with lib.haumea;
+              load {
+                src = ./secrets;
+                loader = [
+                  (matchers.always loaders.path)
+                ];
+              };
           }
           // vars;
           modules =

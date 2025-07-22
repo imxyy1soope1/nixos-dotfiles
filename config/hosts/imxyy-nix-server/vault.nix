@@ -1,7 +1,7 @@
-{ config, sopsRoot, ... }:
+{ config, secrets, ... }:
 {
   sops.secrets.vaultwarden-env = {
-    sopsFile = sopsRoot + /vaultwarden.env;
+    sopsFile = secrets.vaultwarden;
     format = "dotenv";
   };
   services.postgresql.ensureUsers = [

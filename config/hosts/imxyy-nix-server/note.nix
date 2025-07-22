@@ -1,16 +1,16 @@
 {
   config,
-  sopsRoot,
+  secrets,
   ...
 }:
 {
   sops.secrets = {
     flatnote-env = {
-      sopsFile = sopsRoot + /flatnote.env;
+      sopsFile = secrets.flatnote;
       format = "dotenv";
     };
     siyuan-env = {
-      sopsFile = sopsRoot + /siyuan.env;
+      sopsFile = secrets.siyuan;
       format = "dotenv";
     };
   };
