@@ -64,6 +64,15 @@ lib.my.makeSwitch {
         ];
         platformTheme.name = "qtct";
       };
+
+      xdg.configFile = {
+        "qt5ct/qt5ct.conf".source = pkgs.replaceVars ./qtct/qt5ct.conf {
+          darker = pkgs.libsForQt5.qt5ct + /share/qt5ct/colors/darker.conf;
+        };
+        "qt6ct/qt6ct.conf".source = pkgs.replaceVars ./qtct/qt6ct.conf {
+          darker = pkgs.qt6ct + /share/qt6ct/colors/darker.conf;
+        };
+      };
     };
   };
 }
