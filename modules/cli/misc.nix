@@ -80,6 +80,10 @@ lib.my.makeSwitch {
         enableAutoUpdates = true;
         settings.updates.auto_update = true;
       };
+      programs.television = {
+        enable = true;
+        enableZshIntegration = true;
+      };
     };
   };
 }
