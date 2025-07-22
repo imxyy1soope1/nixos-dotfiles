@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  secrets,
   ...
 }:
 lib.my.makeSwitch {
@@ -47,6 +48,14 @@ lib.my.makeSwitch {
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
+
+    sops.secrets.nix-github-token = {
+      sopsFile = secrets.nix-github-token;
+      format = "binary";
+    };
+    nix.extraOptions = ''
+      !include ${config.sops.secrets.nix-github-token.path}
+    '';
 
     # uncomment to enable auto gc
     /*
