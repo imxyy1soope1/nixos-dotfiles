@@ -44,11 +44,11 @@ lib.my.makeSwitch {
               jj = {
                 ignore_timeout = true;
                 description = "The current jj status";
-                when = "jj root";
-                symbol = " ";
+                when = true;
                 command = ''
                   jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
                     separate(" ",
+                      " ",
                       change_id.shortest(4),
                       bookmarks,
                       "|",
@@ -64,18 +64,8 @@ lib.my.makeSwitch {
                         "(no description set)",
                       ) ++ raw_escape_sequence("\x1b[0m"),
                     )
-                  '
+                  ' || (starship module git_branch && starship module git_status)
                 '';
-              };
-              git_branch = {
-                when = true;
-                command = "jj root >/dev/null 2>&1 || starship module git_branch";
-                description = "Only show git_branch if we're not in a jj repo";
-              };
-              git_status = {
-                when = true;
-                command = "jj root >/dev/null 2>&1 || starship module git_status";
-                description = "Only show git_status if we're not in a jj repo";
               };
             };
             git_state.disabled = true;
