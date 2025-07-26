@@ -22,11 +22,6 @@
       cage.__output.patches.__append = [ ./cage-specify-output-name.patch ];
       matrix-synapse.__assign = final.stable.matrix-synapse;
       bottles.__input.removeWarningPopup.__assign = true;
-      qq.__output.preInstall.__append = ''
-        gappsWrapperArgs+=(
-          --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--wayland-text-input-version=3}}"
-        )
-      '';
 
       sing-box.__assign = prev.sing-box.overrideAttrs (finalAttrs: {
         version = "1.11.14";
