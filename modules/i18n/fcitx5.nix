@@ -106,13 +106,20 @@ lib.my.makeSwitch {
       (
         final: prev:
         lib.infuse prev (
-          lib.genAttrs [ "qq" "vscodium" ] (pkg: {
-            ${pkg}.__output.preInstall.__append = ''
-              gappsWrapperArgs+=(
-                --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--wayland-text-input-version=3}}"
-              )
-            '';
-          })
+          lib.mergeAttrsList (
+            map
+              (pkg: {
+                ${pkg}.__output.preInstall.__append = ''
+                  gappsWrapperArgs+=(
+                    --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--wayland-text-input-version=3}}"
+                  )
+                '';
+              })
+              [
+                "qq"
+                "vscodium"
+              ]
+          )
         )
       )
     ];

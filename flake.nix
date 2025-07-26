@@ -68,10 +68,10 @@
     let
       inherit (self) outputs;
       vars = import ./vars.nix;
-      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
+      forAllSystems = lib.genAttrs lib.systems.flakeExposed;
       forAllHosts =
         mkSystem:
-        nixpkgs.lib.attrsets.mergeAttrsList (
+        lib.mergeAttrsList (
           builtins.map (hostname: {
             ${hostname} = mkSystem hostname;
           }) (builtins.attrNames (builtins.readDir ./config/hosts))

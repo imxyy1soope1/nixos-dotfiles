@@ -1,4 +1,8 @@
-{ config, hostname, ... }:
+{
+  config,
+  hostname,
+  ...
+}:
 {
   # I prefer this to the default issue text
   # ported from ArchLinux IIRC
