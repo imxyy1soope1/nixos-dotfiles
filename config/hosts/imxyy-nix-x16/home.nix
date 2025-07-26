@@ -61,8 +61,6 @@
     desktop.all.enable = true;
     virt.moonlight.enable = true;
 
-    desktop.browser.librewolf.enable = lib.mkForce false;
-
     i18n.fcitx5.enable = true;
 
     xdg = {

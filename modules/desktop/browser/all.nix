@@ -10,7 +10,6 @@ lib.my.makeSwitch {
   config' = {
     my.desktop.browser = {
       firefox.enable = true;
-      librewolf.enable = true;
       chromium.enable = true;
       zen.enable = true;
     };

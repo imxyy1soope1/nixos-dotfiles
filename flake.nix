@@ -32,9 +32,6 @@
     niri.inputs.nixpkgs.follows = "nixpkgs";
     niri.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
 
-    quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-    quickshell.inputs.nixpkgs.follows = "nixpkgs";
-
     darkly.url = "github:Bali10050/Darkly";
     darkly.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -138,17 +135,6 @@
             (final: prev: {
               darkly-qt5 = inputs.darkly.packages.${final.system}.darkly-qt5;
               darkly-qt6 = inputs.darkly.packages.${final.system}.darkly-qt6;
-            })
-            (final: prev: {
-              quickshell = inputs.quickshell.packages.${final.system}.default.override {
-                withJemalloc = true;
-                withQtSvg = true;
-                withWayland = true;
-                withPipewire = false;
-                withPam = false;
-                withX11 = false;
-                withHyprland = false;
-              };
             })
             (final: prev: {
               inherit lib;

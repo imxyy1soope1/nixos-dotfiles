@@ -16,7 +16,6 @@ lib.my.makeSwitch {
       terminal.all.enable = true;
       wm.all.enable = true;
       style.enable = true;
-      quickshell.enable = true;
       wine.enable = true;
     };
   };

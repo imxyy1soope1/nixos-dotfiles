@@ -91,8 +91,6 @@
     coding.all.enable = true;
     desktop.all.enable = true;
 
-    desktop.browser.librewolf.enable = lib.mkForce false;
-
     i18n.fcitx5.enable = true;
 
     xdg = {

@@ -102,15 +102,20 @@ lib.my.makeSwitch {
         ignoreUserConfig = true;
       };
     };
-    nixpkgs.overlays = [(
-      final: prev: lib.infuse prev (lib.genAttrs [ "qq" "vscodium" ] (pkg: {
-        ${pkg}.__output.preInstall.__append = ''
-          gappsWrapperArgs+=(
-            --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--wayland-text-input-version=3}}"
-          )
-        '';
-      }))
-    )];
+    nixpkgs.overlays = [
+      (
+        final: prev:
+        lib.infuse prev (
+          lib.genAttrs [ "qq" "vscodium" ] (pkg: {
+            ${pkg}.__output.preInstall.__append = ''
+              gappsWrapperArgs+=(
+                --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--wayland-text-input-version=3}}"
+              )
+            '';
+          })
+        )
+      )
+    ];
     my.home.programs.niri.settings = {
       binds."Mod+Space".action.spawn = [
         "fcitx5-remote"
