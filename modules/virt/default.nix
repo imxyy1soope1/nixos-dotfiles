@@ -220,10 +220,13 @@ in
     (lib.mkIf cfg.enable {
       virtualisation.libvirtd = {
         enable = true;
-        qemu.verbatimConfig = ''
-          dynamic_ownership = 0
-          remember_owner = 0
-        '';
+        qemu = {
+          package = pkgs.qemu_kvm;
+          verbatimConfig = ''
+            dynamic_ownership = 0
+            remember_owner = 0
+          '';
+        };
       };
       programs.virt-manager.enable = true;
       users.users.${username}.extraGroups = [ "libvirtd" ];

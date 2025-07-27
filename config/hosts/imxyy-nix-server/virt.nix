@@ -13,7 +13,7 @@ let
 in
 {
   boot = {
-    initrd.kernelModules = [
+    initrd.kernelModules = lib.mkBefore [
       "vfio_pci"
       "vfio"
       "vfio_iommu_type1"
