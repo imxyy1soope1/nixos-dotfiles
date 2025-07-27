@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   username,
   ...
@@ -10,8 +8,6 @@
     home.packages = with pkgs; [
       localsend
 
-      rclone
-
       wpsoffice-cn
       wps-office-fonts
       ttf-wps-fonts
@@ -20,17 +16,11 @@
       anki
 
       ayugram-desktop
-      telegram-desktop
       signal-desktop
-      discord
       qq
       wechat
 
       gnome-clocks
-
-      wineWowPackages.waylandFull
-
-      pwvucontrol
     ];
     programs.zsh = {
       shellAliases = {
@@ -134,16 +124,6 @@
           "image/png" = imageviewer;
           "image/webp" = imageviewer;
         };
-      extraBookmarks =
-        let
-          homedir = config.my.home.home.homeDirectory;
-        in
-        [
-          "file://${homedir}/Documents/%E7%8F%AD%E7%BA%A7%E4%BA%8B%E5%8A%A1 班级事务"
-          "file://${homedir}/NAS NAS"
-          "file://${homedir}/NAS/imxyy_soope_ NAS imxyy_soope_"
-          "file://${homedir}/NAS/imxyy_soope_/OS NAS OS"
-        ];
     };
     persist = {
       enable = true;
@@ -159,21 +139,16 @@
         ".local/state"
         ".local/share/Anki2"
         ".local/share/shotwell"
-        ".local/share/cheat.sh"
         ".local/share/Kingsoft"
 
         ".local/share/AyuGramDesktop"
-        ".local/share/TelegramDesktop"
         ".config/Signal"
-        ".config/discord"
         ".config/QQ"
         ".xwechat"
 
         ".config/Kingsoft"
         ".config/dconf"
-        ".config/gh"
         ".config/pip"
-        ".config/libreoffice"
         ".config/sunshine"
       ];
     };

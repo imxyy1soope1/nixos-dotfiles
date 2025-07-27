@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   username,
   ...
 }:
@@ -20,5 +21,6 @@ lib.my.makeSwitch {
     };
     users.extraUsers.${username}.extraGroups = [ "audio" ];
     my.persist.homeDirs = [ ".local/state/wireplumber" ];
+    my.home.home.packages = [ pkgs.pwvucontrol ];
   };
 }
