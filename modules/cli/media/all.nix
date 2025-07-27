@@ -9,7 +9,6 @@ lib.my.makeSwitch {
   ];
   config' = {
     my.cli.media = {
-      cava.enable = true;
       go-musicfox.enable = true;
       mpd.enable = true;
       ffmpeg.enable = true;
