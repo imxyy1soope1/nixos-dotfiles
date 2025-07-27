@@ -22,7 +22,7 @@ let
         temp = line.split(" ")
         bus = temp[1]
         device = temp[3][:-1]
-        subprocess.run(["${lib.getExe usbreset}", f"/dev/bus/usb/{bus}/{device}"])
+        subprocess.run(["${lib.getExe' pkgs.usbutils "usbreset"}", f"{bus}/{device}"])
         return True
 
     if __name__ == "__main__":
@@ -35,44 +35,6 @@ let
         if any(tuple(map(action, lst))):
             with open("/tmp/.btreseted", "w"):
                 ...
-  '';
-  usbreset = pkgs.writeCBin "usbreset" ''
-    #include <stdio.h>
-    #include <unistd.h>
-    #include <fcntl.h>
-    #include <sys/ioctl.h>
-
-    #include <linux/usbdevice_fs.h>
-
-    int main(int argc, char **argv)
-    {
-        const char *filename;
-        int fd;
-        int rc;
-
-        if (argc != 2) {
-            fprintf(stderr, "Usage: usbreset device-filename\n");
-            return 1;
-        }
-        filename = argv[1];
-
-        fd = open(filename, O_WRONLY);
-        if (fd < 0) {
-            perror("Error opening output file");
-            return 1;
-        }
-
-        printf("Resetting USB device %s\n", filename);
-        rc = ioctl(fd, USBDEVFS_RESET, 0);
-        if (rc < 0) {
-            perror("Error in ioctl");
-            return 1;
-        }
-        printf("Reset successful\n");
-
-        close(fd);
-        return 0;
-    }
   '';
 in
 {
