@@ -30,8 +30,7 @@
 
       wineWowPackages.waylandFull
 
-      pavucontrol
-      pamixer
+      pwvucontrol
     ];
     programs.zsh = {
       shellAliases = {
@@ -173,7 +172,6 @@
         ".config/Kingsoft"
         ".config/dconf"
         ".config/gh"
-        ".config/pulse"
         ".config/pip"
         ".config/libreoffice"
         ".config/sunshine"

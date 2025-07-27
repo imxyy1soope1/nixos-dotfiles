@@ -13,14 +13,13 @@
     timeout = 0;
   };
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-
   systemd.services.nix-daemon = {
     environment.TMPDIR = "/var/cache/nix";
     serviceConfig.CacheDirectory = "nix";
   };
   environment.variables.NIX_REMOTE = "daemon";
+
+  my.audio.enable = false;
 
   sops.secrets.imxyy-nix-server-hashed-password = {
     sopsFile = secrets.imxyy-nix-server-hashed-password;

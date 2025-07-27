@@ -151,17 +151,19 @@
           "XF86AudioRaiseVolume" = {
             allow-when-locked = true;
             action.spawn = [
-              "pamixer"
-              "-i"
-              "2"
+              "wpctl"
+              "set-volume"
+              "@DEFAULT_SINK@"
+              "2%+"
             ];
           };
           "XF86AudioLowerVolume" = {
             allow-when-locked = true;
             action.spawn = [
-              "pamixer"
-              "-d"
-              "2"
+              "wpctl"
+              "set-volume"
+              "@DEFAULT_SINK@"
+              "2%-"
             ];
           };
           "XF86AudioMute" = {

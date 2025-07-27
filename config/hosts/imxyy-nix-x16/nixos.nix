@@ -35,36 +35,6 @@
   };
   environment.variables.NIX_REMOTE = "daemon";
 
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = false;
-    alsa.support32Bit = false;
-    pulse.enable = false;
-    audio.enable = false;
-  };
-  services.pulseaudio = {
-    enable = true;
-    support32Bit = true;
-    package = pkgs.pulseaudioFull;
-    extraConfig = ''
-      load-module module-switch-on-connect
-      unload-module module-suspend-on-idle
-    '';
-  };
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Enable = "Source,Sink,Media,Socket";
-        Disable = "HeadSet";
-        MultiProfile = "multiple";
-      };
-    };
-  };
-  users.extraUsers.${username}.extraGroups = [ "audio" ];
-
   fonts = {
     enableDefaultPackages = false;
     fontDir.enable = true;

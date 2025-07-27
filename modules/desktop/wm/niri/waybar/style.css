@@ -100,7 +100,7 @@ tooltip * {
 #window,
 #clock,
 #battery,
-#pulseaudio,
+#wireplumber,
 #network,
 #workspaces,
 #taskbar,
@@ -219,13 +219,13 @@ window#waybar.empty #window {
     border-right: 0;
 }
 
-#pulseaudio {
+#wireplumber {
     color: #89b4fa;
     border-right: 0px;
     border-radius: 10px 0px 0px 10px;
 }
 
-#pulseaudio.microphone {
+#wireplumber.source {
     color: #cba6f7;
     margin-right: 5px;
     border-left: 0px;
@@ -237,11 +237,4 @@ window#waybar.empty #window {
     border-radius: 0 10px 10px 0;
     margin-right: 10px;
     border-left: 0px;
-}
-
-#custom-weather {
-    border-radius: 0px 10px 10px 0px;
-    border-left: 0;
-    border-right: 0;
-    margin-left: 0px;
 }

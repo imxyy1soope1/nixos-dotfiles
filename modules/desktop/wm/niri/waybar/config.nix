@@ -19,8 +19,8 @@ _: {
   modules-right = [
     "custom/notification"
     "tray"
-    "pulseaudio"
-    "pulseaudio#microphone"
+    "wireplumber"
+    "wireplumber#source"
   ];
 
   "niri/workspaces" = {
@@ -73,7 +73,6 @@ _: {
       stopped = "";
     };
     tooltip = false;
-    toottip-format = "{status_icon} Musicfox {artist} - {album} - {title}";
     on-scroll-up = "playerctl -p musicfox volume 0.05+";
     on-scroll-down = "playerctl -p musicfox volume 0.05-";
   };
@@ -81,14 +80,12 @@ _: {
     format = " {:%H:%M   %m.%d}";
     tooltip = false;
   };
-  pulseaudio = {
+  wireplumber = {
     format = "{icon} {volume}%";
     tooltip = false;
     format-muted = "󰟎 Muted";
-    on-click = "pamixer -t";
-    on-click-middle = "pavucontrol & disown";
-    on-scroll-up = "pamixer -i 5";
-    on-scroll-down = "pamixer -d 5";
+    on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
+    on-click-middle = "pwvucontrol";
     scroll-step = 5;
     format-icons = {
       headphone = "󰋋";
@@ -104,14 +101,13 @@ _: {
       ];
     };
   };
-  "pulseaudio#microphone" = {
-    format = "{format_source}";
+  "wireplumber#source" = {
+    node-type = "Audio/Source";
+    format = "󰍬 {volume}%";
     tooltip = false;
-    format-source = "󰍬 {volume}%";
-    format-source-muted = "󰍭 Muted";
-    on-click = "pamixer --default-source -t";
-    on-scroll-up = "pamixer --default-source -i 5";
-    on-scroll-down = "pamixer --default-source -d 5";
+    format-muted = "󰍬 Muted";
+    on-click = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
+    on-click-middle = "pwvucontrol";
     scroll-step = 5;
   };
 }
