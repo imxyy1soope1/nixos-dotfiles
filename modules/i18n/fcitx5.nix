@@ -109,15 +109,12 @@ lib.my.makeSwitch {
           lib.mergeAttrsList (
             map
               (pkg: {
-                ${pkg}.__output.preInstall.__append = ''
-                  gappsWrapperArgs+=(
-                    --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--wayland-text-input-version=3}}"
-                  )
-                '';
+                ${pkg}.__input.commandLineArgs.__append = "--wayland-text-input-version=3";
               })
               [
                 "qq"
                 "vscodium"
+                "signal-desktop"
               ]
           )
         )
