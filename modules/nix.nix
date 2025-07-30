@@ -38,8 +38,8 @@ lib.my.makeSwitch {
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
       substituters = [
-        "https://mirror.sjtu.edu.cn/nix-channels/store"
         "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
+        "https://mirror.sjtu.edu.cn/nix-channels/store"
         "https://mirrors.ustc.edu.cn/nix-channels/store"
         "https://nix-community.cachix.org"
         "https://cache.nixos.org"
