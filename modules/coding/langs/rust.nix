@@ -34,6 +34,9 @@ lib.my.makeSwitch {
         [net]
         git-fetch-with-cli = true
       '';
+      programs.zsh.initContent = lib.mkAfter ''
+        export PATH=$PATH:$HOME/.cargo/bin
+      '';
     };
     my.persist.homeDirs = [
       ".cargo"
