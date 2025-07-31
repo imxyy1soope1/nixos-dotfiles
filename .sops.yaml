@@ -1,8 +1,7 @@
 keys:
-  - &imxyy-nix age1jf5pg2x6ta8amj40xdy0stvcvrdlkwc2nrwtmkpymu0qclk0eg5qmm9kns
-  - &imxyy-nix-server age1hpgg6psejh4y6jcdd34wxuml75fnweqpe0kh8376yqsctsfn9qxs037kk6
-  - &imxyy-nix-x16 age1r0fv0tagxupfacv0aaxk5ss7sqvswv6kq8tk3x46ndqrj6f5afvqegahxq
-  - &imxyy-cloudwin age1tp7th3rrv3x0l6jl76n0hjqjp223w2y586pkgr0hcjwdm254jd5shkj6a8
+  - &imxyy-nix ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEFLUkyeaK8ZPPZdVNEmtx8zvoxi7xqS2Z6oxRBuUPO
+  - &imxyy-nix-server ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB28jpN+h5euh3NtdN+A+EtqgIatC22e4i1TPTioKire
+  - &imxyy-nix-x16 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMb5G/ieEYBOng66YeyttBQLThyM6W//z2POsNyq4Rw/
 creation_rules:
   - path_regex: secrets/.*\.(yaml|toml|json|env|dae|txt|conf)$
     key_groups:
@@ -10,4 +9,3 @@ creation_rules:
         - *imxyy-nix
         - *imxyy-nix-server
         - *imxyy-nix-x16
-        - *imxyy-cloudwin

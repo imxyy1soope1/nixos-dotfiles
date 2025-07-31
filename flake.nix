@@ -13,8 +13,9 @@
     # Nyxpkgs
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
-    # SOPS
-    sops-nix.url = "github:Mic92/sops-nix";
+    # TODO: sops-nix: remove pr patch once merged
+    # https://github.com/Mic92/sops-nix/pull/779
+    sops-nix.url = "github:Mic92/sops-nix/pull/779/merge";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     # Home manager
