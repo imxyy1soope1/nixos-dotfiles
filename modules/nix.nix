@@ -4,6 +4,7 @@
   lib,
   pkgs,
   secrets,
+  username,
   ...
 }:
 lib.my.makeSwitch {
@@ -52,8 +53,11 @@ lib.my.makeSwitch {
     sops.secrets.nix-github-token = {
       sopsFile = secrets.nix-github-token;
       format = "binary";
+      owner = username;
+      group = "users";
+      mode = "0400";
     };
-    nix.extraOptions = ''
+    my.home.nix.extraOptions = ''
       !include ${config.sops.secrets.nix-github-token.path}
     '';
 
