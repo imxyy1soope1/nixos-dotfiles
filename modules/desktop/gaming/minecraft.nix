@@ -13,10 +13,8 @@ lib.my.makeSwitch {
     "minecraft"
   ];
   config' = {
-    my.home.home.packages = with pkgs; [
-      hmcl
-
-      openjdk21
+    my.home.home.packages = [
+      pkgs.hmcl
     ];
 
     my.persist.homeDirs = [

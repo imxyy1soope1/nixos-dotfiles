@@ -15,6 +15,7 @@ lib.my.makeSwitch {
       python.enable = true;
       rust.enable = true;
       lua.enable = true;
+      java.enable = true;
       qml.enable = true;
     };
   };

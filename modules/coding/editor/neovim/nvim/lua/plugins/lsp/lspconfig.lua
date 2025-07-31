@@ -9,6 +9,7 @@ local servers = {
   "cssls",
   "nixd",
   "html",
+  "java_language_server",
 }
 
 local extra_config = {
@@ -73,7 +74,6 @@ capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
 }
-local lspconfig = require("lspconfig")
 for _, server in ipairs(servers) do
   local extra = extra_config[server] or {}
   local config = {
@@ -82,5 +82,6 @@ for _, server in ipairs(servers) do
   for k, v in pairs(extra) do
     config[k] = v
   end
-  lspconfig[server].setup(config)
+  vim.lsp.config(server, config)
+  vim.lsp.enable(server)
 end

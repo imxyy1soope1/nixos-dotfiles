@@ -50,6 +50,8 @@ lib.my.makeHomeProgramConfig {
           typescript
           nodejs
 
+          java-language-server
+
           ripgrep
         ];
       };
