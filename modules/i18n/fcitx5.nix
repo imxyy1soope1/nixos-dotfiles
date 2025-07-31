@@ -106,17 +106,56 @@ lib.my.makeSwitch {
       (
         final: prev:
         lib.infuse prev (
-          lib.mergeAttrsList (
-            map
-              (pkg: {
-                ${pkg}.__input.commandLineArgs.__append = "--wayland-text-input-version=3";
-              })
-              [
-                "qq"
-                "vscodium"
-                "signal-desktop"
-              ]
-          )
+          lib.genAttrs
+            [
+              "qq"
+              "vscodium"
+              "signal-desktop"
+            ]
+            (_: {
+              __input.commandLineArgs.__append = "--wayland-text-input-version=3";
+            })
+        )
+      )
+      (
+        final: prev:
+        lib.mergeAttrsList (
+          map
+            (
+              { pkg, desktops }:
+              {
+
+                ${pkg} = final.stdenvNoCC.mkDerivation {
+                  pname = prev.${pkg}.pname;
+                  version = prev.${pkg}.version;
+                  src = prev.${pkg};
+                  installPhase =
+                    "cp -r . $out \n"
+                    + lib.concatLines (
+                      map (
+                        desktop:
+                        "substituteInPlace $out/share/applications/${desktop}.desktop --replace-fail 'Exec=' 'Exec=env QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx '"
+                      ) desktops
+                    );
+                };
+              }
+            )
+            [
+              {
+                pkg = "wechat";
+                desktops = [ "wechat" ];
+              }
+              {
+                pkg = "wpsoffice-cn";
+                desktops = map (app: "wps-office-${app}") [
+                  "et"
+                  "pdf"
+                  "prometheus"
+                  "wpp"
+                  "wps"
+                ];
+              }
+            ]
         )
       )
     ];
