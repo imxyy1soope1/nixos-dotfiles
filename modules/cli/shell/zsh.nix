@@ -78,7 +78,7 @@ lib.my.makeSwitch {
         };
         programs.zsh = {
           enable = true;
-          dotDir = ".config/zsh";
+          dotDir = "${config.my.home.xdg.configHome}/zsh";
           history = {
             path = "${stateHome}/zsh_history";
             ignorePatterns = [
