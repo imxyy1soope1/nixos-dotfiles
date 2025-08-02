@@ -42,6 +42,8 @@ lib.my.makeSwitch {
       dnsutils
 
       killall
+
+      comma
     ];
 
     programs.dconf.enable = true;
