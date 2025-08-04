@@ -30,8 +30,6 @@
 
     # Niri
     niri.url = "github:sodiboo/niri-flake";
-    niri.inputs.nixpkgs.follows = "nixpkgs";
-    niri.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
 
     darkly.url = "github:Bali10050/Darkly";
     darkly.inputs.nixpkgs.follows = "nixpkgs";
