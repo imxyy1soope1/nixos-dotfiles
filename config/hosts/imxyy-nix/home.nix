@@ -150,6 +150,8 @@
         ".config/dconf"
         ".config/pip"
         ".config/sunshine"
+
+        ".gemini"
       ];
     };
   };
