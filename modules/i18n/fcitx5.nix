@@ -18,7 +18,6 @@ lib.my.makeSwitch {
       fcitx5 = {
         addons = with pkgs; [
           fcitx5-chinese-addons # fcitx5-mozc
-          fluent-fcitx5
           fcitx5-lightly
         ];
         waylandFrontend = true;
@@ -105,16 +104,39 @@ lib.my.makeSwitch {
     nixpkgs.overlays = [
       (
         final: prev:
-        lib.infuse prev (
-          lib.genAttrs
+        lib.mergeAttrsList (
+          map
+            (
+              { pkg, exe }:
+              {
+
+                ${pkg} = final.stdenvNoCC.mkDerivation {
+                  pname = prev.${pkg}.pname;
+                  version = prev.${pkg}.version;
+                  src = prev.${pkg};
+                  nativeBuildInputs = [ final.makeWrapper ];
+                  installPhase = ''
+                    cp -r . $out
+                    mv $out/bin/${exe} $out/bin/.${exe}-old
+                    makeWrapper $out/bin/.${exe}-old $out/bin/${exe} --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--wayland-text-input-version=3}}"
+                  '';
+                };
+              }
+            )
             [
-              "qq"
-              "vscodium"
-              "signal-desktop"
+              {
+                pkg = "qq";
+                exe = "qq";
+              }
+              {
+                pkg = "vscodium";
+                exe = "codium";
+              }
+              {
+                pkg = "signal-desktop";
+                exe = "signal-desktop";
+              }
             ]
-            (_: {
-              __input.commandLineArgs.__append = "--wayland-text-input-version=3";
-            })
         )
       )
       (
