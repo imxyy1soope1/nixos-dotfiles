@@ -92,7 +92,7 @@ _: {
     node-type = "Audio/Source";
     format = "󰍬 {volume}%";
     tooltip = false;
-    format-muted = "󰍬 Muted";
+    format-muted = "󰍭 Muted";
     on-click = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
     on-click-middle = "pwvucontrol";
     scroll-step = 5;
