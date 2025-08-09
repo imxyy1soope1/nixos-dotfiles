@@ -49,6 +49,7 @@
     cli.all.enable = true;
     coding.all.enable = true;
     desktop.all.enable = true;
+    virt.moonlight.enable = true;
 
     i18n.fcitx5.enable = true;
 
