@@ -111,9 +111,12 @@ lib.my.makeSwitch {
               {
 
                 ${pkg} = final.stdenvNoCC.mkDerivation {
-                  pname = prev.${pkg}.pname;
-                  version = prev.${pkg}.version;
+                  inherit (prev.${pkg}) pname version;
                   src = prev.${pkg};
+                  phases = [
+                    "unpackPhase"
+                    "installPhase"
+                  ];
                   nativeBuildInputs = [ final.makeWrapper ];
                   installPhase = ''
                     cp -r . $out
@@ -148,9 +151,12 @@ lib.my.makeSwitch {
               {
 
                 ${pkg} = final.stdenvNoCC.mkDerivation {
-                  pname = prev.${pkg}.pname;
-                  version = prev.${pkg}.version;
+                  inherit (prev.${pkg}) pname version;
                   src = prev.${pkg};
+                  phases = [
+                    "unpackPhase"
+                    "installPhase"
+                  ];
                   installPhase =
                     "cp -r . $out \n"
                     + lib.concatLines (
