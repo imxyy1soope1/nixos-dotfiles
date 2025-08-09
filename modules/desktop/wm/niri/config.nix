@@ -175,7 +175,7 @@
               "play-pause"
             ];
           };
-          "Mod+XF86AudioRaiseVolume" = {
+          "Super+XF86AudioRaiseVolume" = {
             allow-when-locked = true;
             action.spawn = [
               "playerctl"
@@ -184,13 +184,46 @@
               "next"
             ];
           };
-          "Mod+XF86AudioLowerVolume" = {
+          "Super+XF86AudioLowerVolume" = {
             allow-when-locked = true;
             action.spawn = [
               "playerctl"
               "-i"
               "firefox,chromium,zen"
               "previous"
+            ];
+          };
+
+          "XF86MonBrightnessUp" = {
+            allow-when-locked = true;
+            action.spawn = [
+              "brightnessctl"
+              "set"
+              "+5%"
+            ];
+          };
+          "XF86MonBrightnessDown" = {
+            allow-when-locked = true;
+            action.spawn = [
+              "brightnessctl"
+              "set"
+              "5%-"
+            ];
+          };
+          "Alt+XF86AudioRaiseVolume" = {
+            allow-when-locked = true;
+            action.spawn = [
+              "brightnessctl"
+              "set"
+              "+5%"
+            ];
+          };
+          "Alt+XF86AudioLowerVolume" = {
+            allow-when-locked = true;
+            action.spawn = [
+              "brightnessctl"
+              "set"
+              "5%-"
             ];
           };
 

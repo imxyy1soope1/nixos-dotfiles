@@ -61,12 +61,16 @@ in
     };
     my.home = {
       home.packages = with pkgs; [
+        xwayland-satellite-unstable
+
         wlr-randr
         wl-clipboard
         cliphist
+        playerctl
+        brightnessctl
+
         swaynotificationcenter
         nemo-with-extensions
-        xwayland-satellite-unstable
       ];
       programs.wofi.enable = true;
       xdg.configFile."wofi" = {
