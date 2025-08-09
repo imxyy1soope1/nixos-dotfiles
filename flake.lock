@@ -98,6 +98,26 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754950929,
+        "narHash": "sha256-75hsUMshZ5ZlO/X2JWfZqKHPM66uhUNsDG/Zozwh/xs=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "45512611f1537c75e439d508409efc6901286645",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "chaotic": {
       "inputs": {
         "flake-schemas": "flake-schemas",
@@ -1031,6 +1051,7 @@
     },
     "root": {
       "inputs": {
+        "catppuccin": "catppuccin",
         "chaotic": "chaotic",
         "darkly": "darkly",
         "fenix": "fenix",

@@ -2,7 +2,6 @@ args@{
   lib,
   config,
   pkgs,
-  username,
   ...
 }:
 let
@@ -49,14 +48,9 @@ in
       package = pkg;
     };
     services.displayManager = {
-      autoLogin = {
-        enable = true;
-        user = username;
-      };
       sddm = {
         enable = true;
         wayland.enable = true;
-        autoLogin.relogin = true;
       };
     };
     my.home = {

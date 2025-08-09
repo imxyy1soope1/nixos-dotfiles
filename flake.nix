@@ -51,6 +51,9 @@
     zen.url = "github:0xc000022070/zen-browser-flake";
     zen.inputs.nixpkgs.follows = "nixpkgs";
 
+    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+
     infuse.url = "git+https://codeberg.org/amjoseph/infuse.nix";
     infuse.flake = false;
 
@@ -198,6 +201,7 @@
               inputs.impermanence.nixosModules.impermanence
               inputs.home-manager.nixosModules.default
               inputs.niri.nixosModules.niri
+              inputs.catppuccin.nixosModules.catppuccin
               home
               pkgsConf
             ];
