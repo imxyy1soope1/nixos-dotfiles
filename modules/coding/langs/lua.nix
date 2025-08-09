@@ -15,6 +15,8 @@ lib.my.makeSwitch {
   config' = {
     my.home.home.packages = with pkgs; [
       luajit
+      stylua
+      lua-language-server
     ];
   };
 }

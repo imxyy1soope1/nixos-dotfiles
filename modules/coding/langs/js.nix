@@ -16,8 +16,10 @@ lib.my.makeSwitch {
     my.home = {
       home.packages = with pkgs; [
         nodejs
-
         typescript
+
+        nodePackages.typescript-language-server
+        vue-language-server
       ];
       home.file.".npmrc".text = ''
         prefix = ''${HOME}/.npm-global

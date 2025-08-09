@@ -26,32 +26,9 @@ lib.my.makeHomeProgramConfig {
         vimAlias = true;
         vimdiffAlias = true;
         extraPackages = with pkgs; [
-          gcc
-          gnumake
+          gcc # treesitter
 
-          pyright
-
-          clang-tools
-
-          rust-analyzer
-          pest-ide-tools
-
-          nixd
-
-          gotools
-          gopls
-
-          stylua
-          lua-language-server
-
-          nodePackages.typescript-language-server
-          vue-language-server
-          typescript
-          nodejs
-
-          java-language-server
-
-          ripgrep
+          ripgrep # telescope
         ];
       };
     };

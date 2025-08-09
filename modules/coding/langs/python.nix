@@ -16,6 +16,7 @@ lib.my.makeHomePackageConfig {
   extraConfig = {
     my.home.home.packages = with pkgs; [
       uv
+      pyright
     ];
   };
 }

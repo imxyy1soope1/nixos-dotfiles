@@ -15,6 +15,7 @@ lib.my.makeSwitch {
   config' = {
     my.home.home.packages = with pkgs; [
       openjdk24
+      java-language-server
     ];
   };
 }

@@ -21,8 +21,11 @@ lib.my.makeSwitch {
           "rust-src"
           "rustc"
           "rustfmt"
+          "rust-analyzer"
         ])
         evcxr # rust repl
+
+        pest-ide-tools
       ];
       home.file.".cargo/config.toml".text = ''
         [source.crates-io]

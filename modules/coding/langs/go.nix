@@ -14,6 +14,10 @@ lib.my.makeHomePackageConfig {
     "go"
   ];
   extraConfig = {
+    my.home.home.packages = with pkgs; [
+      gotools
+      gopls
+    ];
     my.persist.homeDirs = [
       "go"
     ];
