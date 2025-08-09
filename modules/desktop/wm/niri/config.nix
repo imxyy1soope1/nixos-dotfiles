@@ -39,7 +39,7 @@
           { proportion = 0.6; }
           { proportion = 0.66667; }
         ];
-        default-column-width.proportion = 0.4;
+        default-column-width.proportion = 1.0;
         background-color = "transparent";
       };
 
