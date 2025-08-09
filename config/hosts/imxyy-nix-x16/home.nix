@@ -122,6 +122,13 @@
         ".config/dconf"
         ".config/pip"
         ".config/sunshine"
+
+        ".gemini"
+        ".claude"
+        ".claude-code-router"
+      ];
+      homeFiles = [
+        ".claude.json"
       ];
     };
   };
