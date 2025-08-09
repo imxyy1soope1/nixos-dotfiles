@@ -17,6 +17,7 @@
 
       ayugram-desktop
       signal-desktop
+      element-desktop
       qq
       wechat
 
@@ -116,6 +117,7 @@
 
         ".local/share/AyuGramDesktop"
         ".config/Signal"
+        ".config/Element"
         ".config/QQ"
         ".xwechat"
 

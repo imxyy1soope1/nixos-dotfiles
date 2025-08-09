@@ -43,6 +43,7 @@ in
         xdg-desktop-portal-gnome
       ];
     };
+    services.gnome.gnome-keyring.enable = true;
     programs.niri = {
       enable = true;
       package = pkg;
