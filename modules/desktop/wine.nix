@@ -6,7 +6,6 @@
 }:
 lib.my.makeSwitch {
   inherit config;
-  default = true;
   optionName = "wine";
   optionPath = [
     "desktop"
