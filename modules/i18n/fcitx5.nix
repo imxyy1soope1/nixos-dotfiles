@@ -107,7 +107,11 @@ lib.my.makeSwitch {
         lib.mergeAttrsList (
           map
             (
-              { pkg, exe }:
+              {
+                pkg,
+                exe,
+                desktop,
+              }:
               {
 
                 ${pkg} = final.stdenvNoCC.mkDerivation {
@@ -120,8 +124,8 @@ lib.my.makeSwitch {
                   nativeBuildInputs = [ final.makeWrapper ];
                   installPhase = ''
                     cp -r . $out
-                    mv $out/bin/${exe} $out/bin/.${exe}-old
-                    makeWrapper $out/bin/.${exe}-old $out/bin/${exe} --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--wayland-text-input-version=3}}"
+                    substituteInPlace $out/share/applications/${desktop}.desktop --replace-quiet "${prev.${pkg}}" $out
+                    wrapProgram $out/bin/${exe} --add-flags "--wayland-text-input-version=3"
                   '';
                 };
               }
@@ -130,14 +134,17 @@ lib.my.makeSwitch {
               {
                 pkg = "qq";
                 exe = "qq";
+                desktop = "qq";
               }
               {
                 pkg = "vscodium";
                 exe = "codium";
+                desktop = "codium";
               }
               {
                 pkg = "signal-desktop";
                 exe = "signal-desktop";
+                desktop = "signal";
               }
             ]
         )
