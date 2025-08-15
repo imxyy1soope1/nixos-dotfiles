@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  secrets,
   ...
 }:
 lib.my.makeSwitch {
@@ -19,7 +20,11 @@ lib.my.makeSwitch {
           playerctl
           go-musicfox
         ];
-        xdg.configFile."go-musicfox/go-musicfox.ini".source = ./go-musicfox.ini;
+        sops.secrets.go-musicfox = {
+          sopsFile = secrets."go-musicfox.ini";
+          format = "binary";
+          path = "${config.my.home.xdg.configHome}/go-musicfox/go-musicfox.ini";
+        };
       };
 
       cli.media.mpd.enable = true;

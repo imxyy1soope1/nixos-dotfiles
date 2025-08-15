@@ -3,7 +3,7 @@ keys:
   - &imxyy-nix-server ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB28jpN+h5euh3NtdN+A+EtqgIatC22e4i1TPTioKire
   - &imxyy-nix-x16 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMb5G/ieEYBOng66YeyttBQLThyM6W//z2POsNyq4Rw/
 creation_rules:
-  - path_regex: secrets/.*\.(yaml|toml|json|env|dae|txt|conf)$
+  - path_regex: secrets/.*\..*
     key_groups:
       - age:
         - *imxyy-nix

@@ -477,11 +477,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751817769,
-        "narHash": "sha256-j7ORyAJFNxYWwF+6fs2z5IcJ40TpVwrkFYU9/CGHwfA=",
+        "lastModified": 1755219990,
+        "narHash": "sha256-/znXwik9nC9TY6dwq0SR60MAi9IEZi2InRSRjfhKu1s=",
         "owner": "imxyy1soope1",
         "repo": "go-musicfox",
-        "rev": "179b9440b6f209e7fd6ade589117b72bdd9042a6",
+        "rev": "938c4d6bb2a318bc6251f3b11fa8cf54d29b4419",
         "type": "github"
       },
       "original": {
