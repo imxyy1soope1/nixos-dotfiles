@@ -378,6 +378,20 @@
         }
 
         {
+          name = "matrix-root-http";
+          type = "http";
+          localIP = "127.0.0.1";
+          localPort = 80;
+          customDomains = [ "imxyy.top" ];
+        }
+        {
+          name = "matrix-root-https";
+          type = "https";
+          localIP = "127.0.0.1";
+          localPort = 443;
+          customDomains = [ "imxyy.top" ];
+        }
+        {
           name = "matrix-http";
           type = "http";
           localIP = "127.0.0.1";
@@ -390,6 +404,13 @@
           localIP = "127.0.0.1";
           localPort = 443;
           customDomains = [ "matrix.imxyy.top" ];
+        }
+        {
+          name = "matrix-fed";
+          type = "tcp";
+          localIP = "127.0.0.1";
+          localPort = 8448;
+          remotePort = 8448;
         }
 
         {

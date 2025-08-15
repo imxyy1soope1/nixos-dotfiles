@@ -1,45 +1,68 @@
 {
-  services.matrix-synapse = {
+  config,
+  secrets,
+  ...
+}:
+{
+  sops.secrets.tuwunel-reg-token = {
+    sopsFile = secrets.tuwunel-reg-token;
+    format = "binary";
+    owner = config.services.matrix-tuwunel.user;
+    group = config.services.matrix-tuwunel.group;
+  };
+  services.matrix-tuwunel = {
     enable = true;
-    settings = {
-      server_name = "matrix.imxyy.top";
-      public_baseurl = "https://matrix.imxyy.top";
-      listeners = [
-        {
-          port = 8094;
-          bind_addresses = [ "127.0.0.1" ];
-          type = "http";
-          tls = false;
-          x_forwarded = true;
-          resources = [
-            {
-              names = [
-                "client"
-                "federation"
-              ];
-              compress = true;
-            }
-          ];
-        }
-      ];
-      turn_uris = [ "turns:vkvm.imxyy.top:5349" ];
-      turn_shared_secret = "ac779a48c03bb451839569d295a29aa6ab8c264277bec2df9c9c7f5e22936288";
-      turn_user_lifetime = "1h";
-      database_type = "psycopg2";
-      database_args.database = "matrix-synapse";
+    settings.global = {
+      address = [ "127.0.0.1" ];
+      port = [ 8094 ];
+      server_name = "imxyy.top";
+      allow_registration = true;
+      registration_token_file = config.sops.secrets.tuwunel-reg-token.path;
     };
-    extraConfigFiles = [
-      "/var/lib/matrix-synapse/secret"
-    ];
+  };
+  services.caddy.virtualHosts."imxyy.top" = {
+    extraConfig = ''
+      handle /.well-known/matrix/client {
+        header Content-Type application/json
+        header "Access-Control-Allow-Origin" "*"
+
+        respond `{"m.homeserver": {"base_url": "https://matrix.imxyy.top"}}` 200
+      }
+    '';
+  };
+  services.caddy.virtualHosts."imxyy.top:8448" = {
+    extraConfig = ''
+      reverse_proxy :8094
+
+      handle /.well-known/matrix/client {
+        header Content-Type application/json
+        header "Access-Control-Allow-Origin" "*"
+
+        respond `{"m.homeserver": {"base_url": "https://matrix.imxyy.top"}}` 200
+      }
+    '';
   };
   services.caddy.virtualHosts."matrix.imxyy.top" = {
     extraConfig = ''
       reverse_proxy :8094
-      handle_path /_matrix {
-        reverse_proxy :8094
+
+      handle /.well-known/matrix/client {
+        header Content-Type application/json
+        header "Access-Control-Allow-Origin" "*"
+
+        respond `{"m.homeserver": {"base_url": "https://matrix.imxyy.top"}}` 200
       }
-      handle_path /_synapse/client {
-        reverse_proxy :8094
+    '';
+  };
+  services.caddy.virtualHosts."matrix.imxyy.top:8448" = {
+    extraConfig = ''
+      reverse_proxy :8094
+
+      handle /.well-known/matrix/client {
+        header Content-Type application/json
+        header "Access-Control-Allow-Origin" "*"
+
+        respond `{"m.homeserver": {"base_url": "https://matrix.imxyy.top"}}` 200
       }
     '';
   };
