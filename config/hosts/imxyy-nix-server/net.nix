@@ -405,13 +405,6 @@
           localPort = 443;
           customDomains = [ "matrix.imxyy.top" ];
         }
-        {
-          name = "matrix-fed";
-          type = "tcp";
-          localIP = "127.0.0.1";
-          localPort = 8448;
-          remotePort = 8448;
-        }
 
         {
           name = "immich-http";
