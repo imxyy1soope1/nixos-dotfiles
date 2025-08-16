@@ -435,14 +435,6 @@
           localPort = 443;
           customDomains = [ "memo.imxyy.top" ];
         }
-
-        {
-          name = "minecraft";
-          type = "tcp";
-          localIP = "127.0.0.1";
-          localPort = 25565;
-          remotePort = 25565;
-        }
       ];
     };
   };
