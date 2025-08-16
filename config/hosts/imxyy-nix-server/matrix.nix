@@ -10,6 +10,12 @@
     owner = config.services.matrix-tuwunel.user;
     group = config.services.matrix-tuwunel.group;
   };
+  sops.secrets.tuwunel-turn-secret = {
+    sopsFile = secrets.tuwunel-turn-secret;
+    format = "binary";
+    owner = config.services.matrix-tuwunel.user;
+    group = config.services.matrix-tuwunel.group;
+  };
   services.matrix-tuwunel = {
     enable = true;
     settings.global = {
@@ -22,6 +28,11 @@
         server = "matrix.imxyy.top:443";
         client = "https://matrix.imxyy.top";
       };
+      turn_uris = [
+        "turn:hk.vkvm.imxyy.top?transport=udp"
+        "turn:hk.vkvm.imxyy.top?transport=tcp"
+      ];
+      turn_secret_file = config.sops.secrets.tuwunel-turn-secret.path;
     };
   };
   services.caddy.virtualHosts."imxyy.top" = {
