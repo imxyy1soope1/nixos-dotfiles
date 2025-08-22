@@ -82,7 +82,7 @@
           opacity = 0.8;
         }
         {
-          matches = [ { app-id = "org.gnome.Nautilus|nemo"; } ];
+          matches = [ { app-id = "org.gnome.Nautilus"; } ];
           opacity = 0.6;
         }
       ];
@@ -136,7 +136,7 @@
             "kitty"
           ];
           "Mod+G".action.spawn = [ "zen-beta" ];
-          "Mod+E".action.spawn = [ "nemo" ];
+          "Mod+E".action.spawn = [ "nautilus" ];
           "Mod+R".action.spawn = [
             "sh"
             "-c"

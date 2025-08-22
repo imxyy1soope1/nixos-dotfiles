@@ -64,7 +64,7 @@
           imageviewer = [ "org.gnome.Shotwell-Viewer.desktop" ];
         in
         {
-          "inode/directory" = [ "nemo.desktop" ];
+          "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
 
           "application/pdf" = [ "org.gnome.Evince.desktop" ];
 
