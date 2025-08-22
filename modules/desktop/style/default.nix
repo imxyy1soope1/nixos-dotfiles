@@ -48,13 +48,17 @@ lib.my.makeSwitch {
       gtk = {
         enable = true;
         theme = {
-          package = pkgs.mono-gtk-theme;
-          name = "MonoThemeDark";
+          package = pkgs.gnome-themes-extra;
+          name = "Adwaita";
         };
         gtk2 = {
           configLocation = "${config.my.home.xdg.configHome}/gtk-2.0/gtkrc";
         };
         gtk3 = {
+          theme = {
+            package = pkgs.adw-gtk3;
+            name = "adw-gtk3";
+          };
           extraConfig = {
             gtk-decoration-layout = ":none";
             gtk-application-prefer-dark-theme = 1;
