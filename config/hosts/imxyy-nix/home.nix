@@ -18,6 +18,7 @@
       ayugram-desktop
       signal-desktop
       element-desktop
+      fractal
       qq
       wechat
 
@@ -143,6 +144,7 @@
         ".local/share/Kingsoft"
 
         ".local/share/AyuGramDesktop"
+        ".local/share/fractal"
         ".config/Signal"
         ".config/Element"
         ".config/QQ"
