@@ -131,6 +131,8 @@ in
   programs.wireshark.package = pkgs.wireshark;
   users.users.${username}.extraGroups = [ "wireshark" ];
 
+  virtualisation.waydroid.enable = true;
+
   services.sunshine = {
     enable = true;
     autoStart = true;

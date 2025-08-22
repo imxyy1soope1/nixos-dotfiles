@@ -69,6 +69,7 @@
           chain input {
             type filter hook input priority 0; policy drop;
             iif lo accept
+            iifname waydroid0 accept
             ct state invalid drop
             ct state established,related accept
 
@@ -78,6 +79,9 @@
 
           chain forward {
             type filter hook forward priority 0; policy drop;
+
+            iifname waydroid0 accept
+            oifname waydroid0 accept
           }
         }
       '';
