@@ -7,6 +7,8 @@ local buf_kill = globals.buf_kill
 
 keymap.set("v", "<S-pageup>", ":m '<-2<CR>gv=gv", opt)
 keymap.set("v", "<S-pagedown>", ":m '>+1<CR>gv=gv", opt)
+keymap.set({ "i", "n", "v" }, "<S-up>", "<up>", opt)
+keymap.set({ "i", "n", "v" }, "<S-down>", "<down>", opt)
 
 keymap.set("n", "<leader>nh", ":nohl<CR>", opt)
 
