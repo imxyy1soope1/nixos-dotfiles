@@ -36,8 +36,6 @@ lib.my.makeSwitch {
     nix.settings = {
       # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
-      # Deduplicate and optimize nix store
-      auto-optimise-store = true;
       substituters = [
         "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
         "https://mirror.sjtu.edu.cn/nix-channels/store"
