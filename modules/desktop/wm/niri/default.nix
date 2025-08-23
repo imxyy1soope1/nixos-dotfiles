@@ -38,6 +38,8 @@ in
         xdg-desktop-portal-gnome
       ];
     };
+    systemd.user.services.niri-flake-polkit.serviceConfig.ExecStart =
+      lib.mkForce "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
     services.gnome.gnome-keyring.enable = true;
     programs.niri = {
       enable = true;
