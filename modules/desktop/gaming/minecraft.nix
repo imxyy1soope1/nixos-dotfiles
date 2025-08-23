@@ -14,15 +14,17 @@ lib.my.makeSwitch {
   ];
   config' = {
     my.home.home.packages = [
-      pkgs.hmcl
+      (pkgs.hmcl.overrideAttrs {
+        postFixup = ''
+          substituteInPlace $out/share/applications/HMCL.desktop --replace-fail 'Exec=hmcl' 'Exec=sh -c "cd ~/.local/share/hmcl; hmcl"'
+        '';
+      })
+      pkgs.xmcl
     ];
 
     my.persist.homeDirs = [
       ".minecraft"
       ".local/share/hmcl"
-    ];
-    my.persist.homeFiles = [
-      ".hmcl.json"
     ];
   };
 }
