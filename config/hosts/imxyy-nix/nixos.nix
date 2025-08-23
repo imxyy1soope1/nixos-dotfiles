@@ -111,16 +111,22 @@ in
 
   services.keyd = {
     enable = true;
-    keyboards.default.settings = {
-      main = {
-        capslock = "overload(control, esc)";
-        home = "end";
+    keyboards = {
+      default.settings = {
+        main = {
+          capslock = "overload(control, esc)";
+          home = "end";
+        };
+        shift = {
+          home = "home";
+        };
+        control = {
+          delete = "print";
+        };
       };
-      shift = {
-        home = "home";
-      };
-      control = {
-        delete = "print";
+      kone-pro-owl-eye = {
+        ids = [ "1e7d:2dcd" ];
+        settings.main.mouse2 = "rightmouse";
       };
     };
   };
