@@ -156,6 +156,8 @@
         ".config/sunshine"
 
         ".gemini"
+        ".claude"
+        ".claude-code-router"
       ];
     };
   };
