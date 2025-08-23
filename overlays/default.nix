@@ -59,6 +59,4 @@
       config.allowUnfree = true;
     };
   };
-
-  nur-packages = inputs.nur.overlays.default;
 }

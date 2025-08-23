@@ -3,7 +3,7 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.05";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     # nixpkgs.follows = "nixpkgs-stable";
@@ -24,9 +24,6 @@
 
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
-
-    # NUR
-    nur.url = "github:nix-community/NUR";
 
     # Niri
     niri.url = "github:sodiboo/niri-flake";
