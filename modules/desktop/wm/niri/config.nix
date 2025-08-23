@@ -63,6 +63,10 @@
           matches = [ { namespace = "^wallpaper$"; } ];
           place-within-backdrop = true;
         }
+        {
+          matches = [ { namespace = "^waybar$"; } ];
+          opacity = 0.99;
+        }
       ];
       overview.workspace-shadow.enable = false;
 
