@@ -2,12 +2,12 @@
   stdenvNoCC,
   fetchurl,
 }:
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "wps-office-fonts";
   version = "1.0";
 
   src = fetchurl {
-    url = "https://github.com/Universebenzene/wps-office-fonts/archive/refs/tags/v${version}.tar.gz";
+    url = "https://github.com/Universebenzene/wps-office-fonts/archive/refs/tags/v${finalAttrs.version}.tar.gz";
     sha256 = "db01fc07324115b181cb06f50dfe09fd17feee132c46423ee70b260830211224";
   };
 
@@ -29,4 +29,4 @@ stdenvNoCC.mkDerivation rec {
     description = "The wps-office-fonts package contains Founder Chinese fonts";
     homepage = "https://github.com/Universebenzene/wps-office-fonts";
   };
-}
+})

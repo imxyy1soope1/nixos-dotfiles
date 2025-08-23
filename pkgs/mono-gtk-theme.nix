@@ -12,7 +12,7 @@ stdenvNoCC.mkDerivation {
     owner = "witalihirsch";
     repo = "Mono-gtk-theme";
     rev = "89fa83a14b4e26c5b8fc4dbfa5558a7df704d5a4";
-    sha256 = "sha256-NaZgOOo5VVTlEand3qWryZ5ceNmyHaEt0aeT7j/KwvE=";
+    hash = "sha256-NaZgOOo5VVTlEand3qWryZ5ceNmyHaEt0aeT7j/KwvE=";
   };
 
   phases = [
