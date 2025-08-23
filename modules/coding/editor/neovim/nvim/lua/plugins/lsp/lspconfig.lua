@@ -36,7 +36,7 @@ local extra_config = {
   },
   rust_analyzer = {
     settings = {
-      rust_analyzer = {
+      ["rust-analyzer"] = {
         check = {
           command = "clippy",
         },
