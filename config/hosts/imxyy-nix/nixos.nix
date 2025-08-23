@@ -138,6 +138,7 @@ in
   users.users.${username}.extraGroups = [ "wireshark" ];
 
   virtualisation.waydroid.enable = true;
+  my.persist.homeDirs = [ ".local/share/waydroid" ];
 
   services.sunshine = {
     enable = true;
