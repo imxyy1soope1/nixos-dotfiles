@@ -32,6 +32,10 @@
             relative-to = "workspace-view";
           };
         };
+        insert-hint = {
+          enable = true;
+          display.color = "rgba(42, 44, 54, 0.5)";
+        };
         preset-column-widths = [
           { proportion = 0.33333; }
           { proportion = 0.4; }
