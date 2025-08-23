@@ -1,7 +1,6 @@
 _: {
   layer = "top";
   position = "top";
-  mod = "dock";
   exclusive = true;
   passthrough = false;
   gtk-layer-shell = true;
