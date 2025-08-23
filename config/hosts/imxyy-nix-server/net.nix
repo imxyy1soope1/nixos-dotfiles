@@ -303,21 +303,6 @@
         }
 
         {
-          name = "music-http";
-          type = "http";
-          localIP = "127.0.0.1";
-          localPort = 80;
-          customDomains = [ "music.imxyy.top" ];
-        }
-        {
-          name = "music-https";
-          type = "https";
-          localIP = "127.0.0.1";
-          localPort = 443;
-          customDomains = [ "music.imxyy.top" ];
-        }
-
-        {
           name = "ai-http";
           type = "http";
           localIP = "127.0.0.1";
@@ -345,21 +330,6 @@
           localIP = "127.0.0.1";
           localPort = 443;
           customDomains = [ "grafana.imxyy.top" ];
-        }
-
-        {
-          name = "note-http";
-          type = "http";
-          localIP = "127.0.0.1";
-          localPort = 80;
-          customDomains = [ "note.imxyy.top" ];
-        }
-        {
-          name = "note-https";
-          type = "https";
-          localIP = "127.0.0.1";
-          localPort = 443;
-          customDomains = [ "note.imxyy.top" ];
         }
 
         {
@@ -533,9 +503,10 @@
 
   systemd.services.ddns-go =
     let
-      ddns-go = pkgs.buildGoModule rec {
+      version = "6.6.7";
+      ddns-go = pkgs.buildGoModule {
+        inherit version;
         pname = "ddns-go";
-        version = "6.6.7";
         src = pkgs.fetchFromGitHub {
           owner = "jeessy2";
           repo = "ddns-go";
