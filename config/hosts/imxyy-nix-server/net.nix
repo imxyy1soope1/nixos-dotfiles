@@ -148,7 +148,10 @@
     enable = true;
     configFile = config.sops.secrets.dae-imxyy-nix-server.path;
   };
-  systemd.services.dae.after = [ "sops-nix.service" ];
+  systemd.services.dae = {
+    after = [ "sops-nix.service" ];
+    serviceConfig.MemoryMax = "1G";
+  };
   sops.secrets.mihomo = {
     sopsFile = secrets.mihomo;
     format = "yaml";
@@ -558,16 +561,15 @@
       enable = true;
       resolveLocalQueries = false;
       settings = {
-        server = [
-          "120.53.53.53"
-          "223.5.5.5"
-        ];
+        no-resolv = true;
+        server = [ "192.168.3.1" ];
         address = map (sub: "/${sub}.imxyy.top/192.168.3.2") subDomains ++ [
           "/imxyy-nix-server/192.168.3.2"
           "/imxyy-cloudwin/192.168.3.4"
           "/printer.home/192.168.3.53"
         ];
         cache-size = 0;
+        log-queries = "extra";
       };
     };
 }
