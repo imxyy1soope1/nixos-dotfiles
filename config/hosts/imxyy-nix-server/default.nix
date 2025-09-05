@@ -24,5 +24,6 @@
     ./immich.nix
 
     ./efl.nix
+    ./plant.nix
   ];
 }

@@ -48,6 +48,9 @@
     zen.url = "github:0xc000022070/zen-browser-flake";
     zen.inputs.nixpkgs.follows = "nixpkgs";
 
+    plant.url = "git+ssh://git@git.imxyy.top:2222/imxyy1soope1/HF-plant.git?rev=08dc0b3889797eb3618c7475c3c367ec0e5fdf40";
+    plant.flake = false;
+
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 

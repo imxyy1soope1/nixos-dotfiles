@@ -993,6 +993,23 @@
         "type": "github"
       }
     },
+    "plant": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1758423341,
+        "narHash": "sha256-dHcKh7T8I70bKPwgqO5MxZ9bWHINwzRPhFp5waQy2r8=",
+        "ref": "refs/heads/master",
+        "rev": "08dc0b3889797eb3618c7475c3c367ec0e5fdf40",
+        "revCount": 6,
+        "type": "git",
+        "url": "ssh://git@git.imxyy.top:2222/imxyy1soope1/HF-plant.git"
+      },
+      "original": {
+        "rev": "08dc0b3889797eb3618c7475c3c367ec0e5fdf40",
+        "type": "git",
+        "url": "ssh://git@git.imxyy.top:2222/imxyy1soope1/HF-plant.git"
+      }
+    },
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
@@ -1012,6 +1029,7 @@
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "plant": "plant",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "zen": "zen"
