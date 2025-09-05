@@ -208,20 +208,6 @@
           localPort = 443;
           customDomains = [ "oidc.imxyy.top" ];
         }
-        {
-          name = "headscale-http";
-          type = "http";
-          localIP = "127.0.0.1";
-          localPort = 80;
-          customDomains = [ "headscale.imxyy.top" ];
-        }
-        {
-          name = "headscale-https";
-          type = "https";
-          localIP = "127.0.0.1";
-          localPort = 443;
-          customDomains = [ "headscale.imxyy.top" ];
-        }
 
         {
           name = "mail-http";
@@ -441,45 +427,6 @@
     };
   };
 
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "both";
-    extraSetFlags = [ "--accept-dns=false" ];
-  };
-  services.headscale = {
-    enable = true;
-    address = "0.0.0.0";
-    port = 8080;
-    settings = {
-      logtail.enabled = false;
-      server_url = "https://headscale.imxyy.top";
-      dns.magic_dns = false;
-      dns.override_local_dns = false;
-      ip_prefixes = "100.64.0.0/10";
-
-      oidc = {
-        only_start_if_oidc_is_available = true;
-        issuer = "https://oidc.imxyy.top";
-        client_id = "https://headscale.imxyy.top";
-        allowed_domains = [
-          "imxyy.top"
-          "*.imxyy.top"
-        ];
-        client_secret = "";
-        expiry = 0;
-        extra_params.domain_hint = "imxyy.top";
-      };
-    };
-  };
-  systemd.services."headscale" = {
-    after = [
-      "podman-obligator.service"
-    ];
-    requires = [
-      "podman-obligator.service"
-    ];
-  };
-
   sops.secrets.et-imxyy-nix-server = {
     sopsFile = secrets.et-imxyy-nix-server;
     format = "binary";
@@ -517,13 +464,6 @@
       "-port"
       "1616"
     ];
-  };
-  services.caddy.virtualHosts."headscale.imxyy.top" = {
-    extraConfig = ''
-      reverse_proxy :8080 {
-        header_up X-Real-IP {remote_host}
-      }
-    '';
   };
   services.caddy.virtualHosts."oidc.imxyy.top" = {
     extraConfig = ''
@@ -573,7 +513,6 @@
         "git"
         "vault"
         "coder"
-        "headscale"
         "grafana"
         "matrix"
         "note"
