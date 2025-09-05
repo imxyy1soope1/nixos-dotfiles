@@ -16,6 +16,8 @@
         TUWUNEL_SERVER_NAME = "mtx.eflx.top";
         TUWUNEL_PORT = "6167";
         TUWUNEL_ADDRESS = "0.0.0.0";
+        TUWUNEL_WELL_KNOWN__SERVER = "mtx.eflx.top:443";
+        TUWUNEL_WELL_KNOWN__CLIENT = "https://mtx.eflx.top";
       };
       environmentFiles = [
         config.sops.secrets.efl-tuwunel-env.path
