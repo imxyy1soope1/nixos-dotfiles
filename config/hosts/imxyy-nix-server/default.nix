@@ -22,5 +22,7 @@
     ./minio.nix
     ./build.nix
     ./immich.nix
+
+    ./efl.nix
   ];
 }

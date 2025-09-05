@@ -408,6 +408,35 @@
           localPort = 443;
           customDomains = [ "memo.imxyy.top" ];
         }
+
+        {
+          name = "efl-matrix-http";
+          type = "http";
+          localIP = "127.0.0.1";
+          localPort = 80;
+          customDomains = [ "mtx.eflx.top" ];
+        }
+        {
+          name = "efl-matrix-https";
+          type = "https";
+          localIP = "127.0.0.1";
+          localPort = 443;
+          customDomains = [ "mtx.eflx.top" ];
+        }
+        {
+          name = "efl-send-http";
+          type = "http";
+          localIP = "127.0.0.1";
+          localPort = 80;
+          customDomains = [ "send.eflx.top" ];
+        }
+        {
+          name = "efl-send-https";
+          type = "https";
+          localIP = "127.0.0.1";
+          localPort = 443;
+          customDomains = [ "send.eflx.top" ];
+        }
       ];
     };
   };
@@ -553,7 +582,6 @@
         "music"
         "ai"
         "sy"
-        "minio"
         "immich"
       ];
     in
