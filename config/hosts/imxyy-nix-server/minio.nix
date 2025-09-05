@@ -16,11 +16,4 @@
     ];
     rootCredentialsFile = config.sops.secrets.minio-env.path;
   };
-  services.caddy.virtualHosts."minio.imxyy.top" = {
-    extraConfig = ''
-      handle_path /* {
-          reverse_proxy :9000
-      }
-    '';
-  };
 }
