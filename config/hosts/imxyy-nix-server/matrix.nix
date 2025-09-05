@@ -33,6 +33,8 @@
       allow_registration = true;
       registration_token_file = config.sops.secrets.tuwunel-reg-token.path;
 
+      suppress_push_when_active = true;
+
       turn_uris = [
         "turn:hk.vkvm.imxyy.top?transport=udp"
         "turn:hk.vkvm.imxyy.top?transport=tcp"
