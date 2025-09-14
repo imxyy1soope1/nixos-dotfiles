@@ -11,7 +11,7 @@
       wpsoffice-cn
       wps-office-fonts
       ttf-wps-fonts
-      evince
+      papers
 
       anki
 
@@ -66,7 +66,7 @@
         {
           "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
 
-          "application/pdf" = [ "org.gnome.Evince.desktop" ];
+          "application/pdf" = [ "org.gnome.Papers.desktop" ];
 
           "text/*" = editor;
           "application/json" = editor;
