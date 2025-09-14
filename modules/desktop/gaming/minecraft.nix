@@ -19,7 +19,6 @@ lib.my.makeSwitch {
           substituteInPlace $out/share/applications/HMCL.desktop --replace-fail 'Exec=hmcl' 'Exec=sh -c "cd ~/.local/share/hmcl; hmcl"'
         '';
       })
-      pkgs.xmcl
     ];
 
     my.persist.homeDirs = [
