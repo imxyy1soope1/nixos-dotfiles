@@ -30,6 +30,8 @@ opt.timeoutlen = 500
 
 opt.completeopt = ""
 
+opt.exrc = true
+
 opt.autoread = true
 vim.g.autoread = true
 
