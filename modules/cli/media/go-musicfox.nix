@@ -15,7 +15,7 @@ lib.my.makeSwitch {
   ];
   config' = {
     my = {
-      home = {
+      hm = {
         home.packages = with pkgs; [
           playerctl
           go-musicfox
@@ -23,7 +23,7 @@ lib.my.makeSwitch {
         sops.secrets.go-musicfox = {
           sopsFile = secrets."go-musicfox.ini";
           format = "binary";
-          path = "${config.my.home.xdg.configHome}/go-musicfox/go-musicfox.ini";
+          path = "${config.my.hm.xdg.configHome}/go-musicfox/go-musicfox.ini";
         };
       };
 

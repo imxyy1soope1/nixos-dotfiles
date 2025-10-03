@@ -13,7 +13,7 @@ lib.my.makeHomeProgramConfig {
     "chromium"
   ];
   extraConfig = {
-    my.home.programs.chromium = {
+    my.hm.programs.chromium = {
       package = pkgs.ungoogled-chromium;
       extensions = [
         {

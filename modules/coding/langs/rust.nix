@@ -13,7 +13,7 @@ lib.my.makeSwitch {
     "rust"
   ];
   config' = {
-    my.home = {
+    my.hm = {
       home.packages = with pkgs; [
         (fenix.stable.withComponents [
           "cargo"

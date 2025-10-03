@@ -51,7 +51,7 @@ in
         wayland.enable = true;
       };
     };
-    my.home = {
+    my.hm = {
       home.packages = with pkgs; [
         xwayland-satellite-unstable
 

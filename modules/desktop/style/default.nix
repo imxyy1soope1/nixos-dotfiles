@@ -25,7 +25,7 @@ lib.my.makeSwitch {
       };
     };
 
-    my.home = {
+    my.hm = {
       stylix = {
         enable = true;
         autoEnable = false;
@@ -52,7 +52,7 @@ lib.my.makeSwitch {
           name = "Adwaita";
         };
         gtk2 = {
-          configLocation = "${config.my.home.xdg.configHome}/gtk-2.0/gtkrc";
+          configLocation = "${config.my.hm.xdg.configHome}/gtk-2.0/gtkrc";
         };
         gtk3 = {
           theme = {

@@ -8,7 +8,7 @@ lib.my.makeHomeProgramConfig {
     "alacritty"
   ];
   extraConfig = {
-    my.home.programs.alacritty.settings = {
+    my.hm.programs.alacritty.settings = {
       general.import = [ ./tokyonight-storm.toml ];
       cursor.style = {
         shape = "Block";

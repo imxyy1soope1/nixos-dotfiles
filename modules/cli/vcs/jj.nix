@@ -16,7 +16,7 @@ lib.my.makeHomeProgramConfig {
     "jj"
   ];
   extraConfig = {
-    my.home = {
+    my.hm = {
       programs.jujutsu = {
         settings = {
           user = {

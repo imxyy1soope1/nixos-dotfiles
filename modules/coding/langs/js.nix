@@ -13,7 +13,7 @@ lib.my.makeSwitch {
     "js"
   ];
   config' = {
-    my.home = {
+    my.hm = {
       home.packages = with pkgs; [
         nodejs
         typescript

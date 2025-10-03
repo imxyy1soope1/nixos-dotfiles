@@ -8,7 +8,7 @@ lib.my.makeHomeProgramConfig {
     "foot"
   ];
   extraConfig = {
-    my.home.programs.foot = {
+    my.hm.programs.foot = {
       server.enable = true;
       settings = {
         main = {

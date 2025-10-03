@@ -15,9 +15,9 @@ lib.my.makeSwitch {
   ];
   config' = {
     my.persist.homeDirs = [ ".local/share/zoxide" ];
-    my.home =
+    my.hm =
       let
-        stateHome = config.my.home.xdg.stateHome;
+        stateHome = config.my.hm.xdg.stateHome;
         zsh-syntax-highlighting = pkgs.fetchFromGitHub {
           owner = "zsh-users";
           repo = "zsh-syntax-highlighting";
@@ -78,7 +78,7 @@ lib.my.makeSwitch {
         };
         programs.zsh = {
           enable = true;
-          dotDir = "${config.my.home.xdg.configHome}/zsh";
+          dotDir = "${config.my.hm.xdg.configHome}/zsh";
           history = {
             path = "${stateHome}/zsh_history";
             ignorePatterns = [

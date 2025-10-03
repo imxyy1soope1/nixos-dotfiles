@@ -8,7 +8,7 @@ lib.my.makeHomeProgramConfig {
     "ghostty"
   ];
   extraConfig = {
-    my.home.programs.ghostty = {
+    my.hm.programs.ghostty = {
       enableBashIntegration = true;
       enableZshIntegration = true;
       installBatSyntax = true;

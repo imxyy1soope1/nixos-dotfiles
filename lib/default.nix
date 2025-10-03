@@ -36,7 +36,7 @@
       optionName = packageName;
       config' = lib.mkMerge [
         {
-          my.home.home.packages = [ (lib.getAttrFromPath packagePath pkgs) ];
+          my.hm.home.packages = [ (lib.getAttrFromPath packagePath pkgs) ];
         }
         extraConfig
       ];
@@ -55,7 +55,7 @@
 
       config' = lib.mkMerge [
         {
-          my.home.programs = lib.setAttrByPath [ programName "enable" ] true;
+          my.hm.programs = lib.setAttrByPath [ programName "enable" ] true;
         }
         extraConfig
       ];

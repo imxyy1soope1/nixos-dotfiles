@@ -21,9 +21,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    my.home =
+    my.hm =
       let
-        homedir = config.my.home.home.homeDirectory;
+        homedir = config.my.hm.home.homeDirectory;
       in
       {
         home.packages = with pkgs; [

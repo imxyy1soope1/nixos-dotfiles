@@ -14,6 +14,6 @@ lib.my.makeHomePackageConfig {
     "dunst"
   ];
   extraConfig = {
-    my.home.xdg.configFile."dunst/dunstrc".source = ./dunstrc;
+    my.hm.xdg.configFile."dunst/dunstrc".source = ./dunstrc;
   };
 }

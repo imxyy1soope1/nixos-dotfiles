@@ -14,7 +14,7 @@ lib.my.makeHomePackageConfig {
     "python"
   ];
   extraConfig = {
-    my.home.home.packages = with pkgs; [
+    my.hm.home.packages = with pkgs; [
       uv
       pyright
     ];

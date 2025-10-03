@@ -15,7 +15,7 @@
   systemd.services."systemd-machine-id-commit".enable = !config.my.persist.enable;
 
   my = {
-    home = {
+    hm = {
       # nicely reload system units when changing configs
       systemd.user.startServices = "sd-switch";
       home.stateVersion = "24.11";

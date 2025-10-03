@@ -13,7 +13,7 @@ lib.my.makeHomeProgramConfig {
     "zen"
   ];
   extraConfig = {
-    my.home.programs.zen-browser = {
+    my.hm.programs.zen-browser = {
       enable = true;
       nativeMessagingHosts = [ pkgs.firefoxpwa ];
       policies = {

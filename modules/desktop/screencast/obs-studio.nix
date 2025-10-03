@@ -13,7 +13,7 @@ lib.my.makeSwitch {
     "obs-studio"
   ];
   config' = {
-    my.home.home.packages = with pkgs; [
+    my.hm.home.packages = with pkgs; [
       (pkgs.wrapOBS {
         plugins = with pkgs.obs-studio-plugins; [
           wlrobs

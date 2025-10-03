@@ -14,7 +14,7 @@ lib.my.makeHomePackageConfig {
     "swaync"
   ];
   extraConfig = {
-    my.home = {
+    my.hm = {
       programs.niri.settings.binds."Mod+End".action.spawn = [
         "swaync-client"
         "-t"

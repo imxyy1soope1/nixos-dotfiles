@@ -12,7 +12,7 @@ lib.my.makeSwitch {
     "misc"
   ];
   config' = {
-    my.home = {
+    my.hm = {
       home.packages = with pkgs; [
         gnumake
         github-cli # gh

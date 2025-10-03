@@ -13,7 +13,7 @@ lib.my.makeSwitch {
     "mpd"
   ];
   config' = {
-    my.home = {
+    my.hm = {
       home.packages = with pkgs.stable; [
         mpd
         mpc-cli

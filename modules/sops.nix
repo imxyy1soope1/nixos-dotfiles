@@ -23,7 +23,7 @@ in
   config = lib.mkIf cfg.enable {
     sops.age.sshKeyFile = cfg.sshKeyFile;
     users.users.${username}.extraGroups = [ "keys" ];
-    my.home = {
+    my.hm = {
       sops.age.sshKeyFile = cfg.sshKeyFile;
       home.packages = [
         pkgs.sops

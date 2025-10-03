@@ -48,7 +48,7 @@ lib.my.makeSwitch {
 
     programs.dconf.enable = true;
 
-    my.home = {
+    my.hm = {
       home.packages = with pkgs; [
         lsd
         fd

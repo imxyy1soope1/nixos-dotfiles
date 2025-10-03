@@ -13,7 +13,7 @@ lib.my.makeHomeProgramConfig {
     "vscode"
   ];
   extraConfig = {
-    my.home = {
+    my.hm = {
       programs.vscode = {
         package = pkgs.vscodium;
       };

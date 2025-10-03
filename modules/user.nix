@@ -103,11 +103,9 @@ lib.my.makeSwitch {
       username
     ];
 
-    my.home = {
-      home = {
-        inherit username;
-        homeDirectory = "/home/${username}";
-      };
+    my.hm.home = {
+      inherit username;
+      homeDirectory = "/home/${username}";
     };
   };
 }

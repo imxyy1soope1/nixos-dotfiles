@@ -14,7 +14,7 @@ lib.my.makeHomePackageConfig {
     "btop"
   ];
   extraConfig = {
-    my.home.xdg.configFile."btop" = {
+    my.hm.xdg.configFile."btop" = {
       source = ./config;
       recursive = true;
     };

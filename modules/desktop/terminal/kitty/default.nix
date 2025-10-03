@@ -8,7 +8,7 @@ lib.my.makeHomeProgramConfig {
     "kitty"
   ];
   extraConfig = {
-    my.home.programs.kitty = {
+    my.hm.programs.kitty = {
       settings = {
         cursor_blink_interval = 0;
         remember_window_size = "no";

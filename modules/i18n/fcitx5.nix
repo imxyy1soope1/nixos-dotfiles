@@ -194,7 +194,7 @@ lib.my.makeSwitch {
         )
       )
     ];
-    my.home.programs.niri.settings = {
+    my.hm.programs.niri.settings = {
       binds."Mod+Space".action.spawn = [
         "fcitx5-remote"
         "-t"

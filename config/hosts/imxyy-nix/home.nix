@@ -4,7 +4,7 @@
   ...
 }:
 {
-  my.home = {
+  my.hm = {
     home.packages = with pkgs; [
       localsend
 

@@ -13,7 +13,7 @@ lib.my.makeSwitch {
     "qml"
   ];
   config' = {
-    my.home.home.packages = with pkgs; [
+    my.hm.home.packages = with pkgs; [
       kdePackages.qtdeclarative
     ];
   };

@@ -6,7 +6,7 @@
 }:
 {
   config = lib.mkIf config.my.desktop.wm.niri.enable {
-    my.home.programs.niri.settings = {
+    my.hm.programs.niri.settings = {
       input = {
         focus-follows-mouse = {
           enable = true;
@@ -132,7 +132,7 @@
       ];
 
       binds =
-        with config.my.home.lib.niri.actions;
+        with config.my.hm.lib.niri.actions;
         {
           "Ctrl+Alt+T".action.spawn = [
             "kitty"

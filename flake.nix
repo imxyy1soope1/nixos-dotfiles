@@ -193,7 +193,7 @@
               recursive = true;
             })
             ++ [
-              (lib.mkAliasOptionModule [ "my" "home" ] [ "home-manager" "users" vars.username ])
+              (lib.mkAliasOptionModule [ "my" "hm" ] [ "home-manager" "users" vars.username ])
               ./config/base.nix
               ./config/hosts/${hostname}
               inputs.chaotic.nixosModules.default

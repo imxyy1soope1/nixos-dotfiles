@@ -16,7 +16,7 @@ lib.my.makeHomeProgramConfig {
     "git"
   ];
   extraConfig = {
-    my.home = {
+    my.hm = {
       programs.git = {
         userName = "${userfullname}";
         userEmail = "${useremail}";

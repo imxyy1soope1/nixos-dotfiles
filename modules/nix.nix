@@ -55,11 +55,11 @@ lib.my.makeSwitch {
       group = "users";
       mode = "0400";
     };
-    my.home.nix.extraOptions = ''
+    my.hm.nix.extraOptions = ''
       !include ${config.sops.secrets.nix-github-token.path}
     '';
 
-    my.home.home.packages = [ pkgs.nixd ];
+    my.hm.home.packages = [ pkgs.nixd ];
 
     # uncomment to enable auto gc
     /*

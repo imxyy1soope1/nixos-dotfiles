@@ -12,7 +12,7 @@ lib.my.makeSwitch {
     "wine"
   ];
   config' = {
-    my.home.home.packages = with pkgs; [
+    my.hm.home.packages = with pkgs; [
       wineWayland
       proton-ge-custom
       bottles
