@@ -180,6 +180,28 @@ local plugins = {
     end,
   },
   {
+    "dnlhc/glance.nvim",
+    cmd = "Glance",
+    keys = {
+      {
+        "<leader>lr",
+        "<cmd>Glance references<cr>",
+      },
+      {
+        "<leader>ld",
+        "<cmd>Glance definitions<cr>",
+      },
+      {
+        "<leader>lD",
+        "<cmd>Glance type_definitions<cr>",
+      },
+      {
+        "<leader>li",
+        "<cmd>Glance implementations<cr>",
+      },
+    },
+  },
+  {
     "ggandor/leap.nvim",
     dependencies = { "tpope/vim-repeat" },
     config = function()
