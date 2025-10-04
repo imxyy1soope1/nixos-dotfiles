@@ -113,7 +113,7 @@ local plugins = {
     "MysticalDevil/inlay-hints.nvim",
     event = "LspAttach",
     dependencies = { "neovim/nvim-lspconfig" },
-    opts = {}
+    opts = {},
   },
   {
     "hedyhli/outline.nvim",
@@ -149,7 +149,7 @@ local plugins = {
   {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
-    opts = {}
+    opts = {},
   },
   {
     "windwp/nvim-autopairs",
@@ -205,18 +205,16 @@ local plugins = {
     "ggandor/leap.nvim",
     dependencies = { "tpope/vim-repeat" },
     config = function()
-      require("leap").set_default_mappings()
+      vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)")
+      vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
       -- Exclude whitespace and the middle of alphabetic words from preview:
       --   foobar[baaz] = quux
       --   ^----^^^--^^-^-^--^
-      require('leap').opts.preview_filter = function(ch0, ch1, ch2)
-        return not (
-          ch1:match('%s') or
-          ch0:match('%a') and ch1:match('%a') and ch2:match('%a')
-        )
+      require("leap").opts.preview_filter = function(ch0, ch1, ch2)
+        return not (ch1:match("%s") or ch0:match("%a") and ch1:match("%a") and ch2:match("%a"))
       end
-      require('leap.user').set_repeat_keys('<enter>', '<backspace>')
-    end
+      require("leap.user").set_repeat_keys("<enter>", "<backspace>")
+    end,
   },
   {
     "alexghergh/nvim-tmux-navigation",

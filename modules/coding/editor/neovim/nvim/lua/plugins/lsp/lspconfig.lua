@@ -64,8 +64,8 @@ local extra_config = {
     },
   },
   qmlls = {
-    cmd = {"qmlls", "-E"}
-  }
+    cmd = { "qmlls", "-E" },
+  },
 }
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
