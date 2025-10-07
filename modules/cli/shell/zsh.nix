@@ -107,7 +107,7 @@ lib.my.makeSwitch {
             x = "extract";
             ls = "lsd";
             svim = "sudoedit";
-            nf = "neofetch";
+            nf = "fastfetch";
             tmux = "tmux -T RGB,focus,overline,mouse,clipboard,usstyle";
             pastart = "pasuspender true";
           };

@@ -53,6 +53,7 @@ lib.my.makeSwitch {
         lsd
         fd
         neofetch
+        fastfetch
         fzf
         bat
         ripgrep
@@ -86,6 +87,115 @@ lib.my.makeSwitch {
         enable = true;
         enableZshIntegration = true;
       };
+      xdg.configFile."fastfetch/config.jsonc".text = ''
+        {
+          "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+          "display": {
+            "separator": "  "
+          },
+          "modules": [
+            // Title
+            {
+              "type": "title",
+              "format": "{user-name-colored}{#}@{host-name-colored}"
+            },
+            {
+              "type": "custom",
+              "format": "---------------"
+            },
+            // System Information
+            {
+              "type": "custom",
+              "format": "{#}System Information"
+            },
+            {
+              "type": "os",
+              "key": "{#keys}󰍹 OS"
+            },
+            {
+              "type": "kernel",
+              "key": "{#keys}󰒋 Kernel"
+            },
+            {
+              "type": "uptime",
+              "key": "{#keys}󰅐 Uptime"
+            },
+            {
+              "type": "packages",
+              "key": "{#keys}󰏖 Packages",
+              "format": "{all}"
+            },
+            {
+              "type": "custom",
+              "format": ""
+            },
+            // Desktop Environment
+            {
+              "type": "custom",
+              "format": "{#}Desktop Environment"
+            },
+            {
+              "type": "de",
+              "key": "{#keys}󰧨 DE"
+            },
+            {
+              "type": "wm",
+              "key": "{#keys}󱂬 WM"
+            },
+            {
+              "type": "wmtheme",
+              "key": "{#keys}󰉼 Theme"
+            },
+            {
+              "type": "display",
+              "key": "{#keys}󰹑 Resolution"
+            },
+            {
+              "type": "shell",
+              "key": "{#keys}󰞷 Shell"
+            },
+            {
+              "type": "terminalfont",
+              "key": "{#keys}󰛖 Font"
+            },
+            {
+              "type": "custom",
+              "format": ""
+            },
+            // Hardware Information
+            {
+              "type": "custom",
+              "format": "{#}Hardware Information"
+            },
+            {
+              "type": "cpu",
+              "key": "{#keys}󰻠 CPU"
+            },
+            {
+              "type": "gpu",
+              "key": "{#keys}󰢮 GPU"
+            },
+            {
+              "type": "memory",
+              "key": "{#keys}󰍛 Memory"
+            },
+            {
+              "type": "disk",
+              "key": "{#keys}󰋊 Disk (/)",
+              "folders": "/"
+            },
+            {
+              "type": "custom",
+              "format": ""
+            },
+            // Colors
+            {
+              "type": "colors",
+              "symbol": "circle"
+            },
+          ]
+        }
+      '';
     };
   };
 }
