@@ -14,7 +14,7 @@ lib.my.makeSwitch {
   ];
   config' = {
     my.hm.home.packages = with pkgs; [
-      openjdk24
+      openjdk25
       java-language-server
     ];
   };
