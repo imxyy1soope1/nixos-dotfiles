@@ -16,6 +16,7 @@ lib.my.makeSwitch {
     my.hm = {
       home.packages = with pkgs; [
         nodejs
+        pnpm
         typescript
 
         nodePackages.typescript-language-server
@@ -32,6 +33,7 @@ lib.my.makeSwitch {
     my.persist.homeDirs = [
       ".npm"
       ".npm-global"
+      ".local/share/pnpm"
     ];
   };
 }
