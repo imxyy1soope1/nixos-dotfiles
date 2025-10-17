@@ -15,12 +15,16 @@
 
     # TODO: sops-nix: remove pr patch once merged
     # https://github.com/Mic92/sops-nix/pull/779
-    sops-nix.url = "github:Mic92/sops-nix/pull/779/merge";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix = {
+      url = "github:Mic92/sops-nix/pull/779/merge";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Impermanence
     impermanence.url = "github:nix-community/impermanence";
@@ -28,37 +32,55 @@
     # Niri
     niri.url = "github:sodiboo/niri-flake";
 
-    darkly.url = "github:Bali10050/Darkly";
-    darkly.inputs.nixpkgs.follows = "nixpkgs";
+    darkly = {
+      url = "github:Bali10050/Darkly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    stylix.url = "github:danth/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # go-musicfox
-    go-musicfox.url = "github:imxyy1soope1/go-musicfox/master";
-    go-musicfox.inputs.nixpkgs.follows = "nixpkgs";
+    go-musicfox = {
+      url = "github:imxyy1soope1/go-musicfox/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # NixOS-WSL
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    fenix.url = "github:nix-community/fenix";
-    fenix.inputs.nixpkgs.follows = "nixpkgs";
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     zen.url = "github:0xc000022070/zen-browser-flake";
     zen.inputs.nixpkgs.follows = "nixpkgs";
 
-    plant.url = "git+ssh://git@git.imxyy.top:2222/imxyy1soope1/HF-plant.git?rev=08dc0b3889797eb3618c7475c3c367ec0e5fdf40";
-    plant.flake = false;
+    plant = {
+      url = "git+ssh://git@git.imxyy.top:2222/imxyy1soope1/HF-plant.git?rev=08dc0b3889797eb3618c7475c3c367ec0e5fdf40";
+      flake = false;
+    };
 
-    catppuccin.url = "github:catppuccin/nix";
-    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    infuse.url = "git+https://codeberg.org/amjoseph/infuse.nix";
-    infuse.flake = false;
+    infuse = {
+      url = "git+https://codeberg.org/amjoseph/infuse.nix";
+      flake = false;
+    };
 
-    haumea.url = "github:nix-community/haumea/v0.2.2";
-    haumea.inputs.nixpkgs.follows = "nixpkgs";
+    haumea = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
