@@ -62,6 +62,16 @@
     zen.url = "github:0xc000022070/zen-browser-flake";
     zen.inputs.nixpkgs.follows = "nixpkgs";
 
+    quickshell = {
+      url = "github:outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell"; # Use same quickshell version
+    };
+
     plant = {
       url = "git+ssh://git@git.imxyy.top:2222/imxyy1soope1/HF-plant.git?rev=08dc0b3889797eb3618c7475c3c367ec0e5fdf40";
       flake = false;
@@ -159,6 +169,8 @@
             (final: prev: {
               darkly-qt5 = inputs.darkly.packages.${final.system}.darkly-qt5;
               darkly-qt6 = inputs.darkly.packages.${final.system}.darkly-qt6;
+
+              noctalia-shell = inputs.noctalia.packages.${final.system}.default;
             })
             (final: prev: {
               inherit lib;
@@ -170,6 +182,7 @@
                 inputs.sops-nix.homeManagerModules.sops
                 inputs.impermanence.nixosModules.home-manager.impermanence
                 inputs.stylix.homeModules.stylix
+                inputs.noctalia.homeModules.default
                 inputs.zen.homeModules.beta
                 # workaround for annoying stylix
                 (
@@ -195,6 +208,14 @@
               outputs
               hostname
               ;
+            assets =
+              with lib.haumea;
+              load {
+                src = ./assets;
+                loader = [
+                  (matchers.always loaders.path)
+                ];
+              };
             secrets =
               with lib.haumea;
               load {

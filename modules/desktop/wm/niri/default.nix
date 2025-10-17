@@ -2,6 +2,7 @@ args@{
   lib,
   config,
   pkgs,
+  assets,
   ...
 }:
 let
@@ -63,6 +64,8 @@ in
 
         swaynotificationcenter
         nautilus
+
+        noctalia-shell
       ];
       programs.wofi.enable = true;
       xdg.configFile."wofi" = {
@@ -75,11 +78,143 @@ in
       };
       programs.waybar = {
         enable = true;
-        systemd.enable = true;
+        systemd.enable = false;
       };
       xdg.configFile."waybar/config.jsonc".text = builtins.toJSON (import ./waybar/config.nix args);
       xdg.configFile."waybar/style.css" = {
         source = ./waybar/style.css;
+      };
+
+      programs.noctalia-shell = {
+        enable = true;
+        settings = {
+          audio.mprisBlacklist = [
+            "firefox"
+            "chromium"
+            "zen"
+          ];
+          bar = {
+            density = "comfortable";
+            floating = true;
+            marginHorizontal = 0.5;
+            marginVertical = 0.5;
+            showCapsule = false;
+            widgets = {
+              left = [
+                {
+                  customIconPath = "";
+                  icon = "";
+                  id = "ControlCenter";
+                  useDistroLogo = true;
+                }
+                {
+                  customFont = "";
+                  formatHorizontal = "HH:mm MM月dd日 ddd";
+                  formatVertical = "HH mm - dd MM";
+                  id = "Clock";
+                  useCustomFont = false;
+                  usePrimaryColor = true;
+                }
+                {
+                  id = "SystemMonitor";
+                  showCpuTemp = false;
+                  showCpuUsage = true;
+                  showDiskUsage = false;
+                  showMemoryAsPercent = false;
+                  showMemoryUsage = true;
+                  showNetworkStats = true;
+                }
+                {
+                  hideUnoccupied = false;
+                  id = "Workspace";
+                  labelMode = "none";
+                }
+              ];
+              center = [
+                {
+                  hideMode = "hidden";
+                  id = "MediaMini";
+                  scrollingMode = "hover";
+                  showAlbumArt = true;
+                  showVisualizer = true;
+                  visualizerType = "wave";
+                }
+              ];
+              right = [
+                {
+                  hideWhenZero = true;
+                  id = "NotificationHistory";
+                  showUnreadBadge = true;
+                }
+                {
+                  blacklist = [ ];
+                  colorizeIcons = false;
+                  id = "Tray";
+                }
+                {
+                  displayMode = "onhover";
+                  id = "Volume";
+                }
+                {
+                  displayMode = "onhover";
+                  id = "Microphone";
+                }
+              ];
+            };
+          };
+          # FIXME: Customize
+          colorSchemes.predefinedScheme = "Tokyo-Night";
+          controlCenter = {
+            cards = [
+              {
+                enabled = true;
+                id = "profile-card";
+              }
+              {
+                enabled = true;
+                id = "shortcuts-card";
+              }
+              {
+                enabled = true;
+                id = "audio-card";
+              }
+              {
+                enabled = false;
+                id = "weather-card";
+              }
+              {
+                enabled = true;
+                id = "media-sysmon-card";
+              }
+            ];
+            shortcuts = {
+              left = [ { id = "Bluetooth"; } ];
+              right = [ { id = "Notifications"; } ];
+            };
+          };
+          general = {
+            avatarImage = "${assets.avatar}";
+            scaleRatio = 1.05;
+            radiusRatio = 0.8;
+          };
+          location.weatherEnabled = false;
+          network.wifiEnabled = false;
+          notifications = {
+            alwaysOnTop = true;
+            location = "top_center";
+          };
+          osd = {
+            alwaysOnTop = true;
+            location = "top_center";
+          };
+          setupCompleted = true;
+          ui = {
+            # I love Jetbrains Mono
+            fontDefault = "Monospace";
+            fontFixed = "Monospace";
+          };
+          wallpaper.enabled = false;
+        };
       };
     };
   };

@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  assets,
   ...
 }:
 {
@@ -102,16 +103,16 @@
         XDG_SESSION_DESKTOP = "niri";
 
         NIXOS_OZONE_WL = "1";
+        NOCTALIA_SETTINGS_FALLBACK = "${config.my.hm.xdg.configHome}/noctalia/gui-settings.json";
       };
 
       spawn-at-startup = map (c: { command = c; }) [
-        [ "${lib.getExe' pkgs.swaynotificationcenter "swaync"}" ]
         [
           "${lib.getExe pkgs.swaybg}"
           "-m"
           "fill"
           "-i"
-          (toString ./wallpaper.png)
+          (toString assets.wallpaper)
         ]
         [
           "wl-paste"
@@ -129,6 +130,8 @@
           "cliphist"
           "store"
         ]
+        # [ "${lib.getExe' pkgs.swaynotificationcenter "swaync"}" ]
+        [ "noctalia-shell" ]
       ];
 
       binds =
