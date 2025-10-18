@@ -130,11 +130,20 @@
           "cliphist"
           "store"
         ]
-        # [ "${lib.getExe' pkgs.swaynotificationcenter "swaync"}" ]
         [ "noctalia-shell" ]
       ];
 
       binds =
+        let
+          noctalia =
+            cmd:
+            [
+              "noctalia-shell"
+              "ipc"
+              "call"
+            ]
+            ++ (pkgs.lib.splitString " " cmd);
+        in
         with config.my.hm.lib.niri.actions;
         {
           "Ctrl+Alt+T".action.spawn = [
@@ -148,16 +157,8 @@
           ];
           "Mod+G".action.spawn = [ config.my.desktop.browser.default.command ];
           "Mod+E".action.spawn = [ "nautilus" ];
-          "Mod+R".action.spawn = [
-            "sh"
-            "-c"
-            "pkill wofi || wofi --color ~/.config/wal/colors"
-          ];
-          "Mod+V".action.spawn = [
-            "sh"
-            "-c"
-            "pkill ${lib.getExe pkgs.wofi} || ${lib.getExe pkgs.cliphist} list | wofi --dmenu --color ~/.config/wal/colors | cliphist decode | wl-copy"
-          ];
+          "Mod+R".action.spawn = noctalia "launcher toggle";
+          "Mod+V".action.spawn = noctalia "launcher clipboard";
 
           "XF86AudioRaiseVolume" = {
             allow-when-locked = true;

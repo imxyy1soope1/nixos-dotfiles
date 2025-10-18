@@ -1,4 +1,4 @@
-args@{
+{
   lib,
   config,
   pkgs,
@@ -62,28 +62,11 @@ in
         playerctl
         brightnessctl
 
-        swaynotificationcenter
         nautilus
 
         noctalia-shell
+        xdg-terminal-exec
       ];
-      programs.wofi.enable = true;
-      xdg.configFile."wofi" = {
-        source = ./wofi;
-        recursive = true;
-      };
-      xdg.configFile."wal" = {
-        source = ./wal;
-        recursive = true;
-      };
-      programs.waybar = {
-        enable = true;
-        systemd.enable = false;
-      };
-      xdg.configFile."waybar/config.jsonc".text = builtins.toJSON (import ./waybar/config.nix args);
-      xdg.configFile."waybar/style.css" = {
-        source = ./waybar/style.css;
-      };
 
       programs.noctalia-shell = {
         enable = true;
@@ -107,6 +90,11 @@ in
           mSurfaceVariant = "#24283b";
         };
         settings = {
+          appLauncher = {
+            enableClipboardHistory = true;
+            useApp2Unit = true;
+            terminalCommand = "kitty -e";
+          };
           audio.mprisBlacklist = [
             "firefox"
             "chromium"
@@ -121,16 +109,13 @@ in
             widgets = {
               left = [
                 {
-                  customIconPath = "";
-                  icon = "";
                   id = "ControlCenter";
                   useDistroLogo = true;
                 }
                 {
-                  customFont = "";
+                  id = "Clock";
                   formatHorizontal = "HH:mm MM月dd日 ddd";
                   formatVertical = "HH mm - dd MM";
-                  id = "Clock";
                   useCustomFont = false;
                   usePrimaryColor = true;
                 }
@@ -144,15 +129,15 @@ in
                   showNetworkStats = true;
                 }
                 {
-                  hideUnoccupied = false;
                   id = "Workspace";
+                  hideUnoccupied = false;
                   labelMode = "none";
                 }
               ];
               center = [
                 {
-                  hideMode = "hidden";
                   id = "MediaMini";
+                  hideMode = "hidden";
                   scrollingMode = "hover";
                   showAlbumArt = true;
                   showVisualizer = true;
@@ -161,22 +146,21 @@ in
               ];
               right = [
                 {
-                  hideWhenZero = true;
                   id = "NotificationHistory";
+                  hideWhenZero = true;
                   showUnreadBadge = true;
                 }
                 {
-                  blacklist = [ ];
-                  colorizeIcons = false;
                   id = "Tray";
+                  colorizeIcons = false;
                 }
                 {
-                  displayMode = "onhover";
                   id = "Volume";
+                  displayMode = "onhover";
                 }
                 {
-                  displayMode = "onhover";
                   id = "Microphone";
+                  displayMode = "onhover";
                 }
               ];
             };
@@ -184,24 +168,24 @@ in
           controlCenter = {
             cards = [
               {
-                enabled = true;
                 id = "profile-card";
+                enabled = true;
               }
               {
-                enabled = true;
                 id = "shortcuts-card";
+                enabled = true;
               }
               {
-                enabled = true;
                 id = "audio-card";
-              }
-              {
-                enabled = false;
-                id = "weather-card";
-              }
-              {
                 enabled = true;
+              }
+              {
+                id = "weather-card";
+                enabled = false;
+              }
+              {
                 id = "media-sysmon-card";
+                enabled = true;
               }
             ];
             shortcuts = {
