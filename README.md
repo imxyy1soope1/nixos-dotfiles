@@ -24,20 +24,18 @@ As for Flakes, refer to
 
 ## Components
 
-|                               | NixOS(Wayland)                                          |
-| ----------------------------- | :------------------------------------------------------ |
-| **Window Manager**            | Niri                                                    |
-| **Terminal Emulator**         | Alacritty & Kitty & Foot & Ghostty                      |
-| **Bar**                       | Waybar                                                  |
-| **Application Launcher**      | wofi                                                    |
-| **Notification Daemon**       | SwayNotificationCenter                                  |
-| **Input method framework**    | Fcitx5                                                  |
-| **Shell**                     | Zsh                                                     |
-| **Netease Cloudmusic Player** | go-musicfox                                             |
-| **Media Player**              | mpv                                                     |
-| **Text Editor**               | Neovim                                                  |
-| **Fonts**                     | Noto Sans CJK & Jetbrains Mono & Nerd Font              |
-| **Filesystem**                | btrfs subvolumes, clean '/' every boot for impermanence |
+|                               | NixOS(Wayland)                               |
+| ----------------------------- | :------------------------------------------- |
+| **Window Manager**            | Niri                                         |
+| **Desktop Shell**             | Noctalia Shell                               |
+| **Terminal Emulator**         | Kitty                                        |
+| **Input method framework**    | Fcitx5                                       |
+| **Shell**                     | Zsh                                          |
+| **Netease Cloudmusic Player** | go-musicfox                                  |
+| **Media Player**              | mpv                                          |
+| **Text Editor**               | Neovim                                       |
+| **Fonts**                     | Noto Sans CJK & Jetbrains Mono & Nerd Font   |
+| **Filesystem**                | Btrfs                                        |
 
 And more...
 
