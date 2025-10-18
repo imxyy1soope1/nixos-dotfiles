@@ -63,6 +63,11 @@ local plugins = {
     end,
   },
   {
+    "norcalli/nvim-colorizer.lua",
+    event = "VeryLazy",
+    opt = {},
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = { "hrsh7th/cmp-nvim-lsp" },
     event = "VeryLazy",
