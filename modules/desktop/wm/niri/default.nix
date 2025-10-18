@@ -87,6 +87,25 @@ in
 
       programs.noctalia-shell = {
         enable = true;
+        # modified from official Tokyo-Night theme
+        colors = {
+          mError = "#f7768e";
+          mOnError = "#16161e";
+          mOnPrimary = "#16161e";
+          mOnSecondary = "#16161e";
+          mOnSurface = "#c0caf5";
+          mOnSurfaceVariant = "#9aa5ce";
+          mOnTertiary = "#16161e";
+          mOutline = "#565f89";
+          mPrimary = "#7aa2f7";
+          mSecondary = "#9a9ef7";
+          mTertiary = "#bb9af7";
+          # mSecondary = "#bb9af7";
+          # mTertiary = "#9ece6a";
+          mShadow = "#15161e";
+          mSurface = "#1a1b26";
+          mSurfaceVariant = "#24283b";
+        };
         settings = {
           audio.mprisBlacklist = [
             "firefox"
@@ -162,8 +181,6 @@ in
               ];
             };
           };
-          # FIXME: Customize
-          colorSchemes.predefinedScheme = "Tokyo-Night";
           controlCenter = {
             cards = [
               {
