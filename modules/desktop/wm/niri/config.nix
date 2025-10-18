@@ -146,7 +146,7 @@
           "Mod+Return".action.spawn = [
             "kitty"
           ];
-          "Mod+G".action.spawn = [ "zen-beta" ];
+          "Mod+G".action.spawn = [ config.my.desktop.browser.default.command ];
           "Mod+E".action.spawn = [ "nautilus" ];
           "Mod+R".action.spawn = [
             "sh"

@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   username,
   ...
@@ -88,7 +89,7 @@
       enable = true;
       defaultApplications =
         let
-          browser = [ "zen-beta.desktop" ];
+          browser = [ config.my.desktop.browser.default.desktop ];
           editor = [ "codium.desktop" ];
           imageviewer = [ "org.gnome.Shotwell-Viewer.desktop" ];
         in
