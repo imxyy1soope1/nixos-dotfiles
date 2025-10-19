@@ -114,8 +114,7 @@ in
                 }
                 {
                   id = "Clock";
-                  formatHorizontal = "HH:mm MM月dd日 ddd";
-                  formatVertical = "HH mm - dd MM";
+                  formatHorizontal = "HH:mm MM/dd ddd";
                   useCustomFont = false;
                   usePrimaryColor = true;
                 }
