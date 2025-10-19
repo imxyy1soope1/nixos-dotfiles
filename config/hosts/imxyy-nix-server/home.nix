@@ -7,6 +7,7 @@
     coding.misc.enable = true;
     coding.langs.lua.enable = true;
     coding.langs.rust.enable = true;
+    fonts.enable = lib.mkForce false;
     persist = {
       enable = true;
       homeDirs = [
