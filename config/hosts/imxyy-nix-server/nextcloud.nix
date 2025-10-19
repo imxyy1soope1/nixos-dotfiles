@@ -31,7 +31,6 @@ in
     hostName = nextcloud;
     home = "/mnt/nas/nextcloud";
     https = true;
-    nginx.recommendedHttpHeaders = true;
     caching.redis = true;
     configureRedis = true;
     database.createLocally = true;
