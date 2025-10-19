@@ -286,9 +286,11 @@
           "Mod+Shift+Minus".action.set-window-height = "-10%";
           "Mod+Shift+Equal".action.set-window-height = "+10%";
 
-          "Ctrl+Alt+A".action = screenshot;
+          "Ctrl+Alt+A".action.screenshot = [ ];
+          # "Ctrl+Alt+A".action = screenshot;
           "Print".action.screenshot-screen = [ ];
-          "Alt+Print".action = screenshot-window;
+          "Alt+Print".action.screenshot-window = [ ];
+          # "Alt+Print".action = screenshot-window;
 
           "Mod+Shift+E".action = quit;
 

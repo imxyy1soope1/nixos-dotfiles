@@ -13,7 +13,7 @@ lib.my.makeSwitch {
   ];
   config' = {
     my.hm.home.packages = with pkgs; [
-      wineWayland
+      wine-wayland
       proton-ge-custom
       bottles
     ];

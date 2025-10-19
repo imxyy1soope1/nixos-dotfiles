@@ -167,10 +167,10 @@
             inputs.niri.overlays.niri
             inputs.fenix.overlays.default
             (final: prev: {
-              darkly-qt5 = inputs.darkly.packages.${final.system}.darkly-qt5;
-              darkly-qt6 = inputs.darkly.packages.${final.system}.darkly-qt6;
+              darkly-qt5 = inputs.darkly.packages.${final.stdenv.hostPlatform.system}.darkly-qt5;
+              darkly-qt6 = inputs.darkly.packages.${final.stdenv.hostPlatform.system}.darkly-qt6;
 
-              noctalia-shell = inputs.noctalia.packages.${final.system}.default;
+              noctalia-shell = inputs.noctalia.packages.${final.stdenv.hostPlatform.system}.default;
             })
             (final: prev: {
               inherit lib;
