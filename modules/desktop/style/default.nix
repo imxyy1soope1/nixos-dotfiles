@@ -47,6 +47,10 @@ lib.my.makeSwitch {
       # GTK
       gtk = {
         enable = true;
+        font = {
+          name = "Adwaita Sans";
+          package = pkgs.adwaita-fonts;
+        };
         theme = {
           package = pkgs.gnome-themes-extra;
           name = "Adwaita";
