@@ -151,6 +151,7 @@ in
                 }
                 {
                   id = "Tray";
+                  drawerEnabled = false;
                   colorizeIcons = false;
                 }
                 {
@@ -198,6 +199,7 @@ in
             avatarImage = "${assets.avatar}";
             scaleRatio = 1.05;
             radiusRatio = 0.8;
+            enableShadows = false;
           };
           location.weatherEnabled = false;
           network.wifiEnabled = false;

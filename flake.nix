@@ -68,7 +68,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/34a6947ad69ff9aec4960e0d1d618a0c041943ca";
+      url = "github:noctalia-dev/noctalia-shell/v3.0.11";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell"; # Use same quickshell version
     };
