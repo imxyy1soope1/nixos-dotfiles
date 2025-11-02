@@ -5,5 +5,6 @@
     ./home.nix
     ./virt.nix
     ./net.nix
+    ./podman.nix
   ];
 }
