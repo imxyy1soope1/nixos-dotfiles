@@ -10,7 +10,6 @@ lib.my.makeSwitch {
   config' = {
     my.cli.media = {
       go-musicfox.enable = true;
-      mpd.enable = true;
       ffmpeg.enable = true;
     };
   };
