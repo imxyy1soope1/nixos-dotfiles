@@ -187,11 +187,13 @@ in
                 enabled = true;
               }
             ];
+            position = "top_left";
             shortcuts = {
               left = [ { id = "Bluetooth"; } ];
               right = [ { id = "Notifications"; } ];
             };
           };
+          dock.enabled = false;
           general = {
             avatarImage = "${assets.avatar}";
             scaleRatio = 1.05;
@@ -201,17 +203,20 @@ in
           network.wifiEnabled = false;
           notifications = {
             alwaysOnTop = true;
-            location = "top_center";
+            location = "top";
           };
           osd = {
             alwaysOnTop = true;
-            location = "top_center";
+            location = "top";
           };
           setupCompleted = true;
           ui = {
             # I love Jetbrains Mono
             fontDefault = "Monospace";
             fontFixed = "Monospace";
+            panelsAttachedToBar = false;
+            panelsOverlayLayer = true;
+            tooltipsEnabled = true;
           };
           wallpaper.enabled = false;
         };
