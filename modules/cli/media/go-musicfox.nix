@@ -21,19 +21,19 @@ lib.my.makeSwitch {
           go-musicfox
         ];
         sops.secrets.go-musicfox = {
-          sopsFile = secrets."go-musicfox.ini";
+          sopsFile = secrets.go-musicfox;
           format = "binary";
-          path = "${config.my.hm.xdg.configHome}/go-musicfox/go-musicfox.ini";
+          path = "${config.my.hm.xdg.configHome}/go-musicfox/config.toml";
         };
       };
 
-      cli.media.mpd.enable = true;
+      desktop.media.mpv.enable = lib.mkForce true;
 
       persist.homeDirs = [
-        ".config/go-musicfox/db"
+        ".local/share/go-musicfox/db"
       ];
       persist.homeFiles = [
-        ".config/go-musicfox/cookie"
+        ".local/share/go-musicfox/cookie"
       ];
     };
   };

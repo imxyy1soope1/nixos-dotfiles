@@ -45,7 +45,7 @@
 
     # go-musicfox
     go-musicfox = {
-      url = "github:imxyy1soope1/go-musicfox/938c4d6bb2a318bc6251f3b11fa8cf54d29b4419";
+      url = "github:imxyy1soope1/go-musicfox";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
