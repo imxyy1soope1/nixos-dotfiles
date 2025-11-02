@@ -20,6 +20,7 @@
     containers = {
       archlinux = {
         image = "archlinux:latest";
+        additional_packages = "nvim";
       };
     };
   };
