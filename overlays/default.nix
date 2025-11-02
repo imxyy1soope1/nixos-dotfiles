@@ -59,4 +59,11 @@
       config.allowUnfree = true;
     };
   };
+
+  working-packages = final: _prev: {
+    working = import inputs.nixpkgs-working {
+      system = final.stdenv.hostPlatform.system;
+      config.allowUnfree = true;
+    };
+  };
 }

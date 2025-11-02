@@ -6,6 +6,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.05";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nixpkgs-working.url = "github:nixos/nixpkgs/9da7f1cf7f8a6e2a7cb3001b048546c92a8258b4";
     # nixpkgs.follows = "nixpkgs-stable";
     nixpkgs.follows = "nixpkgs-unstable";
     # nixpkgs.follows = "nixpkgs-master";
@@ -44,7 +45,7 @@
 
     # go-musicfox
     go-musicfox = {
-      url = "github:imxyy1soope1/go-musicfox/master";
+      url = "github:imxyy1soope1/go-musicfox/938c4d6bb2a318bc6251f3b11fa8cf54d29b4419";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -67,7 +68,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia-shell/34a6947ad69ff9aec4960e0d1d618a0c041943ca";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell"; # Use same quickshell version
     };
@@ -91,6 +92,8 @@
       url = "github:nix-community/haumea/v0.2.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    treefmt.url = "github:numtide/treefmt-nix";
   };
 
   outputs =
@@ -135,23 +138,22 @@
         }
       );
 
-      # workaround for "treefmt warning"
       formatter = forAllSystems (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
+          treefmtEval = inputs.treefmt.lib.evalModule pkgs ./treefmt.nix;
         in
-        pkgs.writeShellApplication {
-          name = "nixfmt-wrapper";
-
-          runtimeInputs = with pkgs; [
-            fd
-            nixfmt-rfc-style
-          ];
-
-          text = ''
-            fd "$@" -t f -e nix -x nixfmt '{}'
-          '';
+        treefmtEval.config.build.wrapper
+      );
+      check = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          treefmtEval = inputs.treefmt.lib.evalModule pkgs ./treefmt.nix;
+        in
+        {
+          formatting = treefmtEval.config.build.check self;
         }
       );
 
