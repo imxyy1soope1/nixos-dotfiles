@@ -175,7 +175,7 @@
     enable = true;
     role = "client";
     settings = {
-      serverAddr = "hk.vkvm.imxyy.top";
+      serverAddr = "{{ .Envs.FRP_SERVER_ADDR }}";
       serverPort = 7000;
       auth.token = "{{ .Envs.FRP_AUTH_TOKEN }}";
       proxies = [
