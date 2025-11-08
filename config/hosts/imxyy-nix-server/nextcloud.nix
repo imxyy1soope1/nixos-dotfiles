@@ -17,9 +17,9 @@ in
 
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud32;
     extraApps = {
-      inherit (pkgs.nextcloud31.packages.apps)
+      inherit (pkgs.nextcloud32.packages.apps)
         bookmarks
         previewgenerator
         spreed
@@ -34,16 +34,23 @@ in
     caching.redis = true;
     configureRedis = true;
     database.createLocally = true;
+    notify_push.enable = true;
     config = {
       dbtype = "pgsql";
       adminpassFile = toString (pkgs.writeText "nextcloud-pass" "admin12345!");
       adminuser = "admin";
     };
-    settings.trusted_domains = [
-      hostname
-      "192.168.3.2"
-      "10.0.0.1"
-    ];
+    settings = {
+      trusted_domains = [
+        hostname
+        "192.168.3.2"
+        "10.0.0.1"
+      ];
+      trusted_proxies = [
+        "127.0.0.1"
+        "192.168.3.0/24"
+      ];
+    };
     phpExtraExtensions =
       all: with all; [
         pdlib
@@ -52,7 +59,7 @@ in
     phpOptions = {
       "opcache.enable" = 1;
       "opcache.enable_cli" = 1;
-      "opcache.interned_strings_buffer" = 8;
+      "opcache.interned_strings_buffer" = 23;
       "opcache.max_accelerated_files" = 10000;
       "opcache.memory_consumption" = 128;
       "opcache.save_comments" = 1;
@@ -93,9 +100,12 @@ in
   */
   services.caddy.virtualHosts."nextcloud.imxyy.top" = {
     extraConfig = ''
-      reverse_proxy :8084 {
-        header_up X-Real-IP {remote_host}
+      reverse_proxy http://127.0.0.1:8084 {
+        trusted_proxies 192.168.3.0/24
       }
+
+      redir /.well-known/carddav /remote.php/dav/ 301
+      redir /.well-known/caldav /remote.php/dav/ 301
     '';
   };
 
