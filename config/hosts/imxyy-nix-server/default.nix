@@ -15,7 +15,6 @@
     ./vault.nix
     ./homepage.nix
     ./code.nix
-    ./ai.nix
     ./grafana.nix
     ./note.nix
     ./matrix.nix
