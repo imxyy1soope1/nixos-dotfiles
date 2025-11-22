@@ -27,9 +27,9 @@
     ];
     programs.zsh = {
       shellAliases = {
-        cageterm = "cage -m DP-2 -s -- alacritty -o font.size=20";
-        cagefoot = "cage -m DP-2 -s -- foot --font=monospace:size=20";
-        cagekitty = "cage -m DP-2 -s -- kitty -o font_size=20";
+        cageterm = "cage -m DP-1 -s -- alacritty -o font.size=20";
+        cagefoot = "cage -m DP-1 -s -- foot --font=monospace:size=20";
+        cagekitty = "cage -m DP-1 -s -- kitty -o font_size=20";
       };
       sessionVariables = {
         no_proxy = "192.168.3.0/24";
@@ -45,7 +45,7 @@
     programs.niri.settings = {
       environment.STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
       outputs = {
-        DP-2 = {
+        DP-1 = {
           enable = true;
           mode = {
             width = 2560;
@@ -58,7 +58,7 @@
             y = 0;
           };
         };
-        DP-3 = {
+        DP-2 = {
           enable = true;
           mode = {
             width = 2560;
