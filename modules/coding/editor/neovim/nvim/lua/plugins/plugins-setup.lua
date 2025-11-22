@@ -281,6 +281,12 @@ local plugins = {
     ft = "pest",
     opts = {},
   },
+
+  {
+    "nmac427/guess-indent.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }
 
 require("lazy").setup(plugins, {})

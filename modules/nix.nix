@@ -60,7 +60,10 @@ lib.my.makeSwitch {
       !include ${config.sops.secrets.nix-github-token.path}
     '';
 
-    my.hm.home.packages = [ pkgs.nixd ];
+    my.hm.home.packages = with pkgs; [
+      nixd
+      nixfmt
+    ];
 
     # uncomment to enable auto gc
     /*

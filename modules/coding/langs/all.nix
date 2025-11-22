@@ -17,6 +17,7 @@ lib.my.makeSwitch {
       lua.enable = true;
       java.enable = true;
       qml.enable = true;
+      typst.enable = true;
     };
   };
 }
