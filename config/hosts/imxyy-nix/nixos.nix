@@ -7,34 +7,21 @@
   ...
 }:
 let
-  btreset = pkgs.writeScriptBin "btreset" ''
-    #!${lib.getExe pkgs.python3}
+  btreset = pkgs.writeShellScriptBin "btreset" ''
+    LOCKFILE="/tmp/.btreseted"
+    SYM="BT"
 
-    import subprocess
-    import os
-    import sys
+    if [ -f "$LOCKFILE" ] && [ "$1" != "-f" ]; then
+      exit 0
+    fi
 
-    SYM = "BT"
+    ${lib.getExe' pkgs.usbutils "lsusb"} | grep "$SYM" | while read -r line; do
+      bus=$(echo "$line" | awk '{print $2}')
+      dev=$(echo "$line" | awk '{print $4}' | tr -d ':')
+      ${lib.getExe' pkgs.usbutils "usbreset"} "$bus/$dev"
 
-    def action(line: str) -> bool:
-        if line.find(SYM) == -1:
-            return False
-        temp = line.split(" ")
-        bus = temp[1]
-        device = temp[3][:-1]
-        subprocess.run(["${lib.getExe' pkgs.usbutils "usbreset"}", f"{bus}/{device}"])
-        return True
-
-    if __name__ == "__main__":
-        if os.path.exists("/tmp/.btreseted") and len(sys.argv) == 1 and "-f" not in sys.argv[1:]:
-            exit(0)
-        res_byte = subprocess.check_output("/run/current-system/sw/bin/lsusb")
-        res = res_byte.decode()
-        lst = res.split("\n")
-
-        if any(tuple(map(action, lst))):
-            with open("/tmp/.btreseted", "w"):
-                ...
+      touch "$LOCKFILE"
+    done
   '';
 in
 {
