@@ -34,7 +34,7 @@ lib.my.makeSwitch {
         shellAliases = {
           la = "lsd -lah";
           ls = "lsd";
-          svim = "sudoedit";
+          svim = "doasedit";
           nf = "fastfetch";
           tmux = "tmux -T RGB,focus,overline,mouse,clipboard,usstyle";
         };
