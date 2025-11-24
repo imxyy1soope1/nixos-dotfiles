@@ -83,7 +83,7 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     dependencies = {
-      { 
+      {
         branch = "main",
         "nvim-treesitter/nvim-treesitter-textobjects",
       },
