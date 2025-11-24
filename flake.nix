@@ -232,14 +232,16 @@
               paths = [ ./modules ];
               exclude = [
                 ./modules/virt/types
-                ./modules/desktop/wm/niri/waybar
               ];
+              recursive = true;
+            })
+            ++ (lib.umport {
+              paths = [ ./config/hosts/${hostname} ];
               recursive = true;
             })
             ++ [
               (lib.mkAliasOptionModule [ "my" "hm" ] [ "home-manager" "users" vars.username ])
               ./config/base.nix
-              ./config/hosts/${hostname}
               inputs.sops-nix.nixosModules.sops
               inputs.impermanence.nixosModules.impermanence
               inputs.home-manager.nixosModules.default
