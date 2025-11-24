@@ -18,12 +18,11 @@ in
   ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod_stable;
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod; # LTS
   boot.extraModulePackages = [ ];
   boot.tmp.useTmpfs = true;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs = {
-    package = pkgs.zfs_unstable;
     extraPools = [ "data" ];
     forceImportRoot = false;
   };
