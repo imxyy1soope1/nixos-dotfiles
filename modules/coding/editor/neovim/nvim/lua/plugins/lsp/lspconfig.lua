@@ -42,15 +42,19 @@ local servers = {
           command = { "nixfmt" },
         },
         nixpkgs = {
+          -- language=nix
           expr = [[
-            let
-              lock = builtins.fromJSON (builtins.readFile ./flake.lock);
-              nodeName = lock.nodes.root.inputs.nixpkgs;
-            in
-            import (fetchTarball {
-              url = lock.nodes.${nodeName}.locked.url or "https://github.com/NixOS/nixpkgs/archive/${lock.nodes.${nodeName}.locked.rev}.tar.gz";
-              sha256 = lock.nodes.${nodeName}.locked.narHash;
-            }) { }
+            if builtins.pathExists ./flake.lock then
+              let
+                lock = builtins.fromJSON (builtins.readFile ./flake.lock);
+                nodeName = lock.nodes.root.inputs.nixpkgs;
+              in
+              import (fetchTarball {
+                url = lock.nodes.${nodeName}.locked.url or "https://github.com/NixOS/nixpkgs/archive/${lock.nodes.${nodeName}.locked.rev}.tar.gz";
+                sha256 = lock.nodes.${nodeName}.locked.narHash;
+              }) { }
+            else
+              import <nixpkgs> { }
           ]],
         },
       },

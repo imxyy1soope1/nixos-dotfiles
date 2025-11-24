@@ -36,7 +36,7 @@ in
       reverse_proxy :8100
     '';
   };
-  services.frp.settings.proxies = [
+  services.frp.instances."".settings.proxies = [
     {
       name = "rsshub-http";
       type = "http";

@@ -2,29 +2,38 @@
   inputs,
   lib,
   config,
+  pkgsParams,
   ...
 }:
 {
-  perSystem =
-    { system, pkgs, ... }:
-    {
-      _module.args.pkgs = import inputs.nixpkgs {
-        inherit system;
-        overlays = builtins.attrValues config.flake.overlays ++ [
-          inputs.go-musicfox.overlays.default
-          inputs.niri.overlays.niri
-          inputs.fenix.overlays.default
-          inputs.angrr.overlays.default
-          (final: prev: {
-            darkly-qt5 = inputs.darkly.packages.${final.stdenv.hostPlatform.system}.darkly-qt5;
-            darkly-qt6 = inputs.darkly.packages.${final.stdenv.hostPlatform.system}.darkly-qt6;
+  _module.args = {
+    pkgsParams = {
+      overlays = builtins.attrValues config.flake.overlays ++ [
+        inputs.go-musicfox.overlays.default
+        inputs.niri.overlays.niri
+        inputs.fenix.overlays.default
+        inputs.angrr.overlays.default
+        (final: prev: {
+          darkly-qt5 = inputs.darkly.packages.${final.stdenv.hostPlatform.system}.darkly-qt5;
+          darkly-qt6 = inputs.darkly.packages.${final.stdenv.hostPlatform.system}.darkly-qt6;
 
-            noctalia-shell = inputs.noctalia.packages.${final.stdenv.hostPlatform.system}.default;
-          })
-        ];
-        config.allowUnfree = true;
-        flake.setNixPath = false;
-      };
+          noctalia-shell = inputs.noctalia.packages.${final.stdenv.hostPlatform.system}.default;
+        })
+      ];
+      config.allowUnfree = true;
+      flake.setNixPath = false;
+    };
+  };
+  perSystem =
+    {
+      system,
+      pkgs,
+      ...
+    }:
+    let
+    in
+    {
+      _module.args.pkgs = import inputs.nixpkgs (pkgsParams // { inherit system; });
 
       legacyPackages = pkgs;
 

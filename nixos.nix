@@ -1,8 +1,8 @@
 {
   self,
-  withSystem,
   lib,
   inputs,
+  pkgsParams,
   ...
 }:
 let
@@ -15,9 +15,11 @@ let
     );
   pkgsModule =
     { config, ... }:
-    withSystem config.nixpkgs.hostPlatform.system (perSystem: {
-      nixpkgs.pkgs = perSystem.pkgs;
-    });
+    {
+      nixpkgs = pkgsParams // {
+        inherit (config.nixpkgs.hostPlatform) system;
+      };
+    };
   hmModule = {
     home-manager = {
       sharedModules = [
@@ -26,6 +28,10 @@ let
         inputs.stylix.homeModules.stylix
         inputs.noctalia.homeModules.default
         inputs.zen.homeModules.beta
+
+        {
+          nixpkgs = lib.mkForce { };
+        }
       ];
       useGlobalPkgs = true;
     };

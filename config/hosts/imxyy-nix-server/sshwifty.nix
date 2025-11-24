@@ -30,7 +30,7 @@
       reverse_proxy :8101
     '';
   };
-  services.frp.settings.proxies = [
+  services.frp.instances."".settings.proxies = [
     {
       name = "sshwifty-http";
       type = "http";

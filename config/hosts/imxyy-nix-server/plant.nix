@@ -55,7 +55,7 @@ in
       }
     '';
   };
-  services.frp.settings.proxies = [
+  services.frp.instances."".settings.proxies = [
     {
       name = "plant-http";
       type = "http";
