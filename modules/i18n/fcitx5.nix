@@ -159,14 +159,11 @@ in
                   name = prev.${pkg}.name;
                   paths = [ prev.${pkg} ];
                   postBuild = lib.concatLines (
-                    map (
-                      desktop:
-                      ''
-                        rm $out/share/applications/${desktop}.desktop
-                        substitute ${prev.${pkg}}/share/applications/${desktop}.desktop $out/share/applications/${desktop}.desktop \
-                          --replace-fail 'Exec=' 'Exec=env QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx '
-                      ''
-                    ) desktops
+                    map (desktop: ''
+                      rm $out/share/applications/${desktop}.desktop
+                      substitute ${prev.${pkg}}/share/applications/${desktop}.desktop $out/share/applications/${desktop}.desktop \
+                        --replace-fail 'Exec=' 'Exec=env QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx '
+                    '') desktops
                   );
                 };
               }
