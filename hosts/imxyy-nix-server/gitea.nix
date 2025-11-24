@@ -33,7 +33,7 @@
         SSH_PORT = 2222;
       };
       service = {
-        REGISTER_MANUAL_CONFIRM = true;
+        DISABLE_REGISTRATION = true;
       };
       security = {
         REVERSE_PROXY_TRUSTED_PROXIES = "127.0.0.0/8,::1/128";
