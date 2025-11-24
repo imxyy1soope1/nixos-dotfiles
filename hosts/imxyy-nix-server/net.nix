@@ -501,6 +501,8 @@
         server = [ "192.168.3.1" ];
         address = map (sub: "/${sub}.imxyy.top/192.168.3.2") subDomains ++ [
           "/imxyy-nix-server/192.168.3.2"
+          "/mtx.eflx.top/192.168.3.2"
+          "/send.eflx.top/192.168.3.2"
           "/imxyy-cloudwin/192.168.3.4"
           "/printer.home/192.168.3.53"
         ];

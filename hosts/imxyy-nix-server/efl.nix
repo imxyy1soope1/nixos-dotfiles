@@ -25,13 +25,6 @@
         config.sops.secrets.efl-tuwunel-env.path
       ];
     };
-    mautrix-telegram = {
-      image = "dock.mau.dev/mautrix/telegram:latest";
-      ports = [ "8099:8099" ];
-      networks = [ "podman" ];
-      extraOptions = [ "--ip=10.88.0.254" ];
-      volumes = [ "/var/lib/efl-mautrix-telegram:/data" ];
-    };
 
     send = {
       image = "lanol/filecodebox:latest";
