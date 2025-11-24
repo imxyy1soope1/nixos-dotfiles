@@ -23,7 +23,7 @@ let
         inputs.noctalia.homeModules.default
         inputs.zen.homeModules.beta
         {
-          nixpkgs = lib.mkForce { };
+          stylix.overlays.enable = lib.mkForce false;
         }
       ];
       useGlobalPkgs = true;
