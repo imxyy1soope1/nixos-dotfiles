@@ -27,7 +27,7 @@ local plugins = {
     end,
   },
   {
-    'echasnovski/mini.nvim',
+    "echasnovski/mini.nvim",
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -35,31 +35,31 @@ local plugins = {
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
       --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
+      require("mini.ai").setup({ n_lines = 500 })
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup()
+      require("mini.surround").setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
   {
-    'nvim-neo-tree/neo-tree.nvim',
-    version = '*',
+    "nvim-neo-tree/neo-tree.nvim",
+    version = "*",
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
-      'MunifTanjim/nui.nvim',
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
     },
-    cmd = 'Neotree',
+    cmd = "Neotree",
     keys = {
-      { '\\', ':Neotree reveal toggle<CR>', desc = 'Toggle NeoTree', silent = true },
-      { '<leader>e', ':Neotree reveal toggle<CR>', desc = 'Toggle NeoTree', silent = true },
+      { "\\", ":Neotree reveal toggle<CR>", desc = "Toggle NeoTree", silent = true },
+      { "<leader>e", ":Neotree reveal toggle<CR>", desc = "Toggle NeoTree", silent = true },
     },
     --- @type neotree.Config
     opts = {
@@ -71,7 +71,7 @@ local plugins = {
         window = {
           width = 30,
           mappings = {
-            ['\\'] = 'close_window',
+            ["\\"] = "close_window",
             ["<leader>e"] = "close_window",
             ["<c-]>"] = "set_root",
           },

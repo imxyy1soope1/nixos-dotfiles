@@ -35,6 +35,9 @@ in
         };
       };
     };
-    my.cli.shell.starship.format = [ "\${custom.shpool}" "$character" ];
+    my.cli.shell.starship.format = [
+      "\${custom.shpool}"
+      "$character"
+    ];
   };
 }

@@ -47,6 +47,9 @@ in
         };
       };
     };
-    my.cli.shell.starship.format = [ "\${custom.tmux}" "$character" ];
+    my.cli.shell.starship.format = [
+      "\${custom.tmux}"
+      "$character"
+    ];
   };
 }

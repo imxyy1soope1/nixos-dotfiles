@@ -19,18 +19,36 @@ in
             add_newline = false;
             command_timeout = 2000;
             nix_shell.disabled = true;
-            format = let
-              dedupDollar = list: let
-                result = builtins.foldl' (acc: elem:
-                  if lib.hasPrefix "$" elem then
-                    if builtins.elem elem acc.seen
-                    then acc
-                    else acc // { result = acc.result ++ [elem]; seen = acc.seen ++ [elem]; }
-                  else
-                    acc // { result = acc.result ++ [elem]; }
-                ) { result = []; seen = []; } (lib.reverseList list);
-              in lib.reverseList result.result;
-            in "$all" + lib.concatStrings (dedupDollar cfg.format);
+            format =
+              let
+                dedupDollar =
+                  list:
+                  let
+                    result =
+                      builtins.foldl'
+                        (
+                          acc: elem:
+                          if lib.hasPrefix "$" elem then
+                            if builtins.elem elem acc.seen then
+                              acc
+                            else
+                              acc
+                              // {
+                                result = acc.result ++ [ elem ];
+                                seen = acc.seen ++ [ elem ];
+                              }
+                          else
+                            acc // { result = acc.result ++ [ elem ]; }
+                        )
+                        {
+                          result = [ ];
+                          seen = [ ];
+                        }
+                        (lib.reverseList list);
+                  in
+                  lib.reverseList result.result;
+              in
+              "$all" + lib.concatStrings (dedupDollar cfg.format);
           };
         };
       };
