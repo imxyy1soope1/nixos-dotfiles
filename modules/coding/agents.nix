@@ -15,6 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     my.hm = {
       home.packages = with pkgs.llm-agents; [
+        codex
         claude-code
         opencode
       ];
@@ -25,6 +26,8 @@ in
 
         ".config/opencode"
         ".local/share/opencode"
+
+        ".codex"
       ];
       homeFiles = [
         ".claude.json"
