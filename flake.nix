@@ -117,10 +117,6 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    plant = {
-      url = "git+ssh://git@git.imxyy.top:2222/imxyy1soope1/HF-plant.git?rev=08dc0b3889797eb3618c7475c3c367ec0e5fdf40";
-      flake = false;
-    };
     my-templates.url = "git+https://git.imxyy.top/imxyy1soope1/flake-templates";
 
     # Flattened indirect dependencies
