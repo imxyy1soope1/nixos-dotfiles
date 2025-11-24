@@ -13,9 +13,8 @@
   };
   services.caddy.virtualHosts."immich.imxyy.top" = {
     extraConfig = ''
-      reverse_proxy :8096 {
-        header_up X-Real-IP {remote_host}
-      }
+      reverse_proxy :8096
     '';
   };
+  my.services.frp.webServers = [ "immich.imxyy.top" ];
 }

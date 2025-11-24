@@ -24,9 +24,8 @@
   };
   services.caddy.virtualHosts."vault.imxyy.top" = {
     extraConfig = ''
-      reverse_proxy :8083 {
-        header_up X-Real-IP {remote_host}
-      }
+      reverse_proxy :8083
     '';
   };
+  my.services.frp.webServers = [ "vault.imxyy.top" ];
 }

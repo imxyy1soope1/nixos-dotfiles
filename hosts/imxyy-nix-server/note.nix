@@ -28,13 +28,6 @@
       ];
       ports = [ "8095:6806" ];
     };
-    memos = {
-      image = "neosmemo/memos:stable";
-      volumes = [
-        "/mnt/nas/memos:/var/opt/memos"
-      ];
-      ports = [ "8097:5230" ];
-    };
   };
   services.caddy.virtualHosts = {
     "sy.imxyy.top" = {
@@ -42,10 +35,6 @@
         reverse_proxy :8095
       '';
     };
-    "memo.imxyy.top" = {
-      extraConfig = ''
-        reverse_proxy :8097
-      '';
-    };
   };
+  my.services.frp.webServers = [ "sy.imxyy.top" ];
 }

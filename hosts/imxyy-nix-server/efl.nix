@@ -34,16 +34,16 @@
   };
   services.caddy.virtualHosts."mtx.eflx.top" = {
     extraConfig = ''
-      reverse_proxy :6167 {
-        header_up X-Real-IP {remote_host}
-      }
+      reverse_proxy :6167
     '';
   };
   services.caddy.virtualHosts."send.eflx.top" = {
     extraConfig = ''
-      reverse_proxy :12345 {
-        header_up X-Real-IP {remote_host}
-      }
+      reverse_proxy :12345
     '';
   };
+  my.services.frp.webServers = [
+    "mtx.eflx.top"
+    "send.eflx.top"
+  ];
 }

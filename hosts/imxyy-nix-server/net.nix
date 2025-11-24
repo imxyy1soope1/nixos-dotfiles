@@ -177,222 +177,6 @@
         serverAddr = "{{ .Envs.FRP_SERVER_ADDR }}";
         serverPort = 7000;
         auth.token = "{{ .Envs.FRP_AUTH_TOKEN }}";
-        proxies = [
-          {
-            name = "nextcloud-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "nextcloud.imxyy.top" ];
-          }
-          {
-            name = "nextcloud-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "nextcloud.imxyy.top" ];
-          }
-
-          {
-            name = "oidc-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "oidc.imxyy.top" ];
-          }
-          {
-            name = "oidc-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "oidc.imxyy.top" ];
-          }
-
-          {
-            name = "mail-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "mail.imxyy.top" ];
-          }
-          {
-            name = "mail-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "mail.imxyy.top" ];
-          }
-
-          {
-            name = "gitea-ssh";
-            type = "tcp";
-            localIP = "127.0.0.1";
-            localPort = 2222;
-            remotePort = 2222;
-          }
-          {
-            name = "gitea-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "git.imxyy.top" ];
-          }
-          {
-            name = "gitea-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "git.imxyy.top" ];
-          }
-
-          {
-            name = "vault-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "vault.imxyy.top" ];
-          }
-          {
-            name = "vault-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "vault.imxyy.top" ];
-          }
-
-          {
-            name = "home-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "home.imxyy.top" ];
-          }
-          {
-            name = "home-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "home.imxyy.top" ];
-          }
-
-          {
-            name = "coder-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "coder.imxyy.top" ];
-          }
-          {
-            name = "coder-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "coder.imxyy.top" ];
-          }
-
-          {
-            name = "siyuan-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "sy.imxyy.top" ];
-          }
-          {
-            name = "siyuan-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "sy.imxyy.top" ];
-          }
-
-          {
-            name = "matrix-root-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "imxyy.top" ];
-          }
-          {
-            name = "matrix-root-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "imxyy.top" ];
-          }
-          {
-            name = "matrix-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "matrix.imxyy.top" ];
-          }
-          {
-            name = "matrix-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "matrix.imxyy.top" ];
-          }
-
-          {
-            name = "immich-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "immich.imxyy.top" ];
-          }
-          {
-            name = "immich-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "immich.imxyy.top" ];
-          }
-
-          {
-            name = "memo-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "memo.imxyy.top" ];
-          }
-          {
-            name = "memo-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "memo.imxyy.top" ];
-          }
-
-          {
-            name = "efl-matrix-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "mtx.eflx.top" ];
-          }
-          {
-            name = "efl-matrix-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "mtx.eflx.top" ];
-          }
-          {
-            name = "efl-send-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "send.eflx.top" ];
-          }
-          {
-            name = "efl-send-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "send.eflx.top" ];
-          }
-        ];
       };
     };
   };
@@ -438,11 +222,10 @@
   };
   services.caddy.virtualHosts."oidc.imxyy.top" = {
     extraConfig = ''
-      reverse_proxy :8081 {
-        header_up X-Real-IP {remote_host}
-      }
+      reverse_proxy :8081
     '';
   };
+  my.services.frp.webServers = [ "oidc.imxyy.top" ];
 
   systemd.services.ddns-go =
     let
@@ -475,39 +258,20 @@
       ];
     };
 
-  services.dnsmasq =
-    let
-      subDomains = [
-        "home"
-        "nextcloud"
-        "mail"
-        "git"
-        "vault"
-        "coder"
-        "matrix"
-        "note"
-        "oidc"
-        "mc"
-        "music"
-        "sy"
-        "immich"
-      ];
-    in
-    {
-      enable = true;
-      resolveLocalQueries = false;
-      settings = {
-        no-resolv = true;
-        server = [ "192.168.3.1" ];
-        address = map (sub: "/${sub}.imxyy.top/192.168.3.2") subDomains ++ [
-          "/imxyy-nix-server/192.168.3.2"
-          "/mtx.eflx.top/192.168.3.2"
-          "/send.eflx.top/192.168.3.2"
-          "/imxyy-cloudwin/192.168.3.4"
-          "/printer.home/192.168.3.53"
-        ];
-        cache-size = 0;
-        log-queries = "extra";
-      };
+  services.dnsmasq = {
+    enable = true;
+    resolveLocalQueries = false;
+    settings = {
+      no-resolv = true;
+      server = [ "192.168.3.1" ];
+      address = [
+        "/imxyy-nix-server/192.168.3.2"
+        "/imxyy-cloudwin/192.168.3.4"
+        "/printer.home/192.168.3.53"
+      ]
+      ++ (map (domain: "/${domain}/192.168.3.2") config.my.services.frp.webServers);
+      cache-size = 0;
+      log-queries = "extra";
     };
+  };
 }

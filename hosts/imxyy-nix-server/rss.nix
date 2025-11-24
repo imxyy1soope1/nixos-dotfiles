@@ -36,20 +36,5 @@ in
       reverse_proxy :8100
     '';
   };
-  services.frp.instances."".settings.proxies = [
-    {
-      name = "rsshub-http";
-      type = "http";
-      localIP = "127.0.0.1";
-      localPort = 80;
-      customDomains = [ "rss.imxyy.top" ];
-    }
-    {
-      name = "rsshub-https";
-      type = "https";
-      localIP = "127.0.0.1";
-      localPort = 443;
-      customDomains = [ "rss.imxyy.top" ];
-    }
-  ];
+  my.services.frp.webServers = [ "rss.imxyy.top" ];
 }

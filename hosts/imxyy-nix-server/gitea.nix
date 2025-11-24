@@ -1,11 +1,19 @@
 {
   services.caddy.virtualHosts."git.imxyy.top" = {
     extraConfig = ''
-      reverse_proxy :8082 {
-        header_up X-Real-IP {remote_host}
-      }
+      reverse_proxy :8082
     '';
   };
+  my.services.frp.webServers = [ "git.imxyy.top" ];
+  services.frp.instances."".settings.proxies = [
+    {
+      name = "gitea-ssh";
+      type = "tcp";
+      localIP = "127.0.0.1";
+      localPort = 2222;
+      remotePort = 2222;
+    }
+  ];
   services.gitea = {
     enable = true;
     appName = "imxyy_soope_'s Gitea";
@@ -26,6 +34,9 @@
       };
       service = {
         REGISTER_MANUAL_CONFIRM = true;
+      };
+      security = {
+        REVERSE_PROXY_TRUSTED_PROXIES = "127.0.0.0/8,::1/128";
       };
     };
   };

@@ -11,4 +11,5 @@
       reverse_proxy :8085
     '';
   };
+  my.services.frp.webServers = [ "home.imxyy.top" ];
 }

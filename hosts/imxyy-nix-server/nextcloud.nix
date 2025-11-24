@@ -113,6 +113,7 @@ in
       redir /.well-known/caldav /remote.php/dav/ 301
     '';
   };
+  my.services.frp.webServers = [ "nextcloud.imxyy.top" ];
 
   /*
     systemd.timers."kopia" = {

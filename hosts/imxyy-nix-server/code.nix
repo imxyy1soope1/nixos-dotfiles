@@ -7,9 +7,8 @@
   users.users.coder.extraGroups = [ "podman" ];
   services.caddy.virtualHosts."coder.imxyy.top" = {
     extraConfig = ''
-      reverse_proxy :8086 {
-        header_up X-Real-IP {remote_host}
-      }
+      reverse_proxy :8086
     '';
   };
+  my.services.frp.webServers = [ "coder.imxyy.top" ];
 }

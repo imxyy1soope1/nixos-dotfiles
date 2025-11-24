@@ -30,20 +30,5 @@
       reverse_proxy :8101
     '';
   };
-  services.frp.instances."".settings.proxies = [
-    {
-      name = "sshwifty-http";
-      type = "http";
-      localIP = "127.0.0.1";
-      localPort = 80;
-      customDomains = [ "ssh.imxyy.top" ];
-    }
-    {
-      name = "sshwifty-https";
-      type = "https";
-      localIP = "127.0.0.1";
-      localPort = 443;
-      customDomains = [ "ssh.imxyy.top" ];
-    }
-  ];
+  my.services.frp.webServers = [ "ssh.imxyy.top" ];
 }

@@ -46,9 +46,8 @@
   };
   services.caddy.virtualHosts."mail.imxyy.top" = {
     extraConfig = ''
-      reverse_proxy :8087 {
-        header_up X-Real-IP {remote_host}
-      }
+      reverse_proxy :8087
     '';
   };
+  my.services.frp.webServers = [ "mail.imxyy.top" ];
 }

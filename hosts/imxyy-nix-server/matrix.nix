@@ -75,6 +75,10 @@
       reverse_proxy :8094
     '';
   };
+  my.services.frp.webServers = [
+    "imxyy.top"
+    "matrix.imxyy.top"
+  ];
 
   sops.secrets.mautrix-telegram = {
     sopsFile = secrets.mautrix-telegram;
