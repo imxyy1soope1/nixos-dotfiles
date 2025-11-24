@@ -264,12 +264,12 @@
     settings = {
       no-resolv = true;
       server = [ "192.168.3.1" ];
-      address = [
-        "/imxyy-nix-server/192.168.3.2"
-        "/imxyy-cloudwin/192.168.3.4"
-        "/printer.home/192.168.3.53"
+      host-record = [
+        "imxyy-nix-server,192.168.3.2"
+        "imxyy-cloudwin,192.168.3.4"
+        "printer.home,192.168.3.53"
       ]
-      ++ (map (domain: "/${domain}/192.168.3.2") config.my.services.frp.webServers);
+      ++ (map (domain: "${domain},192.168.3.2") config.my.services.frp.webServers);
       cache-size = 0;
       log-queries = "extra";
     };
