@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   services.grafana = {
     enable = true;
@@ -12,7 +11,6 @@
   };
   services.prometheus = {
     enable = true;
-    package = pkgs.stable.prometheus;
     port = 8091;
     exporters = {
       node = {
