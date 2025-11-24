@@ -4,7 +4,8 @@
   pkgs,
   username,
   userfullname,
-  useremail,
+  emails,
+  hosts,
   ...
 }:
 let
@@ -21,8 +22,8 @@ in
         enable = true;
         settings = {
           user = {
-            name = "${userfullname}";
-            email = "${useremail}";
+            name = userfullname;
+            email = emails.default;
           };
           ui = {
             graph.style = "square";
@@ -34,14 +35,18 @@ in
             behavior = "own";
             key = "/home/${username}/.ssh/id_ed25519";
             backends.backends.ssh.allowed-signers =
-              (pkgs.writeText "allowed_signers" ''
-                imxyy1soope1@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEFLUkyeaK8ZPPZdVNEmtx8zvoxi7xqS2Z6oxRBuUPO imxyy@imxyy-nix
-                imxyy@imxyy.top ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOEFLUkyeaK8ZPPZdVNEmtx8zvoxi7xqS2Z6oxRBuUPO imxyy@imxyy-nix
-              '').outPath;
+              hosts
+              |> lib.mapAttrsToList (
+                host: key: map (email: "${email} ${key} ${host}") (builtins.attrValues emails)
+              )
+              |> lib.flatten
+              |> lib.concatStringsSep "\n"
+              |> pkgs.writeText "allowed-signers"
+              |> toString;
           };
         };
       };
-      home.packages = [ pkgs.lazyjj ];
+      programs.jjui.enable = true;
       programs.starship = {
         settings = {
           custom = {
