@@ -95,12 +95,48 @@
         displayname_template = "{displayname} (Telegram)";
         permissions = {
           "@imxyy_soope_:imxyy.top" = "admin";
+          "*" = "relaybot";
         };
+        relaybot = {
+          whitelist = [ ];
+        };
+        relay_user_distinguishers = [ ];
       };
       telegram = {
         # borrowed from https://github.com/telegramdesktop/tdesktop/blob/9bdc19e2fd4d497c8f403891848383a88faadc25/snap/snapcraft.yaml#L134-L135
         api_id = "611335";
         api_hash = "d524b414d21f4d37f08684c1df41ac9c";
+      };
+    };
+  };
+  sops.secrets.mautrix-signal = {
+    sopsFile = secrets.mautrix-signal;
+    restartUnits = [ "mautrix-signal.service" ];
+    format = "dotenv";
+    owner = "mautrix-signal";
+    group = "mautrix-signal";
+  };
+  services.mautrix-signal = {
+    enable = true;
+    environmentFile = config.sops.secrets.mautrix-signal.path;
+    settings = {
+      homeserver = {
+        address = "http://127.0.0.1:8094";
+        domain = "imxyy.top";
+      };
+      appservice = {
+        address = "http://127.0.0.1:8102";
+        hostname = "127.0.0.1";
+        port = 8102;
+        bot_username = "signalbot";
+      };
+      bridge = {
+        username_template = "signal_{userid}";
+        alias_template = "signal_{groupname}";
+        displayname_template = "{displayname} (Signal)";
+        permissions = {
+          "@imxyy_soope_:imxyy.top" = "admin";
+        };
       };
     };
   };
