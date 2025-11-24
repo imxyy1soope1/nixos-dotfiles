@@ -17,9 +17,9 @@ in
 
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud32;
+    package = pkgs.nextcloud33;
     extraApps = {
-      inherit (pkgs.nextcloud32.packages.apps)
+      inherit (pkgs.nextcloud33.packages.apps)
         bookmarks
         previewgenerator
         spreed
