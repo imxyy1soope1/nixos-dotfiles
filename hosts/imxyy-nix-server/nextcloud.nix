@@ -73,6 +73,12 @@ in
       "pm.max_spare_servers" = "12";
     };
   };
+  # Fixes `The following x-forwarded-for header was received by Nextcloud: "10.88.0.1"`
+  systemd.services.nextcloud-notify_push = {
+    environment = {
+      NEXTCLOUD_URL = lib.mkForce "http://127.0.0.1:8084";
+    };
+  };
   services.nginx.virtualHosts."nextcloud.imxyy.top" = {
     listen = [
       {
