@@ -19,6 +19,10 @@
         ".cache"
 
         ".ollama"
+        ".claude"
+      ];
+      homeFiles = [
+        ".claude.json"
       ];
     };
   };
