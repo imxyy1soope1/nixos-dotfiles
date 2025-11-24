@@ -176,7 +176,6 @@ local plugins = {
   {
     "saghen/blink.cmp",
     event = "VeryLazy",
-    build = "cargo build --release",
     dependencies = {
       {
         "L3MON4D3/LuaSnip",
