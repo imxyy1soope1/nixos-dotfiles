@@ -17,14 +17,13 @@ in
 
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud33;
+    package = pkgs.nextcloud34;
     extraApps = {
-      inherit (pkgs.nextcloud33.packages.apps)
+      inherit (pkgs.nextcloud34.packages.apps)
         bookmarks
         previewgenerator
         spreed
         notes
-        registration
         ;
     };
     extraAppsEnable = true;
