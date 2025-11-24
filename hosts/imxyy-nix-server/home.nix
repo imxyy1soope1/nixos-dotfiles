@@ -8,6 +8,7 @@
     coding.langs.lua.enable = true;
     coding.langs.rust.enable = true;
     coding.langs.js.enable = true;
+    coding.agents.enable = true;
     fonts.enable = lib.mkForce false;
     persist = {
       enable = true;

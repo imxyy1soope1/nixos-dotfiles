@@ -16,7 +16,7 @@ in
     my.hm = {
       programs.vscode = {
         enable = true;
-        package = pkgs.vscodium-wayland;
+        package = pkgs.vscodium-wayland or pkgs.vscodium;
       };
     };
     my.persist.homeDirs = [
