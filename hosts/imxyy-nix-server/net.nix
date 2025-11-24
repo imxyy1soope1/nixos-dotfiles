@@ -291,21 +291,6 @@
           }
 
           {
-            name = "grafana-http";
-            type = "http";
-            localIP = "127.0.0.1";
-            localPort = 80;
-            customDomains = [ "grafana.imxyy.top" ];
-          }
-          {
-            name = "grafana-https";
-            type = "https";
-            localIP = "127.0.0.1";
-            localPort = 443;
-            customDomains = [ "grafana.imxyy.top" ];
-          }
-
-          {
             name = "siyuan-http";
             type = "http";
             localIP = "127.0.0.1";
@@ -499,7 +484,6 @@
         "git"
         "vault"
         "coder"
-        "grafana"
         "matrix"
         "note"
         "oidc"
