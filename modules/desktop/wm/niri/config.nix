@@ -102,40 +102,48 @@ in
 
       environment.NIXOS_OZONE_WL = "1";
 
-      spawn-at-startup = lib.mkBefore (map (c: { command = c; }) [
-        ([ "dbus-update-activation-environment" "--systemd" ] ++ builtins.attrNames settings.environment)
+      spawn-at-startup = lib.mkBefore (
+        map (c: { command = c; }) [
+          (
+            [
+              "dbus-update-activation-environment"
+              "--systemd"
+            ]
+            ++ builtins.attrNames settings.environment
+          )
 
-        [
-          "${lib.getExe pkgs.swaybg}"
-          "-m"
-          "fill"
-          "-i"
-          (toString assets.wallpaper)
+          [
+            "${lib.getExe pkgs.swaybg}"
+            "-m"
+            "fill"
+            "-i"
+            (toString assets.wallpaper)
+          ]
+          [
+            "wl-paste"
+            "--type"
+            "text"
+            "--watch"
+            "cliphist"
+            "store"
+          ]
+          [
+            "wl-paste"
+            "--type"
+            "image"
+            "--watch"
+            "cliphist"
+            "store"
+          ]
+          # TODO: Is there a better way?
+          [
+            "systemctl"
+            "restart"
+            "--user"
+            "noctalia-shell.service"
+          ]
         ]
-        [
-          "wl-paste"
-          "--type"
-          "text"
-          "--watch"
-          "cliphist"
-          "store"
-        ]
-        [
-          "wl-paste"
-          "--type"
-          "image"
-          "--watch"
-          "cliphist"
-          "store"
-        ]
-        # TODO: Is there a better way?
-        [
-          "systemctl"
-          "restart"
-          "--user"
-          "noctalia-shell.service"
-        ]
-      ]);
+      );
 
       binds =
         let
