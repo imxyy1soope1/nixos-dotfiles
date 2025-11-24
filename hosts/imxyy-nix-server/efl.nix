@@ -7,12 +7,13 @@
   };
   virtualisation.oci-containers.containers = {
     tuwunel = {
-      image = "jevolk/tuwunel:latest";
+      image = "ghcr.io/matrix-construct/tuwunel:latest";
       volumes = [
         "tuwunel_db:/var/lib/tuwunel"
       ];
       ports = [ "6167:6167" ];
       networks = [ "podman" ];
+      extraOptions = [ "--pids-limit=-1" ];
       environment = {
         TUWUNEL_SERVER_NAME = "mtx.eflx.top";
         TUWUNEL_PORT = "6167";
