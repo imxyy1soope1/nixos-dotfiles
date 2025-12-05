@@ -2,9 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
-  userfullname,
-  useremail,
   ...
 }:
 lib.my.makeSwitch {
@@ -48,6 +45,10 @@ lib.my.makeSwitch {
 
     programs.dconf.enable = true;
 
+    my.persist.homeDirs = [
+      ".local/share/zoxide"
+      ".config/television/cable"
+    ];
     my.hm = {
       home.packages = with pkgs; [
         lsd
@@ -86,6 +87,12 @@ lib.my.makeSwitch {
       programs.television = {
         enable = true;
         enableZshIntegration = true;
+        enableFishIntegration = true;
+      };
+      programs.zoxide = {
+        enable = true;
+        enableZshIntegration = true;
+        enableFishIntegration = true;
       };
       xdg.configFile."fastfetch/config.jsonc".text = ''
         {

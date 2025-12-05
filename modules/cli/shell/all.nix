@@ -10,6 +10,8 @@ lib.my.makeSwitch {
   config' = {
     my.cli.shell = {
       zsh.enable = true;
+      fish.enable = true;
+      starship.enable = true;
     };
   };
 }
