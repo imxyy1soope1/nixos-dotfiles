@@ -16,7 +16,7 @@
 
       anki
 
-      working.ayugram-desktop
+      ayugram-desktop
       signal-desktop
       element-desktop
       fractal
