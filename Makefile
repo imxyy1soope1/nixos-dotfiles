@@ -8,6 +8,10 @@ switch-offline:
 	@echo "Rebuilding NixOS without net..."
 	@nh os switch . --no-net
 
+offline:
+	@echo "Rebuilding NixOS without net..."
+	@nh os switch . --no-net
+
 boot:
 	@echo "Rebuilding NixOS..."
 	@nh os boot .
