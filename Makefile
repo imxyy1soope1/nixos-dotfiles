@@ -4,6 +4,10 @@ switch:
 	@echo "Rebuilding NixOS..."
 	@nh os switch .
 
+switch-offline:
+	@echo "Rebuilding NixOS without net..."
+	@nh os switch . --no-net
+
 boot:
 	@echo "Rebuilding NixOS..."
 	@nh os boot .
@@ -20,14 +24,8 @@ update:
 	@echo "Updating flakes..."
 	@nix flake update
 
-history:
-	@nix profile history --profile /nix/var/nix/profiles/system
-
-replpkgs:
-	@nix repl -f flake:nixpkgs
-
 repl:
-	@nh os repl .
+	@nixos-rebuild repl --flake .
 
 cleandry:
 	@echo "Listing all generations older than 15 days..."
@@ -46,4 +44,4 @@ fmt:
 	@echo "Formatting nix files..."
 	@nix fmt
 
-.PHONY: os home news update history repl clean gc fmt
+.PHONY: all switch switch-offline boot test vm update repl cleandry clean gc fmt
