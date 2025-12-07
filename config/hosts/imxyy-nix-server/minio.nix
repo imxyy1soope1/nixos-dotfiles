@@ -2,6 +2,7 @@
 {
   sops.secrets.minio-env = {
     sopsFile = secrets.minio;
+    restartUnits = [ "minio.service" ];
     format = "dotenv";
   };
   services.minio = {

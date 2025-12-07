@@ -9,12 +9,14 @@
   ];
   sops.secrets.tuwunel-reg-token = {
     sopsFile = secrets.tuwunel-reg-token;
+    restartUnits = [ "tuwunel.service" ];
     format = "binary";
     owner = config.services.matrix-tuwunel.user;
     group = config.services.matrix-tuwunel.group;
   };
   sops.secrets.tuwunel-turn-secret = {
     sopsFile = secrets.tuwunel-turn-secret;
+    restartUnits = [ "tuwunel.service" ];
     format = "binary";
     owner = config.services.matrix-tuwunel.user;
     group = config.services.matrix-tuwunel.group;
@@ -68,6 +70,7 @@
 
   sops.secrets.mautrix-telegram = {
     sopsFile = secrets.mautrix-telegram;
+    restartUnits = [ "mautrix-telegram.service" ];
     format = "dotenv";
     owner = "mautrix-telegram";
     group = "mautrix-telegram";

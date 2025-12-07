@@ -142,6 +142,7 @@
 
   sops.secrets.dae-imxyy-nix-server = {
     sopsFile = secrets.dae-imxyy-nix-server;
+    restartUnits = [ "dae.service" ];
     format = "binary";
   };
   services.dae = {
@@ -154,6 +155,7 @@
   };
   sops.secrets.mihomo = {
     sopsFile = secrets.mihomo;
+    restartUnits = [ "mihomo.service" ];
     format = "yaml";
     key = "";
   };
@@ -166,6 +168,7 @@
 
   sops.secrets.frp-env = {
     sopsFile = secrets.frp;
+    restartUnits = [ "frp.service" ];
     format = "dotenv";
   };
   systemd.services.frp.serviceConfig.EnvironmentFile = [
@@ -429,6 +432,7 @@
 
   sops.secrets.et-imxyy-nix-server = {
     sopsFile = secrets.et-imxyy-nix-server;
+    restartUnits = [ "easytier.service" ];
     format = "binary";
   };
   environment.systemPackages = [ pkgs.easytier ];

@@ -2,6 +2,7 @@
 {
   sops.secrets.efl-tuwunel-env = {
     sopsFile = secrets.efl-tuwunel;
+    restartUnits = [ "podman-tuwunel.service" ];
     format = "dotenv";
   };
   virtualisation.oci-containers.containers = {

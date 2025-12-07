@@ -54,6 +54,7 @@
 
   sops.secrets.dae-imxyy-nix-x16 = {
     sopsFile = secrets.dae-imxyy-nix-x16;
+    restartUnits = [ "dae.service" ];
     format = "binary";
   };
   services.dae = {
@@ -63,6 +64,7 @@
   systemd.services.dae.after = [ "sops-nix.service" ];
   sops.secrets.mihomo = {
     sopsFile = secrets.mihomo;
+    restartUnits = [ "mihomo.service" ];
     format = "yaml";
     key = "";
   };
@@ -75,6 +77,7 @@
 
   sops.secrets.et-imxyy-nix-x16 = {
     sopsFile = secrets.et-imxyy-nix-x16;
+    restartUnits = [ "easytier.service" ];
     format = "binary";
   };
   environment.systemPackages = with pkgs; [

@@ -5,6 +5,7 @@ in
 {
   sops.secrets.rsshub-env = {
     sopsFile = secrets.rsshub;
+    restartUnits = [ "podman-rsshub.service" ];
     format = "dotenv";
   };
   users.users.rsshub = {

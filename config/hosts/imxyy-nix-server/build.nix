@@ -7,6 +7,7 @@
 {
   sops.secrets.et-imxyy-nix-server-nixremote = {
     sopsFile = secrets.et-imxyy-nix-server-nixremote;
+    restartUnits = [ "easytier-nixremote.service" ];
     format = "binary";
   };
   environment.systemPackages = [ pkgs.easytier ];

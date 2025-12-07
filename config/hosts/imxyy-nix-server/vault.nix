@@ -2,6 +2,7 @@
 {
   sops.secrets.vaultwarden-env = {
     sopsFile = secrets.vaultwarden;
+    restartUnits = [ "vaultwarden.service" ];
     format = "dotenv";
   };
   services.postgresql.ensureUsers = [

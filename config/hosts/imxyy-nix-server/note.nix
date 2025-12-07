@@ -4,11 +4,10 @@
   ...
 }:
 {
-  sops.secrets = {
-    siyuan-env = {
-      sopsFile = secrets.siyuan;
-      format = "dotenv";
-    };
+  sops.secrets.siyuan-env = {
+    sopsFile = secrets.siyuan;
+    restartUnits = [ "siyuan.service" ];
+    format = "dotenv";
   };
   virtualisation.oci-containers.containers = {
     siyuan = {
