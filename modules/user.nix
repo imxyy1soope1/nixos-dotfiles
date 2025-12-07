@@ -25,7 +25,6 @@ lib.my.makeSwitch {
       users.${username} = {
         isNormalUser = true;
         description = userdesc;
-        shell = pkgs.zsh;
         extraGroups = [
           username
           "wheel"

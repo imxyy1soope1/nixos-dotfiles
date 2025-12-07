@@ -53,14 +53,6 @@ lib.my.makeSwitch {
           nf = "fastfetch";
           tmux = "tmux -T RGB,focus,overline,mouse,clipboard,usstyle";
         };
-
-        # https://wiki.nixos.org/wiki/Fish#Setting_fish_as_default_shell
-        initContent = lib.mkBefore ''
-          if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" ]]
-          then
-            exec fish -l
-          fi
-        '';
       };
     };
   };
