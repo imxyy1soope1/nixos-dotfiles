@@ -18,7 +18,7 @@
 
       layout = {
         gaps = 23;
-        center-focused-column = "never";
+        center-focused-column = "on-overflow";
         always-center-single-column = true;
         focus-ring.enable = false;
         border = {
@@ -43,8 +43,9 @@
           { proportion = 0.5; }
           { proportion = 0.6; }
           { proportion = 0.66667; }
+          { proportion = 0.8; }
         ];
-        default-column-width.proportion = 1.0;
+        default-column-width.proportion = 0.8;
         background-color = "transparent";
       };
 
