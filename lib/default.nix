@@ -13,7 +13,7 @@
       cfg = lib.getAttrFromPath optionPath config.my;
     in
     {
-      options.my = lib.setAttrByPath (optionPath) {
+      options.my = lib.setAttrByPath optionPath {
         enable = (lib.mkEnableOption optionName) // {
           inherit default;
         };
