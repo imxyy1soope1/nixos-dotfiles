@@ -209,6 +209,8 @@ in
           };
           osd = {
             alwaysOnTop = true;
+            # enable all types
+            enabledTypes = [ ];
             location = "top";
           };
           setupCompleted = true;
