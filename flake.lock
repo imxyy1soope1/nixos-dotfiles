@@ -636,6 +636,21 @@
         "type": "github"
       }
     },
+    "my-templates": {
+      "locked": {
+        "lastModified": 1765097937,
+        "narHash": "sha256-3mfSHrhIMeN2jkvUuY7WGlEd+C4JYhG/NCfvbDkf1XQ=",
+        "ref": "refs/heads/main",
+        "rev": "f8faab42fe13404a1c86cc9310fed5512a0061ab",
+        "revCount": 3,
+        "type": "git",
+        "url": "https://git.imxyy.top/imxyy1soope1/flake-templates"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.imxyy.top/imxyy1soope1/flake-templates"
+      }
+    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -1039,6 +1054,7 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "infuse": "infuse",
+        "my-templates": "my-templates",
         "niri": "niri",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": [

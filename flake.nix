@@ -91,6 +91,8 @@
     };
 
     treefmt.url = "github:numtide/treefmt-nix";
+
+    my-templates.url = "git+https://git.imxyy.top/imxyy1soope1/flake-templates";
   };
 
   outputs =
