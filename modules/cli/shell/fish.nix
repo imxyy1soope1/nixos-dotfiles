@@ -18,6 +18,10 @@ lib.my.makeSwitch {
       ".local/share/fish"
     ];
     my.hm = {
+      xdg.configFile."fish/themes/tokyonight_storm.theme".source = builtins.fetchurl {
+        url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/refs/tags/v4.14.1/extras/fish_themes/tokyonight_storm.theme";
+        sha256 = "02n1w5x65683c8mlwg1rav06iqm3xk90zq45qmygpm7pzyn8dqh1";
+      };
       programs.fish = {
         enable = true;
         plugins = [
@@ -38,14 +42,9 @@ lib.my.makeSwitch {
           nf = "fastfetch";
           tmux = "tmux -T RGB,focus,overline,mouse,clipboard,usstyle";
         };
-        interactiveShellInit = ''
+        interactiveShellInit = lib.mkBefore ''
           fish_vi_key_bindings
-          source ${
-            builtins.fetchurl {
-              url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/refs/tags/v4.14.1/extras/fish/tokyonight_storm.fish";
-              sha256 = "0a2pg78k8cv0hx8p02lxnb7giblwn7z9hnb6i6mdx4w5lg4wfg40";
-            }
-          }
+          fish_config theme choose tokyonight_storm
         '';
         functions = {
           fish_greeting = "";
@@ -88,6 +87,14 @@ lib.my.makeSwitch {
             bind -s p 'set -g fish_cursor_end_mode exclusive' forward-char 'set -g fish_cursor_end_mode inclusive' fish_clipboard_paste
             bind -s P fish_clipboard_paste
           '';
+
+          nix-closure-size = {
+            body = ''
+              nix path-info --recursive --size --closure-size \
+                            --human-readable $(readlink -f $(which $program))
+            '';
+            argumentNames = [ "program" ];
+          };
         };
       };
     };
