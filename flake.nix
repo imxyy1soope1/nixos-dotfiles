@@ -11,9 +11,6 @@
     nixpkgs.follows = "nixpkgs-unstable";
     # nixpkgs.follows = "nixpkgs-master";
 
-    # Nyxpkgs
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-
     # TODO: sops-nix: remove pr patch once merged
     # https://github.com/Mic92/sops-nix/pull/779
     sops-nix = {
@@ -241,7 +238,6 @@
               (lib.mkAliasOptionModule [ "my" "hm" ] [ "home-manager" "users" vars.username ])
               ./config/base.nix
               ./config/hosts/${hostname}
-              inputs.chaotic.nixosModules.default
               inputs.sops-nix.nixosModules.sops
               inputs.impermanence.nixosModules.impermanence
               inputs.home-manager.nixosModules.default

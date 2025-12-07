@@ -14,7 +14,6 @@ lib.my.makeSwitch {
   config' = {
     my.hm.home.packages = with pkgs; [
       wine-wayland
-      proton-ge-custom
       bottles
     ];
     my.persist.homeDirs = [

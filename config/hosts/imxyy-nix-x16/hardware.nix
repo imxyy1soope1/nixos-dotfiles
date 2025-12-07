@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 let
@@ -22,7 +21,7 @@ in
       verbose = false;
     };
 
-    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod_latest;
     kernelModules = [ "kvm-amd" ];
 
     tmp.useTmpfs = true;
@@ -30,7 +29,10 @@ in
       "fs.file-max" = 9223372036854775807;
     };
   };
-  services.scx.enable = true;
+  services.scx = {
+    enable = true;
+    scheduler = "scx_rusty";
+  };
 
   fileSystems."/" = {
     device = btrfs;
