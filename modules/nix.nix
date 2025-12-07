@@ -74,5 +74,15 @@ lib.my.makeSwitch {
         options = "--delete-older-than 30d";
       };
     */
+
+    services.angrr = {
+      enable = true;
+      period = "1month";
+    };
+    my.hm.xdg.configFile."direnv/lib/angrr.sh".source =
+      "${config.services.angrr.package}/share/direnv/lib/angrr.sh";
+    my.hm.programs.direnv.stdlib = ''
+      use angrr
+    '';
   };
 }

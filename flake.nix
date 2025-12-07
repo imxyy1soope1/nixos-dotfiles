@@ -68,6 +68,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    angrr = {
+      url = "github:linyinfeng/angrr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     plant = {
       url = "git+ssh://git@git.imxyy.top:2222/imxyy1soope1/HF-plant.git?rev=08dc0b3889797eb3618c7475c3c367ec0e5fdf40";
       flake = false;
@@ -242,6 +247,7 @@
               inputs.home-manager.nixosModules.default
               inputs.niri.nixosModules.niri
               inputs.catppuccin.nixosModules.catppuccin
+              inputs.angrr.nixosModules.angrr
               home
               pkgsConf
             ];
