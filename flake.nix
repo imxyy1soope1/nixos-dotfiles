@@ -61,7 +61,7 @@
     zen.inputs.nixpkgs.follows = "nixpkgs";
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/v3.6.2";
+      url = "github:noctalia-dev/noctalia-shell/v3.7.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
