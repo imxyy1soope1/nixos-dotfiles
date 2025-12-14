@@ -167,6 +167,7 @@
             inputs.go-musicfox.overlays.default
             inputs.niri.overlays.niri
             inputs.fenix.overlays.default
+            inputs.angrr.overlays.default
             (final: prev: {
               darkly-qt5 = inputs.darkly.packages.${final.stdenv.hostPlatform.system}.darkly-qt5;
               darkly-qt6 = inputs.darkly.packages.${final.stdenv.hostPlatform.system}.darkly-qt6;

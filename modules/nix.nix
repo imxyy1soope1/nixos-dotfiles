@@ -77,7 +77,9 @@ lib.my.makeSwitch {
 
     services.angrr = {
       enable = true;
-      period = "1month";
+      settings = {
+        period = "1month";
+      };
     };
     my.hm.xdg.configFile."direnv/lib/angrr.sh".source =
       "${config.services.angrr.package}/share/direnv/lib/angrr.sh";
