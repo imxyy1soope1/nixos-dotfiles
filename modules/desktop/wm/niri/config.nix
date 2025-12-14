@@ -297,6 +297,57 @@
 
           "Mod+O".action = toggle-overview;
           "Super+Tab".action = toggle-overview;
+
+          "Mod+WheelScrollDown" = {
+            cooldown-ms = 150;
+            action = focus-workspace-down;
+          };
+          "Mod+WheelScrollUp" = {
+            cooldown-ms = 150;
+            action = focus-workspace-up;
+          };
+          "Mod+Ctrl+WheelScrollDown" = {
+            cooldown-ms = 150;
+            action = move-workspace-down;
+          };
+          "Mod+Ctrl+WheelScrollUp" = {
+            cooldown-ms = 150;
+            action = move-workspace-up;
+          };
+
+          "Mod+WheelScrollRight" = {
+            cooldown-ms = 150;
+            action = focus-column-right;
+          };
+          "Mod+WheelScrollLeft" = {
+            cooldown-ms = 150;
+            action = focus-column-left;
+          };
+          "Mod+Ctrl+WheelScrollRight" = {
+            cooldown-ms = 150;
+            action = move-column-right;
+          };
+          "Mod+Ctrl+WheelScrollLeft" = {
+            cooldown-ms = 150;
+            action = move-column-left;
+          };
+
+          "Mod+Shift+WheelScrollDown" = {
+            cooldown-ms = 150;
+            action = focus-column-right;
+          };
+          "Mod+Shift+WheelScrollUp" = {
+            cooldown-ms = 150;
+            action = focus-column-left;
+          };
+          "Mod+Ctrl+Shift+WheelScrollDown" = {
+            cooldown-ms = 150;
+            action = move-column-right;
+          };
+          "Mod+Ctrl+Shift+WheelScrollUp" = {
+            cooldown-ms = 150;
+            action = move-column-left;
+          };
         }
         // lib.attrsets.mergeAttrsList (
           map (n: {
