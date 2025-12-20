@@ -18,7 +18,7 @@
 
       layout = {
         gaps = 23;
-        center-focused-column = "on-overflow";
+        center-focused-column = "always";
         always-center-single-column = true;
         focus-ring.enable = false;
         border = {
