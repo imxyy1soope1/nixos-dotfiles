@@ -46,10 +46,13 @@
     final: prev:
     let
       paths = [
+        # keep-sorted start
         ./fcitx5-lightly
+        ./jj-starship.nix
         ./mono-gtk-theme.nix
         ./ttf-wps-fonts.nix
         ./wps-office-fonts.nix
+        # keep-sorted end
       ];
     in
     builtins.listToAttrs (

@@ -16,9 +16,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    my.hm.programs.jujutsu.enable = true;
     my.hm = {
       programs.jujutsu = {
+        enable = true;
         settings = {
           user = {
             name = "${userfullname}";
@@ -48,6 +48,8 @@ in
             jj = {
               ignore_timeout = true;
               description = "The current jj status";
+              # when = "${lib.getExe pkgs.jj-starship} detect";
+              # command = "${lib.getExe pkgs.jj-starship}";
               when = true;
               command = ''
                 jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
