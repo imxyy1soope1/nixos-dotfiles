@@ -47,7 +47,8 @@ local servers = {
             if builtins.pathExists ./flake.lock then
               let
                 lock = builtins.fromJSON (builtins.readFile ./flake.lock);
-                nodeName = lock.nodes.root.inputs.nixpkgs;
+                node = lock.nodes.root.inputs.nixpkgs;
+                nodeName = if builtins.isList node then builtins.elemAt node 0 else node;
               in
               import (fetchTarball {
                 url = lock.nodes.${nodeName}.locked.url or "https://github.com/NixOS/nixpkgs/archive/${lock.nodes.${nodeName}.locked.rev}.tar.gz";
