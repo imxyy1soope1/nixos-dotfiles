@@ -1,13 +1,14 @@
 { config, lib, ... }:
-lib.my.makeHomeProgramConfig {
-  inherit config;
-  programName = "ghostty";
-  optionPath = [
-    "desktop"
-    "terminal"
-    "ghostty"
-  ];
-  extraConfig = {
+let
+  cfg = config.my.desktop.terminal.ghostty;
+in
+{
+  options.my.desktop.terminal.ghostty = {
+    enable = lib.mkEnableOption "ghostty";
+  };
+
+  config = lib.mkIf cfg.enable {
+    my.hm.programs.ghostty.enable = true;
     my.hm.programs.ghostty = {
       enableBashIntegration = true;
       enableZshIntegration = true;

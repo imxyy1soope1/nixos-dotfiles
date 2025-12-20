@@ -1,13 +1,14 @@
 { config, lib, ... }:
-lib.my.makeHomeProgramConfig {
-  inherit config;
-  programName = "kitty";
-  optionPath = [
-    "desktop"
-    "terminal"
-    "kitty"
-  ];
-  extraConfig = {
+let
+  cfg = config.my.desktop.terminal.kitty;
+in
+{
+  options.my.desktop.terminal.kitty = {
+    enable = lib.mkEnableOption "kitty";
+  };
+
+  config = lib.mkIf cfg.enable {
+    my.hm.programs.kitty.enable = true;
     my.hm.programs.kitty = {
       settings = {
         cursor_blink_interval = 0;

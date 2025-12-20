@@ -4,14 +4,15 @@
   pkgs,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "style";
-  optionPath = [
-    "desktop"
-    "style"
-  ];
-  config' = {
+let
+  cfg = config.my.desktop.style;
+in
+{
+  options.my.desktop.style = {
+    enable = lib.mkEnableOption "style";
+  };
+
+  config = lib.mkIf cfg.enable {
     catppuccin.sddm = {
       enable = true;
       font = "Jetbrains Mono";

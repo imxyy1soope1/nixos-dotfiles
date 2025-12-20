@@ -7,15 +7,16 @@
   useremail,
   ...
 }:
-lib.my.makeHomeProgramConfig {
-  inherit config;
-  programName = "git";
-  optionPath = [
-    "cli"
-    "vcs"
-    "git"
-  ];
-  extraConfig = {
+let
+  cfg = config.my.cli.vcs.git;
+in
+{
+  options.my.cli.vcs.git = {
+    enable = lib.mkEnableOption "git";
+  };
+
+  config = lib.mkIf cfg.enable {
+    my.hm.programs.git.enable = true;
     my.hm = {
       programs.git = {
         settings = {

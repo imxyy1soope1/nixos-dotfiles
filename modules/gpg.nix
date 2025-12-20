@@ -2,18 +2,26 @@
   config,
   lib,
   pkgs,
+  username,
   ...
 }:
-lib.my.makeHomeProgramConfig {
-  inherit config;
-  programName = "gpg";
-  optionPath = [ "gpg" ];
-  extraConfig = {
+let
+  cfg = config.my.gpg;
+in
+{
+  options.my.gpg = {
+    enable = lib.mkEnableOption "GPG and GPG agent";
+  };
+
+  config = lib.mkIf cfg.enable {
     programs.gnupg.agent = {
       enable = true;
       pinentryPackage = pkgs.pinentry-curses;
       enableSSHSupport = true;
     };
+
+    my.hm.programs.gpg.enable = true;
+
     my.persist.homeDirs = [
       {
         directory = ".gnupg";

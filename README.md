@@ -22,6 +22,9 @@ forever. If someone else shares their configuration, anyone else can just use it
 As for Flakes, refer to
 [Introduction to Flakes - NixOS & Nix Flakes Book](https://nixos-and-flakes.thiscute.world/nixos-with-flakes/introduction-to-flakes)
 
+This configuration uses [flake-parts](https://flake.parts/) for better flake organization and modularity,
+enabling declarative host definitions and cleaner separation of concerns.
+
 ## Components
 
 |                               | NixOS(Wayland)                               |
@@ -42,8 +45,19 @@ And more...
 ## Folder Structure
 
 - `modules/` - custom NixOS modules
-- `config/base.nix` - generic configs
-- `config/hosts/<name>/` - hosts-specific configs
+  - `modules/core/` - core system modules (nix, persistence, time, user, xdg)
+  - `modules/cli/` - command-line tools and utilities
+  - `modules/coding/` - development environments and editors
+  - `modules/desktop/` - desktop applications and window managers
+  - `modules/virt/` - virtualization configurations
+- `profiles/` - system configuration profiles
+  - `profiles/base.nix` - base configuration for all hosts
+  - `profiles/desktop.nix` - desktop environment configuration
+  - `profiles/server.nix` - server-specific configuration
+  - `profiles/wsl.nix` - WSL-specific configuration
+- `config/hosts/<name>/` - host-specific configs
+- `flake/` - flake-parts modules
+  - `flake/hosts.nix` - declarative host definitions
 - `lib/` - custom nix library
 - `pkgs/` - custom packages
 - `overlays/` - nixpkgs overlays

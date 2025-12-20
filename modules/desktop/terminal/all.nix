@@ -1,13 +1,13 @@
 { config, lib, ... }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "all terminals";
-  optionPath = [
-    "desktop"
-    "terminal"
-    "all"
-  ];
-  config' = {
+let
+  cfg = config.my.desktop.terminal.all;
+in
+{
+  options.my.desktop.terminal.all = {
+    enable = lib.mkEnableOption "all terminals";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.desktop.terminal = {
       alacritty.enable = true;
       foot.enable = true;

@@ -4,15 +4,19 @@
   pkgs,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  default = true;
-  optionName = "misc command line tools";
-  optionPath = [
-    "cli"
-    "misc"
-  ];
-  config' = {
+let
+  cfg = config.my.cli.misc;
+in
+{
+  options.my.cli.misc = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enable misc command line tools";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       vim
       wget

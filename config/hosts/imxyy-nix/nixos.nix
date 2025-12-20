@@ -25,45 +25,16 @@ let
   '';
 in
 {
-  security.pam.loginLimits = [
-    {
-      domain = "*";
-      type = "soft";
-      item = "nofile";
-      value = "524288";
-    }
-  ];
-
   systemd.services.btreset = {
     script = lib.getExe btreset;
     wantedBy = [ "multi-user.target" ];
     serviceConfig.Type = "oneshot";
   };
+
   boot.kernelParams = [
     "usbcore.autosuspend=-1" # Avoid usb autosuspend (for usb bluetooth adapter)
     "fsck.mode=skip"
   ];
-
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    systemd-boot = {
-      enable = true;
-      configurationLimit = 10;
-    };
-    grub.enable = false;
-    timeout = 0;
-  };
-
-  hardware.graphics.enable = true;
-  hardware.graphics.enable32Bit = true;
-
-  systemd.services.nix-daemon = {
-    environment.TMPDIR = "/var/cache/nix";
-    serviceConfig.CacheDirectory = "nix";
-  };
-  environment.variables.NIX_REMOTE = "daemon";
-
-  services.printing.enable = true;
 
   services.keyd = {
     enable = true;
@@ -86,8 +57,6 @@ in
       };
     };
   };
-
-  services.gvfs.enable = true;
 
   programs.wireshark.enable = true;
   programs.wireshark.package = pkgs.wireshark;

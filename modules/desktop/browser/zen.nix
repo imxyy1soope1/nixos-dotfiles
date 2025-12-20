@@ -4,15 +4,15 @@
   pkgs,
   ...
 }:
-lib.my.makeHomeProgramConfig {
-  inherit config;
-  programName = "zen-browser";
-  optionPath = [
-    "desktop"
-    "browser"
-    "zen"
-  ];
-  extraConfig = {
+let
+  cfg = config.my.desktop.browser.zen;
+in
+{
+  options.my.desktop.browser.zen = {
+    enable = lib.mkEnableOption "zen-browser";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.hm.programs.zen-browser = {
       enable = true;
       nativeMessagingHosts = [ pkgs.firefoxpwa ];

@@ -4,15 +4,15 @@
   pkgs,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "js";
-  optionPath = [
-    "coding"
-    "langs"
-    "js"
-  ];
-  config' = {
+let
+  cfg = config.my.coding.langs.js;
+in
+{
+  options.my.coding.langs.js = {
+    enable = lib.mkEnableOption "js";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.hm = {
       home.packages = with pkgs; [
         nodejs

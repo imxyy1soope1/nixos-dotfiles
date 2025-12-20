@@ -23,25 +23,11 @@ let
     } settings;
 in
 {
-  imports = [
-    (lib.my.makeHomePackageConfig {
-      inherit config pkgs;
-      packageName = "moonlight-qt";
-      packagePath = [ "moonlight-qt" ];
-      optionPath = [
-        "virt"
-        "moonlight"
-      ];
-      extraConfig = {
-        my.persist.homeDirs = [
-          ".config/Moonlight Game Streaming Project"
-        ];
-      };
-    })
-  ];
-
   options.my.virt = {
     enable = lib.mkEnableOption "virtualization";
+    moonlight = {
+      enable = lib.mkEnableOption "Moonlight";
+    };
     looking-glass = {
       enable = lib.mkEnableOption "looking-glass";
       package = lib.mkPackageOption pkgs "looking-glass-client" { };
@@ -116,7 +102,7 @@ in
       settings = lib.mkOption {
         description = "Looking Glass client configuration";
         default = { };
-        type = lib.types.submodule ./types;
+        type = lib.types.submodule ./_types;
 
         example = {
           app.shmFile = "/dev/kvmfr0";
@@ -231,6 +217,12 @@ in
       programs.virt-manager.enable = true;
       users.users.${username}.extraGroups = [ "libvirtd" ];
       environment.systemPackages = with pkgs; [ virglrenderer ];
+    })
+    (lib.mkIf cfg.moonlight.enable {
+      my.hm.home.packages = [ pkgs.moonlight-qt ];
+      my.persist.homeDirs = [
+        ".config/Moonlight Game Streaming Project"
+      ];
     })
   ];
 }

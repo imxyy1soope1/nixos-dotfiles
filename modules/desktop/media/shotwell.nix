@@ -4,13 +4,15 @@
   pkgs,
   ...
 }:
-lib.my.makeHomePackageConfig {
-  inherit config pkgs;
-  packageName = "shotwell";
-  packagePath = [ "shotwell" ];
-  optionPath = [
-    "desktop"
-    "media"
-    "shotwell"
-  ];
+let
+  cfg = config.my.desktop.media.shotwell;
+in
+{
+  options.my.desktop.media.shotwell = {
+    enable = lib.mkEnableOption "shotwell";
+  };
+
+  config = lib.mkIf cfg.enable {
+    my.hm.home.packages = [ pkgs.shotwell ];
+  };
 }

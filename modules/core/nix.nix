@@ -8,12 +8,15 @@
   username,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  default = true;
-  optionName = "default nix settings";
-  optionPath = [ "nix" ];
-  config' = {
+let
+  cfg = config.my.nix;
+in
+{
+  options.my.nix = {
+    enable = lib.mkEnableOption "default nix settings";
+  };
+
+  config = lib.mkIf cfg.enable {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
     nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) (
@@ -58,14 +61,24 @@ lib.my.makeSwitch {
       group = "users";
       mode = "0400";
     };
-    my.hm.nix.extraOptions = ''
-      !include ${config.sops.secrets.nix-github-token.path}
-    '';
 
-    my.hm.home.packages = with pkgs; [
-      nixd
-      nixfmt
-    ];
+    my.hm = {
+      nix.extraOptions = ''
+        !include ${config.sops.secrets.nix-github-token.path}
+      '';
+
+      home.packages = with pkgs; [
+        nixd
+        nixfmt
+      ];
+
+      xdg.configFile."direnv/lib/angrr.sh".source =
+        "${config.services.angrr.package}/share/direnv/lib/angrr.sh";
+
+      programs.direnv.stdlib = ''
+        use angrr
+      '';
+    };
 
     # uncomment to enable auto gc
     /*
@@ -82,10 +95,5 @@ lib.my.makeSwitch {
         period = "1month";
       };
     };
-    my.hm.xdg.configFile."direnv/lib/angrr.sh".source =
-      "${config.services.angrr.package}/share/direnv/lib/angrr.sh";
-    my.hm.programs.direnv.stdlib = ''
-      use angrr
-    '';
   };
 }

@@ -4,16 +4,19 @@
   pkgs,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  default = true;
-  optionName = "default fish settings";
-  optionPath = [
-    "cli"
-    "shell"
-    "fish"
-  ];
-  config' = {
+let
+  cfg = config.my.cli.shell.fish;
+in
+{
+  options.my.cli.shell.fish = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enable default fish settings";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     my.persist.homeDirs = [
       ".local/share/fish"
     ];

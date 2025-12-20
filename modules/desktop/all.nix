@@ -1,12 +1,13 @@
 { config, lib, ... }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "all desktop things";
-  optionPath = [
-    "desktop"
-    "all"
-  ];
-  config' = {
+let
+  cfg = config.my.desktop.all;
+in
+{
+  options.my.desktop.all = {
+    enable = lib.mkEnableOption "all desktop things";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.desktop = {
       browser.all.enable = true;
       gaming.all.enable = true;

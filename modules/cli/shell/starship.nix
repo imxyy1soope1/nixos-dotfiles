@@ -1,13 +1,13 @@
 { config, lib, ... }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "starship prompt";
-  optionPath = [
-    "cli"
-    "shell"
-    "starship"
-  ];
-  config' = {
+let
+  cfg = config.my.cli.shell.starship;
+in
+{
+  options.my.cli.shell.starship = {
+    enable = lib.mkEnableOption "starship prompt";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.hm = {
       programs.starship = {
         enable = true;

@@ -1,13 +1,15 @@
 { config, lib, ... }:
-lib.my.makeSwitch {
-  inherit config;
-  default = true;
-  optionName = "default locale settings";
-  optionPath = [
-    "i18n"
-    "locale"
-  ];
-  config' = {
+let
+  cfg = config.my.i18n.locale;
+in
+{
+  options.my.i18n.locale = {
+    enable = lib.mkEnableOption "default locale settings" // {
+      default = true;
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     i18n = {
       defaultLocale = "en_US.UTF-8";
       extraLocaleSettings = {

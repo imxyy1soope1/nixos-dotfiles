@@ -1,12 +1,13 @@
 { config, lib, ... }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "all command line tools";
-  optionPath = [
-    "cli"
-    "all"
-  ];
-  config' = {
+let
+  cfg = config.my.cli.all;
+in
+{
+  options.my.cli.all = {
+    enable = lib.mkEnableOption "all command line tools";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.cli = {
       media.all.enable = true;
       misc.enable = true;

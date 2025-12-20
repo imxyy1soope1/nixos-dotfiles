@@ -1,13 +1,13 @@
 { config, lib, ... }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "all screencast tools";
-  optionPath = [
-    "desktop"
-    "screencast"
-    "all"
-  ];
-  config' = {
+let
+  cfg = config.my.desktop.screencast.all;
+in
+{
+  options.my.desktop.screencast.all = {
+    enable = lib.mkEnableOption "all screencast tools";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.desktop.screencast = {
       obs-studio.enable = true;
     };

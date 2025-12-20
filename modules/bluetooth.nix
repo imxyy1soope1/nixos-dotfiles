@@ -1,10 +1,13 @@
 { config, lib, ... }:
-lib.my.makeSwitch {
-  inherit config;
-  default = true;
-  optionName = "default bluetooth settings";
-  optionPath = [ "bluetooth" ];
-  config' = {
+let
+  cfg = config.my.bluetooth;
+in
+{
+  options.my.bluetooth = {
+    enable = lib.mkEnableOption "default bluetooth settings";
+  };
+
+  config = lib.mkIf cfg.enable {
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;

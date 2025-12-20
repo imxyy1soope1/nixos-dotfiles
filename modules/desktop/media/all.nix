@@ -1,13 +1,13 @@
 { config, lib, ... }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "all desktop media things";
-  optionPath = [
-    "desktop"
-    "media"
-    "all"
-  ];
-  config' = {
+let
+  cfg = config.my.desktop.media.all;
+in
+{
+  options.my.desktop.media.all = {
+    enable = lib.mkEnableOption "all desktop media things";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.desktop.media = {
       mpv.enable = true;
       shotwell.enable = true;

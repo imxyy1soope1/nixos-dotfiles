@@ -4,16 +4,19 @@
   pkgs,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  default = true;
-  optionName = "default zsh settings";
-  optionPath = [
-    "cli"
-    "shell"
-    "zsh"
-  ];
-  config' = {
+let
+  cfg = config.my.cli.shell.zsh;
+in
+{
+  options.my.cli.shell.zsh = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enable default zsh settings";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     my.hm = {
       home.packages = with pkgs; [
         fzf

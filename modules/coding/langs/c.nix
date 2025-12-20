@@ -4,15 +4,15 @@
   pkgs,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "c";
-  optionPath = [
-    "coding"
-    "langs"
-    "c"
-  ];
-  config' = {
+let
+  cfg = config.my.coding.langs.c;
+in
+{
+  options.my.coding.langs.c = {
+    enable = lib.mkEnableOption "c";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.hm.home.packages = with pkgs; [
       gcc
       (lib.hiPrio clang)

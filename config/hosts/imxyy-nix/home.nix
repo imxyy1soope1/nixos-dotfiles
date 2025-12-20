@@ -160,6 +160,9 @@
         ".claude"
         ".claude-code-router"
       ];
+      homeFiles = [
+        ".claude.json"
+      ];
     };
   };
 }

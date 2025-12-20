@@ -4,14 +4,15 @@
   pkgs,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "misc";
-  optionPath = [
-    "coding"
-    "misc"
-  ];
-  config' = {
+let
+  cfg = config.my.coding.misc;
+in
+{
+  options.my.coding.misc = {
+    enable = lib.mkEnableOption "misc";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.hm = {
       home.packages = with pkgs; [
         gnumake

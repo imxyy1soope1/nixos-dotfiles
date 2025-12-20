@@ -4,15 +4,16 @@
   pkgs,
   ...
 }:
-lib.my.makeHomeProgramConfig {
-  inherit config;
-  programName = "vscode";
-  optionPath = [
-    "coding"
-    "editor"
-    "vscode"
-  ];
-  extraConfig = {
+let
+  cfg = config.my.coding.editor.vscode;
+in
+{
+  options.my.coding.editor.vscode = {
+    enable = lib.mkEnableOption "vscode";
+  };
+
+  config = lib.mkIf cfg.enable {
+    my.hm.programs.vscode.enable = true;
     my.hm = {
       programs.vscode = {
         package = pkgs.vscodium;

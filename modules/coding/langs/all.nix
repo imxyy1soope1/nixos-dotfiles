@@ -1,13 +1,13 @@
 { config, lib, ... }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "all coding langs";
-  optionPath = [
-    "coding"
-    "langs"
-    "all"
-  ];
-  config' = {
+let
+  cfg = config.my.coding.langs.all;
+in
+{
+  options.my.coding.langs.all = {
+    enable = lib.mkEnableOption "all coding langs";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.coding.langs = {
       c.enable = true;
       go.enable = true;

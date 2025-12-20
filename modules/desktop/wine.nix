@@ -4,14 +4,15 @@
   pkgs,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "wine";
-  optionPath = [
-    "desktop"
-    "wine"
-  ];
-  config' = {
+let
+  cfg = config.my.desktop.wine;
+in
+{
+  options.my.desktop.wine = {
+    enable = lib.mkEnableOption "wine";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.hm.home.packages = with pkgs; [
       wine-wayland
       bottles

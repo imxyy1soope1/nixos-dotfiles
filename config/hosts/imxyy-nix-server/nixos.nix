@@ -6,24 +6,6 @@
   ...
 }:
 {
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    systemd-boot = {
-      enable = true;
-      configurationLimit = 10;
-    };
-    grub.enable = false;
-    timeout = 0;
-  };
-
-  systemd.services.nix-daemon = {
-    environment.TMPDIR = "/var/cache/nix";
-    serviceConfig.CacheDirectory = "nix";
-  };
-  environment.variables.NIX_REMOTE = "daemon";
-
-  my.audio.enable = false;
-
   sops.secrets.imxyy-nix-server-hashed-password = {
     sopsFile = secrets.imxyy-nix-server-hashed-password;
     format = "binary";

@@ -5,15 +5,15 @@
   secrets,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "go-musicfox";
-  optionPath = [
-    "cli"
-    "media"
-    "go-musicfox"
-  ];
-  config' = {
+let
+  cfg = config.my.cli.media.go-musicfox;
+in
+{
+  options.my.cli.media.go-musicfox = {
+    enable = lib.mkEnableOption "go-musicfox";
+  };
+
+  config = lib.mkIf cfg.enable {
     my = {
       hm = {
         home.packages = with pkgs; [

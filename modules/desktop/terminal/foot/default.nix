@@ -1,13 +1,14 @@
 { config, lib, ... }:
-lib.my.makeHomeProgramConfig {
-  inherit config;
-  programName = "foot";
-  optionPath = [
-    "desktop"
-    "terminal"
-    "foot"
-  ];
-  extraConfig = {
+let
+  cfg = config.my.desktop.terminal.foot;
+in
+{
+  options.my.desktop.terminal.foot = {
+    enable = lib.mkEnableOption "foot";
+  };
+
+  config = lib.mkIf cfg.enable {
+    my.hm.programs.foot.enable = true;
     my.hm.programs.foot = {
       server.enable = true;
       settings = {

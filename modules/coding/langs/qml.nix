@@ -4,15 +4,15 @@
   pkgs,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "QML";
-  optionPath = [
-    "coding"
-    "langs"
-    "qml"
-  ];
-  config' = {
+let
+  cfg = config.my.coding.langs.qml;
+in
+{
+  options.my.coding.langs.qml = {
+    enable = lib.mkEnableOption "QML";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.hm.home.packages = with pkgs; [
       kdePackages.qtdeclarative
     ];

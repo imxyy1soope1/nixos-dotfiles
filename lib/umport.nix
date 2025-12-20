@@ -13,6 +13,7 @@ let
       paths ? [ ],
       include ? [ ],
       exclude ? [ ],
+      extraExcludePredicate ? _: true,
       recursive ? true,
     }:
     with lib;
@@ -22,23 +23,22 @@ let
       excludedDirs = filter (path: pathIsDirectory path) exclude;
       isExcluded =
         path:
-        if elem path excludedFiles then
-          true
-        else
-          (filter (excludedDir: lib.path.hasPrefix excludedDir path) excludedDirs) != [ ];
+        (elem path excludedFiles)
+        || ((filter (excludedDir: lib.path.hasPrefix excludedDir path) excludedDirs) != [ ])
+        || extraExcludePredicate path;
     in
     unique (
       (filter
         (file: pathIsRegularFile file && hasSuffix ".nix" (builtins.toString file) && !isExcluded file)
         (
           concatMap (
-            _path:
+            path:
             if recursive then
-              toList _path
+              toList path
             else
               mapAttrsToList (
-                name: type: _path + (if type == "directory" then "/${name}/default.nix" else "/${name}")
-              ) (builtins.readDir _path)
+                name: type: path + (if type == "directory" then "/${name}/default.nix" else "/${name}")
+              ) (builtins.readDir path)
           ) (unique (if path == null then paths else [ path ] ++ paths))
         )
       )

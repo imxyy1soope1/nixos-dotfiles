@@ -12,6 +12,7 @@ in
     enable = lib.mkEnableOption "persist";
     location = lib.mkOption {
       type = lib.types.str;
+      default = "/nix/persist";
       example = lib.literalExpression ''
         "/persistent"
       '';

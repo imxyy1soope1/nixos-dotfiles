@@ -5,12 +5,15 @@
   username,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  default = true;
-  optionName = "default audio settings";
-  optionPath = [ "audio" ];
-  config' = {
+let
+  cfg = config.my.audio;
+in
+{
+  options.my.audio = {
+    enable = lib.mkEnableOption "default audio settings";
+  };
+
+  config = lib.mkIf cfg.enable {
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;

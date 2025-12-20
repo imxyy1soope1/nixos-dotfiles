@@ -16,7 +16,9 @@ in
     };
     sshKeyFile = lib.mkOption {
       type = lib.types.str;
-      default = "${config.my.persist.location}/home/${username}/.ssh/id_ed25519";
+      default = "${
+        if config.my.persist.enable then config.my.persist.location else ""
+      }/home/${username}/.ssh/id_ed25519";
     };
   };
 

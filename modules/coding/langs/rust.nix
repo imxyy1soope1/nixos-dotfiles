@@ -4,15 +4,15 @@
   pkgs,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "rust";
-  optionPath = [
-    "coding"
-    "langs"
-    "rust"
-  ];
-  config' = {
+let
+  cfg = config.my.coding.langs.rust;
+in
+{
+  options.my.coding.langs.rust = {
+    enable = lib.mkEnableOption "rust";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.hm = {
       home.packages = with pkgs; [
         (fenix.stable.withComponents [

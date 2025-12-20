@@ -4,15 +4,16 @@
   pkgs,
   ...
 }:
-lib.my.makeHomeProgramConfig {
-  inherit config;
-  programName = "chromium";
-  optionPath = [
-    "desktop"
-    "browser"
-    "chromium"
-  ];
-  extraConfig = {
+let
+  cfg = config.my.desktop.browser.chromium;
+in
+{
+  options.my.desktop.browser.chromium = {
+    enable = lib.mkEnableOption "chromium";
+  };
+
+  config = lib.mkIf cfg.enable {
+    my.hm.programs.chromium.enable = true;
     my.hm.programs.chromium = {
       package = pkgs.ungoogled-chromium;
       extensions = [

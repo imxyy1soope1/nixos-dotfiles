@@ -7,15 +7,16 @@
   useremail,
   ...
 }:
-lib.my.makeHomeProgramConfig {
-  inherit config;
-  programName = "jujutsu";
-  optionPath = [
-    "cli"
-    "vcs"
-    "jj"
-  ];
-  extraConfig = {
+let
+  cfg = config.my.cli.vcs.jj;
+in
+{
+  options.my.cli.vcs.jj = {
+    enable = lib.mkEnableOption "jujutsu";
+  };
+
+  config = lib.mkIf cfg.enable {
+    my.hm.programs.jujutsu.enable = true;
     my.hm = {
       programs.jujutsu = {
         settings = {

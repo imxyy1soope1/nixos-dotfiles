@@ -175,8 +175,8 @@
     config.sops.secrets.frp-env.path
   ];
   services.frp = {
-    enable = true;
     instances."" = {
+      enable = true;
       role = "client";
       settings = {
         serverAddr = "{{ .Envs.FRP_SERVER_ADDR }}";
@@ -383,7 +383,6 @@
             localPort = 443;
             customDomains = [ "memo.imxyy.top" ];
           }
-
 
           {
             name = "efl-matrix-http";

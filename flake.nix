@@ -107,14 +107,34 @@
         };
       }
       {
-        systems = [
-          "x86_64-linux"
-        ];
+        systems = [ "x86_64-linux" ];
+
         imports = [
-          ./nixos.nix
+          ./flake/hosts.nix
           ./treefmt.nix
           ./pkgs
           ./overlays
         ];
+
+        nixosHosts = {
+          imxyy-nix = {
+            profiles = [ "desktop" ];
+          };
+
+          imxyy-nix-server = {
+            profiles = [ "server" ];
+          };
+
+          imxyy-nix-wsl = {
+            profiles = [ "wsl" ];
+            modules = [
+              inputs.nixos-wsl.nixosModules.default
+            ];
+          };
+
+          imxyy-nix-x16 = {
+            profiles = [ "desktop" ];
+          };
+        };
       };
 }

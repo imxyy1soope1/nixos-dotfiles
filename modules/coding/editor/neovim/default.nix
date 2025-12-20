@@ -4,15 +4,15 @@
   pkgs,
   ...
 }:
-lib.my.makeHomeProgramConfig {
-  inherit config;
-  programName = "neovim";
-  optionPath = [
-    "coding"
-    "editor"
-    "neovim"
-  ];
-  extraConfig = {
+let
+  cfg = config.my.coding.editor.neovim;
+in
+{
+  options.my.coding.editor.neovim = {
+    enable = lib.mkEnableOption "neovim";
+  };
+
+  config = lib.mkIf cfg.enable {
     my.hm = {
       xdg.configFile."nvim/init.lua".source = ./nvim/init.lua;
       xdg.configFile."nvim/lua" = {

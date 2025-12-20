@@ -7,12 +7,17 @@
   secrets,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  default = true;
-  optionName = "default user settings";
-  optionPath = [ "user" ];
-  config' = {
+let
+  cfg = config.my.user;
+in
+{
+  options.my.user = {
+    enable = lib.mkEnableOption "default user settings" // {
+      default = true;
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     programs.zsh.enable = true;
 
     sops.secrets.imxyy-nix-hashed-password = {

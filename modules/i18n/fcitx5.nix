@@ -4,14 +4,15 @@
   pkgs,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  optionName = "default fcitx5 settings";
-  optionPath = [
-    "i18n"
-    "fcitx5"
-  ];
-  config' = {
+let
+  cfg = config.my.i18n.fcitx5;
+in
+{
+  options.my.i18n.fcitx5 = {
+    enable = lib.mkEnableOption "default fcitx5 settings";
+  };
+
+  config = lib.mkIf cfg.enable {
     i18n.inputMethod = {
       enable = true;
       type = "fcitx5";
@@ -114,17 +115,11 @@ lib.my.makeSwitch {
                 desktop,
               }:
               {
-
-                ${pkg} = final.stdenvNoCC.mkDerivation {
-                  inherit (prev.${pkg}) pname version;
-                  src = prev.${pkg};
-                  phases = [
-                    "unpackPhase"
-                    "installPhase"
-                  ];
+                ${pkg} = final.symlinkJoin {
+                  name = prev.${pkg}.name;
+                  paths = [ prev.${pkg} ];
                   nativeBuildInputs = [ final.makeWrapper ];
-                  installPhase = ''
-                    cp -r . $out
+                  postBuild = ''
                     substituteInPlace $out/share/applications/${desktop}.desktop --replace-quiet "${prev.${pkg}}" $out
                     wrapProgram $out/bin/${exe} --add-flags "--wayland-text-input-version=3"
                   '';
@@ -157,22 +152,15 @@ lib.my.makeSwitch {
             (
               { pkg, desktops }:
               {
-
-                ${pkg} = final.stdenvNoCC.mkDerivation {
-                  inherit (prev.${pkg}) pname version;
-                  src = prev.${pkg};
-                  phases = [
-                    "unpackPhase"
-                    "installPhase"
-                  ];
-                  installPhase =
-                    "cp -r . $out \n"
-                    + lib.concatLines (
-                      map (
-                        desktop:
-                        "substituteInPlace $out/share/applications/${desktop}.desktop --replace-fail 'Exec=' 'Exec=env QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx '"
-                      ) desktops
-                    );
+                ${pkg} = final.symlinkJoin {
+                  name = prev.${pkg}.name;
+                  paths = [ prev.${pkg} ];
+                  postBuild = lib.concatLines (
+                    map (
+                      desktop:
+                      "substituteInPlace $out/share/applications/${desktop}.desktop --replace-fail 'Exec=' 'Exec=env QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx '"
+                    ) desktops
+                  );
                 };
               }
             )

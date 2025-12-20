@@ -9,6 +9,7 @@
     "biosdevname=0"
     "net.ifnames=0"
   ];
+  my.persist.nixosDirs = [ "/etc/NetworkManager/system-connections" ];
   networking = {
     networkmanager.enable = true;
     firewall.enable = false;

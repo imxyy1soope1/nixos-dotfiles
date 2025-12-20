@@ -6,39 +6,9 @@
   ...
 }:
 {
-  security.pam.loginLimits = [
-    {
-      domain = "*";
-      type = "soft";
-      item = "nofile";
-      value = "524288";
-    }
-  ];
-
   boot.kernelParams = [
     "usbcore.autosuspend=-1" # Avoid usb autosuspend (for usb bluetooth adapter)
   ];
-
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    systemd-boot = {
-      enable = true;
-      configurationLimit = 10;
-    };
-    grub.enable = false;
-    timeout = 0;
-  };
-
-  hardware.graphics.enable = true;
-  hardware.graphics.enable32Bit = true;
-
-  systemd.services.nix-daemon = {
-    environment.TMPDIR = "/var/cache/nix";
-    serviceConfig.CacheDirectory = "nix";
-  };
-  environment.variables.NIX_REMOTE = "daemon";
-
-  services.printing.enable = true;
 
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
@@ -58,8 +28,6 @@
       };
     };
   };
-
-  services.gvfs.enable = true;
 
   services.openssh = {
     enable = true;
@@ -96,6 +64,4 @@
       ];
     };
   };
-
-  my.persist.nixosDirs = [ "/etc/NetworkManager/system-connections" ];
 }

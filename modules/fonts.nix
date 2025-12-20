@@ -4,12 +4,17 @@
   lib,
   ...
 }:
-lib.my.makeSwitch {
-  inherit config;
-  default = true;
-  optionName = "default font settings";
-  optionPath = [ "fonts" ];
-  config' = {
+let
+  cfg = config.my.fonts;
+in
+{
+  options.my.fonts = {
+    enable = lib.mkEnableOption "default font settings" // {
+      default = true;
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     fonts = {
       enableDefaultPackages = false;
       fontDir.enable = true;

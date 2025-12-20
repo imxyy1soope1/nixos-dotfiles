@@ -1,10 +1,15 @@
 { config, lib, ... }:
-lib.my.makeSwitch {
-  inherit config;
-  default = true;
-  optionName = "default time settings";
-  optionPath = [ "time" ];
-  config' = {
+let
+  cfg = config.my.time;
+in
+{
+  options.my.time = {
+    enable = lib.mkEnableOption "default time settings" // {
+      default = true;
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     time.timeZone = "Asia/Shanghai";
     networking.timeServers = [
       "0.cn.pool.ntp.org"
