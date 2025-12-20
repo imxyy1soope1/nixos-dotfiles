@@ -9,7 +9,7 @@
       };
       share = {
         path = "/mnt/nas/share";
-        browseable = "yes";
+        browsable = "yes";
         "read only" = "no";
         "guest ok" = "no";
         "create mask" = "0664";

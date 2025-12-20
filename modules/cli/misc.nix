@@ -16,7 +16,6 @@ lib.my.makeSwitch {
     environment.systemPackages = with pkgs; [
       vim
       wget
-      git
 
       file
       gnused
@@ -39,8 +38,6 @@ lib.my.makeSwitch {
       dnsutils
 
       killall
-
-      comma
     ];
 
     programs.dconf.enable = true;
@@ -51,16 +48,20 @@ lib.my.makeSwitch {
     ];
     my.hm = {
       home.packages = with pkgs; [
-        lsd
-        fd
-        neofetch
-        fastfetch
-        fzf
-        bat
-        ripgrep
-
+        # keep-sorted start
         aria2
+        bat
+        comma
+        fastfetch
+        fd
+        fzf
+        keep-sorted
+        lsd
+        neofetch
+        ripgrep
         socat
+        typos
+        # keep-sorted end
       ];
       programs.tmux = {
         enable = true;

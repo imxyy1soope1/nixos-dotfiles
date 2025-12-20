@@ -42,7 +42,16 @@ local servers = {
           command = { "nixfmt" },
         },
         nixpkgs = {
-          expr = "import <nixpkgs> { }",
+          expr = [[
+            let
+              lock = builtins.fromJSON (builtins.readFile ./flake.lock);
+              nodeName = lock.nodes.root.inputs.nixpkgs;
+            in
+            import (fetchTarball {
+              url = lock.nodes.${nodeName}.locked.url or "https://github.com/NixOS/nixpkgs/archive/${lock.nodes.${nodeName}.locked.rev}.tar.gz";
+              sha256 = lock.nodes.${nodeName}.locked.narHash;
+            }) { }
+          ]],
         },
       },
     },
@@ -54,14 +63,17 @@ local servers = {
   qmlls = {
     cmd = { "qmlls", "-E" },
   },
-  pyright = {},
-  gopls = {},
+  -- keep-sorted start
   clangd = {},
-  ts_ls = {},
-  jsonls = {},
   cssls = {},
+  gopls = {},
   html = {},
   java_language_server = {},
+  jsonls = {},
+  pyright = {},
+  ts_ls = {},
+  typos_lsp = {},
+  -- keep-sorted end
 }
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()

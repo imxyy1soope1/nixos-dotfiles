@@ -2,7 +2,7 @@
 {
   options = {
     grabKeyboard = lib.mkOption {
-      description = "Grab the keybaord in capture mode";
+      description = "Grab the keyboard in capture mode";
       default = true;
       type = lib.types.bool;
     };

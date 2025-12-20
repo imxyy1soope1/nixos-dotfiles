@@ -25,7 +25,7 @@ lib.my.makeSwitch {
         settings = {
           globalOptions = {
             "PreeditEnabledByDefault"."0" = true;
-            "Hotkey"."EnumrateWithTriggerKeys" = false;
+            "Hotkey"."EnumerateWithTriggerKeys" = false;
             "Hotkey/TriggerKeys"."0" = "";
             "Hotkey/AltTriggerKeys"."0" = "Shift_L";
             "Hotkey/EnumerateForwardKeys"."0" = "";

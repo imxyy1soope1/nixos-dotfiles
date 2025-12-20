@@ -22,6 +22,7 @@ lib.my.makeSwitch {
         url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/refs/tags/v4.14.1/extras/fish_themes/tokyonight_storm.theme";
         sha256 = "02n1w5x65683c8mlwg1rav06iqm3xk90zq45qmygpm7pzyn8dqh1";
       };
+      programs.starship.enableFishIntegration = false;
       programs.fish = {
         enable = true;
         plugins = [
@@ -32,6 +33,15 @@ lib.my.makeSwitch {
               repo = "fish-extract-ng";
               tag = "v0.1";
               hash = "sha256-yef5NX4HdZ3ab/2AzNrvvhi0CbeTvXYKZmyH76gIpyk=";
+            };
+          }
+          {
+            name = "starship";
+            src = pkgs.fetchFromGitHub {
+              owner = "tyler-stefani";
+              repo = "starship";
+              rev = "fff9bc53ef9997775d31d860246af88cd7721ec8";
+              hash = "sha256-S/Vt/jfYTCrMXXfu6YUIv+d0RoT7GYG1isayhtHc7DA=";
             };
           }
         ];

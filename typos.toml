@@ -1,0 +1,16 @@
+[files]
+extend-exclude = [
+    "secrets"
+]
+
+[default.extend-words]
+# noice.nvim
+noice = "noice"
+enew = "enew"
+iif = "iif"
+
+[default]
+extend-ignore-identifiers-re = [
+    "KEY_102ND",
+    "VE_UE"
+]

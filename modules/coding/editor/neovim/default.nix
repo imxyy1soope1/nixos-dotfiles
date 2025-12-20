@@ -29,6 +29,8 @@ lib.my.makeHomeProgramConfig {
           gcc # treesitter
 
           ripgrep # telescope
+
+          typos-lsp
         ];
       };
     };

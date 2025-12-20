@@ -37,7 +37,7 @@ vim.g.autoread = true
 
 vim.g.loaded_ruby_provider = 0
 
--- Hightlight on yank
+-- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
@@ -55,12 +55,12 @@ vim.cmd([[
   \ endif 
 ]])
 
--- Automaticly switch input method
+-- Automatically switch input method
 Last_input_method = 1
 vim.api.nvim_create_augroup("AutoInputMethod", {})
 vim.api.nvim_create_autocmd("InsertLeave", {
   pattern = "*",
-  desc = "Automaticly switch input method",
+  desc = "Automatically switch input method",
   callback = function()
     Last_input_method = require("core.globals").switch_input_method(1)
   end,
@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 vim.api.nvim_create_autocmd("CmdlineLeave", {
   pattern = "*",
-  desc = "Automaticly switch input method",
+  desc = "Automatically switch input method",
   callback = function()
     require("core.globals").switch_input_method(1)
   end,
@@ -76,7 +76,7 @@ vim.api.nvim_create_autocmd("CmdlineLeave", {
 })
 vim.api.nvim_create_autocmd("InsertEnter", {
   pattern = "*",
-  desc = "Automaticly switch input method",
+  desc = "Automatically switch input method",
   callback = function()
     require("core.globals").switch_input_method(Last_input_method)
   end,

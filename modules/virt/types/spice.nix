@@ -38,7 +38,7 @@
     };
 
     clipboardToLocal = lib.mkOption {
-      description = "Allow the clipbaord to be synchronized FROM the VM";
+      description = "Allow the clipboard to be synchronized FROM the VM";
       default = true;
       type = lib.types.bool;
     };
@@ -56,7 +56,7 @@
     };
 
     captureOnStart = lib.mkOption {
-      description = "Capture mouse and keybaord on start";
+      description = "Capture mouse and keyboard on start";
       default = false;
       type = lib.types.bool;
     };
