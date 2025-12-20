@@ -16,9 +16,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    my.hm.programs.git.enable = true;
     my.hm = {
       programs.git = {
+        enable = true;
         settings = {
           gpg.ssh.allowedSignersFile =
             (pkgs.writeText "allowed_signers" ''

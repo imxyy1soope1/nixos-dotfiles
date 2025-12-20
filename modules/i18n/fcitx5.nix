@@ -116,11 +116,14 @@ in
               }:
               {
                 ${pkg} = final.symlinkJoin {
-                  name = prev.${pkg}.name;
+                  pname = prev.${pkg}.pname;
+                  version = prev.${pkg}.version;
                   paths = [ prev.${pkg} ];
                   nativeBuildInputs = [ final.makeWrapper ];
                   postBuild = ''
-                    substituteInPlace $out/share/applications/${desktop}.desktop --replace-quiet "${prev.${pkg}}" $out
+                    rm $out/share/applications/${desktop}.desktop
+                    substitute ${prev.${pkg}}/share/applications/${desktop}.desktop $out/share/applications/${desktop}.desktop \
+                      --replace-quiet "${prev.${pkg}}" $out
                     wrapProgram $out/bin/${exe} --add-flags "--wayland-text-input-version=3"
                   '';
                 };
@@ -158,7 +161,11 @@ in
                   postBuild = lib.concatLines (
                     map (
                       desktop:
-                      "substituteInPlace $out/share/applications/${desktop}.desktop --replace-fail 'Exec=' 'Exec=env QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx '"
+                      ''
+                        rm $out/share/applications/${desktop}.desktop
+                        substitute ${prev.${pkg}}/share/applications/${desktop}.desktop $out/share/applications/${desktop}.desktop \
+                          --replace-fail 'Exec=' 'Exec=env QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx '
+                      ''
                     ) desktops
                   );
                 };
