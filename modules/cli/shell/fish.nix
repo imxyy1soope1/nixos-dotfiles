@@ -43,15 +43,6 @@ in
               hash = "sha256-yef5NX4HdZ3ab/2AzNrvvhi0CbeTvXYKZmyH76gIpyk=";
             };
           }
-          {
-            name = "starship";
-            src = pkgs.fetchFromGitHub {
-              owner = "tyler-stefani";
-              repo = "starship";
-              rev = "fff9bc53ef9997775d31d860246af88cd7721ec8";
-              hash = "sha256-S/Vt/jfYTCrMXXfu6YUIv+d0RoT7GYG1isayhtHc7DA=";
-            };
-          }
         ];
         shellAliases = {
           la = "lsd -lah";
@@ -63,6 +54,7 @@ in
         interactiveShellInit = lib.mkBefore ''
           fish_vi_key_bindings
           fish_config theme choose tokyonight_storm
+          ${lib.optionalString config.my.cli.shell.starship.enable "source ${./starship.fish}"}
         '';
         functions = {
           fish_greeting = "";
