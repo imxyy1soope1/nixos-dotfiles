@@ -49,7 +49,6 @@ in
           ls = "lsd";
           svim = "doasedit";
           nf = "fastfetch";
-          tmux = "tmux -T RGB,focus,overline,mouse,clipboard,usstyle";
         };
         interactiveShellInit = lib.mkBefore ''
           fish_vi_key_bindings

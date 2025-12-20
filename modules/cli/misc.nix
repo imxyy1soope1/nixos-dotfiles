@@ -69,7 +69,10 @@ in
       ];
       programs.tmux = {
         enable = true;
-        extraConfig = "set-option -g mouse on";
+        extraConfig = ''
+          set-option -g mouse on
+          set-option -a terminal-features ",xterm-256color:RGB,focus,clipboard,usstyle"
+        '';
         plugins = [
           (pkgs.tmuxPlugins.mkTmuxPlugin {
             pluginName = "tokyo-night-tmux";

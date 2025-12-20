@@ -54,7 +54,6 @@ in
           ls = "lsd";
           svim = "doasedit";
           nf = "fastfetch";
-          tmux = "tmux -T RGB,focus,overline,mouse,clipboard,usstyle";
         };
       };
     };
