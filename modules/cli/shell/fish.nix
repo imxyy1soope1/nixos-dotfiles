@@ -17,9 +17,14 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    my.persist.homeDirs = [
-      ".local/share/fish"
-    ];
+    my.persist = {
+      homeDirs = [
+        ".local/share/fish"
+      ];
+      homeFiles = [
+        ".config/fish/fish_variables"
+      ];
+    };
     my.hm = {
       xdg.configFile."fish/themes/tokyonight_storm.theme".source = builtins.fetchurl {
         url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/refs/tags/v4.14.1/extras/fish_themes/tokyonight_storm.theme";
