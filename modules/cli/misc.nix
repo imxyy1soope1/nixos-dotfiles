@@ -95,8 +95,14 @@ in
       programs.television = {
         enable = true;
         enableZshIntegration = true;
-        enableFishIntegration = true;
+        enableFishIntegration = builtins.warn ''
+          Television shell integration disabled in favor of [issue](https://github.com/nix-community/home-manager/issues/8400)!
+          Enable it when the issue is resolved.
+        '' false;
       };
+      programs.fish.interactiveShellInit = ''
+        ${lib.getExe config.my.hm.programs.television.package} init fish | source
+      '';
       programs.zoxide = {
         enable = true;
         enableZshIntegration = true;
