@@ -8,6 +8,11 @@ vim.lsp.config("nixd", {
             .. ".options",
         },
       },
+      diagnostic = {
+        suppress = {
+          "sema-primop-overridden",
+        },
+      },
     },
   },
 })
