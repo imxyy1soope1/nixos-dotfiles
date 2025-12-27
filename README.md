@@ -10,7 +10,7 @@ Currently, this repository contains the nix code that builds:
 2. NixOS home server
 3. NixOS WSL
 
-See [./config/hosts](./config/hosts) for details of each host.
+See [./hosts](./hosts) for details of each host.
 
 ## Why NixOS & Flakes?
 
@@ -25,23 +25,6 @@ As for Flakes, refer to
 This configuration uses [flake-parts](https://flake.parts/) for better flake organization and modularity,
 enabling declarative host definitions and cleaner separation of concerns.
 
-## Components
-
-|                               | NixOS(Wayland)                               |
-| ----------------------------- | :------------------------------------------- |
-| **Window Manager**            | Niri                                         |
-| **Desktop Shell**             | Noctalia Shell                               |
-| **Terminal Emulator**         | Kitty                                        |
-| **Input method framework**    | Fcitx5                                       |
-| **Shell**                     | Zsh                                          |
-| **Netease Cloudmusic Player** | go-musicfox                                  |
-| **Media Player**              | mpv                                          |
-| **Text Editor**               | Neovim                                       |
-| **Fonts**                     | Noto Sans CJK & Jetbrains Mono & Nerd Font   |
-| **Filesystem**                | Btrfs                                        |
-
-And more...
-
 ## Folder Structure
 
 - `modules/` - custom NixOS modules
@@ -55,7 +38,7 @@ And more...
   - `profiles/desktop.nix` - desktop environment configuration
   - `profiles/server.nix` - server-specific configuration
   - `profiles/wsl.nix` - WSL-specific configuration
-- `config/hosts/<name>/` - host-specific configs
+- `hosts/<name>/` - host-specific configs
 - `flake/` - flake-parts modules
   - `flake/hosts.nix` - declarative host definitions
 - `lib/` - custom nix library

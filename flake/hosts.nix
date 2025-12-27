@@ -51,7 +51,7 @@ in
               type = lib.types.listOf lib.types.deferredModule;
               default = (
                 lib.umport {
-                  paths = [ ../config/hosts/${name} ];
+                  paths = [ ../hosts/${name} ];
                   extraExcludePredicate = path: lib.hasInfix "/_" (toString path);
                   recursive = true;
                 }
