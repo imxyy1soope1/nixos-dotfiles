@@ -24,19 +24,16 @@
       flake.setNixPath = false;
     };
   };
+
   perSystem =
     {
       system,
       pkgs,
       ...
     }:
-    let
-    in
     {
       _module.args.pkgs = import inputs.nixpkgs (pkgsParams // { inherit system; });
-
       legacyPackages = pkgs;
-
       packages = lib.genAttrs (builtins.attrNames (config.flake.overlays.additions pkgs pkgs)) (
         pkg: pkgs.${pkg}
       );
@@ -44,21 +41,15 @@
 
   flake.overlays.additions =
     final: prev:
-    let
-      paths = [
-        # keep-sorted start
-        ./fcitx5-lightly
-        ./jj-starship.nix
-        ./mono-gtk-theme.nix
-        ./ttf-wps-fonts.nix
-        ./wps-office-fonts.nix
-        # keep-sorted end
+    with lib.haumea;
+    load {
+      src = ../pkgs;
+      loader = [
+        {
+          matches = str: builtins.match ".*\\.nix" str != null;
+          loader = _: path: final.callPackage path { };
+        }
       ];
-    in
-    builtins.listToAttrs (
-      map (path: {
-        name = builtins.elemAt (lib.splitString "." (builtins.baseNameOf path)) 0;
-        value = final.callPackage path { };
-      }) paths
-    );
+      transformer = transformers.liftDefault;
+    };
 }

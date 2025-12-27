@@ -38,8 +38,7 @@ in
     }) config.nix.registry;
 
     nix.settings = {
-      # Enable flakes and new 'nix' command
-      experimental-features = "nix-command flakes";
+      experimental-features = "nix-command flakes pipe-operators";
       substituters = [
         "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
         "https://mirror.sjtu.edu.cn/nix-channels/store"

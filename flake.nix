@@ -114,8 +114,8 @@
 
         imports = [
           ./flake/hosts.nix
+          ./flake/pkgs.nix
           ./treefmt.nix
-          ./pkgs
           ./overlays
         ];
 

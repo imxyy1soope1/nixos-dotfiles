@@ -28,20 +28,17 @@ let
         || extraExcludePredicate path;
     in
     unique (
-      (filter
-        (file: pathIsRegularFile file && hasSuffix ".nix" (builtins.toString file) && !isExcluded file)
-        (
-          concatMap (
-            path:
-            if recursive then
-              toList path
-            else
-              mapAttrsToList (
-                name: type: path + (if type == "directory" then "/${name}/default.nix" else "/${name}")
-              ) (builtins.readDir path)
-          ) (unique (if path == null then paths else [ path ] ++ paths))
-        )
-      )
+      (filter (file: pathIsRegularFile file && hasSuffix ".nix" (toString file) && !isExcluded file) (
+        concatMap (
+          path:
+          if recursive then
+            toList path
+          else
+            mapAttrsToList (
+              name: type: path + (if type == "directory" then "/${name}/default.nix" else "/${name}")
+            ) (builtins.readDir path)
+        ) (unique (if path == null then paths else [ path ] ++ paths))
+      ))
       ++ (if recursive then concatMap (path: toList path) (unique include) else unique include)
     );
 in

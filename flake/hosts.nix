@@ -10,9 +10,7 @@
 let
   vars = import ../vars.nix;
   pkgsModule = {
-    nixpkgs = pkgsParams // {
-      inherit (config.nixpkgs.hostPlatform) system;
-    };
+    nixpkgs = pkgsParams;
   };
   hmModule = {
     home-manager = {
