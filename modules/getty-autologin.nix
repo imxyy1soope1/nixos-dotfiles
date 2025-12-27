@@ -25,11 +25,9 @@ let
 
   forAllAutologinTTYs =
     config:
-    attrsets.mergeAttrsList (
-      builtins.map (ttynum: { "getty@tty${toString ttynum}" = config; }) cfg.ttys
-    );
+    attrsets.mergeAttrsList (map (ttynum: { "getty@tty${toString ttynum}" = config; }) cfg.ttys);
 
-  autologinModule = types.submodule ({
+  autologinModule = types.submodule {
     options = {
       enable = mkEnableOption "autologin";
       user = mkOption {
@@ -48,7 +46,7 @@ let
         '';
       };
     };
-  });
+  };
 
 in
 
