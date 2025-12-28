@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  impure,
   ...
 }:
 let
@@ -14,11 +15,8 @@ in
 
   config = lib.mkIf cfg.enable {
     my.hm = {
-      xdg.configFile."nvim/init.lua".source = ./nvim/init.lua;
-      xdg.configFile."nvim/lua" = {
-        source = ./nvim/lua;
-        recursive = true;
-      };
+      xdg.configFile."nvim/init.lua".source = impure.mkImpureLink ./nvim/init.lua;
+      xdg.configFile."nvim/lua".source = impure.mkImpureLink ./nvim/lua;
       programs.neovim = {
         enable = true;
         defaultEditor = true;

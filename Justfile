@@ -1,28 +1,29 @@
+root := `pwd`
+NH := "IMPURE_ROOT=" + root + " nh"
+
 all: fmt switch
 
 switch:
 	@echo "Rebuilding NixOS..."
-	@nh os switch .
+	@{{NH}} os switch . --impure
 
 switch-offline:
 	@echo "Rebuilding NixOS without net..."
-	@nh os switch . --no-net
+	@{{NH}} os switch . --impure --no-net
 
-offline:
-	@echo "Rebuilding NixOS without net..."
-	@nh os switch . --no-net
+alias offline := switch-offline
 
 boot:
 	@echo "Rebuilding NixOS..."
-	@nh os boot .
+	@{{NH}} os boot . --impure
 
 test:
 	@echo "Rebuilding NixOS..."
-	@nh os test .
+	@{{NH}} os test . --impure
 
 vm:
 	@echo "Building NixOS VM..."
-	@nh os build-vm .
+	@{{NH}} os build-vm . --impure
 
 update:
 	@echo "Updating flakes..."
@@ -47,5 +48,3 @@ gc:
 fmt:
 	@echo "Formatting nix files..."
 	@nix fmt
-
-.PHONY: all switch switch-offline boot test vm update repl cleandry clean gc fmt
