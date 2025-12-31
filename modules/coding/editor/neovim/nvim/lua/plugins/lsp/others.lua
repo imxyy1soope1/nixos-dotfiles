@@ -25,10 +25,6 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "single",
-})
-
 local diag_config1 = {
   virtual_text = {
     severity = {

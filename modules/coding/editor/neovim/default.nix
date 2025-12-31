@@ -15,8 +15,7 @@ in
 
   config = lib.mkIf cfg.enable {
     my.hm = {
-      xdg.configFile."nvim/init.lua".source = impure.mkImpureLink ./nvim/init.lua;
-      xdg.configFile."nvim/lua".source = impure.mkImpureLink ./nvim/lua;
+      xdg.configFile."nvim".source = impure.mkImpureLink ./nvim;
       programs.neovim = {
         enable = true;
         defaultEditor = true;
