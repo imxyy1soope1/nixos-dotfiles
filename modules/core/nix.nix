@@ -51,6 +51,7 @@ in
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       ];
       download-buffer-size = 536870912; # 512 MiB
+      warn-dirty = false;
     };
 
     sops.secrets.nix-github-token = {
