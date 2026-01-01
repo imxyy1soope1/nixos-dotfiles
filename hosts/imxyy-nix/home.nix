@@ -35,10 +35,16 @@
         no_proxy = "192.168.3.0/24";
         PATH = "/home/${username}/bin:$PATH";
       };
-      profileExtra = ''
-        if [ `tty` = "/dev/tty6" ]; then
-          clear
-        fi
+    };
+    programs.fish = {
+      shellAliases = {
+        cageterm = "cage -m DP-1 -s -- alacritty -o font.size=20";
+        cagefoot = "cage -m DP-1 -s -- foot --font=monospace:size=20";
+        cagekitty = "cage -m DP-1 -s -- kitty -o font_size=20";
+      };
+      interactiveShellInit = ''
+        set -g no_proxy "192.168.3.0/24"
+        set -gp PATH $HOME/bin
       '';
     };
 

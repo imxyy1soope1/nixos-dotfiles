@@ -27,7 +27,10 @@ in
         registry = https://registry.npmmirror.com
       '';
       programs.zsh.initContent = lib.mkAfter ''
-        export PATH=$PATH:$HOME/.npm-global/bin
+        export PATH=$HOME/.npm-global/bin:$PATH
+      '';
+      programs.fish.interactiveShellInit = ''
+        set -gp PATH $HOME/.npm-global/bin
       '';
     };
     my.persist.homeDirs = [

@@ -18,8 +18,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.zsh.enable = true;
-
     sops.secrets.imxyy-nix-hashed-password = {
       sopsFile = secrets.imxyy-nix-hashed-password;
       format = "binary";

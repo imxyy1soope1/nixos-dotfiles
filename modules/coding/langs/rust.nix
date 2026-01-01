@@ -38,7 +38,10 @@ in
         git-fetch-with-cli = true
       '';
       programs.zsh.initContent = lib.mkAfter ''
-        export PATH=$PATH:$HOME/.cargo/bin
+        export PATH=$HOME/.cargo/bin:$PATH
+      '';
+      programs.fish.interactiveShellInit = ''
+        set -gp PATH $HOME/.cargo/bin
       '';
     };
     my.persist.homeDirs = [

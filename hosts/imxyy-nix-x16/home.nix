@@ -30,6 +30,9 @@
         PATH = "/home/${username}/bin:$PATH";
       };
     };
+    programs.fish.interactiveShellInit = ''
+      set -gp PATH $HOME/bin
+    '';
 
     programs.niri.settings = {
       environment.STEAM_FORCE_DESKTOPUI_SCALING = "1.25";

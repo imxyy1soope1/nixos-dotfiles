@@ -1,7 +1,12 @@
 { lib, username, ... }:
 {
-  my.hm.programs.zsh.shellAliases = {
-    localproxy_on = "export http_proxy=http://192.168.128.1:7890 https_proxy=http://192.168.128.1:7890 all_proxy=socks://192.168.128.1:7890";
+  my.hm = {
+    programs.zsh.shellAliases = {
+      localproxy_on = "export http_proxy=http://192.168.128.1:7890 https_proxy=http://192.168.128.1:7890 all_proxy=socks://192.168.128.1:7890";
+    };
+    programs.fish.shellAliases = {
+      localproxy_on = "export http_proxy=http://192.168.128.1:7890 https_proxy=http://192.168.128.1:7890 all_proxy=socks://192.168.128.1:7890";
+    };
   };
   my = {
     sops.sshKeyFile = "/home/${username}/.ssh/id_ed25519";
