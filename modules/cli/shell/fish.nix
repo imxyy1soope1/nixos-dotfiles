@@ -21,9 +21,6 @@ in
       homeDirs = [
         ".local/share/fish"
       ];
-      homeFiles = [
-        ".config/fish/fish_variables"
-      ];
     };
     my.hm = {
       xdg.configFile."fish/themes/tokyonight_storm.theme".source = builtins.fetchurl {

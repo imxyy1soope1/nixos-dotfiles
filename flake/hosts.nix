@@ -16,7 +16,6 @@ let
     home-manager = {
       sharedModules = [
         inputs.sops-nix.homeManagerModules.sops
-        inputs.impermanence.nixosModules.home-manager.impermanence
         inputs.stylix.homeModules.stylix
         inputs.noctalia.homeModules.default
         inputs.zen.homeModules.beta
