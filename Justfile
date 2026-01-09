@@ -36,12 +36,12 @@ alias offline := switch-offline
 @cleandry:
 	echo "Listing all generations older than 15 days..."
 	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --dry-run --older-than 15d
-	nix profile wipe-history --profile ~/.local/state/nix/profiles/home-manager --dry-run --older-than 15d
+	nix profile wipe-history --profile ~/.local/state/nix/profiles/profile --dry-run --older-than 15d
 
 @clean:
 	echo "Removing all generations older than 15 days..."
 	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 15d
-	nix profile wipe-history --profile ~/.local/state/nix/profiles/home-manager --older-than 15d
+	nix profile wipe-history --profile ~/.local/state/nix/profiles/profile --older-than 15d
 
 @gc:
 	nix store gc --debug
