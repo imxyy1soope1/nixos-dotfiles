@@ -21,6 +21,16 @@ in
       programs.jujutsu = {
         enable = true;
         settings = {
+          # take the closest ancestor bookmark and move them the current change.
+          # https://shaddy.dev/notes/jj-tug
+          aliases.tug = [
+            "bookmark"
+            "move"
+            "--from"
+            "heads(::@- & bookmarks())"
+            "--to"
+            "@-"
+          ];
           user = {
             name = userfullname;
             email = emails.default;
