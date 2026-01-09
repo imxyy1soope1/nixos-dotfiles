@@ -131,7 +131,6 @@
           "cliphist"
           "store"
         ]
-        [ "noctalia-shell" ]
       ];
 
       binds =
