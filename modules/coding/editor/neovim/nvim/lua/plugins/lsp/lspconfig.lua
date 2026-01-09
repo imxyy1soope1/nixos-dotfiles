@@ -72,6 +72,7 @@ local servers = {
     cmd = { "qmlls", "-E" },
   },
   -- keep-sorted start
+  biome = {},
   clangd = {},
   cssls = {},
   gopls = {},

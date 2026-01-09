@@ -21,6 +21,8 @@ in
 
         nodePackages.typescript-language-server
         vue-language-server
+
+        biome
       ];
       home.file.".npmrc".text = ''
         prefix = ''${HOME}/.npm-global
