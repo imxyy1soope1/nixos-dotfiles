@@ -13,6 +13,7 @@ in
       shotwell.enable = true;
       thunderbird.enable = true;
       vlc.enable = true;
+      splayer.enable = true;
       spotify.enable = true;
       spotube.enable = true;
     };
