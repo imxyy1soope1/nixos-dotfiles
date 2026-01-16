@@ -15,13 +15,26 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    programs.niri = {
+      enable = true;
+      package = pkg;
+    };
+    services.displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+    };
+
     security.pam.services.login.enableGnomeKeyring = true;
+    services.gnome.gnome-keyring.enable = true;
     my.persist.homeDirs = [
       {
         directory = ".local/share/keyrings";
         mode = "0700";
       }
     ];
+
     xdg.portal = {
       enable = true;
       config = {
@@ -41,17 +54,9 @@ in
     };
     systemd.user.services.niri-flake-polkit.serviceConfig.ExecStart =
       lib.mkForce "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-    services.gnome.gnome-keyring.enable = true;
-    programs.niri = {
-      enable = true;
-      package = pkg;
-    };
-    services.displayManager = {
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-    };
+
+    services.system76-scheduler.enable = true;
+
     my.hm = {
       home.packages = with pkgs; [
         xwayland-satellite-unstable
@@ -67,6 +72,8 @@ in
         noctalia-shell
         xdg-terminal-exec
       ];
+
+      services.system76-scheduler-niri.enable = true;
 
       programs.noctalia-shell = {
         enable = true;

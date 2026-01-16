@@ -55,6 +55,10 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    system76-scheduler-niri = {
+      url = "github:Kirottu/system76-scheduler-niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # keep-sorted end
 
     # Useful software

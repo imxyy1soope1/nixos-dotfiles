@@ -15,10 +15,13 @@ let
   hmModule = {
     home-manager = {
       sharedModules = [
+        # keep-sorted start
+        inputs.noctalia.homeModules.default
         inputs.sops-nix.homeManagerModules.sops
         inputs.stylix.homeModules.stylix
-        inputs.noctalia.homeModules.default
+        inputs.system76-scheduler-niri.homeModules.default
         inputs.zen.homeModules.beta
+        # keep-sorted end
         {
           stylix.overlays.enable = lib.mkForce false;
         }
@@ -121,12 +124,14 @@ in
               (lib.mkAliasOptionModule [ "my" "hm" ] [ "home-manager" "users" vars.username ])
 
               # Upstream modules
-              inputs.sops-nix.nixosModules.sops
-              inputs.impermanence.nixosModules.impermanence
-              inputs.home-manager.nixosModules.default
-              inputs.niri.nixosModules.niri
-              inputs.catppuccin.nixosModules.catppuccin
+              # keep-sorted start
               inputs.angrr.nixosModules.angrr
+              inputs.catppuccin.nixosModules.catppuccin
+              inputs.home-manager.nixosModules.default
+              inputs.impermanence.nixosModules.impermanence
+              inputs.niri.nixosModules.niri
+              inputs.sops-nix.nixosModules.sops
+              # keep-sorted end
 
               # pkgs and home-manager configuration
               pkgsModule
