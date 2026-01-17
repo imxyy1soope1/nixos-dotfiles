@@ -29,10 +29,6 @@ in
       "fs.file-max" = 9223372036854775807;
     };
   };
-  services.scx = {
-    enable = true;
-    scheduler = "scx_rusty";
-  };
 
   fileSystems."/" = {
     device = btrfs;

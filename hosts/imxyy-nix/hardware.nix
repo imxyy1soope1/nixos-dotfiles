@@ -36,10 +36,6 @@ in
       "resume_offset=6444127"
     ];
   };
-  services.scx = {
-    enable = true;
-    scheduler = "scx_rusty";
-  };
 
   fileSystems."/" = {
     device = btrfs;

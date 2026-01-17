@@ -19,10 +19,6 @@ in
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod_stable;
-  services.scx = {
-    enable = true;
-    scheduler = "scx_rusty";
-  };
   boot.extraModulePackages = [ ];
   boot.tmp.useTmpfs = true;
   boot.supportedFilesystems = [ "zfs" ];
