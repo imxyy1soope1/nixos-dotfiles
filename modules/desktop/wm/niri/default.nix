@@ -64,7 +64,6 @@ in
         wlr-randr
         wl-clipboard
         cliphist
-        playerctl
         brightnessctl
 
         nautilus

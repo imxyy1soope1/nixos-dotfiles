@@ -142,7 +142,7 @@
               "ipc"
               "call"
             ]
-            ++ (pkgs.lib.splitString " " cmd);
+            ++ (lib.splitString " " cmd);
         in
         with config.my.hm.lib.niri.actions;
         {
@@ -180,30 +180,15 @@
           };
           "XF86AudioMute" = {
             allow-when-locked = true;
-            action.spawn = [
-              "playerctl"
-              "-i"
-              "firefox,chromium,zen"
-              "play-pause"
-            ];
+            action.spawn = noctalia "media playPause";
           };
           "Super+XF86AudioRaiseVolume" = {
             allow-when-locked = true;
-            action.spawn = [
-              "playerctl"
-              "-i"
-              "firefox,chromium,zen"
-              "next"
-            ];
+            action.spawn = noctalia "media next";
           };
           "Super+XF86AudioLowerVolume" = {
             allow-when-locked = true;
-            action.spawn = [
-              "playerctl"
-              "-i"
-              "firefox,chromium,zen"
-              "previous"
-            ];
+            action.spawn = noctalia "media previous";
           };
 
           "XF86MonBrightnessUp" = {

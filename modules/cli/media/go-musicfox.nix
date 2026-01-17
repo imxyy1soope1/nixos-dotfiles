@@ -16,9 +16,8 @@ in
   config = lib.mkIf cfg.enable {
     my = {
       hm = {
-        home.packages = with pkgs; [
-          playerctl
-          go-musicfox
+        home.packages = [
+          pkgs.go-musicfox
         ];
         sops.secrets.go-musicfox = {
           sopsFile = secrets.go-musicfox;
