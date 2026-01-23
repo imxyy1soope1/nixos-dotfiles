@@ -64,8 +64,8 @@
       defaultApplications =
         let
           browser = [ config.my.desktop.browser.default.desktop ];
-          editor = [ "codium.desktop" ];
-          imageviewer = [ "org.gnome.Shotwell-Viewer.desktop" ];
+          editor = [ "nvim.desktop" ];
+          imageviewer = [ "org.gnome.Loupe.desktop" ];
         in
         {
           "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
@@ -74,7 +74,6 @@
 
           "text/*" = editor;
           "application/json" = editor;
-          "text/html" = editor;
           "text/xml" = editor;
           "application/xml" = editor;
           "application/xhtml+xml" = editor;
@@ -87,6 +86,7 @@
           "application/x-extension-xht" = editor;
           "application/x-extension-xhtml" = editor;
 
+          "text/html" = browser;
           "x-scheme-handler/about" = browser;
           "x-scheme-handler/ftp" = browser;
           "x-scheme-handler/http" = browser;

@@ -10,7 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     my.desktop.media = {
       mpv.enable = true;
-      shotwell.enable = true;
+      loupe.enable = true;
       thunderbird.enable = true;
       vlc.enable = true;
       splayer.enable = true;
