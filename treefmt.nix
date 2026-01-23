@@ -7,10 +7,6 @@
       nixfmt.enable = true;
       stylua.enable = true;
       keep-sorted.enable = true;
-      typos = {
-        enable = true;
-        configFile = "typos.toml";
-      };
     };
   };
 }
