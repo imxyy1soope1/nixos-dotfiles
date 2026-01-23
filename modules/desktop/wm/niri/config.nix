@@ -5,6 +5,9 @@
   assets,
   ...
 }:
+let
+  settings = config.my.hm.programs.niri.settings;
+in
 {
   config = lib.mkIf config.my.desktop.wm.niri.enable {
     my.hm.programs.niri.settings = {
@@ -97,17 +100,11 @@
         }
       ];
 
-      environment = {
-        QT_QPA_PLATFORM = "wayland;xcb";
-        XDG_SESSION_TYPE = "wayland";
-        XDG_CURRENT_DESKTOP = "niri";
-        XDG_SESSION_DESKTOP = "niri";
+      environment.NIXOS_OZONE_WL = "1";
 
-        NIXOS_OZONE_WL = "1";
-        NOCTALIA_SETTINGS_FALLBACK = "${config.my.hm.xdg.configHome}/noctalia/gui-settings.json";
-      };
+      spawn-at-startup = lib.mkBefore (map (c: { command = c; }) [
+        ([ "dbus-update-activation-environment" "--systemd" ] ++ builtins.attrNames settings.environment)
 
-      spawn-at-startup = map (c: { command = c; }) [
         [
           "${lib.getExe pkgs.swaybg}"
           "-m"
@@ -131,7 +128,14 @@
           "cliphist"
           "store"
         ]
-      ];
+        # TODO: Is there a better way?
+        [
+          "systemctl"
+          "restart"
+          "--user"
+          "noctalia-shell.service"
+        ]
+      ]);
 
       binds =
         let
