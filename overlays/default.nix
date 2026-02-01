@@ -18,6 +18,8 @@ in
       lib.infuse prev {
         cage.__output.patches.__append = [ ./cage-specify-output-name.patch ];
         bottles.__input.removeWarningPopup.__assign = true;
+
+        easytier.__assign = final.stable.easytier;
       };
   }
   //
