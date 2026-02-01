@@ -75,26 +75,6 @@ in
         typos
         # keep-sorted end
       ];
-      programs.tmux = {
-        enable = true;
-        extraConfig = ''
-          set-option -g mouse on
-          set-option -a terminal-features ",xterm-256color:RGB,focus,clipboard,usstyle"
-        '';
-        plugins = [
-          (pkgs.tmuxPlugins.mkTmuxPlugin {
-            pluginName = "tokyo-night-tmux";
-            rtpFilePath = "tokyo-night.tmux";
-            version = "legacy";
-            src = pkgs.fetchFromGitHub {
-              owner = "janoamaral";
-              repo = "tokyo-night-tmux";
-              rev = "16469dfad86846138f594ceec780db27039c06cd";
-              hash = "sha256-EKCgYan0WayXnkSb2fDJxookdBLW0XBKi2hf/YISwJE=";
-            };
-          })
-        ];
-      };
       programs.tealdeer = {
         enable = true;
         enableAutoUpdates = true;

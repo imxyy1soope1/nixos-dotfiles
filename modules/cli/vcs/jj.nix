@@ -60,11 +60,10 @@ in
       programs.starship = {
         settings = {
           custom = {
+            # Borrowed from https://github.com/jj-vcs/jj/wiki/Starship/b18afc53417848f58333b24d446b8e2522b42bd2#alternative-prompt
             jj = {
               ignore_timeout = true;
               description = "The current jj status";
-              # when = "${lib.getExe pkgs.jj-starship} detect";
-              # command = "${lib.getExe pkgs.jj-starship}";
               when = true;
               command = ''
                 jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '

@@ -14,6 +14,9 @@ in
       monitor.all.enable = true;
       shell.all.enable = true;
       vcs.all.enable = true;
+
+      shpool.enable = true;
+      tmux.enable = true;
     };
   };
 }
