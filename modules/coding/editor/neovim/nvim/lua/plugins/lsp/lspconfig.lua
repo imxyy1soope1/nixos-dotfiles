@@ -85,12 +85,15 @@ local servers = {
   -- keep-sorted end
 }
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true,
+local capabilities = {
+  textDocument = {
+    foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    },
+  },
 }
+capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 for server, config in pairs(servers) do
   config["capabilities"] = capabilities
   vim.lsp.config(server, config)

@@ -69,7 +69,7 @@ local plugins = {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "hrsh7th/cmp-nvim-lsp" },
+    dependencies = { "saghen/blink.cmp" },
     event = "VeryLazy",
     config = function()
       require("plugins.lsp.lspconfig")
@@ -117,7 +117,10 @@ local plugins = {
   {
     "MysticalDevil/inlay-hints.nvim",
     event = "LspAttach",
-    dependencies = { "neovim/nvim-lspconfig" },
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "onsails/lspkind.nvim",
+    },
     opts = {},
   },
   {
@@ -128,27 +131,31 @@ local plugins = {
     end,
   },
   {
-    "L3MON4D3/LuaSnip",
-    event = "InsertEnter",
-    dependencies = { { "rafamadriz/friendly-snippets", lazy = true } },
-    build = "make install_jsregexp",
-    config = function()
-      require("luasnip").setup(require("plugins.cmp.luasnip"))
-    end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
+    "saghen/blink.cmp",
+    event = "VeryLazy",
+    build = "cargo build --release",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets",
-      "hrsh7th/cmp-path",
-      "onsails/lspkind.nvim",
+      {
+        "L3MON4D3/LuaSnip",
+        event = "InsertEnter",
+        dependencies = { { "rafamadriz/friendly-snippets", lazy = true } },
+        build = "make install_jsregexp",
+        config = function()
+          require("luasnip").setup(require("plugins.cmp.luasnip"))
+        end,
+      },
+      {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+          library = {
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          },
+        },
+      },
     },
-    event = "InsertEnter",
     config = function()
-      require("cmp").setup(require("plugins.cmp.cmp"))
+      require("blink.cmp").setup(require("plugins.cmp.cmp"))
     end,
   },
   {
@@ -159,10 +166,7 @@ local plugins = {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    dependencies = { "hrsh7th/nvim-cmp" },
-    config = function()
-      require("nvim-autopairs").setup(require("plugins.autopairs"))
-    end,
+    opts = {},
   },
   {
     "akinsho/bufferline.nvim",
@@ -207,7 +211,7 @@ local plugins = {
     },
   },
   {
-    "ggandor/leap.nvim",
+    "https://codeberg.org/andyg/leap.nvim",
     dependencies = { "tpope/vim-repeat" },
     config = function()
       vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)")
