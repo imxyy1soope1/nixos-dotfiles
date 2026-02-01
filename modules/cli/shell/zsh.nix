@@ -50,7 +50,6 @@ in
           ];
         };
         shellAliases = {
-          x = "extract";
           ls = "lsd";
           svim = "doasedit";
           nf = "fastfetch";

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -30,17 +29,6 @@ in
       programs.starship.enableFishIntegration = false;
       programs.fish = {
         enable = true;
-        plugins = [
-          {
-            name = "extract";
-            src = pkgs.fetchFromGitHub {
-              owner = "hexclover";
-              repo = "fish-extract-ng";
-              tag = "v0.1";
-              hash = "sha256-yef5NX4HdZ3ab/2AzNrvvhi0CbeTvXYKZmyH76gIpyk=";
-            };
-          }
-        ];
         shellAliases = {
           la = "lsd -lah";
           ls = "lsd";

@@ -30,6 +30,7 @@ in
       xz
       p7zip
       unrar-free
+      ouch
 
       pciutils
       usbutils
@@ -51,6 +52,13 @@ in
       ".config/television/cable"
     ];
     my.hm = {
+      programs.fish.shellAliases = {
+        x = "ouch d";
+      };
+      programs.zsh.shellAliases = {
+        x = "ouch d";
+      };
+
       home.packages = with pkgs; [
         # keep-sorted start
         aria2
