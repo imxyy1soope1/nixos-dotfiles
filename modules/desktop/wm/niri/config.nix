@@ -171,6 +171,7 @@ in
           "Mod+E".action.spawn = [ "nautilus" ];
           "Mod+R".action.spawn = noctalia "launcher toggle";
           "Mod+V".action.spawn = noctalia "launcher clipboard";
+          "Mod+W".action.spawn = noctalia "launcher windows";
 
           "XF86AudioRaiseVolume" = {
             allow-when-locked = true;
