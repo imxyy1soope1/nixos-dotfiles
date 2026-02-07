@@ -22,20 +22,19 @@ in
           forward_env = [ "PATH" ];
         };
       };
-      # https://github.com/starship/starship/discussions/7260
-      # programs.starship = {
-      #   settings = {
-      #     custom.shpool = {
-      #       description = "Display current shpool session name";
-      #       when = ''test -n "$SHPOOL_SESSION_NAME"'';
-      #       command = "echo $SHPOOL_SESSION_NAME";
-      #       symbol = " ";
-      #       style = "fg:#dea584";
-      #       format = "[$symbol $output]($style)";
-      #     };
-      #   };
-      # };
+      programs.starship = {
+        settings = {
+          custom.shpool = {
+            description = "Display current shpool session name";
+            when = ''test -n "$SHPOOL_SESSION_NAME"'';
+            command = "echo $SHPOOL_SESSION_NAME";
+            symbol = " ";
+            style = "fg:#dea584";
+            format = "[$symbol \\[$output\\] ]($style)";
+          };
+        };
+      };
     };
-    # my.cli.shell.starship.format = [ "$starship$character" ];
+    my.cli.shell.starship.format = [ "\${custom.shpool}" "$character" ];
   };
 }

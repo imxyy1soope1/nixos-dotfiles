@@ -34,20 +34,19 @@ in
           })
         ];
       };
-      # https://github.com/starship/starship/discussions/7260
-      # programs.starship = {
-      #   settings = {
-      #     custom.tmux = {
-      #       description = "Display current tmux session name";
-      #       when = ''test -n "$TMUX"'';
-      #       command = "tmux display-message -p '#S'";
-      #       symbol = " ";
-      #       style = "bold green";
-      #       format = "[$symbol $output]($style)";
-      #     };
-      #   };
-      # };
+      programs.starship = {
+        settings = {
+          custom.tmux = {
+            description = "Display current tmux session name";
+            when = ''test -n "$TMUX"'';
+            command = "tmux display-message -p '#S'";
+            symbol = " ";
+            style = "bold green";
+            format = "[$symbol \\[$output\\] ]($style)";
+          };
+        };
+      };
     };
-    # my.cli.shell.starship.format = [ "$tmux$character" ];
+    my.cli.shell.starship.format = [ "\${custom.tmux}" "$character" ];
   };
 }
