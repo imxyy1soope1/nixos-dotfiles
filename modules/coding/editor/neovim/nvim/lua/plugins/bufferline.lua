@@ -1,5 +1,6 @@
 local buf_kill = require("core.globals").buf_kill
 
+--- @type bufferline.UserConfig
 M = {
   highlights = {
     buffer_selected = {
@@ -10,7 +11,7 @@ M = {
     diagnostics = "nvim_lsp",
     offsets = {
       {
-        filetype = "NvimTree",
+        filetype = "neo-tree",
         text = "File Explorer",
         highlight = "Directory",
         text_align = "center",

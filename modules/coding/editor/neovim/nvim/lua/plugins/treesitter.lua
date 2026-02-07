@@ -1,9 +1,11 @@
+--- @type TSConfig
 M = {
   auto_install = true,
   parser_install_dir = "$HOME/.local/share/nvim/lazy/nvim-treesitter",
   sync_install = true,
   modules = {},
   ignore_install = {},
+  ensure_installed = {},
 
   highlight = { enable = true },
   indent = { enable = true },

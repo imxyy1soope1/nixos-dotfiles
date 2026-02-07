@@ -1,4 +1,3 @@
---- @module "blink.cmp"
 --- @type blink.cmp.Config
 M = {
   keymap = {

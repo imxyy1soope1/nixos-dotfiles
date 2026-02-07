@@ -14,7 +14,6 @@ package.path = package.path .. ";" .. vim.fn.stdpath("config") .. "/lua/"
 local plugins = {
   {
     "folke/tokyonight.nvim",
-    lazy = false,
     priority = 1000,
     config = function()
       vim.cmd.colorscheme("tokyonight-storm")
@@ -22,23 +21,66 @@ local plugins = {
   },
   {
     "nvim-lualine/lualine.nvim",
-    lazy = false,
     dependencies = { { "nvim-tree/nvim-web-devicons", lazy = true } },
     config = function()
       require("lualine").setup(require("plugins.lualine"))
     end,
   },
   {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = { { "nvim-tree/nvim-web-devicons", lazy = true } },
-    lazy = false,
+    'echasnovski/mini.nvim',
     config = function()
-      require("nvim-tree").setup(require("plugins.nvim-tree"))
+      -- Better Around/Inside textobjects
+      --
+      -- Examples:
+      --  - va)  - [V]isually select [A]round [)]paren
+      --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
+      --  - ci'  - [C]hange [I]nside [']quote
+      require('mini.ai').setup { n_lines = 500 }
+
+      -- Add/delete/replace surroundings (brackets, quotes, etc.)
+      --
+      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+      -- - sd'   - [S]urround [D]elete [']quotes
+      -- - sr)'  - [S]urround [R]eplace [)] [']
+      require('mini.surround').setup()
+
+      -- ... and there is more!
+      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
   {
+    'nvim-neo-tree/neo-tree.nvim',
+    version = '*',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+    },
+    cmd = 'Neotree',
+    keys = {
+      { '\\', ':Neotree reveal toggle<CR>', desc = 'Toggle NeoTree', silent = true },
+      { '<leader>e', ':Neotree reveal toggle<CR>', desc = 'Toggle NeoTree', silent = true },
+    },
+    --- @type neotree.Config
+    opts = {
+      close_if_last_window = true,
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+        },
+        window = {
+          width = 30,
+          mappings = {
+            ['\\'] = 'close_window',
+            ["<leader>e"] = "close_window",
+            ["<c-]>"] = "set_root",
+          },
+        },
+      },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nushell/tree-sitter-nu",

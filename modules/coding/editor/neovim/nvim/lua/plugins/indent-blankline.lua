@@ -1,3 +1,4 @@
+--- @type ibl.config
 M = {
   enabled = true,
   indent = {
