@@ -27,6 +27,7 @@ in
 
           ripgrep # telescope
 
+          vscode-json-languageserver
           typos-lsp
         ];
       };
