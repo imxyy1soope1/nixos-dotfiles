@@ -21,7 +21,7 @@ in
 
       layout = {
         gaps = 23;
-        center-focused-column = "always";
+        center-focused-column = "on-overflow";
         always-center-single-column = true;
         focus-ring.enable = false;
         border = {
@@ -50,6 +50,10 @@ in
         ];
         default-column-width.proportion = 0.8;
         background-color = "transparent";
+        tab-indicator = {
+          width = 10;
+          place-within-column = true;
+        };
       };
 
       animations = {
@@ -158,12 +162,6 @@ in
         in
         with config.my.hm.lib.niri.actions;
         {
-          "Ctrl+Alt+T".action.spawn = [
-            "kitty"
-          ];
-          "Mod+T".action.spawn = [
-            "kitty"
-          ];
           "Mod+Return".action.spawn = [
             "kitty"
           ];
@@ -278,6 +276,7 @@ in
           "Mod+C".action = center-column;
           "Mod+F".action = toggle-window-floating;
           "Mod+H".action = expand-column-to-available-width;
+          "Mod+T".action = toggle-column-tabbed-display;
 
           "Mod+Minus".action.set-column-width = "-10%";
           "Mod+Equal".action.set-column-width = "+10%";
