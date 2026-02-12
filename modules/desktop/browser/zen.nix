@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  hostname,
   ...
 }:
 let
@@ -16,6 +17,7 @@ in
     my.hm.programs.zen-browser = {
       enable = true;
       nativeMessagingHosts = [ pkgs.firefoxpwa ];
+      suppressXdgMigrationWarning = hostname == "imxyy-nix";
       policies = {
         # find more options here: https://mozilla.github.io/policy-templates/
         DisableAppUpdate = true;
@@ -23,7 +25,7 @@ in
       };
     };
     my.persist.homeDirs = [
-      ".zen"
+      ".config/zen"
     ];
   };
 }
