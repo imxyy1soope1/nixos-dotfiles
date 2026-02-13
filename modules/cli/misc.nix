@@ -35,6 +35,9 @@ in
       pciutils
       usbutils
 
+      dust
+      dysk
+
       lsof
 
       nmap
