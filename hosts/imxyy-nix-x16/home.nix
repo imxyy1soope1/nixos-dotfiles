@@ -17,10 +17,10 @@
       anki
 
       ayugram-desktop
-      signal-desktop
+      signal-desktop-wayland
       element-desktop
       fractal
-      qq
+      qq-wayland
       wechat
 
       gnome-clocks

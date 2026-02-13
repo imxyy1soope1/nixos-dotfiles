@@ -13,10 +13,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    my.hm.programs.vscode.enable = true;
     my.hm = {
       programs.vscode = {
-        package = pkgs.vscodium;
+        enable = true;
+        package = pkgs.vscodium-wayland;
       };
     };
     my.persist.homeDirs = [

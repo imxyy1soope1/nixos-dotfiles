@@ -115,7 +115,7 @@ in
                 desktop,
               }:
               {
-                ${pkg} = final.symlinkJoin {
+                "${pkg}-wayland" = final.symlinkJoin {
                   pname = prev.${pkg}.pname;
                   version = prev.${pkg}.version;
                   paths = [ prev.${pkg} ];
