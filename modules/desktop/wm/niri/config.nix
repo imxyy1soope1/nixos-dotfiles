@@ -164,6 +164,7 @@ in
         {
           "Mod+Return".action.spawn = [
             "kitty"
+            "-1"
           ];
           "Mod+G".action.spawn = [ config.my.desktop.browser.default.command ];
           "Mod+E".action.spawn = [ "nautilus" ];

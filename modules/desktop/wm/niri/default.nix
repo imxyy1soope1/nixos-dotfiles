@@ -169,6 +169,10 @@ in
                   id = "Microphone";
                   displayMode = "onhover";
                 }
+                {
+                  id = "Battery";
+                  hideIfNotDetected = true;
+                }
               ];
             };
           };
@@ -197,7 +201,10 @@ in
             ];
             position = "top_left";
             shortcuts = {
-              left = [ { id = "Bluetooth"; } ];
+              left = [
+                { id = "Bluetooth"; }
+                { id = "Network"; }
+              ];
               right = [ { id = "Notifications"; } ];
             };
           };
