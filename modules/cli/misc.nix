@@ -67,6 +67,7 @@ in
         fastfetch
         fd
         fzf
+        jq
         keep-sorted
         lsd
         neofetch
