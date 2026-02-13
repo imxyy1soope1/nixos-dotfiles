@@ -28,6 +28,7 @@ in
           ripgrep # telescope
 
           vscode-json-languageserver
+          vscode-langservers-extracted
           taplo
           typos-lsp
         ];

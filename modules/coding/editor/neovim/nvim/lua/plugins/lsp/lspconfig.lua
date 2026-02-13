@@ -75,6 +75,7 @@ local servers = {
   biome = {},
   clangd = {},
   cssls = {},
+  eslint = {},
   gopls = {},
   html = {},
   java_language_server = {},
