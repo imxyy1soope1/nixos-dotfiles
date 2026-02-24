@@ -17,7 +17,7 @@ in
     sshKeyFile = lib.mkOption {
       type = lib.types.str;
       default = "${
-        if config.my.persist.enable then config.my.persist.location else ""
+        if config.my.persist.enable then config.my.persist.btrfs.mountPoint else ""
       }/home/${username}/.ssh/id_ed25519";
     };
   };

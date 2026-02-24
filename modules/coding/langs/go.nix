@@ -16,7 +16,7 @@ in
     my.hm.home.packages = with pkgs; [
       go
       gotools
-      gopls
+      (lib.hiPrio gopls)
     ];
     my.persist.homeDirs = [
       "go"

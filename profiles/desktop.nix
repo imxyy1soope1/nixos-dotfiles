@@ -42,6 +42,5 @@
   # Desktop persistence
   my.persist = {
     enable = lib.mkDefault true;
-    location = lib.mkDefault "/nix/persist";
   };
 }

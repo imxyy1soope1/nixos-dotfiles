@@ -31,13 +31,12 @@ in
   services.btrfs.autoScrub.enable = true;
   networking.hostId = "10ca95b4";
 
-  fileSystems."/" = {
+  my.persist.btrfs = {
     device = btrfs;
-    fsType = "btrfs";
-    options = [
-      "compress=zstd"
-      "subvol=root"
-    ];
+    mountPoint = "/nix/persist";
+    persistSubvol = "persist";
+    rootSubvol = "root";
+    zstdCompress = true;
   };
 
   fileSystems."/nix" = {
@@ -47,17 +46,6 @@ in
       "compress=zstd"
       "subvol=nix"
     ];
-  };
-
-  my.persist.location = "/nix/persist";
-  fileSystems."/nix/persist" = {
-    device = btrfs;
-    fsType = "btrfs";
-    options = [
-      "compress=zstd"
-      "subvol=persist"
-    ];
-    neededForBoot = true;
   };
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''

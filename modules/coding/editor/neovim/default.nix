@@ -24,6 +24,7 @@ in
         vimdiffAlias = true;
         withPython3 = false;
         withRuby = false;
+        sideloadInitLua = true;
         extraPackages = with pkgs; [
           # treesitter
           tree-sitter
