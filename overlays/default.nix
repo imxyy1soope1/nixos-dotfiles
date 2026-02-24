@@ -20,6 +20,10 @@ in
         bottles.__input.removeWarningPopup.__assign = true;
 
         easytier.__assign = final.stable.easytier;
+
+        openldap.__output.doCheck.__assign =
+          builtins.warn "doCheck disabled for openldap, check https://github.com/NixOS/nixpkgs/issues/514113"
+            (!prev.stdenv.hostPlatform.isi686);
       };
   }
   //
