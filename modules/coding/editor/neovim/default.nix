@@ -22,8 +22,14 @@ in
         viAlias = true;
         vimAlias = true;
         vimdiffAlias = true;
+        withPython3 = false;
+        withRuby = false;
         extraPackages = with pkgs; [
-          gcc # treesitter
+          # treesitter
+          tree-sitter
+          gnutar
+          curl
+          gcc
 
           ripgrep # telescope
 

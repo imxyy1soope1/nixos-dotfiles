@@ -81,12 +81,15 @@ local plugins = {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "nushell/tree-sitter-nu",
+      { 
+        branch = "main",
+        "nvim-treesitter/nvim-treesitter-textobjects",
+      },
     },
     config = function()
-      require("nvim-treesitter.configs").setup(require("plugins.treesitter"))
+      require("nvim-treesitter").setup(require("plugins.treesitter"))
     end,
     build = ":TSUpdate",
   },
@@ -277,7 +280,10 @@ local plugins = {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
     event = "BufEnter *.md",
     --- @type render.md.UserConfig
     opts = {

@@ -1,21 +1,15 @@
 --- @type TSConfig
 M = {
-  auto_install = true,
-  parser_install_dir = "$HOME/.local/share/nvim/lazy/nvim-treesitter",
-  sync_install = true,
-  modules = {},
-  ignore_install = {},
-  ensure_installed = {},
-
-  highlight = { enable = true },
-  indent = { enable = true },
+  install_dir = vim.fn.stdpath('data') .. '/site',
 }
 
-vim.filetype.add({
-  pattern = {
-    [".*/hypr/.*%.conf"] = "hyprlang",
-    [".*%.hl"] = "hyprlang",
-  },
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function()
+    -- Enable treesitter highlighting and disable regex syntax
+    pcall(vim.treesitter.start)
+    -- Enable treesitter-based indentation
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" 
+  end,
 })
 
 return M

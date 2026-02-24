@@ -6,6 +6,7 @@ opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.expandtab = true
 opt.autoindent = true
+opt.smartindent = true
 
 -- Linenumber setting
 opt.number = true
