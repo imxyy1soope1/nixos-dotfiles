@@ -1,0 +1,13 @@
+[package]
+name = "nix-racer"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axum = "0.8"
+reqwest = { version = "0.13", features = ["rustls"] }
+serde = { version = "1.0.228", features = ["derive"] }
+tokio = { version = "1.52", features = ["full"] }
+toml = "1.1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
