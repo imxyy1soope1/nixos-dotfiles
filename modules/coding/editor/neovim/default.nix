@@ -31,6 +31,8 @@ in
           vscode-langservers-extracted
           taplo
           typos-lsp
+          # render-markdown.nvim
+          python3Packages.pylatexenc
         ];
       };
     };

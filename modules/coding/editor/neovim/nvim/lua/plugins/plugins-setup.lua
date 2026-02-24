@@ -279,7 +279,17 @@ local plugins = {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
     event = "BufEnter *.md",
-    opts = {},
+    --- @type render.md.UserConfig
+    opts = {
+      completions = {
+        blink = {
+          enabled = true,
+        },
+        lsp = {
+          enabled = true,
+        },
+      },
+    },
   },
   {
     "folke/noice.nvim",
