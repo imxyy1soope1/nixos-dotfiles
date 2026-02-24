@@ -67,6 +67,7 @@ in
         brightnessctl
 
         nautilus
+        mission-center
 
         noctalia-shell
         xdg-terminal-exec

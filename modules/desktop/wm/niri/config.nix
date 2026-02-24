@@ -95,7 +95,7 @@ in
           draw-border-with-background = false;
         }
         {
-          matches = [ { app-id = "kitty|foot|Alacritty|ghostty|chromium-browser|zen-beta|wofi"; } ];
+          matches = [ { app-id = "kitty|foot|Alacritty|ghostty|wofi"; } ];
           opacity = 0.8;
         }
         {
@@ -171,6 +171,7 @@ in
           "Mod+R".action.spawn = noctalia "launcher toggle";
           "Mod+V".action.spawn = noctalia "launcher clipboard";
           "Mod+W".action.spawn = noctalia "launcher windows";
+          "Ctrl+Alt+Escape".action.spawn = [ "missioncenter" ];
 
           "XF86AudioRaiseVolume" = {
             allow-when-locked = true;
@@ -284,9 +285,13 @@ in
           "Mod+Shift+Minus".action.set-window-height = "-10%";
           "Mod+Shift+Equal".action.set-window-height = "+10%";
 
-          "Ctrl+Alt+A".action.screenshot = [ ];
+          "Ctrl+Alt+A".action.screenshot = {
+            show-pointer = false;
+          };
           # "Ctrl+Alt+A".action = screenshot;
-          "Print".action.screenshot-screen = [ ];
+          "Print".action.screenshot-screen = {
+            show-pointer = false;
+          };
           "Alt+Print".action.screenshot-window = [ ];
           # "Alt+Print".action = screenshot-window;
 
