@@ -40,9 +40,9 @@ in
     nix.settings = {
       experimental-features = "nix-command flakes pipe-operators";
       substituters = [
-        "https://mirror.sjtu.edu.cn/nix-channels/store"
-        "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
         "https://mirrors.ustc.edu.cn/nix-channels/store"
+        "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
+        "https://mirror.sjtu.edu.cn/nix-channels/store"
         "https://nix-community.cachix.org"
         "https://cache.garnix.io"
       ];
@@ -92,7 +92,33 @@ in
     services.angrr = {
       enable = true;
       settings = {
-        period = "1month";
+        temporary-root-policies = {
+          direnv = {
+            path-regex = "/\\.direnv/";
+            period = "14d";
+          };
+          result = {
+            path-regex = "/result[^/]*$";
+            period = "3d";
+          };
+        };
+        profile-policies = {
+          system = {
+            profile-paths = [ "/nix/var/nix/profiles/system" ];
+            keep-since = "14d";
+            keep-latest-n = 5;
+            keep-booted-system = true;
+            keep-current-system = true;
+          };
+          user = {
+            profile-paths = [
+              "~/.local/state/nix/profiles/profile"
+              "/nix/var/nix/profiles/per-user/root/profile"
+            ];
+            keep-since = "14d";
+            keep-latest-n = 5;
+          };
+        };
       };
     };
   };
