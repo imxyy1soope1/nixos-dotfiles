@@ -114,10 +114,11 @@ in
       experimental-features = "nix-command flakes pipe-operators";
       substituters = lib.mkForce [
         "http://127.0.0.1:2048"
+        "https://mirror.sjtu.edu.cn/nix-channels/store"
+        "https://cache.nixos.org"
 
         # "https://mirrors.ustc.edu.cn/nix-channels/store"
         # "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
-        # "https://mirror.sjtu.edu.cn/nix-channels/store"
         # "https://nix-community.cachix.org"
         # "https://cache.garnix.io"
       ];

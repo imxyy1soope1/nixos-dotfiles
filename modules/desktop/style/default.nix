@@ -85,7 +85,6 @@ in
         platformTheme.name = "kde";
         style = {
           package = with pkgs; [
-            darkly-qt5
             darkly-qt6
           ];
           name = "Darkly";

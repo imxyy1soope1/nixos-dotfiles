@@ -119,12 +119,8 @@ in
               "cliphist"
               "store"
             ]
-            # TODO: Is there a better way?
             [
-              "systemctl"
-              "restart"
-              "--user"
-              "noctalia-shell.service"
+              "noctalia-shell"
             ]
           ]
         );

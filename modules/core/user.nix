@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  hostname,
   username,
   userdesc,
   secrets,
@@ -44,7 +45,7 @@ in
       extraRules = [
         {
           users = [ username ];
-          noPass = true;
+          noPass = hostname == "imxyy-nix";
           keepEnv = true;
         }
       ];

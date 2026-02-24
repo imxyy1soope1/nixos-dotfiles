@@ -14,10 +14,7 @@ in
 
   config = lib.mkIf cfg.enable {
     my.hm = {
-      programs.vscode = {
-        enable = true;
-        package = pkgs.vscodium-wayland or pkgs.vscodium;
-      };
+      programs.vscodium.enable = true;
     };
     my.persist.homeDirs = [
       ".config/VSCodium"

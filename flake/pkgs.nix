@@ -14,7 +14,6 @@
         inputs.fenix.overlays.default
         inputs.angrr.overlays.default
         (final: prev: {
-          darkly-qt5 = inputs.darkly.packages.${final.stdenv.hostPlatform.system}.darkly-qt5;
           darkly-qt6 = inputs.darkly.packages.${final.stdenv.hostPlatform.system}.darkly-qt6;
 
           noctalia-shell = inputs.noctalia.packages.${final.stdenv.hostPlatform.system}.default;
