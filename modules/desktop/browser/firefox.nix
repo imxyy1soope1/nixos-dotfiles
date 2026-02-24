@@ -8,9 +8,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    my.hm.programs.firefox.enable = true;
+    my.hm.programs.firefox = {
+      enable = true;
+      configPath = "${config.my.hm.xdg.configHome}/mozilla/firefox";
+    };
     my.persist.homeDirs = [
-      ".mozilla"
+      ".config/mozilla"
     ];
   };
 }
