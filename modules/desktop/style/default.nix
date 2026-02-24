@@ -70,6 +70,7 @@ in
           };
         };
         gtk4 = {
+          theme = null;
           extraConfig = {
             gtk-decoration-layout = ":none";
             gtk-application-prefer-dark-theme = 1;

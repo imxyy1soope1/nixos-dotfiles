@@ -38,7 +38,10 @@ in
           dataHome = "${homedir}/.local/share";
           stateHome = "${homedir}/.local/state";
 
-          userDirs.enable = true;
+          userDirs = {
+            enable = true;
+            setSessionVariables = true;
+          };
 
           configFile."mimeapps.list".force = true;
 

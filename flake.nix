@@ -81,7 +81,7 @@
     };
     niri.url = "github:sodiboo/niri-flake";
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/v4.7.0";
+      url = "github:noctalia-dev/noctalia-shell/v4.7.1";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.noctalia-qs.inputs.treefmt-nix.follows = "";
     };
