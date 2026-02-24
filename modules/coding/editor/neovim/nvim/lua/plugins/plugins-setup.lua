@@ -257,6 +257,7 @@ local plugins = {
     dependencies = { "tpope/vim-repeat" },
     config = function()
       vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)")
+      vim.keymap.set({ "n", "x", "o" }, "<leader>s", "<Plug>(leap)")
       vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
       -- Exclude whitespace and the middle of alphabetic words from preview:
       --   foobar[baaz] = quux
@@ -332,6 +333,17 @@ local plugins = {
     "nmac427/guess-indent.nvim",
     event = "VeryLazy",
     opts = {},
+  },
+
+  {
+    "tversteeg/registers.nvim",
+    cmd = "Registers",
+    config = true,
+    keys = {
+      { '"', mode = { "n", "v" } },
+      { "<C-R>", mode = "i" },
+    },
+    name = "registers",
   },
 }
 
