@@ -73,7 +73,6 @@ in
         jq
         keep-sorted
         lsd
-        neofetch
         ripgrep
         socat
         typos
