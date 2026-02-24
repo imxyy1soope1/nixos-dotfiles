@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  impure,
   ...
 }:
 let
@@ -81,20 +82,22 @@ in
       #QT
       qt = {
         enable = true;
-        style.package = with pkgs; [
-          darkly-qt5
-          darkly-qt6
-        ];
-        platformTheme.name = "qtct";
+        platformTheme.name = "kde";
+        style = {
+          package = with pkgs; [
+            darkly-qt5
+            darkly-qt6
+          ];
+          name = "Darkly";
+        };
       };
 
       xdg.configFile = {
-        "qt5ct/qt5ct.conf".source = pkgs.replaceVars ./qtct/qt5ct.conf {
-          darker = pkgs.libsForQt5.qt5ct + /share/qt5ct/colors/darker.conf;
-        };
-        "qt6ct/qt6ct.conf".source = pkgs.replaceVars ./qtct/qt6ct.conf {
-          darker = pkgs.qt6Packages.qt6ct + /share/qt6ct/colors/darker.conf;
-        };
+        kdeglobals.source = impure.mkImpureLink ./kdeglobals;
+        plasmarc.text = ''
+          [Theme]
+          name=darkly
+        '';
       };
     };
   };
