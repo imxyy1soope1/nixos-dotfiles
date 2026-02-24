@@ -24,7 +24,6 @@ keymap.set("i", "<pageup>", string.rep("<up>", 9), opt)
 keymap.set("i", "<pagedown>", string.rep("<down>", 9), opt)
 
 keymap.set("n", "<leader>ww", ":w<CR>", opt)
-keymap.set("n", "<leader>so", ":so<CR>", opt)
 keymap.set("n", "<leader>qq", ":q<CR>", opt)
 keymap.set("n", "<leader>qa", ":qa<CR>", opt)
 keymap.set("n", "<leader>c", function()

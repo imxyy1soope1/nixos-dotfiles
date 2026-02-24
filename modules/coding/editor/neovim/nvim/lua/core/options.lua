@@ -22,6 +22,7 @@ opt.smartcase = true
 opt.termguicolors = true
 opt.signcolumn = "yes"
 opt.colorcolumn = "110"
+opt.textwidth = 110
 opt.scrolloff = 8
 opt.sidescrolloff = 8
 
