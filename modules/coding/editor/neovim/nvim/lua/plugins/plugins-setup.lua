@@ -347,7 +347,6 @@ local plugins = {
 
   {
     "nmac427/guess-indent.nvim",
-    event = "VeryLazy",
     opts = {},
   },
 
