@@ -12,6 +12,7 @@ in
       zsh.enable = true;
       fish.enable = true;
       starship.enable = true;
+      carapace.enable = true;
     };
   };
 }
