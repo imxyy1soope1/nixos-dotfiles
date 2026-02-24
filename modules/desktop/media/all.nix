@@ -9,6 +9,7 @@ in
 
   config = lib.mkIf cfg.enable {
     my.desktop.media = {
+      cine.enable = true;
       mpv.enable = true;
       loupe.enable = true;
       thunderbird.enable = true;
