@@ -165,6 +165,9 @@
         ".gemini"
         ".claude"
         ".claude-code-router"
+
+        ".config/opencode"
+        ".local/share/opencode"
       ];
       homeFiles = [
         ".claude.json"
