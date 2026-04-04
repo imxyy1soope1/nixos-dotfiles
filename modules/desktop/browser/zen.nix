@@ -14,15 +14,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = hostname == "imxyy-nix";
-        message = "XDG migration not done! Check
-        https://github.com/0xc000022070/zen-browser-flake?tab=readme-ov-file#missing-configuration-after-update
-          for details";
-      }
-    ];
-
     my.hm.programs.zen-browser = {
       enable = true;
       nativeMessagingHosts = [ pkgs.firefoxpwa ];

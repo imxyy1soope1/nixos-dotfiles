@@ -19,7 +19,7 @@ in
         pnpm
         typescript
 
-        nodePackages.typescript-language-server
+        typescript-language-server
         vue-language-server
 
         biome
