@@ -90,17 +90,17 @@ local plugins = {
     end,
     build = ":TSUpdate",
   },
-  -- {
-  --   url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require("plugins.rainbow-delimiters")
-  --   end,
-  -- },
+  {
+    url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("plugins.rainbow-delimiters")
+    end,
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "VeryLazy",
-    -- dependencies = { "https://gitlab.com/HiPhish/rainbow-delimiters.nvim" },
+    dependencies = { "https://gitlab.com/HiPhish/rainbow-delimiters.nvim" },
     config = function()
       require("ibl").setup(require("plugins.indent-blankline"))
     end,

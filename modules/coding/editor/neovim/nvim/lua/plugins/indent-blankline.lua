@@ -11,7 +11,7 @@ M = {
   scope = {
     enabled = true,
     show_start = false,
-    -- highlight = vim.g.rainbow_delimiters.highlight,
+    highlight = vim.g.rainbow_delimiters.highlight,
   },
 }
 
