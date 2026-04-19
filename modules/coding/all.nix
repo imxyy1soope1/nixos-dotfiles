@@ -11,6 +11,7 @@ in
     my.coding = {
       editor.all.enable = true;
       langs.all.enable = true;
+      agents.enable = true;
       misc.enable = true;
     };
   };

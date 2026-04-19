@@ -19,6 +19,7 @@
 
           noctalia-shell = inputs.noctalia.packages.${final.stdenv.hostPlatform.system}.default;
         })
+        inputs.llm-agents.overlays.shared-nixpkgs
       ];
       config.allowUnfree = true;
       flake.setNixPath = false;

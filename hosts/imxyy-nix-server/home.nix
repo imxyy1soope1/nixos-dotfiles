@@ -19,13 +19,6 @@
         ".cache"
 
         ".ollama"
-        ".claude"
-
-        ".config/opencode"
-        ".local/share/opencode"
-      ];
-      homeFiles = [
-        ".claude.json"
       ];
     };
   };
