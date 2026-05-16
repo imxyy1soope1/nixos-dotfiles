@@ -77,7 +77,6 @@ in
 
       programs.noctalia-shell = {
         enable = true;
-        systemd.enable = true;
         # modified from official Tokyo-Night theme
         colors = {
           mError = "#f7768e";
