@@ -67,7 +67,7 @@ in
         aria2
         bat
         comma
-        fastfetchMinimal
+        fastfetch.minimal
         fd
         fzf
         jq
