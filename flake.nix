@@ -20,6 +20,7 @@
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
     };
 
     # Flake organization tools
@@ -44,7 +45,11 @@
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     # TODO: sops-nix: remove pr patch once merged
     # https://github.com/Mic92/sops-nix/pull/779
     sops-nix = {
@@ -54,6 +59,8 @@
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.systems.follows = "systems";
     };
     system76-scheduler-niri = {
       url = "github:Kirottu/system76-scheduler-niri";
@@ -66,6 +73,9 @@
     angrr = {
       url = "github:linyinfeng/angrr";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt";
     };
     darkly = {
       url = "github:Bali10050/Darkly";
@@ -78,19 +88,35 @@
     go-musicfox = {
       url = "github:imxyy1soope1/go-musicfox";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.devenv.follows = "devenv";
+      inputs.nix2container.inputs.flake-utils.follows = "flake-utils";
     };
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.systems.follows = "systems";
+      inputs.treefmt-nix.follows = "treefmt";
     };
-    niri.url = "github:sodiboo/niri-flake";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      # Not followed intentionally (binary cache)
+      # inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell/v4.7.5";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.noctalia-qs.inputs.treefmt-nix.follows = "";
+      inputs.noctalia-qs.inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.inputs.systems.follows = "systems";
+      inputs.noctalia-qs.inputs.treefmt-nix.follows = "treefmt";
     };
-    zen.inputs.nixpkgs.follows = "nixpkgs";
-    zen.url = "github:0xc000022070/zen-browser-flake";
+    zen = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     # keep-sorted end
 
     # Misc
@@ -103,6 +129,20 @@
       flake = false;
     };
     my-templates.url = "git+https://git.imxyy.top/imxyy1soope1/flake-templates";
+
+    # Flattened indirect dependencies
+    flake-compat.url = "github:edolstra/flake-compat";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+    systems.url = "github:nix-systems/default";
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.flake-compat.follows = "flake-compat";
+    };
   };
 
   outputs =
