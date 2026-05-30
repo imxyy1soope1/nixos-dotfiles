@@ -81,7 +81,8 @@ local servers = {
   java_language_server = {},
   jsonls = {},
   pyright = {},
-  taplo = {},
+  -- taplo = {},
+  tombi = {},
   ts_ls = {},
   typos_lsp = {},
   -- keep-sorted end
