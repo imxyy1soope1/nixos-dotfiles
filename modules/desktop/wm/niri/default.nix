@@ -20,9 +20,11 @@ in
       package = pkg;
     };
     services.displayManager = {
-      sddm = {
+      ly = {
         enable = true;
-        wayland.enable = true;
+        settings = {
+          animation = "matrix";
+        };
       };
     };
 

@@ -14,19 +14,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    catppuccin.sddm = {
-      enable = true;
-      font = "Jetbrains Mono";
-      fontSize = "18";
-    };
-    services.displayManager.sddm = {
-      package = pkgs.kdePackages.sddm;
-      settings.Theme = {
-        CursorTheme = "breeze-dark";
-        CursorSize = 24;
-      };
-    };
-
     my.hm = {
       stylix = {
         enable = true;

@@ -126,7 +126,6 @@ in
               # Upstream modules
               # keep-sorted start
               inputs.angrr.nixosModules.angrr
-              inputs.catppuccin.nixosModules.catppuccin
               inputs.home-manager.nixosModules.default
               inputs.impermanence.nixosModules.impermanence
               inputs.niri.nixosModules.niri

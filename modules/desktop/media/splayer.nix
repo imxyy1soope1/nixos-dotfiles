@@ -13,7 +13,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    my.hm.home.packages = [ pkgs.splayer ];
+    my.hm.home.packages = [
+      pkgs.master.splayer
+    ];
     my.persist.homeDirs = [
       ".config/SPlayer"
     ];
