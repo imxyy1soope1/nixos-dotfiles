@@ -51,7 +51,7 @@ in
         };
         shellAliases = {
           ls = "lsd";
-          svim = "doasedit";
+          svim = "sudoedit";
           nf = "fastfetch";
         };
       };

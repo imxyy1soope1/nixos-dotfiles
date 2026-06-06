@@ -32,7 +32,7 @@ in
         shellAliases = {
           la = "lsd -lah";
           ls = "lsd";
-          svim = "doasedit";
+          svim = "sudoedit";
           nf = "fastfetch";
         };
         interactiveShellInit = lib.mkBefore ''
