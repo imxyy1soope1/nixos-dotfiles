@@ -10,6 +10,9 @@
     grub.enable = false;
     timeout = 0;
   };
+  boot.kernel.sysctl = {
+    "kernel.printk" = "3 4 1 3";
+  };
 
   security.pam.loginLimits = [
     {
