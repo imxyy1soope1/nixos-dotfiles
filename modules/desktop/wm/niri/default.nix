@@ -24,6 +24,8 @@ in
         enable = true;
         settings = {
           animation = "matrix";
+          session_log = ".local/state/ly-session.log";
+          shell = false;
         };
       };
     };
