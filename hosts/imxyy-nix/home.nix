@@ -78,12 +78,6 @@
   };
 
   my = {
-    autologin = {
-      enable = true;
-      user = username;
-      ttys = [ 6 ];
-    };
-
     gpg.enable = true;
     cli.all.enable = true;
     coding.all.enable = true;
