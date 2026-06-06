@@ -95,14 +95,12 @@ local plugins = {
   },
   {
     url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
-    event = "VeryLazy",
     config = function()
       require("plugins.rainbow-delimiters")
     end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
     dependencies = { "https://gitlab.com/HiPhish/rainbow-delimiters.nvim" },
     config = function()
       require("ibl").setup(require("plugins.indent-blankline"))
@@ -110,13 +108,11 @@ local plugins = {
   },
   {
     "norcalli/nvim-colorizer.lua",
-    event = "VeryLazy",
     opt = {},
   },
   {
     "neovim/nvim-lspconfig",
     dependencies = { "saghen/blink.cmp" },
-    event = "VeryLazy",
     config = function()
       require("plugins.lsp.lspconfig")
       require("plugins.lsp.others")
@@ -178,7 +174,6 @@ local plugins = {
   },
   {
     "saghen/blink.cmp",
-    event = "VeryLazy",
     dependencies = {
       {
         "L3MON4D3/LuaSnip",
@@ -198,6 +193,7 @@ local plugins = {
           },
         },
       },
+      "saghen/blink.lib"
     },
     config = function()
       require("blink.cmp").setup(require("plugins.cmp.cmp"))
@@ -205,7 +201,6 @@ local plugins = {
   },
   {
     "numToStr/Comment.nvim",
-    event = "VeryLazy",
     opts = {},
   },
   {
@@ -221,7 +216,6 @@ local plugins = {
   },
   {
     "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
     config = function()
       require("gitsigns").setup(require("plugins.gitsigns"))
     end,
@@ -273,7 +267,6 @@ local plugins = {
   },
   {
     "alexghergh/nvim-tmux-navigation",
-    event = "VeryLazy",
     config = function()
       require("nvim-tmux-navigation").setup(require("plugins.tmuxnav"))
     end,
@@ -299,7 +292,6 @@ local plugins = {
   },
   {
     "folke/noice.nvim",
-    event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
@@ -314,30 +306,13 @@ local plugins = {
   },
   {
     "voldikss/vim-floaterm",
-    event = "VeryLazy",
     config = function()
       require("plugins.floaterm")
     end,
   },
   {
     "folke/todo-comments.nvim",
-    event = "VeryLazy",
     opts = {},
-  },
-  {
-    "ojroques/nvim-osc52",
-    event = "VeryLazy",
-    config = function()
-      require("osc52").setup({
-        tmux_passthrough = true,
-      })
-      local function copy()
-        if vim.v.event.operator == "y" and vim.v.event.regname == "+" then
-          require("osc52").copy_register("+")
-        end
-      end
-      vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
-    end,
   },
   {
     "pest-parser/pest.vim",
@@ -351,7 +326,7 @@ local plugins = {
   },
 
   {
-    "tversteeg/registers.nvim",
+    "https://codeberg.org/fosk/registers.nvim",
     cmd = "Registers",
     config = true,
     keys = {
