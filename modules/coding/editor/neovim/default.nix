@@ -14,6 +14,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # workaround
+    environment.sessionVariables.EDITOR = "nvim";
     my.hm = {
       xdg.configFile."nvim".source = impure.mkImpureLink ./nvim;
       programs.neovim = {
