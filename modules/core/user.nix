@@ -44,7 +44,10 @@ in
       extraRules = [
         {
           users = [ "imxyy" ];
-          commands = [ "ALL" ] ++ (lib.optionals (hostname == "imxyy-nix") [ "NOPASSWD" ]);
+          commands = lib.singleton {
+            command = "ALL";
+            options = lib.optionals (hostname == "imxyy-nix") [ "NOPASSWD" ];
+          };
         }
       ];
     };
