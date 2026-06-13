@@ -90,16 +90,16 @@
     };
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # Not followed intentionally (binary cache)
+      # inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.systems.follows = "systems";
       inputs.treefmt-nix.follows = "treefmt";
     };
     niri = {
       url = "github:sodiboo/niri-flake";
-      # Not followed intentionally (binary cache)
-      # inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell/v4.7.5";

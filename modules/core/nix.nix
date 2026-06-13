@@ -41,9 +41,13 @@ in
         "nix/nix-racer.toml".source = (pkgs.formats.toml { }).generate "nix-racer.toml" {
           listen = "127.0.0.1:2048";
           substituters = [
+            # {
+            #   penalty = 0;
+            #   url = "https://mirror.sjtu.edu.cn/nix-channels/store";
+            # }
             {
               penalty = 0;
-              url = "https://mirror.sjtu.edu.cn/nix-channels/store";
+              url = "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store";
             }
             {
               penalty = 50;
@@ -55,7 +59,7 @@ in
             }
             {
               penalty = 0;
-              url = "https://cache.garnix.io";
+              url = "https://cache.numtide.com";
             }
             {
               penalty = 100;
@@ -114,17 +118,17 @@ in
       experimental-features = "nix-command flakes pipe-operators";
       substituters = lib.mkForce [
         "http://127.0.0.1:2048"
-        "https://mirror.sjtu.edu.cn/nix-channels/store"
+        "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
+        "https://cache.numtide.com"
         "https://cache.nixos.org"
 
         # "https://mirrors.ustc.edu.cn/nix-channels/store"
         # "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
         # "https://nix-community.cachix.org"
-        # "https://cache.garnix.io"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
       ];
       download-buffer-size = 536870912; # 512 MiB
       warn-dirty = false;

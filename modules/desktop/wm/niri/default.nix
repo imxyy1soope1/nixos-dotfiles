@@ -15,6 +15,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    niri-flake.cache.enable = false;
     programs.niri = {
       enable = true;
       package = pkg;

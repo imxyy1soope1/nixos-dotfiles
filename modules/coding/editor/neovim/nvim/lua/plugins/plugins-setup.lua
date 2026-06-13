@@ -193,7 +193,7 @@ local plugins = {
           },
         },
       },
-      "saghen/blink.lib"
+      "saghen/blink.lib",
     },
     config = function()
       require("blink.cmp").setup(require("plugins.cmp.cmp"))
