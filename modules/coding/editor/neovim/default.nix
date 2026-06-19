@@ -36,11 +36,11 @@ in
 
           ripgrep # telescope
 
+          # language servers
           vscode-json-languageserver
           vscode-langservers-extracted
-          # taplo
-          tombi
           typos-lsp
+
           # render-markdown.nvim
           python3Packages.pylatexenc
         ];

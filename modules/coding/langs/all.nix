@@ -18,6 +18,7 @@ in
       java.enable = true;
       qml.enable = true;
       typst.enable = true;
+      toml.enable = true;
     };
   };
 }
