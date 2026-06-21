@@ -335,6 +335,25 @@ local plugins = {
     },
     name = "registers",
   },
+
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    enabled = false,
+    lazy = true,
+    ft = "markdown",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      workspaces = {
+        {
+          name = "dynamic",
+          path = function()
+            return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
+          end,
+        },
+      },
+    },
+  },
 }
 
 require("lazy").setup(plugins, {})

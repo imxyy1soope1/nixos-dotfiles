@@ -17,6 +17,7 @@ in
       wm.all.enable = true;
       style.enable = true;
       wine.enable = true;
+      obsidian.enable = true;
     };
   };
 }

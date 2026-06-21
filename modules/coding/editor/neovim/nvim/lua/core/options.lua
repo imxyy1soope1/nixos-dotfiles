@@ -34,6 +34,8 @@ opt.completeopt = ""
 
 opt.exrc = true
 
+opt.conceallevel = 2
+
 opt.autoread = true
 vim.g.autoread = true
 
