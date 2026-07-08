@@ -32,6 +32,7 @@ in
         extraGroups = [
           username
           "wheel"
+          "input"
         ];
         hashedPasswordFile = lib.mkDefault config.sops.secrets.imxyy-nix-hashed-password.path;
       };
