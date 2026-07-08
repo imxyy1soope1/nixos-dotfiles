@@ -85,6 +85,10 @@
 
     i18n.fcitx5.enable = true;
 
+    programs = {
+      ollama.enable = true;
+    };
+
     xdg = {
       enable = true;
       defaultApplications =
