@@ -15,7 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     my.hm.programs.zen-browser = {
       enable = true;
-      nativeMessagingHosts = [ pkgs.master.firefoxpwa ];
+      nativeMessagingHosts = [ pkgs.firefoxpwa ];
       policies = {
         # find more options here: https://mozilla.github.io/policy-templates/
         DisableAppUpdate = true;
