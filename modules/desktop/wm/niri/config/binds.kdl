@@ -1,0 +1,91 @@
+binds {
+	Mod+Return { spawn "kitty" "-1"; }
+	Mod+E { spawn "nautilus"; }
+	Ctrl+Alt+Escape { spawn "missioncenter"; }
+
+	Mod+R { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+	Mod+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+	Mod+W { spawn "noctalia-shell" "ipc" "call" "launcher" "windows"; }
+
+	XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_SINK@" "2%+"; }
+	XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_SINK@" "2%-"; }
+	XF86AudioMute allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
+	Super+XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
+	Super+XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
+
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "+5%"; }
+	XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
+	Alt+XF86AudioRaiseVolume allow-when-locked=true { spawn "brightnessctl" "set" "+5%"; }
+	Alt+XF86AudioLowerVolume allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
+
+	Mod+Q { close-window; }
+	Mod+Shift+E { quit; }
+
+	Mod+Left { focus-column-left; }
+	Mod+Right { focus-column-right; }
+	Mod+Up { focus-window-up; }
+	Mod+Down { focus-window-down; }
+
+	Mod+Ctrl+Left { move-column-left; }
+	Mod+Ctrl+Right { move-column-right; }
+	Mod+Ctrl+Up { move-window-up; }
+	Mod+Ctrl+Down { move-window-down; }
+
+	Mod+Alt+Left { consume-or-expel-window-left; }
+	Mod+Alt+Right { consume-or-expel-window-right; }
+
+	Mod+Shift+Left { focus-monitor-left; }
+	Mod+Shift+Right { focus-monitor-right; }
+	Mod+Shift+Up { focus-monitor-up; }
+	Mod+Shift+Down { focus-monitor-down; }
+
+	Mod+Shift+Ctrl+Left { move-column-to-monitor-left; }
+	Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+	Mod+Shift+Ctrl+Up { move-column-to-monitor-up; }
+	Mod+Shift+Ctrl+Down { move-column-to-monitor-down; }
+
+	Mod+Page_Up { focus-workspace-up; }
+	Mod+Page_Down { focus-workspace-down; }
+
+    Mod+Ctrl+Page_Up { move-column-to-workspace-up; }
+	Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
+
+	Mod+Shift+Page_Up { move-workspace-up; }
+	Mod+Shift+Page_Down { move-workspace-down; }
+
+	Mod+L { switch-preset-column-width; }
+	Mod+Shift+L { reset-window-height; }
+	Mod+M { maximize-column; }
+	Mod+Shift+M { fullscreen-window; }
+	Mod+C { center-column; }
+	Mod+F { toggle-window-floating; }
+	Mod+H { expand-column-to-available-width; }
+	Mod+T { toggle-column-tabbed-display; }
+
+    Mod+Equal { set-column-width "+10%"; }
+	Mod+Minus { set-column-width "-10%"; }
+	Mod+Shift+Equal { set-window-height "+10%"; }
+	Mod+Shift+Minus { set-window-height "-10%"; }
+
+	Ctrl+Alt+A { screenshot show-pointer=false; }
+    Print { screenshot-screen show-pointer=false; }
+	Alt+Print { screenshot-window; }
+
+	Mod+O { toggle-overview; }
+	Super+Tab { toggle-overview; }
+
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+	Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+	Mod+WheelScrollLeft cooldown-ms=150 { focus-column-left; }
+	Mod+WheelScrollRight cooldown-ms=150 { focus-column-right; }
+
+    Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-workspace-up; }
+	Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-workspace-down; }
+	Mod+Ctrl+WheelScrollLeft cooldown-ms=150 { move-column-left; }
+	Mod+Ctrl+WheelScrollRight cooldown-ms=150 { move-column-right; }
+
+	Mod+Shift+WheelScrollUp cooldown-ms=150 { focus-column-left; }
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { focus-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp cooldown-ms=150 { move-column-left; }
+	Mod+Ctrl+Shift+WheelScrollDown cooldown-ms=150 { move-column-right; }
+}

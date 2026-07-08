@@ -48,32 +48,24 @@
       '';
     };
 
-    programs.niri.settings = {
+    wayland.windowManager.niri.settings = {
       environment.STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
-      outputs = {
-        DP-1 = {
-          enable = true;
-          mode = {
-            width = 2560;
-            height = 1440;
-            refresh = 75.033;
-          };
+      output = [
+        {
+          _args = [ "DP-1" ];
+          mode = "2560x1440@75.033";
           scale = 1.25;
-          position = {
+          position._props = {
             x = 0;
             y = 0;
           };
-        };
-        DP-2 = {
-          enable = true;
-          mode = {
-            width = 2560;
-            height = 1440;
-            refresh = 75.033;
-          };
+        }
+        {
+          _args = [ "DP-2" ];
+          mode = "2560x1440@75.033";
           scale = 1.25;
-        };
-      };
+        }
+      ];
     };
   };
 

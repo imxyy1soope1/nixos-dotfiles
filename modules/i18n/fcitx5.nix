@@ -187,12 +187,12 @@ in
         )
       )
     ];
-    my.hm.programs.niri.settings = {
-      binds."Mod+Space".action.spawn = [
+    my.hm.wayland.windowManager.niri.settings = {
+      binds."Mod+Space".spawn = [
         "fcitx5-remote"
         "-t"
       ];
-      spawn-at-startup = [ { command = [ "fcitx5" ]; } ];
+      spawn-at-startup = [ [ "fcitx5" ] ];
     };
   };
 }

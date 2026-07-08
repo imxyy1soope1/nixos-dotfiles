@@ -34,19 +34,15 @@
       set -gp PATH $HOME/bin
     '';
 
-    programs.niri.settings = {
+    wayland.windowManager.niri.settings = {
       environment.STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
-      outputs = {
-        eDP-1 = {
-          enable = true;
-          mode = {
-            width = 1920;
-            height = 1200;
-            refresh = 60.002;
-          };
+      output = [
+        {
+          _args = [ "eDP-1" ];
+          mode = "1920x1200@60.002";
           scale = 1.25;
-        };
-      };
+        }
+      ];
     };
   };
 

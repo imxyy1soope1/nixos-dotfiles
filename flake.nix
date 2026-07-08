@@ -96,10 +96,9 @@
       inputs.systems.follows = "systems";
       inputs.treefmt-nix.follows = "treefmt";
     };
-    niri = {
-      url = "github:sodiboo/niri-flake";
+    niri-nix = {
+      url = "git+https://codeberg.org/bananad3v/niri-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell/v4.7.5";

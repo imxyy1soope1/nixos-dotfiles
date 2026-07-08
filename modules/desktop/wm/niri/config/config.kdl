@@ -1,4 +1,6 @@
-include "generated.kdl"
+include "~/.config/niri-generated.kdl"
+include "rules.kdl"
+include "binds.kdl"
 
 input {
     focus-follows-mouse max-scroll-amount="0%"
@@ -61,11 +63,6 @@ blur {
     saturation 1.5
 }
 
-layer-rule {
-    match namespace="^wallpaper$"
-    place-within-backdrop true
-}
-
 overview {
     workspace-shadow {
         off
@@ -77,39 +74,5 @@ animations {
     slowdown 1.5
     workspace-switch {
         spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
-    }
-}
-
-window-rule {
-    draw-border-with-background false
-    geometry-corner-radius 14.000000 14.000000 14.000000 14.000000
-    clip-to-geometry true
-    background-effect {
-        xray true
-        blur true
-    }
-}
-
-window-rule {
-    match is-floating=true
-    background-effect {
-        xray false
-    }
-}
-
-window-rule {
-    match app-id="kitty|foot|Alacritty|ghostty"
-    opacity 0.8
-}
-
-window-rule {
-    match app-id="org.gnome.Nautilus"
-    opacity 0.6
-}
-
-window-rule {
-    match app-id="org.jackhuang.hmcl.Launcher"
-    border {
-        off
     }
 }

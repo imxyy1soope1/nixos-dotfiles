@@ -15,10 +15,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    niri-flake.cache.enable = false;
     programs.niri = {
       enable = true;
       package = pkg;
+      # We manage xdg.portal ourselves below.
+      withXDG = false;
     };
     services.displayManager = {
       ly = {
@@ -32,7 +33,6 @@ in
     };
 
     security.pam.services.login.enableGnomeKeyring = true;
-    services.gnome.gnome-keyring.enable = true;
     my.persist.homeDirs = [
       {
         directory = ".local/share/keyrings";
@@ -57,8 +57,17 @@ in
         xdg-desktop-portal-gnome
       ];
     };
-    systemd.user.services.niri-flake-polkit.serviceConfig.ExecStart =
-      lib.mkForce "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    systemd.user.services.niri-polkit = {
+      description = "PolicyKit Authentication Agent";
+      wantedBy = [ "niri.service" ];
+      after = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+      };
+    };
 
     services.system76-scheduler.enable = true;
 
