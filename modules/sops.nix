@@ -23,10 +23,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    sops.age.sshKeyFile = cfg.sshKeyFile;
+    sops.age.sshKeyPaths = [ cfg.sshKeyFile ];
+    # Inject environment directly to use native SSH key encryption
+    sops.environment.SOPS_AGE_SSH_PRIVATE_KEY_FILE = cfg.sshKeyFile;
     users.users.${username}.extraGroups = [ "keys" ];
     my.hm = {
-      sops.age.sshKeyFile = cfg.sshKeyFile;
+      sops.age.sshKeyPaths = [ cfg.sshKeyFile ];
+      sops.environment.SOPS_AGE_SSH_PRIVATE_KEY_FILE = cfg.sshKeyFile;
       home.packages = [
         pkgs.sops
       ];

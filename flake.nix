@@ -46,10 +46,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    # TODO: sops-nix: remove pr patch once merged
-    # https://github.com/Mic92/sops-nix/pull/779
     sops-nix = {
-      url = "github:Mic92/sops-nix/pull/779/merge";
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
