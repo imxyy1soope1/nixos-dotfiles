@@ -18,13 +18,6 @@
               "LANDLOCK_ACCESS_FS_READ_FILE | LANDLOCK_ACCESS_FS_READ_DIR" \
               "LANDLOCK_ACCESS_FS_READ_FILE | LANDLOCK_ACCESS_FS_READ_DIR | LANDLOCK_ACCESS_FS_EXECUTE"
           '';
-
-        mautrix-telegram.__input.python3.__input.packageOverrides.__assign = _pyfinal: pyprev: {
-          telethon = pyprev.telethon.overridePythonAttrs {
-            disabled = false;
-          };
-        };
-        mautrix-telegram.__output.patches.__append = [ ./mautrix-telegram-use-importlib-resources.patch ];
       };
   };
 }
