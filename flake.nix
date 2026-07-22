@@ -158,7 +158,6 @@
           ./flake/hosts.nix
           ./flake/pkgs.nix
           ./treefmt.nix
-          ./overlays
         ];
 
         nixosHosts = {

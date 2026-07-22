@@ -9,22 +9,11 @@
 }:
 let
   vars = import ../vars.nix;
-  pkgsModule = { config, ... }: {
+  pkgsModule = args: {
     nixpkgs = lib.mkMerge [
       pkgsParams
       {
-        overlays = [
-          (final: _prev: {
-            stable = import inputs.nixpkgs-stable {
-              inherit (final.stdenv.hostPlatform) system;
-              inherit (config.nixpkgs) config;
-            };
-            master = import inputs.nixpkgs-master {
-              inherit (final.stdenv.hostPlatform) system;
-              inherit (config.nixpkgs) config;
-            };
-          })
-        ];
+        overlays = (import ./overlays args);
       }
     ];
   };
