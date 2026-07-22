@@ -15,9 +15,11 @@ in
   config = lib.mkIf cfg.enable {
     programs.steam = {
       enable = true;
-      package = pkgs.steam;
       extraPackages = with pkgs; [
         gamescope
+      ];
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
       ];
     };
     my.persist.homeDirs = [
