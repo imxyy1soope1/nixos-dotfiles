@@ -16,12 +16,13 @@ in
 
   config = lib.mkIf cfg.enable {
     fonts = {
-      enableDefaultPackages = false;
+      enableDefaultPackages = true;
       fontDir.enable = true;
 
       packages = with pkgs; [
         noto-fonts
         noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
         noto-fonts-color-emoji
 
         jetbrains-mono
