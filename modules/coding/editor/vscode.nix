@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -19,6 +18,7 @@ in
     my.persist.homeDirs = [
       ".config/VSCodium"
       ".vscode-oss"
+      ".vscode-oss-shared"
     ];
   };
 }
