@@ -6,9 +6,10 @@
 This repository is home to the nix code that builds my systems:
 Currently, this repository contains the nix code that builds:
 
-1. NixOS Desktop: NixOS with home-manager, niri, neovim, etc.
-2. NixOS home server
-3. NixOS WSL
+1. NixOS Desktop (`imxyy-nix`): NixOS with home-manager, niri, neovim, etc.
+2. NixOS Laptop (`imxyy-nix-x16`): the desktop profile on a laptop
+3. NixOS home server (`imxyy-nix-server`)
+4. NixOS WSL (`imxyy-nix-wsl`)
 
 See [./hosts](./hosts) for details of each host.
 
@@ -27,12 +28,15 @@ enabling declarative host definitions and cleaner separation of concerns.
 
 ## Folder Structure
 
-- `modules/` - custom NixOS modules
+- `modules/` - custom NixOS modules, auto-imported via `lib.umport`
   - `modules/core/` - core system modules (nix, persistence, time, user, xdg)
   - `modules/cli/` - command-line tools and utilities
   - `modules/coding/` - development environments and editors
   - `modules/desktop/` - desktop applications and window managers
   - `modules/virt/` - virtualization configurations
+  - `modules/i18n/` - locale and input method (fcitx5)
+  - `modules/programs/` - misc system programs (e.g. ollama)
+  - `modules/*.nix` - standalone modules (audio, bluetooth, fonts, gpg, sops, etc.)
 - `profiles/` - system configuration profiles
   - `profiles/base.nix` - base configuration for all hosts
   - `profiles/desktop.nix` - desktop environment configuration
@@ -41,9 +45,10 @@ enabling declarative host definitions and cleaner separation of concerns.
 - `hosts/<name>/` - host-specific configs
 - `flake/` - flake-parts modules
   - `flake/hosts.nix` - declarative host definitions
+  - `flake/pkgs.nix` - custom packages exported from the flake
+  - `flake/overlays/` - nixpkgs overlays and patches
 - `lib/` - custom nix library
 - `pkgs/` - custom packages
-- `overlays/` - nixpkgs overlays
 - `vars.nix` - my variables
 - `secrets/` - secrets managed by sops-nix. see [./secrets](./secrets) for details
 - `flake.nix` - flake entry
