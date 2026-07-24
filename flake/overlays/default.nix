@@ -13,12 +13,12 @@
 
       easytier.__assign = final.stable.easytier;
 
-      python314Packages.patool.__input.file.__output.postPatch.__append =
-        lib.warn "Remove `file` patch once https://github.com/NixOS/nixpkgs/pull/540742 is merged" ''
-          substituteInPlace src/landlock.c --replace-fail \
-            "LANDLOCK_ACCESS_FS_READ_FILE | LANDLOCK_ACCESS_FS_READ_DIR" \
-            "LANDLOCK_ACCESS_FS_READ_FILE | LANDLOCK_ACCESS_FS_READ_DIR | LANDLOCK_ACCESS_FS_EXECUTE"
-        '';
+      angrr.__output.patches.__append = [
+        (import <nix/fetchurl.nix> {
+          url = "https://github.com/linyinfeng/angrr/pull/54.patch";
+          hash = "sha256-esJq0SkQkmpC/GWdcQJ9fTiHd67CG7z0iRIaZNYZyAc=";
+        })
+      ];
     }
   )
   (final: _prev: {
