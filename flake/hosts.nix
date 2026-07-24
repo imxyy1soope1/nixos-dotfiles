@@ -13,7 +13,7 @@ let
     nixpkgs = lib.mkMerge [
       pkgsParams
       {
-        overlays = (import ./overlays args);
+        overlays = import ./overlays args;
       }
     ];
   };
@@ -57,13 +57,11 @@ in
 
             modules = lib.mkOption {
               type = lib.types.listOf lib.types.deferredModule;
-              default = (
-                lib.umport {
-                  paths = [ ../hosts/${name} ];
-                  extraExcludePredicate = path: lib.hasInfix "/_" (toString path);
-                  recursive = true;
-                }
-              );
+              default = lib.umport {
+                paths = [ ../hosts/${name} ];
+                extraExcludePredicate = path: lib.hasInfix "/_" (toString path);
+                recursive = true;
+              };
               description = "Additional NixOS modules specific to this host";
             };
 

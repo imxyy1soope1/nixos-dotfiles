@@ -6,15 +6,14 @@
   ...
 }:
 {
-  nixpkgs.config.permittedInsecurePackages = (
+  nixpkgs.config.permittedInsecurePackages =
     lib.warn
       ''
         mautrix-telegram still using olm-3.2.16
       ''
       [
         "olm-3.2.16"
-      ]
-  );
+      ];
   sops.secrets.tuwunel-reg-token = {
     sopsFile = secrets.tuwunel-reg-token;
     restartUnits = [ "tuwunel.service" ];

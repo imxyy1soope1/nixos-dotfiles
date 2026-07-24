@@ -19,8 +19,8 @@ let
     with lib;
     with fileset;
     let
-      excludedFiles = filter (path: pathIsRegularFile path) exclude;
-      excludedDirs = filter (path: pathIsDirectory path) exclude;
+      excludedFiles = filter pathIsRegularFile exclude;
+      excludedDirs = filter pathIsDirectory exclude;
       isExcluded =
         path:
         (elem path excludedFiles)
@@ -39,7 +39,7 @@ let
             ) (builtins.readDir path)
         ) (unique (if path == null then paths else [ path ] ++ paths))
       ))
-      ++ (if recursive then concatMap (path: toList path) (unique include) else unique include)
+      ++ (if recursive then concatMap toList (unique include) else unique include)
     );
 in
 umport
