@@ -1,0 +1,7 @@
+[hot_corners]
+delay_ms = 200
+enabled = true
+
+[hot_corners.top_left]
+action = "command"
+command = "niri msg action toggle-overview"

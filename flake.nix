@@ -96,11 +96,8 @@
       inputs.treefmt-nix.follows = "treefmt";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/v4.7.5";
+      url = "github:noctalia-dev/noctalia-shell/v5.0.0-beta.10";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.noctalia-qs.inputs.nixpkgs.follows = "nixpkgs";
-      inputs.noctalia-qs.inputs.systems.follows = "systems";
-      inputs.noctalia-qs.inputs.treefmt-nix.follows = "treefmt";
     };
     selector4nix = {
       url = "github:StarryReverie/selector4nix";

@@ -1,0 +1,36 @@
+[shell]
+avatar_path = "~/workspace/nixos-dotfiles/assets/avatar.jpg"
+clipboard_enabled = true
+corner_radius_scale = 1.5
+date_format = "%Y/%m/%d"
+font_family = "monospace"
+lang = "en"
+launch_apps_as_systemd_services = true
+panel_anchor_bar = "main"
+polkit_agent = true
+screen_time_enabled = true
+telemetry_enabled = false
+
+[shell.animation]
+speed = 0.8
+
+[shell.launcher]
+sort_by_usage = true
+
+[shell.mpris]
+blacklist = ["firefox", "chromium", "zen"]
+
+[shell.panel]
+borders = false
+clipboard_placement = "floating"
+control_center_placement = "floating"
+launcher_placement = "floating"
+open_near_click_control_center = true
+session_placement = "floating"
+session_position = "center"
+shadow = true
+transparency_mode = "soft"
+wallpaper_placement = "floating"
+
+[shell.shadow]
+alpha = 0.0

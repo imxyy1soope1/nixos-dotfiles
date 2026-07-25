@@ -1,0 +1,6 @@
+[osd]
+position = "top_center"
+
+[osd.kinds]
+keyboard_layout = false
+media = false

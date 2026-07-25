@@ -1,0 +1,4 @@
+[control_center]
+hidden_tabs = ["weather"]
+shortcuts = []
+show_shortcut_labels = false

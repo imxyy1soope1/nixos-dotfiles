@@ -1,15 +1,15 @@
 binds {
 	Ctrl+Alt+Escape { spawn "missioncenter"; }
 
-	Mod+R { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-	Mod+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
-	Mod+W { spawn "noctalia-shell" "ipc" "call" "launcher" "windows"; }
+	Mod+R { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+	Mod+V { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
+	Mod+W { spawn "noctalia" "msg" "panel-toggle" "launcher" "/win"; }
 
 	XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_SINK@" "2%+"; }
 	XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_SINK@" "2%-"; }
-	XF86AudioMute allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
-	Super+XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
-	Super+XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
+	XF86AudioMute allow-when-locked=true { spawn "noctalia" "msg" "media" "playPause"; }
+	Super+XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia" "msg" "media" "next"; }
+	Super+XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia" "msg" "media" "previous"; }
 
     XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "+5%"; }
 	XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }

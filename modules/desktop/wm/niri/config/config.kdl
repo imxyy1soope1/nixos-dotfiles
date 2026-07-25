@@ -46,6 +46,12 @@ layout {
     }
 }
 
+gestures {
+    hot-corners {
+        off
+    }
+}
+
 prefer-no-csd
 
 hotkey-overlay {

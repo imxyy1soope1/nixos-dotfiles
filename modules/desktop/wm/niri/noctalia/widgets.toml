@@ -1,0 +1,60 @@
+[widget.Spacer-12]
+length = 12
+type = "spacer"
+
+[widget.battery]
+scale = 1.2
+
+[widget.classic-media]
+show_progress = false
+
+[widget.clock]
+format = "{:%H:%M %m/%d}"
+scale = 0.9
+
+[widget.control-center]
+custom_image = "/run/current-system/sw/share/icons/hicolor/scalable/apps/nix-snowflake.svg"
+scale = 1.25
+
+[widget.input_volume]
+show_label = false
+
+[widget.media]
+art_size = 30
+font_scale = 0.85
+title_scroll = "always"
+
+[widget.mic]
+device = "input"
+type = "volume"
+
+[widget.notifications]
+capsule_radius = "auto"
+hide_when_no_unread = false
+scale = 1.15
+
+[widget.output_volume]
+show_label = false
+
+[widget.sysmon_cpu]
+scale = 1.2
+show_glyph = false
+show_value = false
+stat = "cpu_usage"
+type = "sysmon"
+visualization = "graph"
+
+[widget.sysmon_ram]
+label_show_units = false
+show_value = false
+stat = "ram_used"
+type = "sysmon"
+
+[widget.tray]
+capsule_radius = 16
+drawer = false
+
+[widget.workspaces]
+hide_when_empty = false
+pill_scale = 0.9
+show_labels = false
