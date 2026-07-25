@@ -22,6 +22,8 @@ in
     };
     my.persist = {
       homeDirs = [
+        ".agents"
+
         ".claude"
 
         ".config/opencode"
