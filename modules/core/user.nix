@@ -28,6 +28,7 @@ in
       mutableUsers = false;
       users.${username} = {
         isNormalUser = true;
+        uid = 1000;
         description = userdesc;
         extraGroups = [
           username
