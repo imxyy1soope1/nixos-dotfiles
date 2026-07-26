@@ -5,7 +5,7 @@
   ...
 }:
 let
-  btrfs = "/dev/disk/by-uuid/c7889c5c-c5b6-4e3c-9645-dfd49c2e84d0";
+  btrfs = "/dev/disk/by-uuid/1e1b403d-4a04-46ee-a6eb-cb4dd5f793a2";
 in
 {
   boot.initrd.availableKernelModules = [
@@ -47,8 +47,24 @@ in
     ];
   };
 
+  fileSystems."/swap" = {
+    device = btrfs;
+    fsType = "btrfs";
+    options = [
+      "noatime"
+      "subvol=swap"
+    ];
+    neededForBoot = true;
+  };
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 24 * 1024;
+    }
+  ];
+
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/32AA-2998";
+    device = "/dev/disk/by-uuid/58F4-135A";
     fsType = "vfat";
     options = [
       "uid=0"
