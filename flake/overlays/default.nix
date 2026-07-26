@@ -4,6 +4,14 @@
   config,
   ...
 }:
+let
+  channel = channel: final: _prev: {
+    ${channel} = import inputs."nixpkgs-${channel}" {
+      inherit (final.stdenv.hostPlatform) system;
+      inherit (config.nixpkgs) config;
+    };
+  };
+in
 [
   (
     final: prev:
@@ -13,22 +21,10 @@
 
       easytier.__assign = final.stable.easytier;
 
-      angrr.__output.patches.__append = [
-        (import <nix/fetchurl.nix> {
-          url = "https://github.com/linyinfeng/angrr/pull/54.patch";
-          hash = "sha256-esJq0SkQkmpC/GWdcQJ9fTiHd67CG7z0iRIaZNYZyAc=";
-        })
-      ];
+      vaultwarden.__assign = final.unstable-small.vaultwarden;
     }
   )
-  (final: _prev: {
-    stable = import inputs.nixpkgs-stable {
-      inherit (final.stdenv.hostPlatform) system;
-      inherit (config.nixpkgs) config;
-    };
-    master = import inputs.nixpkgs-master {
-      inherit (final.stdenv.hostPlatform) system;
-      inherit (config.nixpkgs) config;
-    };
-  })
+  (channel "stable")
+  (channel "unstable-small")
+  (channel "master")
 ]

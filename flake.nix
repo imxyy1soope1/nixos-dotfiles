@@ -4,11 +4,10 @@
   inputs = {
     # Nixpkgs
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.11";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nixpkgs-unstable-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-26.05";
     # nixpkgs.follows = "nixpkgs-stable";
     nixpkgs.follows = "nixpkgs-unstable";
-    # nixpkgs.follows = "nixpkgs-master";
 
     # Home manager
     home-manager = {
@@ -67,9 +66,6 @@
     angrr = {
       url = "github:linyinfeng/angrr";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.treefmt-nix.follows = "treefmt";
     };
     darkly = {
       url = "github:Bali10050/Darkly";
