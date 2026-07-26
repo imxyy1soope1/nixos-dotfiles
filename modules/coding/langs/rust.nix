@@ -23,6 +23,7 @@ in
           "rustfmt"
           "rust-analyzer"
         ])
+        stdenv.cc # linker
         evcxr # rust repl
 
         pest-ide-tools
