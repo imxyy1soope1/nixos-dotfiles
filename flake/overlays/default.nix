@@ -21,7 +21,7 @@ in
 
       easytier.__assign = final.stable.easytier;
 
-      vaultwarden.__assign = final.unstable-small.vaultwarden;
+      niri-unstable.__input.libdisplay-info.__assign = final.unstable-small.libdisplay-info_0_3;
     }
   )
   (channel "stable")
