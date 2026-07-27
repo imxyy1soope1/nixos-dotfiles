@@ -9,7 +9,6 @@ in
 
   config = lib.mkIf cfg.enable {
     my.cli.media = {
-      go-musicfox.enable = true;
       ffmpeg.enable = true;
     };
   };

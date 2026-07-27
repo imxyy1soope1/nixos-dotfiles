@@ -75,13 +75,6 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    go-musicfox = {
-      url = "github:imxyy1soope1/go-musicfox";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.devenv.follows = "devenv";
-      inputs.nix2container.inputs.flake-utils.follows = "flake-utils";
-    };
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
       # Not followed intentionally (binary cache)
@@ -122,12 +115,6 @@
       inputs.systems.follows = "systems";
     };
     systems.url = "github:nix-systems/default";
-    devenv = {
-      url = "github:cachix/devenv";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.flake-compat.follows = "flake-compat";
-    };
   };
 
   outputs =

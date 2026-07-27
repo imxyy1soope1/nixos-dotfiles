@@ -9,7 +9,6 @@
   _module.args = {
     pkgsParams = {
       overlays = builtins.attrValues config.flake.overlays ++ [
-        inputs.go-musicfox.overlays.default
         inputs.niri-nix.overlays.niri-nix
         inputs.fenix.overlays.default
         inputs.angrr.overlays.default
