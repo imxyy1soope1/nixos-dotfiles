@@ -31,6 +31,7 @@
 
   services.openssh = {
     enable = true;
+    openFirewall = false;
     settings = {
       # Forbid root login through SSH.
       PermitRootLogin = null;

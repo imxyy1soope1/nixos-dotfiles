@@ -47,81 +47,31 @@
       "192.168.3.2"
     ];
 
-    firewall.enable = false;
-    nftables = {
+    firewall = {
       enable = true;
-      flushRuleset = true;
-      ruleset = ''
-        table inet firewall {
-          set LANv4 {
-            type ipv4_addr
-            flags interval
-
-            elements = { 10.0.0.0/8, 100.64.0.0/10, 172.16.0.0/12, 192.168.0.0/16, 169.254.0.0/16 }
-          }
-          set LANv6 {
-            type ipv6_addr
-            flags interval
-
-            elements = { fd00::/8, fe80::/10 }
-          }
-          set tcp_ports {
-            type inet_service
-            flags interval
-
-            elements = {
-              http,
-              https,
-              2222,
-              25565
-            }
-          }
-
-          chain prerouting {
-            type filter hook prerouting priority mangle; policy accept;
-
-            ip daddr @LANv4 accept
-            ip6 daddr @LANv6 accept
-          }
-
-          chain output {
-            type filter hook output priority 100; policy accept;
-
-            ip daddr @LANv4 accept
-            ip6 daddr @LANv6 accept
-          }
-
-          chain input {
-            type filter hook input priority 0; policy drop;
-            iif lo accept
-            ct state invalid drop
-            ct state established,related accept
-
-            ip protocol { icmp, igmp } accept
-
-            ip saddr @LANv4 accept
-            ip6 saddr @LANv6 accept
-
-            tcp dport 2222 ct state new limit rate 15/minute counter accept
-
-            tcp dport @tcp_ports counter accept
-          }
-
-          chain forward {
-            type filter hook forward priority 0; policy accept;
-          }
-
-          chain nat {
-            type nat hook postrouting priority 0; policy accept;
-            ip saddr 192.168.3.0/24 masquerade
-          }
-        }
+      checkReversePath = false;
+      allowedTCPPorts = [
+        80
+        443
+        2222
+      ];
+      extraInputRules = ''
+        ip saddr { 10.0.0.0/8, 100.64.0.0/10, 172.16.0.0/12, 192.168.0.0/16, 169.254.0.0/16 } accept
+        ip6 saddr { fd00::/8, fe80::/10 } accept
       '';
+      filterForward = false;
+    };
+    nftables.enable = true;
+    nat = {
+      enable = true;
+      externalInterface = "mac0";
+      internalIPs = [ "192.168.3.0/24" ];
     };
   };
 
   services.openssh = {
     enable = true;
+    openFirewall = false;
     settings = {
       # PermitRootLogin = "yes";
       PermitRootLogin = "prohibit-password";
@@ -143,6 +93,7 @@
   services.dae = {
     enable = true;
     configFile = config.sops.secrets.dae-imxyy-nix-server.path;
+    openFirewall.enable = false;
   };
   systemd.services.dae = {
     after = [ "sops-nix.service" ];
