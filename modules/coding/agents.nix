@@ -18,6 +18,8 @@ in
         codex
         claude-code
         opencode
+        pi
+        omp
       ];
     };
     my.persist = {
