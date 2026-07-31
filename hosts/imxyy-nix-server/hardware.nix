@@ -62,6 +62,7 @@ in
       size = 24 * 1024;
     }
   ];
+  boot.zswap.enable = true;
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/58F4-135A";

@@ -35,6 +35,8 @@ in
     kernelParams = [
       "resume_offset=6444127"
     ];
+
+    zswap.enable = true;
   };
 
   my.persist.btrfs = {
