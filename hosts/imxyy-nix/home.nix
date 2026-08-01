@@ -14,8 +14,6 @@
       ttf-wps-fonts
       papers
 
-      anki
-
       ayugram-desktop
       signal-desktop-wayland
       element-desktop
@@ -136,8 +134,6 @@
 
         ".cache"
         ".local/state"
-        ".local/share/Anki2"
-        ".local/share/shotwell"
         ".local/share/Kingsoft"
 
         ".local/share/AyuGramDesktop"
@@ -149,7 +145,6 @@
 
         ".config/Kingsoft"
         ".config/dconf"
-        ".config/pip"
         ".config/sunshine"
       ];
     };

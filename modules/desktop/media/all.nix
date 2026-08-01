@@ -13,10 +13,10 @@ in
       mpv.enable = true;
       loupe.enable = true;
       thunderbird.enable = true;
-      vlc.enable = true;
+      vlc.enable = false;
       splayer.enable = true;
-      spotify.enable = true;
-      spotube.enable = true;
+      spotify.enable = false;
+      spotube.enable = false;
     };
   };
 }

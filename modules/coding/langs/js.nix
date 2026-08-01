@@ -20,7 +20,6 @@ in
         typescript
 
         typescript-language-server
-        vue-language-server
 
         biome
       ];

@@ -17,7 +17,7 @@ in
       home.packages = with pkgs.llm-agents; [
         codex
         claude-code
-        opencode
+        # opencode
         pi
         omp
       ];
@@ -28,8 +28,8 @@ in
 
         ".claude"
 
-        ".config/opencode"
-        ".local/share/opencode"
+        # ".config/opencode"
+        # ".local/share/opencode"
 
         ".codex"
       ];

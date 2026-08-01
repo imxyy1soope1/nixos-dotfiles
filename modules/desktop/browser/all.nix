@@ -9,8 +9,8 @@ in
 
   config = lib.mkIf cfg.enable {
     my.desktop.browser = {
-      firefox.enable = true;
-      chromium.enable = true;
+      firefox.enable = false;
+      chromium.enable = false;
       zen.enable = true;
     };
   };

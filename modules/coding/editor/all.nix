@@ -10,8 +10,8 @@ in
   config = lib.mkIf cfg.enable {
     my.coding.editor = {
       neovim.enable = true;
-      vscode.enable = true;
-      zed.enable = true;
+      vscode.enable = false;
+      zed.enable = false;
     };
   };
 }

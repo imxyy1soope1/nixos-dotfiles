@@ -75,7 +75,6 @@ in
       home.packages = with pkgs; [
         xwayland-satellite-unstable
 
-        wlr-randr
         wl-clipboard
         cliphist
         brightnessctl

@@ -9,10 +9,10 @@ in
 
   config = lib.mkIf cfg.enable {
     my.desktop.terminal = {
-      alacritty.enable = true;
-      foot.enable = true;
+      alacritty.enable = false;
+      foot.enable = false;
       kitty.enable = true;
-      ghostty.enable = true;
+      ghostty.enable = false;
     };
   };
 }

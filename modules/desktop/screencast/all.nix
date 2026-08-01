@@ -9,7 +9,7 @@ in
 
   config = lib.mkIf cfg.enable {
     my.desktop.screencast = {
-      obs-studio.enable = true;
+      obs-studio.enable = false;
     };
   };
 }
