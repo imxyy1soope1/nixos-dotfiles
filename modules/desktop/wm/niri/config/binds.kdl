@@ -1,5 +1,4 @@
 binds {
-	Mod+Return { spawn "kitty" "-1"; }
 	Mod+E { spawn "nautilus"; }
 	Ctrl+Alt+Escape { spawn "missioncenter"; }
 

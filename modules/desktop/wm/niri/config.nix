@@ -55,6 +55,7 @@ in
         binds = lib.mkMerge [
           {
             "Mod+G".spawn = [ config.my.desktop.browser.default.command ];
+            "Mod+Return".spawn = [ config.my.desktop.terminal.default.command ];
           }
           (builtins.listToAttrs (
             map (n: {
