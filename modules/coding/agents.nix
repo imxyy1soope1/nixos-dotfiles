@@ -32,6 +32,9 @@ in
         # ".local/share/opencode"
 
         ".codex"
+
+        ".pi"
+        ".omp"
       ];
       homeFiles = [
         ".claude.json"
