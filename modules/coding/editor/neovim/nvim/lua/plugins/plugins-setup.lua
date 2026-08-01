@@ -21,7 +21,7 @@ local plugins = {
   },
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { { "nvim-tree/nvim-web-devicons", lazy = true } },
+    dependencies = { { "nvim-tree/nvim-web-devicons" } },
     config = function()
       require("lualine").setup(require("plugins.lualine"))
     end,
@@ -178,7 +178,7 @@ local plugins = {
       {
         "L3MON4D3/LuaSnip",
         event = "InsertEnter",
-        dependencies = { { "rafamadriz/friendly-snippets", lazy = true } },
+        dependencies = { { "rafamadriz/friendly-snippets" } },
         build = "make install_jsregexp",
         config = function()
           require("luasnip").setup(require("plugins.cmp.luasnip"))
@@ -350,6 +350,24 @@ local plugins = {
           path = function()
             return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
           end,
+        },
+      },
+    },
+
+    {
+      "julienvincent/hunk.nvim",
+      cmd = { "DiffEditor" },
+      dependencies = { { "nvim-tree/nvim-web-devicons" } },
+      opts = {
+        keys = {
+          global = {
+            quit = { "<leader>q" },
+          },
+          diff = {
+            prev_hunk = { "<S-Tab>" },
+            next_hunk = { "<Tab>" },
+            toggle_focus = {},
+          },
         },
       },
     },
