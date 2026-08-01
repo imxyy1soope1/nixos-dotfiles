@@ -1,5 +1,4 @@
 binds {
-	Mod+E { spawn "nautilus"; }
 	Ctrl+Alt+Escape { spawn "missioncenter"; }
 
 	Mod+R { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }

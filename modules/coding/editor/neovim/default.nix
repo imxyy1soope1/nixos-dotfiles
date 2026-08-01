@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.my.coding.editor.neovim;
+  desktop = [ "nvim.desktop" ];
 in
 {
   options.my.coding.editor.neovim = {
@@ -49,5 +50,20 @@ in
     my.persist.homeDirs = [
       ".local/share/nvim"
     ];
+    my.xdg.defaultApplications = {
+      "text/*" = desktop;
+      "application/json" = desktop;
+      "text/xml" = desktop;
+      "application/xml" = desktop;
+      "application/xhtml+xml" = desktop;
+      "application/xhtml_xml" = desktop;
+      "application/rdf+xml" = desktop;
+      "application/rss+xml" = desktop;
+      "application/x-extension-htm" = desktop;
+      "application/x-extension-html" = desktop;
+      "application/x-extension-shtml" = desktop;
+      "application/x-extension-xht" = desktop;
+      "application/x-extension-xhtml" = desktop;
+    };
   };
 }

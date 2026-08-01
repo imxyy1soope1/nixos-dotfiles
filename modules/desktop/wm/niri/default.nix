@@ -33,6 +33,7 @@ in
     };
 
     security.pam.services.login.enableGnomeKeyring = true;
+    services.gnome.gnome-keyring.enable = true;
     my.persist.homeDirs = [
       {
         directory = ".local/share/keyrings";
@@ -79,7 +80,6 @@ in
         cliphist
         brightnessctl
 
-        nautilus
         mission-center
 
         noctalia-shell

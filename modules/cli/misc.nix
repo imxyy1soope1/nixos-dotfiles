@@ -53,6 +53,7 @@ in
     my.persist.homeDirs = [
       ".local/share/zoxide"
       ".config/television/cable"
+      ".config/dconf"
     ];
     my.hm = {
       programs.fish.shellAliases = {

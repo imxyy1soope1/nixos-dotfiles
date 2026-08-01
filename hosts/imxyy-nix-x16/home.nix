@@ -1,26 +1,28 @@
 {
-  config,
   pkgs,
   username,
   ...
 }:
 {
+  my.programs = {
+    ollama.enable = true;
+
+    localsend.enable = true;
+
+    wpsoffice.enable = true;
+    papers.enable = true;
+
+    nautilus.enable = true;
+
+    ayugram.enable = true;
+    signal.enable = true;
+    element.enable = true;
+    fractal.enable = true;
+    qq.enable = true;
+    wechat.enable = true;
+  };
   my.hm = {
     home.packages = with pkgs; [
-      localsend
-
-      wpsoffice-cn
-      wps-office-fonts
-      ttf-wps-fonts
-      papers
-
-      ayugram-desktop
-      signal-desktop-wayland
-      element-desktop
-      fractal
-      qq-wayland
-      wechat
-
       gnome-clocks
     ];
     programs.zsh = {
@@ -50,52 +52,9 @@
     coding.all.enable = true;
     desktop.all.enable = true;
     virt.moonlight.enable = true;
-
     i18n.fcitx5.enable = true;
+    xdg.enable = true;
 
-    xdg = {
-      enable = true;
-      defaultApplications =
-        let
-          browser = [ config.my.desktop.browser.default.desktop ];
-          editor = [ "nvim.desktop" ];
-          imageviewer = [ "org.gnome.Loupe.desktop" ];
-        in
-        {
-          "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
-
-          "application/pdf" = [ "org.gnome.Papers.desktop" ];
-
-          "text/*" = editor;
-          "application/json" = editor;
-          "text/xml" = editor;
-          "application/xml" = editor;
-          "application/xhtml+xml" = editor;
-          "application/xhtml_xml" = editor;
-          "application/rdf+xml" = editor;
-          "application/rss+xml" = editor;
-          "application/x-extension-htm" = editor;
-          "application/x-extension-html" = editor;
-          "application/x-extension-shtml" = editor;
-          "application/x-extension-xht" = editor;
-          "application/x-extension-xhtml" = editor;
-
-          "text/html" = browser;
-          "x-scheme-handler/about" = browser;
-          "x-scheme-handler/ftp" = browser;
-          "x-scheme-handler/http" = browser;
-          "x-scheme-handler/https" = browser;
-          "x-scheme-handler/unknown" = browser;
-
-          "audio/*" = imageviewer;
-          "video/*" = imageviewer;
-          "image/*" = imageviewer;
-          "image/gif" = imageviewer;
-          "image/jpeg" = imageviewer;
-          "image/png" = imageviewer;
-          "image/webp" = imageviewer;
-        };
-    };
     persist = {
       enable = true;
       homeDirs = [
@@ -110,18 +69,6 @@
 
         ".cache"
         ".local/state"
-        ".local/share/Kingsoft"
-
-        ".local/share/AyuGramDesktop"
-        ".local/share/fractal"
-        ".config/Signal"
-        ".config/Element"
-        ".config/QQ"
-        ".xwechat"
-
-        ".config/Kingsoft"
-        ".config/dconf"
-        ".config/sunshine"
       ];
     };
   };
