@@ -15,7 +15,7 @@ in
       python.enable = true;
       rust.enable = true;
       lua.enable = true;
-      java.enable = true;
+      java.enable = false;
       typst.enable = true;
       toml.enable = true;
     };
