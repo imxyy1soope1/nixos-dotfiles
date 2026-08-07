@@ -24,7 +24,6 @@
       eth0 = {
         useDHCP = lib.mkForce true;
         wakeOnLan.enable = true;
-        macAddress = "3C:7C:3F:7C:D3:9D";
         ipv4 = {
           addresses = [
             {
