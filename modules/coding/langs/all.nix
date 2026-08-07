@@ -16,7 +16,6 @@ in
       rust.enable = true;
       lua.enable = true;
       java.enable = true;
-      qml.enable = true;
       typst.enable = true;
       toml.enable = true;
     };
