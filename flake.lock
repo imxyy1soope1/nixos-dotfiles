@@ -121,6 +121,22 @@
         "type": "github"
       }
     },
+    "crane": {
+      "locked": {
+        "lastModified": 1784564969,
+        "narHash": "sha256-TkTWNhJV/8Wk3czlbz4bwHZkFCaCHPsOy+oJe4PUiXg=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "7930f6c291de6f83c257839d434592aa085f290a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "ref": "master",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "darkly": {
       "inputs": {
         "nixpkgs": [
@@ -613,6 +629,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixpkgs-unstable-small": "nixpkgs-unstable-small",
         "noctalia": "noctalia",
+        "selector4nix": "selector4nix",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "system76-scheduler-niri": "system76-scheduler-niri",
@@ -635,6 +652,30 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
+        "type": "github"
+      }
+    },
+    "selector4nix": {
+      "inputs": {
+        "crane": "crane",
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786060471,
+        "narHash": "sha256-jOIHxqMGJ5vdWkuX/4KAYwMV4av1hW6YVO62vM+Q7Fk=",
+        "owner": "StarryReverie",
+        "repo": "selector4nix",
+        "rev": "590f98ce3123fa854cc7dc42f04cd5b92c37d7a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StarryReverie",
+        "repo": "selector4nix",
         "type": "github"
       }
     },

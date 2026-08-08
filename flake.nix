@@ -94,6 +94,11 @@
       inputs.noctalia-qs.inputs.systems.follows = "systems";
       inputs.noctalia-qs.inputs.treefmt-nix.follows = "treefmt";
     };
+    selector4nix = {
+      url = "github:StarryReverie/selector4nix";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";

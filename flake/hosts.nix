@@ -2,7 +2,6 @@
   self,
   lib,
   inputs,
-  withSystem,
   config,
   pkgsParams,
   ...
@@ -35,6 +34,16 @@ let
       useGlobalPkgs = true;
     };
   };
+  upstreamModules = [
+    # keep-sorted start
+    inputs.angrr.nixosModules.angrr
+    inputs.home-manager.nixosModules.default
+    inputs.impermanence.nixosModules.impermanence
+    inputs.niri-nix.nixosModules.default
+    inputs.selector4nix.nixosModules.selector4nix
+    inputs.sops-nix.nixosModules.sops
+    # keep-sorted end
+  ];
 in
 {
   options.nixosHosts = lib.mkOption {
@@ -82,66 +91,51 @@ in
     # Generate nixosConfigurations from declarative host definitions
     flake.nixosConfigurations = lib.mapAttrs (
       hostname: hostConfig:
-      withSystem hostConfig.system (
-        { ... }:
-        lib.nixosSystem {
-          inherit (hostConfig) system;
+      lib.nixosSystem {
+        inherit (hostConfig) system;
 
-          specialArgs = {
-            inherit
-              inputs
-              self
-              hostname
-              ;
-            assets =
-              with lib.haumea;
-              load {
-                src = ../assets;
-                loader = [ (matchers.always loaders.path) ];
-              };
-            secrets =
-              with lib.haumea;
-              load {
-                src = ../secrets;
-                loader = [ (matchers.always loaders.path) ];
-              };
-          }
-          // vars
-          // hostConfig.extraSpecialArgs;
-
-          modules =
-            # Automatically import all feature modules
-            (lib.umport {
-              paths = [ ../modules ];
-              extraExcludePredicate = path: lib.hasInfix "/_" (toString path);
-              recursive = true;
-            })
-            ++ [
-              # Base profile (always included)
-              ../profiles/base.nix
-            ]
-            # Add requested profiles
-            ++ (map (profile: ../profiles/${profile}.nix) hostConfig.profiles)
-            # Add host-specific modules
-            ++ hostConfig.modules
-            ++ [
-              (lib.mkAliasOptionModule [ "my" "hm" ] [ "home-manager" "users" vars.username ])
-
-              # Upstream modules
-              # keep-sorted start
-              inputs.angrr.nixosModules.angrr
-              inputs.home-manager.nixosModules.default
-              inputs.impermanence.nixosModules.impermanence
-              inputs.niri-nix.nixosModules.default
-              inputs.sops-nix.nixosModules.sops
-              # keep-sorted end
-
-              # pkgs and home-manager configuration
-              pkgsModule
-              hmModule
-            ];
+        specialArgs = {
+          inherit
+            inputs
+            self
+            hostname
+            ;
+          assets =
+            with lib.haumea;
+            load {
+              src = ../assets;
+              loader = [ (matchers.always loaders.path) ];
+            };
+          secrets =
+            with lib.haumea;
+            load {
+              src = ../secrets;
+              loader = [ (matchers.always loaders.path) ];
+            };
         }
-      )
+        // vars
+        // hostConfig.extraSpecialArgs;
+
+        modules =
+          (lib.umport {
+            paths = [ ../modules ];
+            extraExcludePredicate = path: lib.hasInfix "/_" (toString path);
+            recursive = true;
+          })
+          ++ [
+            ../profiles/base.nix
+          ]
+          ++ (map (profile: ../profiles/${profile}.nix) hostConfig.profiles)
+          ++ hostConfig.modules
+          ++ upstreamModules
+          ++ [
+            (lib.mkAliasOptionModule [ "my" "hm" ] [ "home-manager" "users" vars.username ])
+
+            # pkgs and home-manager configuration
+            pkgsModule
+            hmModule
+          ];
+      }
     ) config.nixosHosts;
   };
 }

@@ -32,99 +32,46 @@ in
       nh
     ];
 
-    environment.etc =
-      (lib.mapAttrs' (name: value: {
+    environment.etc = (
+      lib.mapAttrs' (name: value: {
         name = "nix/path/${name}";
         value.source = value.flake;
-      }) config.nix.registry)
-      // {
-        "nix/nix-racer.toml".source = (pkgs.formats.toml { }).generate "nix-racer.toml" {
-          listen = "127.0.0.1:2048";
-          substituters = [
-            # {
-            #   penalty = 0;
-            #   url = "https://mirror.sjtu.edu.cn/nix-channels/store";
-            # }
-            {
-              penalty = 0;
-              url = "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store";
-            }
-            {
-              penalty = 50;
-              url = "https://mirrors.ustc.edu.cn/nix-channels/store";
-            }
-            {
-              penalty = 0;
-              url = "https://nix-community.cachix.org";
-            }
-            {
-              penalty = 0;
-              url = "https://cache.numtide.com";
-            }
-            {
-              penalty = 100;
-              url = "https://cache.nixos.org";
-            }
-          ];
-        };
-      };
+      }) config.nix.registry
+    );
 
-    systemd.services.nix-racer = {
-      description = "Nix substituter proxy with parallel cache queries and latency-aware selection";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
-
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${lib.getExe (pkgs.callPackage ./nix-racer/_package.nix { })}";
-        Restart = "on-failure";
-        RestartSec = 5;
-
-        DynamicUser = true;
-        CapabilityBoundingSet = [ "" ];
-        DeviceAllow = "";
-        LockPersonality = true;
-        MemoryDenyWriteExecute = true;
-        NoNewPrivileges = true;
-        PrivateDevices = true;
-        PrivateTmp = true;
-        ProtectClock = true;
-        ProtectControlGroups = true;
-        ProtectHome = true;
-        ProtectHostname = true;
-        ProtectKernelLogs = true;
-        ProtectKernelModules = true;
-        ProtectKernelTunables = true;
-        ProtectSystem = "strict";
-        RestrictAddressFamilies = [
-          "AF_INET"
-          "AF_INET6"
+    services.selector4nix = {
+      enable = true;
+      configureSubstituter = "keep";
+      settings = {
+        server.port = 5496;
+        substituters = [
+          {
+            url = "https://mirror.sjtu.edu.cn/nix-channels/store";
+          }
+          {
+            url = "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store";
+          }
+          {
+            url = "https://mirrors.ustc.edu.cn/nix-channels/store";
+          }
+          {
+            url = "https://nix-community.cachix.org";
+          }
+          {
+            url = "https://cache.numtide.com";
+          }
+          {
+            url = "https://cache.nixos.org";
+          }
         ];
-        RestrictNamespaces = true;
-        RestrictRealtime = true;
-        RestrictSUIDSGID = true;
-        SystemCallArchitectures = "native";
-        SystemCallFilter = [
-          "@system-service"
-          "~@resources"
-          "~@privileged"
-        ];
-        UMask = "0077";
       };
     };
 
     nix.settings = {
       experimental-features = "nix-command flakes pipe-operators";
       substituters = lib.mkForce [
-        "http://127.0.0.1:2048"
-        "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
-        "https://cache.numtide.com"
+        "http://127.0.0.1:${toString (config.services.selector4nix.settings.server.port or 5496)}"
         "https://cache.nixos.org"
-
-        # "https://mirrors.ustc.edu.cn/nix-channels/store"
-        # "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
-        # "https://nix-community.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
