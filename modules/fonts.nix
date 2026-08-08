@@ -9,9 +9,7 @@ let
 in
 {
   options.my.fonts = {
-    enable = lib.mkEnableOption "default font settings" // {
-      default = true;
-    };
+    enable = lib.mkEnableOption "default font settings";
   };
 
   config = lib.mkIf cfg.enable {
