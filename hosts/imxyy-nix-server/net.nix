@@ -178,36 +178,19 @@
   };
   my.services.frp.webServers = [ "oidc.imxyy.top" ];
 
-  systemd.services.ddns-go =
-    let
-      version = "6.6.7";
-      ddns-go = pkgs.buildGoModule {
-        inherit version;
-        pname = "ddns-go";
-        src = pkgs.fetchFromGitHub {
-          owner = "jeessy2";
-          repo = "ddns-go";
-          rev = "v${version}";
-          hash = "sha256-Ejoe6e9GFhHxQ9oIBDgDRQW9Xx1XZK+qSAXiRXLdn+c=";
-        };
-        meta.mainProgram = "ddns-go";
-        vendorHash = "sha256-XZii7gV3DmTunYyGYzt5xXhv/VpTPIoYKbW4LnmlAgs=";
-        doCheck = false;
-      };
-    in
-    {
-      description = "Go Dynamic DNS";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        ExecStart = "${lib.getExe ddns-go} -l :9876 -f 10 -cacheTimes 180 -c /var/lib/ddns-go/config.yaml";
-        Restart = "always";
-        RestartSec = 120;
-      };
-      path = [
-        pkgs.bash
-      ];
+  systemd.services.ddns-go = {
+    description = "Go Dynamic DNS";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = "${lib.getExe pkgs.ddns-go} -l :9876 -f 10 -cacheTimes 180 -c /var/lib/ddns-go/config.yaml";
+      Restart = "always";
+      RestartSec = 120;
     };
+    path = [
+      pkgs.bash
+    ];
+  };
 
   services.dnsmasq = {
     enable = true;
