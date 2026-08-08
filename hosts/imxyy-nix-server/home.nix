@@ -14,8 +14,6 @@
       homeDirs = [
         "workspace"
         "Virt"
-
-        ".ollama"
       ];
     };
   };
