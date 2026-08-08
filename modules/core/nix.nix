@@ -45,7 +45,10 @@ in
       enable = true;
       configureSubstituter = "keep";
       settings = {
-        server.port = 5496;
+        server = {
+          ip = "0.0.0.0";
+          port = 5496;
+        };
         substituters = map (subst: if builtins.isString subst then { url = subst; } else subst) [
           "https://mirror.sjtu.edu.cn/nix-channels/store"
           "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
