@@ -28,6 +28,23 @@ in
             hide_env_diff = false;
           };
         };
+        stdlib = lib.mkAfter ''
+          if [[ -f .envrc.local && -z "$DIRENV_LOCAL_LOADED" ]]; then
+            export DIRENV_LOCAL_LOADED=1
+            log_status ".envrc.local detected, loading..."
+
+            skip_default_envrc() {
+              log_status "skip_default_envrc triggered, skipping .envrc"
+              exit 0
+            }
+
+            source_env .envrc.local
+
+            use() {
+              log_status "intercepted 'use $@' in .envrc"
+            }
+          fi
+        '';
       };
     };
     my.persist.homeDirs = [
