@@ -58,6 +58,17 @@ in
         xdg-desktop-portal-gnome
       ];
     };
+    # Keep switch-to-configuration from stopping the running compositor
+    # when the niri store path changes; niri-nix dropped this drop-in in
+    # acccaf2202. The new binary takes effect on next login instead.
+    systemd.user.units."niri.service" = {
+      overrideStrategy = "asDropinIfExists";
+      text = ''
+        [Service]
+        X-StopIfChanged=false
+        X-RestartIfChanged=false
+      '';
+    };
     systemd.user.services.niri-polkit = {
       description = "PolicyKit Authentication Agent";
       wantedBy = [ "niri.service" ];
