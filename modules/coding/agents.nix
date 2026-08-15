@@ -14,13 +14,17 @@ in
 
   config = lib.mkIf cfg.enable {
     my.hm = {
-      home.packages = with pkgs.llm-agents; [
-        codex
-        claude-code
-        # opencode
-        pi
-        omp
-      ];
+      home.packages =
+        (with pkgs.llm-agents; [
+          # codex
+          claude-code
+          # opencode
+          pi
+          omp
+        ])
+        ++ (with pkgs; [
+          codex
+        ]);
     };
     my.persist = {
       homeDirs = [
