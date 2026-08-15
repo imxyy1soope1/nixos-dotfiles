@@ -39,6 +39,9 @@ in
 
         ".pi"
         ".omp"
+
+        ".config/ZCode"
+        ".zcode"
       ];
       homeFiles = [
         ".claude.json"
