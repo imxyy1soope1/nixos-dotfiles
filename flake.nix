@@ -68,6 +68,11 @@
       url = "github:Bali10050/Darkly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fast-nix-gc = {
+      url = "github:Mic92/fast-nix-gc";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.treefmt-nix.follows = "treefmt";
+    };
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,6 +88,12 @@
     niri-nix = {
       url = "git+https://codeberg.org/bananad3v/niri-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-tree-rs = {
+      url = "github:Mic92/nix-tree-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.treefmt-nix.follows = "treefmt";
     };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell/v4.7.5";

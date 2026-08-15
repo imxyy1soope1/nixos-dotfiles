@@ -12,12 +12,23 @@
         inputs.niri-nix.overlays.niri-nix
         inputs.fenix.overlays.default
         inputs.angrr.overlays.default
-        (final: prev: {
-          darkly-qt6 = inputs.darkly.packages.${final.stdenv.hostPlatform.system}.darkly-qt6;
-
-          noctalia-shell = inputs.noctalia.packages.${final.stdenv.hostPlatform.system}.default;
-        })
         inputs.llm-agents.overlays.shared-nixpkgs
+        (
+          final: prev:
+          let
+            system = final.stdenv.hostPlatform.system;
+          in
+          {
+            darkly-qt6 = inputs.darkly.packages.${system}.darkly-qt6;
+
+            noctalia-shell = inputs.noctalia.packages.${system}.default;
+
+            nix-tree-rs = inputs.nix-tree-rs.packages.${system}.default;
+            fast-nix-gc = inputs.fast-nix-gc.packages.${system}.default.overrideAttrs {
+              doCheck = false;
+            };
+          }
+        )
       ];
       config.allowUnfree = true;
       flake.setNixPath = false;

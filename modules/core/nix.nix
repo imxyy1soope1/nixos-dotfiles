@@ -30,6 +30,8 @@ in
     environment.systemPackages = with pkgs; [
       nix-output-monitor
       nh
+      nix-tree-rs
+      fast-nix-gc
     ];
 
     environment.etc = (
