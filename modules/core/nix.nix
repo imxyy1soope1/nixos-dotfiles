@@ -46,25 +46,15 @@ in
       configureSubstituter = "keep";
       settings = {
         server.port = 5496;
-        substituters = [
-          {
-            url = "https://mirror.sjtu.edu.cn/nix-channels/store";
-          }
-          {
-            url = "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store";
-          }
-          {
-            url = "https://mirrors.ustc.edu.cn/nix-channels/store";
-          }
-          {
-            url = "https://nix-community.cachix.org";
-          }
-          {
-            url = "https://cache.numtide.com";
-          }
-          {
-            url = "https://cache.nixos.org";
-          }
+        substituters = map (subst: if builtins.isString subst then { url = subst; } else subst) [
+          "https://mirror.sjtu.edu.cn/nix-channels/store"
+          "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
+          "https://mirrors.ustc.edu.cn/nix-channels/store"
+          "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+          "https://nix-community.cachix.org"
+          "https://selector4nix.cachix.org/"
+          "https://cache.numtide.com"
+          "https://cache.nixos.org"
         ];
       };
     };
@@ -77,6 +67,7 @@ in
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "selector4nix.cachix.org-1:wovVlT07In5JCVz2tFgxPQTLpnN8hZT6P/RwfFcz3KE="
         "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
       ];
       download-buffer-size = 536870912; # 512 MiB
