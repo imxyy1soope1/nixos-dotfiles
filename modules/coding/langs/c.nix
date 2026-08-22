@@ -18,6 +18,8 @@ in
       (lib.hiPrio clang)
       clang-tools
       cmake
+      ninja
+      meson
     ];
   };
 }
