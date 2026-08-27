@@ -17,6 +17,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    my.persist.homeDirs = [
+      ".config/jj"
+    ];
     my.hm = {
       programs.jujutsu = {
         enable = true;
