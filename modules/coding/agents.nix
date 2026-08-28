@@ -19,8 +19,8 @@ in
           # codex
           claude-code
           # opencode
-          pi
-          omp
+          # pi
+          # omp
         ])
         ++ (with pkgs; [
           codex
