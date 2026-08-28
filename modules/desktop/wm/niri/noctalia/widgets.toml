@@ -5,9 +5,6 @@ type = "spacer"
 [widget.battery]
 scale = 1.2
 
-[widget.classic-media]
-show_progress = false
-
 [widget.clock]
 format = "{:%H:%M %m/%d}"
 scale = 0.9
@@ -23,6 +20,7 @@ show_label = false
 art_size = 30
 font_scale = 0.85
 title_scroll = "always"
+hide_when_no_media = true
 
 [widget.mic]
 device = "input"
