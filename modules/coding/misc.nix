@@ -48,6 +48,7 @@ in
       };
     };
     my.persist.homeDirs = [
+      ".config/gh"
       ".local/share/direnv"
     ];
   };
