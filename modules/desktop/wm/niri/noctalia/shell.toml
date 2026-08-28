@@ -1,6 +1,6 @@
+# tombi: format.rules.table-keys-order.disabled = true
 [shell]
 avatar_path = "~/workspace/nixos-dotfiles/assets/avatar.jpg"
-clipboard_enabled = true
 corner_radius_scale = 1.5
 date_format = "%Y/%m/%d"
 font_family = "monospace"
@@ -10,6 +10,10 @@ panel_anchor_bar = "main"
 polkit_agent = true
 screen_time_enabled = true
 telemetry_enabled = false
+
+clipboard_enabled = true
+clipboard_history_max_entries = 1000
+key_source = "secret-service"
 
 [shell.animation]
 speed = 0.8
