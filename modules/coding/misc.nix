@@ -19,6 +19,22 @@ in
         gnumake
         github-cli # gh
       ];
+      programs.starship.settings = {
+        nix_shell.disabled = true;
+        # direnv =
+        #   let
+        #     esc = builtins.fromJSON ''"\u001b"'';
+        #   in
+        #   {
+        #     disabled = false;
+        #     format = "$loaded$allowed ";
+        #     loaded_msg = "${esc}[1;92m ${esc}[0m"; # green
+        #     unloaded_msg = "";
+        #     allowed_msg = "";
+        #     not_allowed_msg = "${esc}[1;93m ${esc}[0m"; # yellow
+        #     denied_msg = "${esc}[1;91m ${esc}[0m"; # red
+        #   };
+      };
       programs.direnv = {
         enable = true;
         nix-direnv.enable = true;

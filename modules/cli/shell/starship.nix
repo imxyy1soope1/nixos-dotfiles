@@ -17,8 +17,7 @@ in
           enable = true;
           settings = lib.recursiveUpdate (with builtins; fromTOML (readFile ./starship-preset.toml)) {
             add_newline = false;
-            command_timeout = 2000;
-            nix_shell.disabled = true;
+            scan_timeout = 1500;
             format =
               let
                 dedupDollar =
