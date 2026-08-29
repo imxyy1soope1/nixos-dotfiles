@@ -406,7 +406,7 @@ def main():
         else:
             sets_by_file.setdefault(f, []).append((path, old, val))
 
-    if not changes:
+    if not changes and not new_files:
         print("No changes to fold. Repo config already matches the export.")
         return
 
@@ -434,8 +434,10 @@ def main():
         )
 
     if not args.apply:
+        total = len(changes) + len(new_files)
+        file_count = len(touched) + len(new_files)
         print(
-            f"\n{len(changes)} change{'s' if len(changes) > 1 else ''} in {len(touched)} file(s)."
+            f"\n{total} change{'s' if total != 1 else ''} in {file_count} file(s)."
         )
         print("Run with --apply to fold into the repo.")
         return
@@ -478,10 +480,11 @@ def main():
         print(f"  backed up {state_dir}/settings.toml -> {bak}")
         reload_instance()
     else:
-        # Should not reach this branch, since `len(changes) > 0`, GUI overrides must exist.
+        # Should not reach this branch, since a fold implies GUI overrides exist.
         print("warning: settings.toml does not exist. Nothing backuped")
 
-    print(f"\nDone. {len(changes)} change{'s' if len(changes) > 1 else ''} folded.")
+    total = len(changes) + len(new_files)
+    print(f"\nDone. {total} change{'s' if total != 1 else ''} folded.")
 
 
 if __name__ == "__main__":
