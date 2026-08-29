@@ -34,6 +34,9 @@ in
     resumeDevice = btrfs;
     kernelParams = [
       "resume_offset=6444127"
+
+      # Fix connector hotplug at ly display manager
+      "amdgpu.runpm=0"
     ];
 
     zswap.enable = true;
