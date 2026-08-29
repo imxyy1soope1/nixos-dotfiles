@@ -13,7 +13,6 @@ telemetry_enabled = false
 
 clipboard_enabled = true
 clipboard_history_max_entries = 1000
-key_source = "secret-service"
 
 [shell.animation]
 speed = 0.8
