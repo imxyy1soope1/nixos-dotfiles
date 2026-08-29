@@ -5,10 +5,10 @@ wallpaper = "~/workspace/nixos-dotfiles/assets/wallpaper.png"
 enabled = true
 schema_version = 2
 widget_order = [
-    "lockscreen-login-box@DP-1",
-    "lockscreen-login-box@DP-2",
-    "lockscreen-widget-clock@DP-1",
-    "lockscreen-widget-clock@DP-2",
+  "lockscreen-login-box@DP-1",
+  "lockscreen-login-box@DP-2",
+  "lockscreen-widget-clock@DP-1",
+  "lockscreen-widget-clock@DP-2",
 ]
 
 [lockscreen_widgets.grid]

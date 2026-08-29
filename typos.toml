@@ -1,18 +1,13 @@
 #:schema https://raw.githubusercontent.com/crate-ci/typos/refs/heads/master/config.schema.json
 
 [files]
-extend-exclude = [
-    "secrets"
-]
+extend-exclude = ["secrets"]
+
+[default]
+extend-ignore-identifiers-re = ["KEY_102ND", "VE_UE"]
 
 [default.extend-words]
 # noice.nvim
 noice = "noice"
 enew = "enew"
 iif = "iif"
-
-[default]
-extend-ignore-identifiers-re = [
-    "KEY_102ND",
-    "VE_UE"
-]
