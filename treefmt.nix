@@ -8,6 +8,7 @@
       nixfmt.enable = true;
       keep-sorted.enable = true;
       stylua.enable = true;
+      ruff.enable = true;
     };
     settings.formatter.tombi = {
       command = "${pkgs.bash}/bin/bash";

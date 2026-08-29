@@ -14,9 +14,15 @@ in
 
   config = lib.mkIf cfg.enable {
     my.hm.home.packages = with pkgs; [
-      python3
+      (python3.withPackages (
+        ps: with ps; [
+          tomli
+          tomli-w
+        ]
+      ))
       uv
       pyrefly
+      ruff
     ];
   };
 }

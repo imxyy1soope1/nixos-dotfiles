@@ -81,6 +81,7 @@ local servers = {
   java_language_server = {},
   jsonls = {},
   pyrefly = {},
+  ruff = {},
   -- taplo = {},
   tombi = {},
   ts_ls = {},

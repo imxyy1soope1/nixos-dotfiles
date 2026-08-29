@@ -49,3 +49,11 @@ alias offline := switch-offline
 @fmt:
 	echo "Formatting files..."
 	nix fmt
+
+@sync-noctalia:
+	echo "Folding noctalia GUI overrides back into the repo..."
+	python3 scripts/sync-noctalia.py --apply
+
+@sync-noctalia-preview:
+	echo "Previewing noctalia config sync (no changes)..."
+	python3 scripts/sync-noctalia.py
