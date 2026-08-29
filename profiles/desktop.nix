@@ -35,6 +35,8 @@
   # GVFS for virtual filesystems
   services.gvfs.enable = true;
 
+  services.speechd.enable = false;
+
   # Enable desktop-related modules by default
   my = {
     audio.enable = true;
