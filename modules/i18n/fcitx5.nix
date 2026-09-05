@@ -13,7 +13,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    i18n.inputMethod = {
+    my.persist.homeDirs = [
+      # User dicts & prefs
+      ".local/share/fcitx5"
+    ];
+    my.hm.i18n.inputMethod = {
       enable = true;
       type = "fcitx5";
       fcitx5 = {
@@ -48,59 +52,53 @@ in
             };
             "GroupOrder"."0" = "Default";
           };
-          addons =
-            let
-              true = "True";
-              false = "False";
-            in
-            {
-              classicui.globalSection = {
-                WheelForPaging = true;
-                Font = "sans-serif 10";
-                MenuFont = "Noto Sans CJK SC 10";
-                TrayFont = "Noto Sans CJK SC Bold 10";
-                Theme = "lightly";
-                PerScreenDPI = true;
-                EnableFractionalScale = true;
+          addons = {
+            classicui.globalSection = {
+              WheelForPaging = true;
+              Font = "sans-serif 10";
+              MenuFont = "Noto Sans CJK SC 10";
+              TrayFont = "Noto Sans CJK SC Bold 10";
+              Theme = "lightly";
+              PerScreenDPI = true;
+              EnableFractionalScale = true;
+            };
+            punctuation.globalSection = {
+              HalfWidthPuncAfterLetterOrNumber = true;
+              TypePairedPunctuationsTogether = false;
+              Enabled = true;
+            };
+            pinyin = {
+              globalSection = {
+                PageSize = 9;
+                EmojiEnabled = false;
+                ChaiziEnabled = true;
+                ExtBEnabled = true;
+                CloudPinyinEnabled = true;
+                CloudPinyinIndex = 2;
+                PreeditInApplication = true;
               };
-              punctuation.globalSection = {
-                HalfWidthPuncAfterLetterOrNumber = true;
-                TypePairedPunctuationsTogether = false;
-                Enabled = true;
-              };
-              pinyin = {
-                globalSection = {
-                  PageSize = 9;
-                  EmojiEnabled = false;
-                  ChaiziEnabled = true;
-                  ExtBEnabled = true;
-                  CloudPinyinEnabled = true;
-                  CloudPinyinIndex = 2;
-                  PreeditInApplication = true;
+              sections = {
+                Fuzzy = {
+                  VE_UE = true;
+                  NG_GN = true;
+                  Inner = true;
+                  InnerShort = true;
+                  PartialFinal = false;
+                  V_U = true;
+                  IN_ING = true;
+                  U_OU = true;
                 };
-                sections = {
-                  Fuzzy = {
-                    VE_UE = true;
-                    NG_GN = true;
-                    Inner = true;
-                    InnerShort = true;
-                    PartialFinal = false;
-                    V_U = true;
-                    IN_ING = true;
-                    U_OU = true;
-                  };
-                };
-              };
-              cloudpinyin.globalSection = {
-                Backend = "Baidu";
-                MinimumPinyinLength = 4;
-              };
-              clipboard.globalSection = {
-                TriggerKey = "";
               };
             };
+            cloudpinyin.globalSection = {
+              Backend = "Baidu";
+              MinimumPinyinLength = 4;
+            };
+            clipboard.globalSection = {
+              TriggerKey = "";
+            };
+          };
         };
-        ignoreUserConfig = true;
       };
     };
     nixpkgs.overlays = [
@@ -192,7 +190,6 @@ in
         "fcitx5-remote"
         "-t"
       ];
-      spawn-at-startup = [ [ "fcitx5" ] ];
     };
   };
 }
