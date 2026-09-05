@@ -63,7 +63,11 @@ in
     };
 
     nix.settings = {
-      experimental-features = "nix-command flakes pipe-operators";
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "pipe-operators"
+      ];
       substituters = lib.mkForce [
         "http://127.0.0.1:${toString (config.services.selector4nix.settings.server.port or 5496)}"
         "https://cache.nixos.org"
