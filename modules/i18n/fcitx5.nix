@@ -6,6 +6,22 @@
 }:
 let
   cfg = config.my.i18n.fcitx5;
+  mkFcitx =
+    final: prev:
+    { pkg, desktops }:
+    {
+      ${pkg} = final.symlinkJoin {
+        name = prev.${pkg}.name;
+        paths = [ prev.${pkg} ];
+        postBuild = lib.concatLines (
+          map (desktop: ''
+            rm $out/share/applications/${desktop}.desktop
+            substitute ${prev.${pkg}}/share/applications/${desktop}.desktop $out/share/applications/${desktop}.desktop \
+              --replace-fail 'Exec=' 'Exec=env QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx '
+          '') desktops
+        );
+      };
+    };
 in
 {
   options.my.i18n.fcitx5 = {
@@ -105,83 +121,22 @@ in
       (
         final: prev:
         lib.mergeAttrsList (
-          map
-            (
-              {
-                pkg,
-                exe,
-                desktop,
-              }:
-              {
-                "${pkg}-wayland" = final.symlinkJoin {
-                  pname = prev.${pkg}.pname;
-                  version = prev.${pkg}.version;
-                  paths = [ prev.${pkg} ];
-                  nativeBuildInputs = [ final.makeWrapper ];
-                  postBuild = ''
-                    rm $out/share/applications/${desktop}.desktop
-                    substitute ${prev.${pkg}}/share/applications/${desktop}.desktop $out/share/applications/${desktop}.desktop \
-                      --replace-quiet "${prev.${pkg}}" $out
-                    wrapProgram $out/bin/${exe} --add-flags "--wayland-text-input-version=3"
-                  '';
-                };
-              }
-            )
-            [
-              {
-                pkg = "qq";
-                exe = "qq";
-                desktop = "qq";
-              }
-              {
-                pkg = "vscodium";
-                exe = "codium";
-                desktop = "codium";
-              }
-              {
-                pkg = "signal-desktop";
-                exe = "signal-desktop";
-                desktop = "signal";
-              }
-            ]
-        )
-      )
-      (
-        final: prev:
-        lib.mergeAttrsList (
-          map
-            (
-              { pkg, desktops }:
-              {
-                ${pkg} = final.symlinkJoin {
-                  name = prev.${pkg}.name;
-                  paths = [ prev.${pkg} ];
-                  postBuild = lib.concatLines (
-                    map (desktop: ''
-                      rm $out/share/applications/${desktop}.desktop
-                      substitute ${prev.${pkg}}/share/applications/${desktop}.desktop $out/share/applications/${desktop}.desktop \
-                        --replace-fail 'Exec=' 'Exec=env QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx '
-                    '') desktops
-                  );
-                };
-              }
-            )
-            [
-              {
-                pkg = "wechat";
-                desktops = [ "wechat" ];
-              }
-              {
-                pkg = "wpsoffice-cn";
-                desktops = map (app: "wps-office-${app}") [
-                  "et"
-                  "pdf"
-                  "prometheus"
-                  "wpp"
-                  "wps"
-                ];
-              }
-            ]
+          map (mkFcitx final prev) [
+            {
+              pkg = "wechat";
+              desktops = [ "wechat" ];
+            }
+            {
+              pkg = "wpsoffice-cn";
+              desktops = map (app: "wps-office-${app}") [
+                "et"
+                "pdf"
+                "prometheus"
+                "wpp"
+                "wps"
+              ];
+            }
+          ]
         )
       )
     ];
