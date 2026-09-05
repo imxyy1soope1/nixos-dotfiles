@@ -40,6 +40,7 @@ let
     inputs.home-manager.nixosModules.default
     inputs.impermanence.nixosModules.impermanence
     inputs.niri-nix.nixosModules.default
+    inputs.noctalia-greeter.nixosModules.default
     inputs.selector4nix.nixosModules.selector4nix
     inputs.sops-nix.nixosModules.sops
     # keep-sorted end

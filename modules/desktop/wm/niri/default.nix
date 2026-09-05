@@ -9,7 +9,7 @@
 }:
 let
   cfg = config.my.desktop.wm.niri;
-  pkg = pkgs.niri-unstable;
+  cursorCfg = config.my.hm.home.pointerCursor;
 in
 {
   options.my.desktop.wm.niri = {
@@ -19,17 +19,20 @@ in
   config = lib.mkIf cfg.enable {
     programs.niri = {
       enable = true;
-      package = pkg;
-      # We manage xdg.portal ourselves below.
-      withXDG = false;
+      package = pkgs.niri-unstable;
     };
-    services.displayManager = {
-      ly = {
-        enable = true;
-        settings = {
-          animation = "matrix";
-          session_log = ".local/state/ly-session.log";
-          shell = false;
+    programs.noctalia-greeter = {
+      enable = true;
+      passwordless-sync-users = [ username ];
+      settings = {
+        cursor = {
+          theme = cursorCfg.name;
+          size = cursorCfg.size;
+          path = "${cursorCfg.package}/share/icons";
+        };
+        appearance = {
+          hide_logo = true;
+          scheme_selector_position = "hidden";
         };
       };
     };
@@ -52,23 +55,6 @@ in
       }
     ];
 
-    xdg.portal = {
-      enable = true;
-      config = {
-        niri = {
-          default = [
-            "gnome"
-          ];
-          "org.freedesktop.impl.portal.RemoteDesktop" = [ "gnome" ];
-          "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
-          "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
-          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-        };
-      };
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gnome
-      ];
-    };
     # Keep switch-to-configuration from stopping the running compositor
     # when the niri store path changes; niri-nix dropped this drop-in in
     # acccaf2202. The new binary takes effect on next login instead.

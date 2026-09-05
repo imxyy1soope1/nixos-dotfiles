@@ -10,18 +10,24 @@ panel_anchor_bar = "main"
 polkit_agent = true
 screen_time_enabled = true
 telemetry_enabled = false
-
 clipboard_enabled = true
 clipboard_history_max_entries = 1000
 
 [shell.animation]
 speed = 0.8
 
+[shell.greeter_sync]
+auto_sync = true
+
 [shell.launcher]
 sort_by_usage = true
 
 [shell.mpris]
-blacklist = ["firefox", "chromium", "zen"]
+blacklist = [
+  "firefox",
+  "chromium",
+  "zen",
+]
 
 [shell.panel]
 borders = false
