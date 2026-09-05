@@ -1,5 +1,5 @@
 [lockscreen]
-wallpaper = "~/workspace/nixos-dotfiles/assets/wallpaper.png"
+blurred_desktop = true
 
 [lockscreen_widgets]
 enabled = true
