@@ -14,10 +14,10 @@ in
 
   config = lib.mkIf cfg.enable {
     my.hm.home.packages = [
-      pkgs.splayer
+      pkgs.splayer-next
     ];
     my.persist.homeDirs = [
-      ".config/SPlayer"
+      ".config/SPlayer-Next"
     ];
   };
 }
