@@ -21,8 +21,6 @@
           {
             darkly-qt6 = getPkg "darkly" "darkly-qt6";
 
-            noctalia-shell = inputs.noctalia.packages.${system}.default;
-
             nix-tree-rs = getPkg "nix-tree-rs" "default";
             fast-nix-gc = (getPkg "fast-nix-gc" "default").overrideAttrs {
               doCheck = false;
