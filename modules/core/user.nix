@@ -1,11 +1,11 @@
 {
   config,
   lib,
-  pkgs,
   hostname,
   username,
   userdesc,
   secrets,
+  assets,
   ...
 }:
 let
@@ -62,6 +62,7 @@ in
     my.hm.home = {
       inherit username;
       homeDirectory = "/home/${username}";
+      file.".face".source = assets.avatar;
     };
   };
 }

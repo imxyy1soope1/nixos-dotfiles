@@ -1,6 +1,5 @@
 # tombi: format.rules.table-keys-order.disabled = true
 [shell]
-avatar_path = "~/workspace/nixos-dotfiles/assets/avatar.jpg"
 corner_radius_scale = 1.5
 date_format = "%Y/%m/%d"
 font_family = "monospace"
