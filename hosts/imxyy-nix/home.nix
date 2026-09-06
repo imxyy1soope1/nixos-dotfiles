@@ -87,9 +87,6 @@
         "workspace"
         "Virt"
 
-        ".cache"
-        ".local/state"
-
         ".config/sunshine"
       ];
     };

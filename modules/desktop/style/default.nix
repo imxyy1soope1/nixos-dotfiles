@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  impure,
+  live,
   ...
 }:
 let
@@ -82,7 +82,7 @@ in
       };
 
       xdg.configFile = {
-        kdeglobals.source = impure.mkImpureLink ./kdeglobals;
+        kdeglobals.source = live.mkLiveLink ./kdeglobals;
         plasmarc.text = ''
           [Theme]
           name=darkly

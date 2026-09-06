@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  impure,
+  live,
   ...
 }:
 let
@@ -18,7 +18,7 @@ in
     # workaround
     environment.sessionVariables.EDITOR = "nvim";
     my.hm = {
-      xdg.configFile."nvim".source = impure.mkImpureLink ./nvim;
+      xdg.configFile."nvim".source = live.mkLiveLink ./nvim;
       programs.neovim = {
         enable = true;
         defaultEditor = true;

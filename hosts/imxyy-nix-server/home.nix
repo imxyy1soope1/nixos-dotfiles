@@ -16,9 +16,6 @@
         "workspace"
         "Virt"
 
-        ".local/state"
-        ".cache"
-
         ".ollama"
       ];
     };

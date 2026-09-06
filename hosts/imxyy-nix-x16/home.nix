@@ -66,9 +66,6 @@
 
         "bin"
         "workspace"
-
-        ".cache"
-        ".local/state"
       ];
     };
   };

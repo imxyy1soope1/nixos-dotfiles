@@ -1,30 +1,29 @@
-set export
-
-IMPURE_ROOT := `pwd`
-
 all: fmt switch
 
-@switch:
-	echo "Rebuilding NixOS..."
-	nh os switch . --impure
+@live:
+	./scripts/live-links.sh
 
-@switch-offline:
+@switch: live
+	echo "Rebuilding NixOS..."
+	nh os switch .
+
+@switch-offline: live
 	echo "Rebuilding NixOS without net..."
-	nh os switch . --impure --no-net
+	nh os switch . --no-net
 
 alias offline := switch-offline
 
-@boot:
+@boot: live
 	echo "Rebuilding NixOS..."
-	nh os boot . --impure
+	nh os boot .
 
-@test:
+@test: live
 	echo "Rebuilding NixOS..."
-	nh os test . --impure
+	nh os test .
 
 @vm:
 	echo "Building NixOS VM..."
-	nh os build-vm . --impure
+	nh os build-vm .
 
 @update:
 	echo "Updating flakes..."

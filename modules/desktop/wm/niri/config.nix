@@ -3,7 +3,7 @@ args@{
   lib,
   pkgs,
   assets,
-  impure,
+  live,
   ...
 }:
 let
@@ -12,7 +12,7 @@ in
 {
   config = lib.mkIf config.my.desktop.wm.niri.enable {
     my.hm = {
-      xdg.configFile."niri".source = impure.mkImpureLink ./config;
+      xdg.configFile."niri".source = live.mkLiveLink ./config;
       xdg.configFile."niri-generated.kdl".text = (import ./_lib.nix args).mkNiriKDL cfg.settings;
     };
 

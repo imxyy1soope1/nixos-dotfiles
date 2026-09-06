@@ -2,7 +2,7 @@
   lib,
   config,
   pkgs,
-  impure,
+  live,
   secrets,
   username,
   ...
@@ -101,7 +101,7 @@ in
         enable = true;
         systemd.enable = true;
       };
-      xdg.configFile."noctalia".source = impure.mkImpureLink ./noctalia;
+      xdg.configFile."noctalia".source = live.mkLiveLink ./noctalia;
     };
   };
 }
