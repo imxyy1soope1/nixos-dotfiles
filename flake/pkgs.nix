@@ -9,7 +9,6 @@
   _module.args = {
     pkgsParams = {
       overlays = builtins.attrValues config.flake.overlays ++ [
-        inputs.niri-nix.overlays.niri-nix
         inputs.fenix.overlays.default
         inputs.angrr.overlays.default
         inputs.llm-agents.overlays.shared-nixpkgs
@@ -17,14 +16,19 @@
           final: prev:
           let
             system = final.stdenv.hostPlatform.system;
+            getPkg = input: pkg: inputs.${input}.packages.${system}.${pkg};
           in
           {
-            darkly-qt6 = inputs.darkly.packages.${system}.darkly-qt6;
+            darkly-qt6 = getPkg "darkly" "darkly-qt6";
 
             noctalia-shell = inputs.noctalia.packages.${system}.default;
 
-            nix-tree-rs = inputs.nix-tree-rs.packages.${system}.default;
-            fast-nix-gc = inputs.fast-nix-gc.packages.${system}.default.overrideAttrs {
+            nix-tree-rs = getPkg "nix-tree-rs" "default";
+            fast-nix-gc = (getPkg "fast-nix-gc" "default").overrideAttrs {
+              doCheck = false;
+            };
+
+            niri-unstable = (getPkg "niri" "niri").overrideAttrs {
               doCheck = false;
             };
           }

@@ -14,6 +14,31 @@ in
 {
   options.my.desktop.wm.niri = {
     enable = lib.mkEnableOption "Niri";
+    # Copied from home-manager, MIT licensed
+    settings = lib.mkOption {
+      type =
+        with lib.types;
+        let
+          valueType =
+            nullOr (oneOf [
+              bool
+              int
+              float
+              str
+              (attrsOf valueType)
+              (listOf valueType)
+            ])
+            // {
+              description = "KDL value";
+            };
+        in
+        attrsOf valueType;
+      default = { };
+      description = ''
+        Configuration added to {file}`$XDG_CONFIG_HOME/niri/config.kdl`.
+        See <https://yalter.github.io/niri/Configuration%3A-Introduction.html> for the full list of options.
+      '';
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -55,23 +80,11 @@ in
       }
     ];
 
-    # Keep switch-to-configuration from stopping the running compositor
-    # when the niri store path changes; niri-nix dropped this drop-in in
-    # acccaf2202. The new binary takes effect on next login instead.
-    systemd.user.units."niri.service" = {
-      overrideStrategy = "asDropinIfExists";
-      text = ''
-        [Service]
-        X-StopIfChanged=false
-        X-RestartIfChanged=false
-      '';
-    };
-
     services.system76-scheduler.enable = true;
 
     my.hm = {
       home.packages = with pkgs; [
-        xwayland-satellite-unstable
+        xwayland-satellite
 
         wl-clipboard
         cliphist

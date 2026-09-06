@@ -140,7 +140,7 @@ in
         )
       )
     ];
-    my.hm.wayland.windowManager.niri.settings = {
+    my.desktop.wm.niri.settings = {
       binds."Mod+Space".spawn = [
         "fcitx5-remote"
         "-t"

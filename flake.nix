@@ -85,8 +85,8 @@
       inputs.systems.follows = "systems";
       inputs.treefmt-nix.follows = "treefmt";
     };
-    niri-nix = {
-      url = "git+https://codeberg.org/bananad3v/niri-nix";
+    niri = {
+      url = "github:niri-wm/niri";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-tree-rs = {

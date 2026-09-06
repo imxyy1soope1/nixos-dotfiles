@@ -19,7 +19,7 @@ in
     my.xdg.defaultApplications = {
       "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
     };
-    my.hm.wayland.windowManager.niri.settings.binds."Mod+E".spawn = [
+    my.desktop.wm.niri.settings.binds."Mod+E".spawn = [
       "nautilus"
     ];
   };

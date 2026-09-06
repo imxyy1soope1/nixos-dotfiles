@@ -33,17 +33,6 @@
     programs.fish.interactiveShellInit = ''
       set -gp PATH $HOME/bin
     '';
-
-    wayland.windowManager.niri.settings = {
-      environment.STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
-      output = [
-        {
-          _args = [ "eDP-1" ];
-          mode = "1920x1200@60.002";
-          scale = 1.25;
-        }
-      ];
-    };
   };
 
   my = {
@@ -54,6 +43,17 @@
     virt.moonlight.enable = true;
     i18n.fcitx5.enable = true;
     xdg.enable = true;
+
+    desktop.wm.niri.settings = {
+      environment.STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
+      output = [
+        {
+          _args = [ "eDP-1" ];
+          mode = "1920x1200@60.002";
+          scale = 1.25;
+        }
+      ];
+    };
 
     persist = {
       enable = true;

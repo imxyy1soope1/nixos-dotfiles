@@ -47,8 +47,17 @@
         set -gp PATH $HOME/bin
       '';
     };
+  };
 
-    wayland.windowManager.niri.settings = {
+  my = {
+    gpg.enable = true;
+    cli.all.enable = true;
+    coding.all.enable = true;
+    desktop.all.enable = true;
+    i18n.fcitx5.enable = true;
+    xdg.enable = true;
+
+    desktop.wm.niri.settings = {
       environment.STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
       output = [
         {
@@ -67,15 +76,6 @@
         }
       ];
     };
-  };
-
-  my = {
-    gpg.enable = true;
-    cli.all.enable = true;
-    coding.all.enable = true;
-    desktop.all.enable = true;
-    i18n.fcitx5.enable = true;
-    xdg.enable = true;
 
     persist = {
       enable = true;
