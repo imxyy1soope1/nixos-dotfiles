@@ -11,7 +11,9 @@
       overlays = builtins.attrValues config.flake.overlays ++ [
         inputs.fenix.overlays.default
         inputs.angrr.overlays.default
-        inputs.llm-agents.overlays.shared-nixpkgs
+        (final: _prev: {
+          llm-agents = inputs.llm-agents.packages.${final.stdenv.hostPlatform.system};
+        })
         (
           final: prev:
           let

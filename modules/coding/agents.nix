@@ -16,14 +16,14 @@ in
     my.hm = {
       home.packages =
         (with pkgs.llm-agents; [
-          # codex
+          codex
           claude-code
           # opencode
           # pi
           # omp
         ])
         ++ (with pkgs; [
-          codex
+          # codex
         ]);
     };
     my.persist = {
