@@ -18,6 +18,9 @@ in
         just
         gnumake
         github-cli # gh
+
+        difftastic
+        delta
       ];
       programs.starship.settings = {
         nix_shell.disabled = true;
