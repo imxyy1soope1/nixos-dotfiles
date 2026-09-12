@@ -23,10 +23,6 @@ in
       ((lib.filterAttrs (_: lib.isType "flake")) inputs) // { flake = self; }
     );
 
-    # This will additionally add your inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well, awesome!
-    nix.nixPath = [ "/etc/nix/path" ];
-
     environment.systemPackages = with pkgs; [
       nix-output-monitor
       nh
@@ -77,6 +73,7 @@ in
         "selector4nix.cachix.org-1:wovVlT07In5JCVz2tFgxPQTLpnN8hZT6P/RwfFcz3KE="
         "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
       ];
+      nix-path = [ "/etc/nix/path" ];
       download-buffer-size = 536870912; # 512 MiB
       warn-dirty = false;
     };
