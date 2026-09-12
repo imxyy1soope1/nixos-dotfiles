@@ -2,10 +2,10 @@
   config,
   lib,
   pkgs,
-  username,
   userfullname,
   emails,
   hosts,
+  live,
   ...
 }:
 let
@@ -21,39 +21,15 @@ in
       ".config/jj"
     ];
     my.hm = {
+      xdg.configFile."jj/conf.d".source = live.mkLiveLink ./conf.d;
       programs.jujutsu = {
         enable = true;
         settings = {
-          aliases = {
-            # take the closest ancestor bookmark and move them the current change.
-            # https://shaddy.dev/notes/jj-tug
-            tug = [
-              "bookmark"
-              "move"
-              "--from"
-              "heads(::@- & bookmarks())"
-              "--to"
-              "@-"
-            ];
-            logd = [
-              "log"
-              "-T"
-              "builtin_log_detailed"
-            ];
-          };
           user = {
             name = userfullname;
             email = emails.default;
           };
-          ui = {
-            graph.style = "square";
-            default-command = "status";
-            conflict-marker-style = "snapshot";
-          };
           signing = {
-            backend = "ssh";
-            behavior = "own";
-            key = "/home/${username}/.ssh/id_ed25519";
             backends.backends.ssh.allowed-signers =
               hosts
               |> lib.mapAttrsToList (

@@ -1,0 +1,36 @@
+[aliases]
+logd = ["log", "-T", "builtin_log_detailed"]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+
+[signing]
+backend = "ssh"
+behavior = "own"
+key = "/home/imxyy/.ssh/id_ed25519"
+
+[ui]
+conflict-marker-style = "snapshot"
+default-command = "status"
+
+diff-formatter = "delta"
+# diff-formatter = ["difft", "--color=always", "$left", "$right"]
+
+[ui.graph]
+style = "square"
+
+[merge-tools.delta]
+program = "sh"
+diff-args = [
+  "-c",
+  """
+	if [ "$3" -gt 200 ]; then
+		exec delta --side-by-side "$1" "$2" --width="$3"
+	else
+		exec delta --features=one-window "$1" "$2" --width="$3"
+	fi
+""",
+  "_",
+  "$left",
+  "$right",
+  "$width"
+]
+diff-expected-exit-codes = [0, 1]
