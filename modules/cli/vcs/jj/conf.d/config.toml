@@ -1,11 +1,20 @@
 [aliases]
 logd = ["log", "-T", "builtin_log_detailed"]
-tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+# tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+tug = ["bookmark", "advance"]
 
-[signing]
-backend = "ssh"
-behavior = "own"
-key = "/home/imxyy/.ssh/id_ed25519"
+[revsets]
+bookmark-advance-to = 'closest_pushable(@)'
+
+[revset-aliases]
+'closest_pushable(to)' = '''
+  heads(
+    ::to
+    & mutable()
+    & description(regex:"\\S")
+    & (~empty() | merges())
+  )
+'''
 
 [ui]
 conflict-marker-style = "snapshot"
@@ -34,3 +43,8 @@ diff-args = [
   "$width"
 ]
 diff-expected-exit-codes = [0, 1]
+
+[signing]
+backend = "ssh"
+behavior = "own"
+key = "/home/imxyy/.ssh/id_ed25519"
