@@ -11,6 +11,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 package.path = package.path .. ";" .. vim.fn.stdpath("config") .. "/lua/"
 
+local in_kitty_scrollback = vim.env.KITTY_SCROLLBACK_NVIM == "true"
+if in_kitty_scrollback then
+  vim.o.laststatus = 0
+  vim.o.showtabline = 0
+end
+
 local plugins = {
   {
     "folke/tokyonight.nvim",
@@ -21,6 +27,7 @@ local plugins = {
   },
   {
     "nvim-lualine/lualine.nvim",
+    cond = not in_kitty_scrollback,
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
     config = function()
       require("lualine").setup(require("plugins.lualine"))
@@ -58,7 +65,7 @@ local plugins = {
     },
     cmd = "Neotree",
     keys = {
-      { "\\", ":Neotree reveal toggle<CR>", desc = "Toggle NeoTree", silent = true },
+      { "\\",        ":Neotree reveal toggle<CR>", desc = "Toggle NeoTree", silent = true },
       { "<leader>e", ":Neotree reveal toggle<CR>", desc = "Toggle NeoTree", silent = true },
     },
     --- @type neotree.Config
@@ -210,6 +217,7 @@ local plugins = {
   },
   {
     "akinsho/bufferline.nvim",
+    cond = not in_kitty_scrollback,
     config = function()
       require("bufferline").setup(require("plugins.bufferline"))
     end,
@@ -330,7 +338,7 @@ local plugins = {
     cmd = "Registers",
     config = true,
     keys = {
-      { '"', mode = { "n", "v" } },
+      { '"',     mode = { "n", "v" } },
       { "<C-R>", mode = "i" },
     },
     name = "registers",
@@ -353,24 +361,33 @@ local plugins = {
         },
       },
     },
+  },
 
-    {
-      "julienvincent/hunk.nvim",
-      cmd = { "DiffEditor" },
-      dependencies = { { "nvim-tree/nvim-web-devicons" } },
-      opts = {
-        keys = {
-          global = {
-            quit = { "<leader>q" },
-          },
-          diff = {
-            prev_hunk = { "<S-Tab>" },
-            next_hunk = { "<Tab>" },
-            toggle_focus = {},
-          },
+  {
+    "julienvincent/hunk.nvim",
+    cmd = { "DiffEditor" },
+    dependencies = { { "nvim-tree/nvim-web-devicons" } },
+    opts = {
+      keys = {
+        global = {
+          quit = { "<leader>q" },
+        },
+        diff = {
+          prev_hunk = { "<S-Tab>" },
+          next_hunk = { "<Tab>" },
+          toggle_focus = {},
         },
       },
     },
+  },
+
+  {
+    'mikesmithgh/kitty-scrollback.nvim',
+    lazy = true,
+    cmd = { 'KittyScrollbackGenerateKittens', 'KittyScrollbackCheckHealth', 'KittyScrollbackGenerateCommandLineEditing' },
+    event = { 'User KittyScrollbackLaunch' },
+    version = '^6.0.0',
+    opts = {},
   },
 }
 
