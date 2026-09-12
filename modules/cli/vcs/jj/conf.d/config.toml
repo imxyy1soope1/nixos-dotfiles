@@ -17,7 +17,9 @@ bookmark-advance-to = 'closest_pushable(@)'
 '''
 
 [ui]
-conflict-marker-style = "snapshot"
+# git: merge.conflictstyle = diff3
+conflict-marker-style = "git"
+# conflict-marker-style = "snapshot"
 default-command = "status"
 
 diff-formatter = "delta"
