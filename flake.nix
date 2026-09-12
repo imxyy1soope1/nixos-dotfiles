@@ -96,7 +96,7 @@
       inputs.treefmt-nix.follows = "treefmt";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/v5.0.1";
+      url = "github:noctalia-dev/noctalia-shell/v5.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia-greeter = {
