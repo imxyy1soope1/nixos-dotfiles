@@ -46,7 +46,7 @@ in
       enable = true;
       package = pkgs.niri-unstable;
     };
-    programs.noctalia-greeter = {
+    services.displayManager.noctalia-greeter = {
       enable = true;
       passwordless-sync-users = [ username ];
       settings = {
