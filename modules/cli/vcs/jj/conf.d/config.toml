@@ -4,10 +4,10 @@ logd = ["log", "-T", "builtin_log_detailed"]
 tug = ["bookmark", "advance"]
 
 [revsets]
-bookmark-advance-to = 'closest_pushable(@)'
+bookmark-advance-to = "closest_pushable(@)"
 
 [revset-aliases]
-'closest_pushable(to)' = '''
+"closest_pushable(to)" = '''
   heads(
     ::to
     & mutable()

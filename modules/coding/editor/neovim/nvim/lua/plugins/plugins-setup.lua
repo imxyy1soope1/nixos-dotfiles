@@ -65,7 +65,7 @@ local plugins = {
     },
     cmd = "Neotree",
     keys = {
-      { "\\",        ":Neotree reveal toggle<CR>", desc = "Toggle NeoTree", silent = true },
+      { "\\", ":Neotree reveal toggle<CR>", desc = "Toggle NeoTree", silent = true },
       { "<leader>e", ":Neotree reveal toggle<CR>", desc = "Toggle NeoTree", silent = true },
     },
     --- @type neotree.Config
@@ -338,7 +338,7 @@ local plugins = {
     cmd = "Registers",
     config = true,
     keys = {
-      { '"',     mode = { "n", "v" } },
+      { '"', mode = { "n", "v" } },
       { "<C-R>", mode = "i" },
     },
     name = "registers",
@@ -382,11 +382,15 @@ local plugins = {
   },
 
   {
-    'mikesmithgh/kitty-scrollback.nvim',
+    "mikesmithgh/kitty-scrollback.nvim",
     lazy = true,
-    cmd = { 'KittyScrollbackGenerateKittens', 'KittyScrollbackCheckHealth', 'KittyScrollbackGenerateCommandLineEditing' },
-    event = { 'User KittyScrollbackLaunch' },
-    version = '^6.0.0',
+    cmd = {
+      "KittyScrollbackGenerateKittens",
+      "KittyScrollbackCheckHealth",
+      "KittyScrollbackGenerateCommandLineEditing",
+    },
+    event = { "User KittyScrollbackLaunch" },
+    version = "^6.0.0",
     opts = {},
   },
 }
