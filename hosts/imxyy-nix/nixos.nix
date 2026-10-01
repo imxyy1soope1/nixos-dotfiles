@@ -69,6 +69,9 @@ in
     enable = true;
     autoStart = true;
     capSysAdmin = true;
+    # Force wlr-screencopy; the portal backend probes ScreenCast at startup
+    # and pops xdg-desktop-portal-gnome's screen-sharing picker.
+    settings.capture = "wlr";
     applications.apps = [
       {
         name = "Desktop";
