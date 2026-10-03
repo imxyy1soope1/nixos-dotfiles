@@ -29,7 +29,7 @@ blacklist = [
 ]
 
 [shell.panel]
-borders = false
+borders = true
 clipboard_placement = "floating"
 control_center_placement = "floating"
 launcher_placement = "floating"
