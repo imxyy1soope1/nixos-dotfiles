@@ -5,7 +5,7 @@
   ...
 }:
 let
-  btrfs = "/dev/disk/by-uuid/1e1b403d-4a04-46ee-a6eb-cb4dd5f793a2";
+  btrfs = "/dev/disk/by-uuid/96ebbe0c-7e04-4da3-be25-1584f13acf59";
 in
 {
   boot.initrd.availableKernelModules = [
@@ -65,7 +65,7 @@ in
   boot.zswap.enable = true;
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/58F4-135A";
+    device = "/dev/disk/by-uuid/F95E-75B6";
     fsType = "vfat";
     options = [
       "uid=0"
