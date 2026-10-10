@@ -115,34 +115,32 @@ in
       description = "Rollback BTRFS rootfs";
       wantedBy = [ "initrd.target" ];
       before = [ "sysroot.mount" ];
-      after = [ "initrd-root-device.target" ];
+      requires = [ "initrd-root-device.target" ];
+      after = [ "initrd-root-device.target" "local-fs-pre.target" ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
 
       script = ''
+        set -euo pipefail
+
         mkdir -p /btrfs_tmp
-        mount ${cfg.btrfs.device} /btrfs_tmp
+        trap 'umount /btrfs_tmp || true' EXIT
+        mount '${cfg.btrfs.device}' -o subvol=/ /btrfs_tmp
+
+        root=/btrfs_tmp/${cfg.btrfs.rootSubvol}
         mkdir -p /btrfs_tmp/old_roots
 
-        if [ -e /btrfs_tmp/root ]; then
-          timestamp=$(date -d "@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%d_%H:%M:%S" 2>/dev/null || date "+%Y-%m-%d_%H:%M:%S")
-          mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+        if [ -d "$root" ]; then
+          timestamp=$(TZ=${if config.time.timeZone == null then "UTC" else config.time.timeZone} \
+            date -d "@$(stat -c %Y "$root")" '+%Y-%m-%d_%H:%M:%S')
+          mv "$root" "/btrfs_tmp/old_roots/$timestamp"
         fi
 
-        delete_subvolume_recursively() {
-          IFS=$(printf '\n')
-          for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-            delete_subvolume_recursively "/btrfs_tmp/$i"
-          done
-          btrfs subvolume delete "$1"
-        }
+        btrfs subvolume create "$root"
 
-        for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +14); do
-          delete_subvolume_recursively "$i"
+        for i in $(find /btrfs_tmp/old_roots -mindepth 1 -maxdepth 1 -mtime +14); do
+          btrfs subvolume delete -R "$i"
         done
-
-        btrfs subvolume create /btrfs_tmp/${cfg.btrfs.rootSubvol}
-        umount /btrfs_tmp
       '';
     };
 
