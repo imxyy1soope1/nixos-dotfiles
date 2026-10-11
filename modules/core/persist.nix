@@ -116,7 +116,10 @@ in
       wantedBy = [ "initrd.target" ];
       before = [ "sysroot.mount" ];
       requires = [ "initrd-root-device.target" ];
-      after = [ "initrd-root-device.target" "local-fs-pre.target" ];
+      after = [
+        "initrd-root-device.target"
+        "local-fs-pre.target"
+      ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
 
