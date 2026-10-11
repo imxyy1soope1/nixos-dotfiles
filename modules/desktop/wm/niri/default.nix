@@ -44,7 +44,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.niri = {
       enable = true;
-      package = pkgs.niri-unstable;
+      # package = pkgs.niri-unstable;
     };
     services.displayManager.noctalia-greeter = {
       enable = true;
