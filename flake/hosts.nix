@@ -20,7 +20,6 @@ let
     home-manager = {
       sharedModules = [
         # keep-sorted start
-        inputs.noctalia.homeModules.default
         inputs.sops-nix.homeManagerModules.sops
         inputs.stylix.homeModules.stylix
         inputs.system76-scheduler-niri.homeModules.default
@@ -38,7 +37,6 @@ let
     inputs.angrr.nixosModules.angrr
     inputs.home-manager.nixosModules.default
     inputs.impermanence.nixosModules.impermanence
-    inputs.noctalia-greeter.nixosModules.default
     inputs.selector4nix.nixosModules.selector4nix
     inputs.sops-nix.nixosModules.sops
     # keep-sorted end

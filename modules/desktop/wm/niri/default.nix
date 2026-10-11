@@ -48,7 +48,7 @@ in
     };
     services.displayManager.noctalia-greeter = {
       enable = true;
-      passwordless-sync-users = [ username ];
+      passwordlessSyncUsers = [ username ];
       settings = {
         cursor = {
           theme = cursorCfg.name;

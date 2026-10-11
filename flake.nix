@@ -95,14 +95,6 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.treefmt-nix.follows = "treefmt";
     };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/v5.2.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     selector4nix = {
       url = "github:StarryReverie/selector4nix";
       inputs.flake-parts.follows = "flake-parts";
