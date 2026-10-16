@@ -134,8 +134,7 @@ in
         mkdir -p /btrfs_tmp/old_roots
 
         if [ -d "$root" ]; then
-          timestamp=$(TZ=${if config.time.timeZone == null then "UTC" else config.time.timeZone} \
-            date -d "@$(stat -c %Y "$root")" '+%Y-%m-%d_%H:%M:%S')
+          timestamp=$(date -d "@$(stat -c %Y "$root")" '+%Y-%m-%d_%H:%M:%S')
           mv "$root" "/btrfs_tmp/old_roots/$timestamp"
         fi
 
