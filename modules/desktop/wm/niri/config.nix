@@ -17,7 +17,12 @@ in
     };
 
     my.desktop.wm.niri.settings = {
-      environment.NIXOS_OZONE_WL = "1";
+      environment = {
+        NIXOS_OZONE_WL = "1";
+        # HACK: Force electron applications to use `gnome-libsecret` as password storage backend
+        #       ref: https://chromium.googlesource.com/chromium/src/+/refs/tags/156.0.8078.44/base/nix/xdg_util.cc#179
+        GNOME_DESKTOP_SESSION_ID = "1";
+      };
 
       spawn-at-startup = lib.mkBefore [
         (
