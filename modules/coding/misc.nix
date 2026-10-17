@@ -58,10 +58,6 @@ in
             }
 
             source_env .envrc.local
-
-            use() {
-              log_status "intercepted 'use $@' in .envrc"
-            }
           fi
         '';
       };
