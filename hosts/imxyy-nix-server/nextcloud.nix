@@ -21,7 +21,7 @@ in
     extraApps = {
       inherit (pkgs.nextcloud35.packages.apps)
         bookmarks
-        # previewgenerator
+        previewgenerator
         spreed
         notes
         ;
