@@ -17,12 +17,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # This will add each flake input as a registry
-    # To make nix3 commands consistent with your flake
-    nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) (
-      ((lib.filterAttrs (_: lib.isType "flake")) inputs) // { flake = self; }
-    );
-
     environment.systemPackages = with pkgs; [
       nix-output-monitor
       nh
@@ -30,6 +24,31 @@ in
       fast-nix-gc
     ];
 
+    # This will add each flake input as a registry
+    # To make nix3 commands consistent with your flake
+    nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) (
+      ((lib.filterAttrs (_: lib.isType "flake")) inputs) // { flake = self; }
+    );
+    nix.settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "pipe-operators"
+      ];
+      substituters = lib.mkForce [
+        "http://127.0.0.1:${toString (config.services.selector4nix.settings.server.port or 5496)}"
+        "https://cache.nixos.org"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "selector4nix.cachix.org-1:wovVlT07In5JCVz2tFgxPQTLpnN8hZT6P/RwfFcz3KE="
+        "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+      ];
+      nix-path = [ "/etc/nix/path" ];
+      download-buffer-size = 536870912; # 512 MiB
+      warn-dirty = false;
+    };
+    nix.nixPath = [ "/etc/nix/path" ];
     environment.etc = (
       lib.mapAttrs' (name: value: {
         name = "nix/path/${name}";
@@ -56,26 +75,6 @@ in
           "https://cache.nixos.org"
         ];
       };
-    };
-
-    nix.settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-        "pipe-operators"
-      ];
-      substituters = lib.mkForce [
-        "http://127.0.0.1:${toString (config.services.selector4nix.settings.server.port or 5496)}"
-        "https://cache.nixos.org"
-      ];
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "selector4nix.cachix.org-1:wovVlT07In5JCVz2tFgxPQTLpnN8hZT6P/RwfFcz3KE="
-        "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-      ];
-      nix-path = [ "/etc/nix/path" ];
-      download-buffer-size = 536870912; # 512 MiB
-      warn-dirty = false;
     };
 
     sops.secrets.nix-github-token = {
