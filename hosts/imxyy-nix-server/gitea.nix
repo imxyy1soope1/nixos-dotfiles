@@ -26,7 +26,6 @@
         LANDING_PAGE = "explore";
       };
       server = {
-        DOMAIN = "git.imxyy.top";
         HTTP_ADDR = "127.0.0.1";
         HTTP_PORT = 8082;
         ROOT_URL = "https://git.imxyy.top/";
