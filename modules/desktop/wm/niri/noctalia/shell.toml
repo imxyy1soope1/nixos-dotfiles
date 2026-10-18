@@ -20,6 +20,8 @@ auto_sync = true
 
 [shell.launcher]
 sort_by_usage = true
+category_icons_only = true
+layout = "simple"
 
 [shell.mpris]
 blacklist = [
