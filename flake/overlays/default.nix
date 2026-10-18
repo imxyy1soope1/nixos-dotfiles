@@ -38,7 +38,22 @@ in
     final: prev:
     lib.infuse prev {
       cage.__output.patches.__append = [ ./cage-specify-output-name.patch ];
+
       bottles.__input.removeWarningPopup.__assign = true;
+      # 32-bit dosbox is not cached and contributes nothing to the FHS env
+      # (it has no lib output to install into /usr/lib32).
+      bottles.__input.buildFHSEnv.__assign =
+        args:
+        prev.buildFHSEnv (
+          args
+          // {
+            multiPkgs =
+              p:
+              builtins.filter (
+                drv: !(p.stdenv.hostPlatform.is32bit && (drv.pname or drv.name or "") == "dosbox")
+              ) (args.multiPkgs p);
+          }
+        );
     }
   )
   (
