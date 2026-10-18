@@ -52,10 +52,6 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.systems.follows = "systems";
     };
-    system76-scheduler-niri = {
-      url = "github:Kirottu/system76-scheduler-niri";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # keep-sorted end
 
     # Useful software

@@ -71,8 +71,6 @@ in
       }
     ];
 
-    services.system76-scheduler.enable = true;
-
     my.hm = {
       home.packages = with pkgs; [
         xwayland-satellite
@@ -85,8 +83,6 @@ in
 
         xdg-terminal-exec
       ];
-
-      services.system76-scheduler-niri.enable = true;
 
       programs.noctalia = {
         enable = true;

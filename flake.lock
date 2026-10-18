@@ -618,7 +618,6 @@
         "selector4nix": "selector4nix",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
-        "system76-scheduler-niri": "system76-scheduler-niri",
         "systems": "systems",
         "treefmt": "treefmt",
         "zen": "zen"
@@ -719,26 +718,6 @@
       "original": {
         "owner": "danth",
         "repo": "stylix",
-        "type": "github"
-      }
-    },
-    "system76-scheduler-niri": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1777139849,
-        "narHash": "sha256-W9OFej3iM5okSG50EGEYkiGzDyOnFNu1laCqCdy0Kxw=",
-        "owner": "Kirottu",
-        "repo": "system76-scheduler-niri",
-        "rev": "2a184809783920bd00cee16167cd942653fea9e0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Kirottu",
-        "repo": "system76-scheduler-niri",
         "type": "github"
       }
     },

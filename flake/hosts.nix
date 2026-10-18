@@ -22,7 +22,6 @@ let
         # keep-sorted start
         inputs.sops-nix.homeManagerModules.sops
         inputs.stylix.homeModules.stylix
-        inputs.system76-scheduler-niri.homeModules.default
         inputs.zen.homeModules.beta
         # keep-sorted end
         {
