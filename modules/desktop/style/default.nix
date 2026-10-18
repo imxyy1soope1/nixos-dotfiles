@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  live,
   ...
 }:
 let
@@ -81,13 +80,17 @@ in
         };
       };
 
-      xdg.configFile = {
-        kdeglobals.source = live.mkLiveLink ./kdeglobals;
-        plasmarc.text = ''
-          [Theme]
-          name=darkly
-        '';
-      };
+      xdg.configFile.plasmarc.text = ''
+        [Theme]
+        name=darkly
+      '';
     };
+
+    # Keep the declarative theme in the read-only system layer. The user
+    # config overrides the system config, and KConfig writes only changed
+    # GUI-managed keys, such as file-dialog sort order, to
+    # ~/.config/kdeglobals.
+    environment.etc."xdg/kdeglobals".source = ./kdeglobals;
+    my.persist.homeFiles = [ ".config/kdeglobals" ];
   };
 }
