@@ -3,7 +3,6 @@
   config,
   pkgs,
   live,
-  secrets,
   username,
   ...
 }:
@@ -64,14 +63,6 @@ in
 
     security.pam.services.login.enableGnomeKeyring = true;
     services.gnome.gnome-keyring.enable = true;
-
-    sops.secrets.noctalia-storage-key = {
-      sopsFile = secrets.noctalia-storage-key;
-      format = "binary";
-      owner = username;
-      group = "users";
-      mode = "0400";
-    };
 
     my.persist.homeDirs = [
       {
