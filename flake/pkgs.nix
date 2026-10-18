@@ -21,7 +21,9 @@
             getPkg = input: pkg: inputs.${input}.packages.${system}.${pkg};
           in
           {
-            darkly-qt6 = getPkg "darkly" "darkly-qt6";
+            darkly-qt6 = (getPkg "darkly" "darkly-qt6").overrideAttrs (prev: {
+              patches = (prev.patches or [ ]) ++ [ ./patches/darkly-tabbar.patch ];
+            });
 
             nix-tree-rs = getPkg "nix-tree-rs" "default";
             fast-nix-gc = (getPkg "fast-nix-gc" "default").overrideAttrs {

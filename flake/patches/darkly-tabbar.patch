@@ -1,0 +1,51 @@
+--- a/kstyle/darklystyle.cpp
++++ b/kstyle/darklystyle.cpp
+@@ -7289,7 +7289,7 @@
+     Corners backgroundCorners;
+ 
+     // store tab shape
+-    Side side;
++    Side side = SideTop;
+ 
+     if (StyleConfigData::oldTabbar()) {
+         switch (tabOption->shape) {
+@@ -7339,6 +7339,9 @@
+         case QTabBar::TriangularWest:
+ 
+             side = SideLeft;
++            // vertical tabs are not handled by the north/south cases above
++            backgroundRect = rect;
++            shadowRect = QRect(rect.topRight() + QPoint(1, 0), QSize(shadowSize, rect.height()));
+             if (selected) {
+                 corners = CornerTopLeft | CornerBottomLeft;
+                 rect.adjust(0, 0, 1, 0);
+@@ -7362,6 +7365,9 @@
+         case QTabBar::TriangularEast:
+ 
+             side = SideRight;
++            // vertical tabs are not handled by the north/south cases above
++            backgroundRect = rect;
++            shadowRect = QRect(rect.topLeft() - QPoint(shadowSize + 1, 0), QSize(shadowSize, rect.height()));
+             if (selected) {
+                 corners = CornerTopRight | CornerBottomRight;
+                 rect.adjust(-1, 0, 0, 0);
+@@ -7432,6 +7438,9 @@
+         case QTabBar::TriangularWest:
+ 
+             side = SideLeft;
++            // vertical tabs are not handled by the north/south cases above
++            backgroundRect = rect;
++            shadowRect = QRect(rect.topRight() + QPoint(1, 0), QSize(shadowSize, rect.height()));
+             if (selected) {
+                 corners = CornerTopLeft | CornerTopRight | CornerBottomLeft | CornerBottomRight;
+ 
+@@ -7454,6 +7463,9 @@
+         case QTabBar::TriangularEast:
+ 
+             side = SideRight;
++            // vertical tabs are not handled by the north/south cases above
++            backgroundRect = rect;
++            shadowRect = QRect(rect.topLeft() - QPoint(shadowSize + 1, 0), QSize(shadowSize, rect.height()));
+             if (selected) {
+                 corners = CornerTopLeft | CornerTopRight | CornerBottomLeft | CornerBottomRight;
+ 
