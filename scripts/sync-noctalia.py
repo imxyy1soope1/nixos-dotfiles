@@ -35,7 +35,7 @@ import re
 import shutil
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from subprocess import CalledProcessError
 
@@ -311,7 +311,7 @@ def backup_settings(state_dir: Path, keep: int = KEEP_BACKUPS):
         return None
     bak = state_dir / "settings.bak.d"
     bak.mkdir(parents=True, exist_ok=True)
-    ts = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+    ts = datetime.now(UTC).strftime("%Y%m%d-%H%M%S")
     dest = bak / f"{ts}.toml"
     n = 1
     while dest.exists():
