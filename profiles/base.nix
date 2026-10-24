@@ -14,6 +14,8 @@
   # disable this since we already have machine-id persisted
   systemd.services."systemd-machine-id-commit".enable = !config.my.persist.enable;
 
+  programs.command-not-found.enable = false;
+
   # Enable core modules (user, nix, xdg, time are enabled by default)
   my = {
     user.enable = true;
