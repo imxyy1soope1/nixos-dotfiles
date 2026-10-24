@@ -153,31 +153,6 @@
     ];
   };
 
-  virtualisation.oci-containers.containers.obligator = {
-    image = "anderspitman/obligator:latest";
-    volumes = [
-      "/var/lib/obligator:/data"
-      "/var/lib/obligator:/api"
-    ];
-    ports = [ "8081:1616" ];
-    cmd = [
-      "-storage-dir"
-      "/data"
-      "-api-socket-dir"
-      "/api"
-      "-root-uri"
-      "https://oidc.imxyy.top"
-      "-port"
-      "1616"
-    ];
-  };
-  services.caddy.virtualHosts."oidc.imxyy.top" = {
-    extraConfig = ''
-      reverse_proxy :8081
-    '';
-  };
-  my.services.frp.webServers = [ "oidc.imxyy.top" ];
-
   systemd.services.ddns-go = {
     description = "Go Dynamic DNS";
     after = [ "network.target" ];
