@@ -36,8 +36,6 @@ in
     notify_push.enable = true;
     config = {
       dbtype = "pgsql";
-      adminpassFile = toString (pkgs.writeText "nextcloud-pass" "admin12345!");
-      adminuser = "admin";
     };
     settings = {
       trusted_domains = [
