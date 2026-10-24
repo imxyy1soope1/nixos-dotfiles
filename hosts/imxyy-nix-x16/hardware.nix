@@ -18,7 +18,6 @@ in
         "uas"
         "sd_mod"
       ];
-      verbose = false;
     };
 
     kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod_latest;

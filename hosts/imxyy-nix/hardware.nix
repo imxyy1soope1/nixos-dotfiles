@@ -20,7 +20,6 @@ in
         "usb_storage"
         "sd_mod"
       ];
-      verbose = false;
     };
 
     kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod_latest;
